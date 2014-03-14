@@ -1,0 +1,11 @@
+
+#chkboxLoc {
+	
+	padding-left: 20px;
+	padding-bottom: 20 px;
+	height: 175px;
+	width: 200px;
+	border: 1px solid red;
+	overflow-y: scroll;
+}
+
