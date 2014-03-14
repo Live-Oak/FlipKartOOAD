@@ -1,0 +1,267 @@
+CREATE DATABASE FlipKartDatabase;
+
+
+CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
+  `userId` INT NOT NULL ,
+  `firstName` VARCHAR(45) NOT NULL ,
+  `lastName` VARCHAR(45) NULL ,
+  `role` VARCHAR(45) NOT NULL ,
+  `dateOfBirth` DATE NOT NULL ,
+  `addressLine1` VARCHAR(100) NOT NULL ,
+  `addressLine2` VARCHAR(100) NULL ,
+  `city` VARCHAR(100) NOT NULL,
+  `country` VARCHAR(100) NOT NULL ,
+  `pinCode` INT NOT NULL ,
+  `email` VARCHAR(100) NOT NULL ,
+  `phoneNumber` INT NOT NULL ,
+  `dateOfRegistration` DATE NOT NULL ,
+  PRIMARY KEY (`userId`) );
+
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
+  `productId` INT NOT NULL ,
+  `productName` VARCHAR(100) NOT NULL ,
+  `price` FLOAT NOT NULL ,
+  `offer` INT NULL ,
+  `category` VARCHAR(100) NOT NULL ,
+  `keywords` VARCHAR(150) NOT NULL ,
+  `description` VARCHAR(200) NOT NULL ,
+  `brand` VARCHAR(100) NOT NULL ,
+  `warranty` INT NOT NULL ,
+  PRIMARY KEY (`productId`) );
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`Keywords` (
+  `productId` INT NOT NULL ,
+  `keyword` VARCHAR(50) NOT NULL ,
+  INDEX `fk_Keywords_pid` (`productId` ASC) ,
+  CONSTRAINT `fk_Keywords_pid`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`WishList` (
+  `userId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  INDEX `fk_WishList_productId` (`userId` ASC) ,
+  INDEX `fk_WishList_userId` (`productId` ASC) ,
+  CONSTRAINT `fk_WishList_productId`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_WishList_userId`
+    FOREIGN KEY (`userId` )
+    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE  TABLE `FlipKartDatabase`.`BankDetails` (
+  `creditCardNumber` INT NOT NULL ,
+  `bankName` VARCHAR(100) NOT NULL ,
+  `nameOfAccountHolder` VARCHAR(100) NOT NULL ,
+  `bankLoginId` VARCHAR(100) NOT NULL ,
+  `CVV` INT NOT NULL ,
+  `transactionPassword` VARCHAR(100) NOT NULL ,
+  `accountNumber` INT NOT NULL ,
+  `expiryDate` DATE NOT NULL ,
+  `issueDate` DATE NOT NULL ,
+  `balance` FLOAT NOT NULL ,
+  PRIMARY KEY (`creditCardNumber`) );
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`Order` (
+  `orderId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  `status` VARCHAR(100) NOT NULL ,
+  `quantity` INT NOT NULL ,
+  `userId` INT NOT NULL ,
+  `orderDate` DATE NOT NULL ,
+  `deliveryDate` DATE NOT NULL ,
+  PRIMARY KEY (`orderId`) ,
+  INDEX `fk_Order_userId` (`userId` ASC) ,
+  INDEX `fk_Order_productId` (`productId` ASC) ,
+  CONSTRAINT `fk_Order_userId`
+    FOREIGN KEY (`userId` )
+    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Order_productId`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`Feedback` (
+  `userId` INT NOT NULL ,
+  `comment` VARCHAR(500) NOT NULL ,
+  `feedbackDate` DATE NOT NULL ,
+  INDEX `fk_Feedback_userId` (`userId` ASC) ,
+  CONSTRAINT `fk_Feedback_userId`
+    FOREIGN KEY (`userId` )
+    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`Cart` (
+  `userId` INT NOT NULL ,
+  `productId` INT NOT NULL ,
+  `quantity` INT NOT NULL ,
+  INDEX `fk_Cart_userId` (`userId` ASC) ,
+  INDEX `fk_Cart_productId` (`productId` ASC) ,
+  CONSTRAINT `fk_Cart_userId`
+    FOREIGN KEY (`userId` )
+    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Cart_productId`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`Payment` (
+  `transactionId` INT NOT NULL AUTO_INCREMENT ,
+  `orderId` INT NOT NULL ,
+  `bank` VARCHAR(100) NOT NULL ,
+  `paymentType` VARCHAR(45) NOT NULL ,
+  `amount` FLOAT NOT NULL ,
+  `paymentDate` DATE NOT NULL ,
+  PRIMARY KEY (`transactionId`) ,
+  INDEX `fk_Payment_orderId` (`orderId` ASC) ,
+  CONSTRAINT `fk_Payment_orderId`
+    FOREIGN KEY (`orderId` )
+    REFERENCES `FlipKartDatabase`.`Order` (`orderId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`Category` (
+  `categoryId` VARCHAR(50) NOT NULL ,
+  `categoryName` VARCHAR(100) NOT NULL ,
+  PRIMARY KEY (`categoryId`) );
+
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`CategoryRelation` (
+  `categoryId` VARCHAR(50) NOT NULL ,
+  `subCategoryId` VARCHAR(50) NOT NULL ,
+  INDEX `fk_CategoryRelation_categoryId` (`categoryId` ASC) ,
+  INDEX `fk_CategoryRelation_subCategoryId` (`subCategoryId` ASC) ,
+  CONSTRAINT `fk_CategoryRelation_categoryId`
+    FOREIGN KEY (`categoryId` )
+    REFERENCES `FlipKartDatabase`.`Category` (`categoryId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_CategoryRelation_subCategoryId`
+    FOREIGN KEY (`subCategoryId` )
+    REFERENCES `FlipKartDatabase`.`Category` (`categoryId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE  TABLE `FlipKartDatabase`.`Advertizement` (
+  `productId` INT NOT NULL ,
+  `image` BLOB NOT NULL ,
+  INDEX `fk_Advertizement_productId` (`productId` ASC) ,
+  CONSTRAINT `fk_Advertizement_productId`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE  TABLE `FlipKartDatabase`.`Seller` (
+  `sellerId` INT NOT NULL AUTO_INCREMENT ,
+  `userId` INT NOT NULL ,
+  `description` VARCHAR(500) NOT NULL ,
+  PRIMARY KEY (`sellerId`) ,
+  INDEX `fk_Seller_userId` (`userId` ASC) ,
+  CONSTRAINT `fk_Seller_userId`
+    FOREIGN KEY (`userId` )
+    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+CREATE  TABLE `FlipKartDatabase`.`Stock` (
+  `productId` INT NOT NULL ,
+  `availableQuantity` INT NOT NULL CHECK( availableQuantity <= maximumQuantity 
+    AND availableQuantity >= 0 ),
+  `minimumQuantity` INT NOT NULL CHECK( minimumQuantity >= 0 ),
+  `maximumQuantity` INT NOT NULL CHECK( maximumQuantity >= 0 ),
+  `sellerId` INT NOT NULL ,
+  `stockUpdateDate` DATE NOT NULL,
+  INDEX `fk_Stock_productId` (`productId` ASC) ,
+  INDEX `fk_Stock_sellerId` (`sellerId` ASC) ,
+  CONSTRAINT `fk_Stock_productId`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Stock_sellerId`
+    FOREIGN KEY (`sellerId` )
+    REFERENCES `FlipKartDatabase`.`Seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+
+
+CREATE  TABLE `FlipKartDatabase`.`ReviewNRating` (
+  `productSellerId` INT NOT NULL ,
+  `productSellerIdType` VARCHAR(45) NOT NULL ,
+  `userId` INT NOT NULL ,
+  `review` VARCHAR(500) NULL ,
+  `rating` VARCHAR(45) NULL ,
+    PRIMARY KEY (`productSellerId` , `userId`),
+  INDEX `fk_ReviewNRating_userId` (`userId` ASC) ,
+  INDEX `fk_ReviewNRating_productSellerId1` (`productSellerId` ASC) ,
+  INDEX `fk_ReviewNRating_productSellerId2` (`productSellerId` ASC) ,
+  CONSTRAINT `fk_ReviewNRating_userId`
+    FOREIGN KEY (`userId` )
+    REFERENCES `FlipKartDatabase`.`UserCredantials` (`userId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ReviewNRating_productSellerId1`
+    FOREIGN KEY (`productSellerId` )
+    REFERENCES `FlipKartDatabase`.`Seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ReviewNRating_productSellerId2`
+    FOREIGN KEY (`productSellerId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+
+
+
+
+
+
+
+
+
