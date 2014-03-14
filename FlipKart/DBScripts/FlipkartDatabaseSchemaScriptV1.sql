@@ -13,7 +13,7 @@ CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
   `country` VARCHAR(100) NOT NULL ,
   `pinCode` INT NOT NULL ,
   `email` VARCHAR(100) NOT NULL ,
-  `phoneNumber` INT NOT NULL ,
+  `phoneNumber` VARCHAR(15) NOT NULL ,
   `dateOfRegistration` DATE NOT NULL ,
   PRIMARY KEY (`userId`) );
 

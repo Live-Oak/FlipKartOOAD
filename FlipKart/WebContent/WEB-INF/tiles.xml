@@ -14,9 +14,9 @@
 		    <put-attribute name="footer"   value="/Adminfooter.jsp"/>
    		</definition>
    		
-   		<definition name="Registration" extends="Administrator">
+   		<definition name="RegisterPage" extends="Administrator">
    			<put-attribute name="title" value="Registration"/>
-   			<put-attribute name="body"   value="/UserRegistration.jsp"/>
+   			<put-attribute name="body"   value="/UserEntry.jsp"/>
    		</definition>
    
    </tiles-definitions>

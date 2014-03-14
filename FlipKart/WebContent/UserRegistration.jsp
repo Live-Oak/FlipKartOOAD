@@ -7,26 +7,34 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<sx:head/>
 </head>
 <body>
 	<div align="center">
 		
-		<s:form action="registerUser" method="post">
+		<s:form action="registerUser" method="post" enctype="multipart/form-data">
 		
-	<h3>	User ID ::	</h3><s:textfield name="userID" requiredLabel="true"/><br>
-	<h3>	FirstName ::	</h3><s:textfield name="firstName" requiredLabel="true"/><br>
-	<h3>	LastName ::	</h3><s:textfield name="lastName" requiredLabel="true"/><br>
-	<h3>
+	 <s:textfield name="userID" required="true"  placeholder="User-id"/>
+	 <s:textfield name="firstName" required="true" placeholder="FirstName"/>
+	 <s:textfield name="lastName" required="true" placeholder="LastName"/>
+	
 		<s:combobox label="Select a Role" 
 			headerKey="-1" headerValue="--- Select ---"
 			list="#{'1':'Seller', '2':'Admin', '3':'User'}" 
 			name="yourRole" />
-	</h3> <br>
-	<h3> <sx:datetimepicker name="date" label="Date (dd-MMM-yyyy)" 
-			displayFormat="dd-MMM-yyyy" value="todayDate" />  </h3>
-	<h3>	User ID ::	</h3><s:textfield name="userID" requiredLabel="true"/><br>
-	<h3>	User ID ::	</h3><s:textfield name="userID" requiredLabel="true"/><br>
-	<h3>	User ID ::	</h3><s:textfield name="userID" requiredLabel="true"/><br>	
+	
+	<%-- <h3> <sx:datetimepicker name="date" label="Date (dd-MMM-yyyy)" 
+			displayFormat="dd-MMM-yyyy" value="todayDate" />  </h3> --%>
+	    <s:textarea name="address1" key="email.body" required="true" placeholder="AddressLine1" />
+		<s:textarea name="address2" placeholder="AddressLine2"/>
+		<s:textfield name="city" required="true" placeholder="City"/> 
+		<s:textfield name="country" required="true" placeholder="Country"/>
+		<s:textfield name="pincode" required="true" placeholder="PinCode"/>
+		<s:textfield name="email" required="true" placeholder="E-Mail"/>
+		<s:textfield name="phoneNumber" required="true" placeholder="PhoneNumber"/> 
+	
+	<s:submit name="Submit"/> 
+	
 		</s:form>
 	
 	
