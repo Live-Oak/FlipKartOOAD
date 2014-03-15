@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.UserEntry;
 
 /**
@@ -82,6 +83,27 @@ public class DBHandlerForAdmin {
 		Statement st=(Statement) con.createStatement();
 		st.executeUpdate(query);
 		
+	}
+	
+	public boolean chkForCategoryIDAlreadyExists(String categoryId) throws SQLException
+	{
+		String query="select categoryId from Category";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			if(rs.getString("categoryId").equals(categoryId))
+				return true;
+		}
+		return false;
+	}
+
+	public void addCategoryinDB(CategoryModel categoryInfo) throws SQLException {
+		// TODO Auto-generated method stub
+		String query="INSERT INTO Category(`categoryId`,`categoryName`) VALUES(?,?)";
+		PreparedStatement prep =con.prepareStatement(query);
+		prep.setString(1, categoryInfo.getCategoryId());
+		prep.setString(2, categoryInfo.getCategoryName());
+		prep.execute();
 	}
 	
 }

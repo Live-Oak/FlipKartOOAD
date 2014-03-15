@@ -20,6 +20,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">RegisterPage</result>
 			</action>
 			
+			<action name="insertCategoryPage">
+				<result type="tiles">InserCategoryPage</result>
+			</action>
+			
 			<action name="enterUserDeatils" class="edu.iiitb.action.RegisterUserAction" method="execute">
 				<result name="input" type="tiles">RegisterPage</result>
 				<result name="success" type="tiles" >Administrator</result>
@@ -33,6 +37,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			<action name="deleteUserDetails" class="edu.iiitb.action.DeleteUser">
 				<result name="success" type="tiles">Administrator</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="inserCategory" class="edu.iiitb.action.AddCategoryInfo">
+				<result name="input" type="tiles">InserCategoryPage</result>
+				<result name="success" type="tiles" >Administrator</result>
 				<result name="error">/error.jsp</result>
 			</action>
 			

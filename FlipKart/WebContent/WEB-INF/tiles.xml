@@ -24,10 +24,10 @@
    			<put-attribute name="body"   value="/DeleteUser.jsp"/>
    		</definition>
    		
-   		
-   		
-   		
-   		
+   		<definition name="InserCategoryPage" extends="Administrator">
+   			<put-attribute name="title" value="CategoryInsertion"/>
+   			<put-attribute name="body"   value="/InsertCategory.jsp"/>
+   		</definition>
    		
    		
    		
