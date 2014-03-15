@@ -8,8 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.UserEntry;
 
@@ -62,6 +64,24 @@ public class DBHandlerForAdmin {
 		prep.execute();
 		return true;
 	}
+
+	public void fetchUserID(ArrayList<String> userID) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String query = "select userId from UserCredantials";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			userID.add(Integer.toString(rs.getInt("userId")));
+		}
+	}
 	
+	public void deleteUserFromDB(int id) throws SQLException
+	{
+		String query = "DELETE FROM UserCredantials WHERE  userId = "+id+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		
+	}
 	
 }

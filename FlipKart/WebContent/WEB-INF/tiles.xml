@@ -18,5 +18,21 @@
    			<put-attribute name="title" value="Registration"/>
    			<put-attribute name="body"   value="/UserEntry.jsp"/>
    		</definition>
+   		
+   		<definition name="DeleteUserPage" extends="Administrator">
+   			<put-attribute name="title" value="Deletion"/>
+   			<put-attribute name="body"   value="/DeleteUser.jsp"/>
+   		</definition>
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
    
    </tiles-definitions>
