@@ -105,5 +105,39 @@ public class DBHandlerForAdmin {
 		prep.setString(2, categoryInfo.getCategoryName());
 		prep.execute();
 	}
+
+	public void fetchCategoryID(ArrayList<String> categoryId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String query = "select categoryId from Category";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			categoryId.add(rs.getString("categoryId"));
+		}
+	}
+
+	public void fetchSubCategoryId(ArrayList<String> subCategoryId,
+			String categoryId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select categoryId from Category";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			if(!rs.getString("categoryId").equals(categoryId))
+				subCategoryId.add(rs.getString("categoryId"));
+		}
+	}
+
+	public void insetCategoryRelationship(String id, String id2) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String query="INSERT INTO CategoryRelation(`categoryId`,`subCategoryId`) VALUES(?,?)";
+		PreparedStatement prep =con.prepareStatement(query);
+		prep.setString(1, id);
+		prep.setString(2, id2);
+		prep.execute();
+		
+	}
 	
 }

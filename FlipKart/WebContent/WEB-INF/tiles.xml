@@ -29,9 +29,10 @@
    			<put-attribute name="body"   value="/InsertCategory.jsp"/>
    		</definition>
    		
-   		
-   		
-   		
+   		<definition name="InserSubCategoryPage" extends="Administrator">
+   			<put-attribute name="title" value="CategoryInsertion"/>
+   			<put-attribute name="body"   value="/InsertSubCategory.jsp"/>
+   		</definition>
    		
    		
    
