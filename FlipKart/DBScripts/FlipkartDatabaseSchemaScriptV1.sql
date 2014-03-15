@@ -18,19 +18,33 @@ CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
   PRIMARY KEY (`userId`) );
 
 
+CREATE  TABLE `FlipKartDatabase`.`Category` (
+  `categoryId` VARCHAR(50) NOT NULL ,
+  `categoryName` VARCHAR(100) NOT NULL ,
+  PRIMARY KEY (`categoryId`) );
+
+
+
 
 
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
   `productId` INT NOT NULL ,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
+  `image` BLOB NOT NULL ,
   `offer` INT NULL ,
-  `category` VARCHAR(100) NOT NULL ,
+  `categoryId` VARCHAR(50) NOT NULL ,
   `keywords` VARCHAR(150) NOT NULL ,
   `description` VARCHAR(200) NOT NULL ,
   `brand` VARCHAR(100) NOT NULL ,
   `warranty` INT NOT NULL ,
-  PRIMARY KEY (`productId`) );
+  PRIMARY KEY (`productId`) , 
+  INDEX `fk_Keywords_categoryId` (`categoryId` ASC) ,
+  CONSTRAINT `fk_Keywords_caterogyId`
+    FOREIGN KEY (`categoryId` )
+    REFERENCES `FlipKartDatabase`.`Category` (`categoryId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION );
 
 
 
@@ -154,10 +168,6 @@ CREATE  TABLE `FlipKartDatabase`.`Payment` (
 
 
 
-CREATE  TABLE `FlipKartDatabase`.`Category` (
-  `categoryId` VARCHAR(50) NOT NULL ,
-  `categoryName` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`categoryId`) );
 
 
 
@@ -253,7 +263,6 @@ CREATE  TABLE `FlipKartDatabase`.`ReviewNRating` (
     REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
 
 
 
