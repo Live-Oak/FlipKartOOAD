@@ -40,7 +40,7 @@
 				</div>
 				<div class="col-md-1">
 					<font color="#ffffff"><a href="#">Signup</a></font><br>
-					<button type="submit" class="btn btn-warning"> SEARCH</button>
+					<button type="submit" class="btn btn-warning">SEARCH</button>
 				</div>
 				
 				<div class="col-md-2">
