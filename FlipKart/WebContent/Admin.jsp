@@ -19,7 +19,6 @@
 <link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 <body>
-	 <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
 	
 	<center>
 		<h1> Hello Admin</h1>

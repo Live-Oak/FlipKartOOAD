@@ -34,6 +34,12 @@
    			<put-attribute name="body"   value="/InsertSubCategory.jsp"/>
    		</definition>
    		
-   		
+   		<definition name="Login" template="/TilePage.jsp">
+   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
+   			<put-attribute name="header" value="/header.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
+		    <put-attribute name="body"   value="/body.jsp"/>
+		    <put-attribute name="footer"   value="/footer.jsp"/>
+   		</definition>
    
    </tiles-definitions>
