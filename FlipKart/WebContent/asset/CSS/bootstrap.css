@@ -2127,9 +2127,9 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-warning {
-  color: #ffffff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  color: #000000;
+  background-color: #fdd922;
+  border-color: #fdd924;
 }
 
 .btn-warning:hover,
@@ -2138,8 +2138,8 @@ fieldset[disabled] .btn-primary.active {
 .btn-warning.active,
 .open .dropdown-toggle.btn-warning {
   color: #ffffff;
-  background-color: #ed9c28;
-  border-color: #d58512;
+  background-color: #fdd922;
+  border-color: #fdd922;
 }
 
 .btn-warning:active,
@@ -2163,8 +2163,8 @@ fieldset[disabled] .btn-warning:active,
 .btn-warning.disabled.active,
 .btn-warning[disabled].active,
 fieldset[disabled] .btn-warning.active {
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #fdd922;
+  border-color: #fdd922;
 }
 
 .btn-danger {
