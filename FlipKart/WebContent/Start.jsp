@@ -4,7 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Online Shopping India-Flipkart.com</title>
+<title>Online Shopping India-Shop online for Books, Mobile Phone, Digital Cameras, Watches and More at Flipkart.com</title>
+<link rel="icon" type="/favicon.png" href="asset/Images/flipkartlogo.png"> 
+
 <!-- Custom styles for this template -->
 <link href="asset/CSS/Index.css" rel="stylesheet">
 <link href="asset/CSS/starter-template.css" rel="stylesheet">
@@ -13,6 +15,7 @@
 <link href="asset/CSS/bootstrap.css" rel="stylesheet">
 <!-- Bootstrap theme -->
 <link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
+
 
 <script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
