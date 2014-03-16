@@ -3,7 +3,7 @@
 Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
 
 <struts>
-
+<constant name="struts.devMode" value="true"/>
 	<package name="default" extends="tiles-default, json-default">
 			
 			<action name="login" class="edu.iiitb.action.LoginAction">
@@ -16,8 +16,49 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">Administrator</result>
 			</action>
 			
-			<action name="registration">
-				<result type="tiles">Registration</result>
+			<action name="registerUser">
+				<result type="tiles">RegisterPage</result>
+			</action>
+			
+			<action name="insertCategoryPage">
+				<result type="tiles">InserCategoryPage</result>
+			</action>
+			
+			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryID">
+				<result name="success" type="tiles">InserSubCategoryPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="enterUserDeatils" class="edu.iiitb.action.RegisterUserAction" method="execute">
+				<result name="input" type="tiles">RegisterPage</result>
+				<result name="success" type="tiles" >Administrator</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="deleteUser" class="edu.iiitb.action.FetchUserIDForDelete">
+				<result name="success" type="tiles">DeleteUserPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="deleteUserDetails" class="edu.iiitb.action.DeleteUser">
+				<result name="success" type="tiles">Administrator</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="inserCategory" class="edu.iiitb.action.AddCategoryInfo">
+				<result name="input" type="tiles">InserCategoryPage</result>
+				<result name="success" type="tiles" >Administrator</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="fetchSubCategoryId" class="edu.iiitb.action.FetchSubCategoryId">
+				<result name="success" type="json"/>
+				 <result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="insertCategoryRelation" class="edu.iiitb.action.CategoryRelationship">
+				<result name="success" type="tiles">Administrator</result>
+				<result name="error">/error.jsp</result>
 			</action>
 			
 	</package>

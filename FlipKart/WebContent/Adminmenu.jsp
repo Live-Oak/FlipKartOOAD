@@ -19,10 +19,10 @@
 			<div class="navbar-collapse collapse ">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="adminhome">Home</a></li>
-					<li><a href="registration">User Registration</a></li>
-					<li><a href="subject">Add Subject</a></li>
-					<li><a href="newsentry">Manage News</a></li>
-					<li><a href="announcemententry">Manage Announcement</a></li>
+					<li><a href="registerUser">Register User</a></li>
+					<li><a href="deleteUser">Delete User</a></li>
+					<li><a href="insertCategoryPage">Add Category</a></li>
+					<li><a href="insertSubCategoryPage">Add Sub-Category</a></li>
 					<li><a href="gradeentry">Update Grade</a></li>
 					<li><a href="interestentry">Add Interest</a></li>
 					<li><a href="logout">Log out</a></li>
