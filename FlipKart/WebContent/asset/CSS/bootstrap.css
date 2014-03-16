@@ -2128,6 +2128,8 @@ fieldset[disabled] .btn-primary.active {
 
 .btn-warning {
   color: #000000;
+  font-size:100%;
+  font-family:arial,tahoma,verdana,sans-serif;
   background-color: #fdd922;
   border-color: #fdd924;
 }
@@ -4506,6 +4508,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   border-color: #0A3151;
   height:50px;
   margin-top:25px;
+  color:#ffffff;
 }
 
 .navbar-inverse .navbar-brand {
