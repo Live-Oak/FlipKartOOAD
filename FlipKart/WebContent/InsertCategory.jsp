@@ -9,16 +9,29 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h3 align="center"> <b> Please Fill the Details .... </b> </h3>
 <h4>
-	<i> <h3 align="center"> Please Fill the Details .... </h3> </i>
-	<div align="center">
 	
-		<form action="inserCategory" method="post">
-			<s:textfield  name="categoryId" required="true" placeholder="Enter Category-id">Category-ID ::</s:textfield> <br>
-			Category Name ::	<input type="text" name="categoryName" required="true"  placeholder="Enter CategoryName"><br>
-			
-			<br>	<input type="submit" value="Insert"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-			<input type="reset" name="Reset"/>
+	<div>
+	<form action="inserCategory" method="post">
+		<div class="col-md-4"></div>
+		
+		
+		<div class="col-md-2">
+			<br><br>
+			Category-ID :: <br><br><br>
+			Category Name :: <br><br>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary" value="Insert"/>
+		</div>
+		
+		<div class="col-md-2">
+			<br><br>
+			<s:textfield  name="categoryId" required="true" placeholder="Enter Category-id"></s:textfield> <br><br>
+			<input type="text" name="categoryName" required="true"  placeholder="Enter CategoryName"> <br><br>
+			<input type="reset" class="btn btn-primary" name="Reset"/>
+		</div>
+		
+		<div class="col-md-4"></div>
 		
 		</form>
 		

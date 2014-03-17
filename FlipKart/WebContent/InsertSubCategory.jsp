@@ -57,7 +57,7 @@
 			 </h3>
 			 
 			 
-		<h3>	 <input type="submit" value="Submit"/>  </h3>
+		<h3>	 <input type="submit" class="btn btn-primary" value="Submit"/>  </h3>
 		
 		
 	</form>

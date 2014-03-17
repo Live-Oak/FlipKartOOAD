@@ -9,7 +9,7 @@
 
 <body>
 <center>
-<br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <img src="asset/Images/Copyright.gif" height="20px" width="20px">
 LIVE OAK
 </center>
