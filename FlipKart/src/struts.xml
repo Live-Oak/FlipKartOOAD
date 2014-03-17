@@ -28,6 +28,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">InserCategoryPage</result>
 			</action>
 			
+			<action name="apppage">
+				<result type="tiles">Apppage</result>
+			</action>
+			
+			<action name="motopage">
+				<result type="tiles">Motopage</result>
+			</action>
+			
+			<action name="dealoftheday">
+				<result type="tiles">Dealoftheday</result>
+			</action>
+			
 			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryID">
 				<result name="success" type="tiles">InserSubCategoryPage</result>
 				<result name="error">/error.jsp</result>

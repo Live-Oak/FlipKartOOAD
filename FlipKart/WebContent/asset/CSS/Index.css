@@ -2,8 +2,19 @@ html, body {
     margin: 0;
     width: 100%;
     height: 100%;
+    background-color:#F7F5EE;
 }
 
+.border{
+	border : 2px solid #FFFFFF;
+	background-color: #ffffff;
+}
+
+
+
+.border:hover{
+	border : 2px solid yellow;
+}
 
 #chkboxLoc {
 	

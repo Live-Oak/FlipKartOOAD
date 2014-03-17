@@ -5,6 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Menu</title>
+	<link rel="icon" type="/favicon.png" href="asset/Images/flipkartlogo.png">
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">

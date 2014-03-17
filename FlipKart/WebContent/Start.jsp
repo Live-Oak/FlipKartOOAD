@@ -26,7 +26,7 @@
 
 <!-- The first layer with logo and search -->
 
-<div class="navbar-fixed-top">
+	<div class="navbar-fixed-top">
 	<div class="col-md-2"></div>
 		<div class="col-md-2">
 				<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px">
@@ -52,7 +52,7 @@
 	</div>
 		
 <!-- The second layer with menu and dropdown -->
-<div class="navbar navbar-inverse">
+	<div class="navbar navbar-inverse">
 		<div class="col-md-2"></div>
 		
 		<div class="col-md-10">
@@ -89,7 +89,7 @@
 	
 	<!-- Carousel -->
 	
-	<div class="col-md-2"></div>
+	<div class="col-md-2 "></div>
 	
 	<div class="col-md-7">
 			<div>
@@ -144,22 +144,26 @@
 		</div>
 		
 		<!-- Side of the page -->
-		<div class="col-md-2">
-			<center> <a href="#"> 
+	<div class="col-md-2">
+			<div class="border">
+			<center> <a href="apppage"> 
 				  <h5> <b> SHOP.</b> </h5>  
 				  <h5> <b> ANYTIME.ANYWHERE. </b> </h5> 
 				  <h6> with the Flipkart Mobile App </h6> 
 				  <img src="asset/Images/leftsmall.png" alt="anytime anywhere" height="120px" width="200px">
 				  <h6> GET THE APP </h6>
 			 </a> </center>
+			 </div>
 			 <br>
-			<center> <a href="#">
+			 <div class="border">
+			<center> <a href="motopage">
 				 <h6> <b> EXCLUSIVELY ON FLIPKART </b> </h6> 
-				<img src="asset/Images/smalladdbottom.jpg" alt="exclusive on flipkart" height="150px" width="200px">
+				<img src="asset/Images/smalladdbottom.jpg" alt="exclusive on flipkart" height="130px" width="160px">
 			</a> </center>
+			</div>
 		</div> 
 		
-		<div class="col-md-1">
+	<div class="col-md-1">
 		
 			<br><br><br><br><br><br><br><br><br><br><br>
 			
@@ -286,29 +290,38 @@
 		
 		<div class="col-md-2">
 			<br><br>
-			<a href="#">
-				<center> <h6> <i> DEAL OF THE DAY </i></h6></center>
+			<div class="border">
+			<a href="dealoftheday">
+				<center> <h6> <i> DEAL OF THE DAY </i></h6>
 				<img src="asset/Images/dealoftheday1.jpg" alt="dealoftheday1" height="60px" width="60px">
 				<img src="asset/Images/dealoftheday.jpg" alt="dealoftheday" height="80px" width="80px">
-				<center> <h6> <b> Apple Ipod shuffle (2GB) </b></h6></center>
+				<h6> <b> Apple Ipod shuffle (2GB) </b></h6></center>
 			</a>
+			</div>
 			<br><br>
+			
+			<div class="border">
 			<a href="#">
-				<center> <h6> <i> REALLY ALL YOU WANT INSTANTLY </i></h6></center>
+				<center> <h6> <i>  REALLY ALL YOU WANT INSTANTLY </i></h6>
 				<h6> Download and read Ebooks Instantly. Read Ebboks across your mobile, tablets or computers.</h6>
 				<img src="asset/Images/flipkartbook.png" alt="FLIPKART" height="100px" width="150px">
+				</center>
 			</a>
+			</div>
 			
 			<br><br><br>
+			<div class="border">
 			<a href="#">
-				<center> <h6> <i> SEND GIFTS </i></h6></center>
+				<center> <h6> <i> SEND GIFTS </i></h6>
 				<h6> Last minute gifting is now only a few click away!
 				 Send e-gift vouchers to your loved ones instantly.
 				</h6>
 				<img src="asset/Images/GIFTS.jpg" alt="Gifts" height="100px" width="150px">
 				<button class="btn btn-danger" type="button">SEND E-GIFT VOUCHER</button>
+				</center>
 			</a>
-					</div>
+			</div>
+		</div>
 		
 		<!--  Footer of the page -->
 	
