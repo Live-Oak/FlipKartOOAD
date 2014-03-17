@@ -7,35 +7,50 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 		
 		<div class="col-md-6">
-		<img src="asset/Images/ebooks.jpg" alt="ebooks" height="400px" width="600px"/> 
+		<img src="asset/Images/ebooks.jpg" alt="ebooks" height="500px" width="600px"/> 
 		
 		<br><br>
 		<hr>
 		<br>
 		</div>
 		
-		<div class="col-md-4">
+		<div class="col-md-4 bckgroundblack">
 		<h4> 
-			
+		
 			<img src="asset/Images/ebooks1.png" alt="ebooks" height="100px" width="100px"/>
 			
 			<br><br><br>
-			Flipkart eBOOKS <br><br>
-			Discover a new way reading <br><br>
-			What is an eBook? <br><br>
+			<font color="#ffffff">
+			Flipkart eBOOKS 
+			</font> <br><br>
+			<font color="#fdd922">
+			Discover a new way reading 
+			</font><br><br>
+			<font color="#O899ee">
+			What is an eBook? 
+			</font><br><br>
+			<font color="#ffffff">
 			An electronic avatar of the book. <br><br>
-			Read it conveniently on your device. <br><br>
-			An engaging experience awaits you! <br><br>
+			Read it conveniently on your device. 
+			</font><br><br>
+			<font color="#99d551">
+			An engaging experience awaits you! 
+			</font><br><br>
 			
 		</h4>
 	
 		<button type="button" class="btn btn-danger"> Buy One Now </button>
 		<br><br><br><br><br><br>
 		</div>
-		
-		
+	<div class="col-md-1">
+	<br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br>
+	</div>
+	
 </body>
 </html>

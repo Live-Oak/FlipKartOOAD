@@ -6,6 +6,11 @@ html, body {
     background-color:#F7F5EE;
 }
 
+.bckgroundblack{
+	background-color: #222222;
+}
+
+
 .border{
 	color : #000000;
 	border : 2px solid #FFFFFF;

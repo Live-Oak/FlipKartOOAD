@@ -23,7 +23,7 @@
 			Just Rs.3155 
 		</h4>
 	
-		<button type="button" class="btn btn-danger"> Buy One Now </button>
+		<button type="button" class="btn btn-danger"> Buy Now </button>
 		<br><br>
 		<br><br>
 	</center>
