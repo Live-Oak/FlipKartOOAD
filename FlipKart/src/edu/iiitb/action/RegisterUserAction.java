@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import edu.iiitb.config.Config;
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.util.SendMailSSL;
 
 /**
  * @author paras
@@ -44,13 +46,15 @@ public class RegisterUserAction extends ActionSupport implements ModelDriven<Use
 		
 		try {
 			dbHandler.registerUserinDB(userData);
+			SendMailSSL.sendEmail(userData.getEmail(),userData.getFirstName());
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Error execute() of RegisterUserAction.java ");
 			e.printStackTrace();
 			return "error";
 		}
-		addActionMessage("Registration successful");
+		addActionMessage("Registration successful. Message has been sent to your email id");
 		return "success";
 	}
 

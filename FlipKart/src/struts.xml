@@ -12,6 +12,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="tiles">LoginPage</result>
 			</action>
 			
+			<action name="loginPage">
+				<result>/login.html</result>
+			</action>
+			
 			<action name="adminhome" >
 				<result type="tiles">Administrator</result>
 			</action>

@@ -3,7 +3,7 @@
  */
 package edu.iiitb.model;
 
-import java.sql.Date;
+
 
 /**
  * @author paras
@@ -12,7 +12,8 @@ import java.sql.Date;
 public class UserEntry {
 
 	int userId,pinCode;
-	String firstName,lastName,role,address1,address2,city,country,email;
+	String firstName,lastName,role,address1,address2,city,country,email,sellerDescription;
+	
 	String date;
 	/**
 	 * @param date the date to set
@@ -160,7 +161,18 @@ public class UserEntry {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	/**
+	 * @return the sellerDescription
+	 */
+	public String getSellerDescription() {
+		return sellerDescription;
+	}
+	/**
+	 * @param sellerDescription the sellerDescription to set
+	 */
+	public void setSellerDescription(String sellerDescription) {
+		this.sellerDescription = sellerDescription;
+	}
 	
 	
 }

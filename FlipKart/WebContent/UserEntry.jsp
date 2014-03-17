@@ -7,6 +7,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="asset/JavaScripts/jquery.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	
+	$("#sellerInfo").hide();
+	
+	$("#role").change(function(){
+		
+		var strUser = $("#role").val();
+		
+		if(strUser == 'Seller')
+			{
+				$("#sellerInfo").show();
+				$('#sellerInfo').prop('required',true);
+
+
+			}
+		
+		else
+			{
+				$("#sellerInfo").hide();
+				$('#sellerInfo').prop('required',false);
+			}
+		
+		
+	});
+});
+	
+
+</script>
+
+
+
+
 <sx:head />
 </head>
 <body>
@@ -18,10 +53,17 @@
 			<s:textfield  name="userId" required="true" placeholder="Enter User-id">User-ID ::</s:textfield><br>
 			FirstName ::	<input type="text" name="firstName" required="true"  placeholder="Enter FirstName"><br>
 			LastName ::	<input type="text" name="lastName" required="true"  placeholder="Enter LastName"><br>
-			Role :: <s:combobox
+			Role :: <%-- <s:combobox
 						headerKey="-1" headerValue="--- Select ---"
 						list="#{'Seller':'Seller', 'Admin':'Admin', 'User':'User'}" 
-						name="role" /><br>
+						name="role" id="role"/><br> --%>
+					<select id="role" name="role">
+						<option>--Select--</option>
+						<option>Seller</option>
+						<option>Admin</option>
+						<option>User</option>
+					</select>	<br>
+			<s:textarea name="sellerDescription"  id="sellerInfo" cols="20" rows="3"  placeholder="Enter seller description"></s:textarea> <br>			
 			DateOfBirth :: <sx:datetimepicker name="date" displayFormat="dd-MM-yyyy" />	<br>
 			<s:textarea name="address1" required="true" cols="20" rows="3"  placeholder="Enter address line 1">AddressLine 1</s:textarea> <br>
 			<s:textarea name="address2" cols="20" rows="3"  placeholder="Enter address line 2">AddressLine 2</s:textarea> <br>

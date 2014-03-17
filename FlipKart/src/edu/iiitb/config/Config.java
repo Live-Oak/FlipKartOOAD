@@ -11,6 +11,9 @@ public class Config {
 	public static String DBNAME = null;
 	public static String DBUSER = null;
 	public static String DBPASSWORD = null;
+	public static String EMAILID = null;
+	public static String USERNAME = null;
+	public static String MAILIDPASSWORD = null;
 	
 	public static void loadProperties()
 	{
@@ -29,6 +32,10 @@ public class Config {
 						DBUSER = prop.getProperty("dbuser");
 						DBPASSWORD = prop.getProperty("dbpassword");
 						DBNAME = prop.getProperty("dbname");
+						EMAILID = prop.getProperty("emailid");
+						USERNAME = prop.getProperty("username");
+						MAILIDPASSWORD = prop.getProperty("mailidpassword");
+						
 			
 		} catch(Exception e)
 		{
