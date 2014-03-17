@@ -17,7 +17,7 @@
 					 <option>  <s:property value="id"/> </option> 
 				 </s:iterator>
 			 </select><br><br><br>
-			 <input type="submit" value="Submit"/>
+			 <input type="submit" class="btn btn-primary" value="Submit"/>
 		</h3>
 		
 	</s:form>

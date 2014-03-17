@@ -50,9 +50,9 @@
 		
 <!-- The second layer with menu and dropdown -->
 <div class="navbar navbar-inverse">
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 		
-		<div class="col-md-10">
+		<div class="col-md-11">
 			<div class="container">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
