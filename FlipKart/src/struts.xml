@@ -20,6 +20,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">Administrator</result>
 			</action>
 			
+			<action name="logout">
+				<result type="tiles">Login</result>
+			</action>
+			
 			<action name="registerUser">
 				<result type="tiles">RegisterPage</result>
 			</action>
