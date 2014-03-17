@@ -14,6 +14,7 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
 
 /**
@@ -148,6 +149,53 @@ public class DBHandlerForAdmin {
 		prep.setString(2, id2);
 		prep.execute();
 		
+	}
+	
+	public boolean chkForProductIDAlreadyExists(int id) throws SQLException
+	{
+		String query="select productId from ProductInfo";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			if(rs.getInt("productId")==id)
+				return true;
+		}
+		return false;
+	}
+	
+	public ArrayList<Integer> getAllCategoryIDs() throws SQLException
+	{
+		ArrayList<Integer> categoryList = new ArrayList<Integer>();
+		String query = "Select categoryId from Category";
+		ResultSet rs = db.executeQuery(query, con);
+		while(rs.next())
+		{
+			categoryList.add(rs.getInt(1));
+		}
+		return categoryList;
+	}
+	
+	public void registerProduct(ProductInfo prod) throws SQLException
+	{
+		
+		
+		int productid = prod.getProductID();
+		//System.out.println("Image(inserting) :" + prod.getImage());
+		String query = "Insert into ProductInfo(`productId`,`productName`,`price`,`image`,`offer`" +
+				",`categoryId`,`keywords`,`description`,`brand`,`warranty`) " +
+				" values(?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement stmnt = con.prepareStatement(query);
+		stmnt.setInt(1,prod.getProductID());
+		stmnt.setString(2, prod.getProductName());
+		stmnt.setFloat(3, prod.getPrice());
+		stmnt.setBlob(4, prod.getImage());
+		stmnt.setInt(5, prod.getOffer());
+		stmnt.setString(6,prod.getCategoryID());
+		stmnt.setString(7,prod.getKeywords());
+		stmnt.setString(8,prod.getDescription());
+		stmnt.setString(9,prod.getBrand());
+		stmnt.setInt(10,prod.getWarranty());
+		stmnt.execute();	
 	}
 	
 }

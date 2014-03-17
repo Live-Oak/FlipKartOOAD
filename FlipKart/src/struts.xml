@@ -81,6 +81,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 			
+			<action name="addProduct" class="edu.iiitb.action.FetchCategoryID">
+				<result name="success" type="tiles" >AddProductPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="insertProduct" class="edu.iiitb.action.AdminAddProduct">
+				<result name="input" type="tiles">AddProductPage</result>
+					
+				<result name="success" type="tiles">Administrator</result>
+				<result name="error">/error.jsp</result>
+			
+			</action>
+			
 	</package>
 
 </struts>

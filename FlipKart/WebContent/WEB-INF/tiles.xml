@@ -61,4 +61,9 @@
    			<put-attribute name="body"   value="/Ebooks.jsp"/>
    		</definition>
    		
+   		<definition name="AddProductPage" extends="Administrator">
+   			<put-attribute name="title" value="addProduct"/>
+   			<put-attribute name="body"   value="/Admin-ProductEntry.jsp"/>
+   		</definition>
+   		
    </tiles-definitions>
