@@ -23,9 +23,9 @@
 					<li><a href="deleteUser">Delete User</a></li>
 					<li><a href="insertCategoryPage">Add Category</a></li>
 					<li><a href="insertSubCategoryPage">Add Sub-Category</a></li>
-					<li><a href="gradeentry">Update Grade</a></li>
-					<li><a href="interestentry">Add Interest</a></li>
-					<li><a href="logout">Log out</a></li>
+					<li><a href="#">Update Grade</a></li>
+					<li><a href="#">Add Interest</a></li>
+					<li><a href="#">Log out</a></li>
 				</ul>
 
 				<!--/.nav-collapse -->
