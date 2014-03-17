@@ -21,11 +21,15 @@ $(document).ready(function(){
 		if(strUser == 'Seller')
 			{
 				$("#sellerInfo").show();
+				$('#sellerInfo').prop('required',true);
+
+
 			}
 		
 		else
 			{
 				$("#sellerInfo").hide();
+				$('#sellerInfo').prop('required',false);
 			}
 		
 		
@@ -59,7 +63,7 @@ $(document).ready(function(){
 						<option>Admin</option>
 						<option>User</option>
 					</select>	<br>
-			<s:textarea name="sellerDescription" required="true" id="sellerInfo" cols="20" rows="3"  placeholder="Enter seller description"></s:textarea> <br>			
+			<s:textarea name="sellerDescription"  id="sellerInfo" cols="20" rows="3"  placeholder="Enter seller description"></s:textarea> <br>			
 			DateOfBirth :: <sx:datetimepicker name="date" displayFormat="dd-MM-yyyy" />	<br>
 			<s:textarea name="address1" required="true" cols="20" rows="3"  placeholder="Enter address line 1">AddressLine 1</s:textarea> <br>
 			<s:textarea name="address2" cols="20" rows="3"  placeholder="Enter address line 2">AddressLine 2</s:textarea> <br>
