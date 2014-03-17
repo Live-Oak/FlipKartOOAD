@@ -306,7 +306,10 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #F7F5EE;
+  width:100%;
+  margin-right:0px;
+  padding-right:0px;
 }
 
 input,
@@ -326,13 +329,13 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #ffffff;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #2a6496;
+  color: #000000;
   text-decoration: underline;
 }
 

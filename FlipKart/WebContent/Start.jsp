@@ -36,8 +36,8 @@
 			<div class="container">
 				<div class="col-md-5">	
 					<br>
-					<input type="text" name="friendId" class="form-control" placeholder="Search">
-				</div>
+					  <input type="text" name="friendId" class="form-control" placeholder="Search"> 
+					</div>
 				<div class="col-md-1">
 					<font color="#ffffff"><a href="#">Signup</a></font><br>
 					<button type="submit" class="btn btn-warning" >SEARCH</button>
@@ -59,16 +59,15 @@
 			<div class="container">
 				<div class="navbar-header">
 					 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
 					</button>
 				</div>
+				
 				<div class="navbar-collapse collapse navbar-ex1-collapse">
 					<ul class="nav nav-pills">
-						<li><a href="#">ELECTRONICS <span class="caret"></span></a></li>
+						<li><a href="#">ELECTRONICS<span class="caret"></span></a></li>
 						<li><a href="#">MEN <span class="caret"></span></a></li>
-						<li><a href="#">WOMEN <span class="caret"></span></a></li>
-						<li><a href="#">BABY & KIDS <span class="caret"></span></a></li>
+						<li><a href="#">WOMEN<span class="caret"></span></a></li>
+						<li><a href="#">BABY & KIDS<span class="caret"></span></a></li>
 						<li><a href="#">BOOKS & MEDIA <span class="caret"></span></a></li>
 						<li><a href="#">HOME & KITCHEN <span class="caret"></span></a></li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE <span class="caret"></span></a>
@@ -168,7 +167,7 @@
 			<br><br><br><br><br><br><br><br><br><br><br>
 			
 			<div id="webklipper-publisher-widget-container-content" style="margin: 0px; padding: 0px; position: fixed; border-width: 1p…8.5px; z-index: 16776273; display: block; overflow: visible;">
-			 <button type="button" class="btn btn-info" style="color: black">Feedback</button>
+			 <button type="button" class="btn btn-info vertical" style="color: black">Feedback</button>
 			</div>
 		</div>
 			
