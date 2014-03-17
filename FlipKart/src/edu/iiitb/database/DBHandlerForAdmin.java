@@ -63,6 +63,16 @@ public class DBHandlerForAdmin {
 		prep.setString(12, user.getPhonenumber());
 		prep.setString(13, date );
 		prep.execute();
+		
+		if(user.getRole().equals("Seller"))
+		{
+			String queryForSeller="INSERT INTO Seller(`userId`,`description`) VALUES(?,?)";
+			PreparedStatement prepForSeller =con.prepareStatement(queryForSeller);
+			prepForSeller.setInt(1, user.getUserId());
+			prepForSeller.setString(2, user.getSellerDescription());
+			prepForSeller.execute();
+		}
+		
 		return true;
 	}
 
