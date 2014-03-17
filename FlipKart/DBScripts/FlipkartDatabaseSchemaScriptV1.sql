@@ -192,6 +192,7 @@ CREATE  TABLE `FlipKartDatabase`.`CategoryRelation` (
 CREATE  TABLE `FlipKartDatabase`.`Advertizement` (
   `productId` INT NOT NULL ,
   `image` BLOB NOT NULL ,
+  `timeStamp` DATETIME NOT NULL ,
   INDEX `fk_Advertizement_productId` (`productId` ASC) ,
   CONSTRAINT `fk_Advertizement_productId`
     FOREIGN KEY (`productId` )

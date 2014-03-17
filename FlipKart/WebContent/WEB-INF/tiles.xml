@@ -66,4 +66,9 @@
    			<put-attribute name="body"   value="/Admin-ProductEntry.jsp"/>
    		</definition>
    		
+   		<definition name="InserAdvertizementPage" extends="Administrator">
+   			<put-attribute name="title" value="addAdvertizement"/>
+   			<put-attribute name="body"   value="/AddAdvertisement.jsp"/>
+   		</definition>
+   		
    </tiles-definitions>

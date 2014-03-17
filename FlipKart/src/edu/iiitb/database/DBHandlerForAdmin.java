@@ -7,12 +7,14 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
@@ -196,6 +198,30 @@ public class DBHandlerForAdmin {
 		stmnt.setString(9,prod.getBrand());
 		stmnt.setInt(10,prod.getWarranty());
 		stmnt.execute();	
+	}
+	
+	public void addAdvertisement(Advertizement adv) throws SQLException
+	{
+		 java.util.Date date= new java.util.Date();
+		 Timestamp time =  new Timestamp(date.getTime());
+		String query = "Insert into Advertizement values(?,?,?)";
+		PreparedStatement stmnt = con.prepareStatement(query);
+		stmnt.setInt(1,adv.getProductID());
+		stmnt.setBlob(2, adv.getImage());
+		stmnt.setTimestamp(3, time);
+		stmnt.execute();
+	}
+
+	public void fetchProductID(ArrayList<String> productId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String query = "select productId from ProductInfo";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			productId.add(rs.getString("productId"));
+		}
+		
 	}
 	
 }

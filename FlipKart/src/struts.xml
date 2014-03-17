@@ -98,6 +98,17 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			</action>
 			
+			<action name="inserAdvertisement" class="edu.iiitb.action.AddAdvertizement">
+				<result name="success" type="tiles">Administrator</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			
+			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
+				<result name="success" type="tiles">InserAdvertizementPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
 	</package>
 
 </struts>

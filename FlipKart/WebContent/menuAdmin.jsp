@@ -68,7 +68,7 @@
 						<li><a href="insertCategoryPage">Add Category</a></li>
 						<li><a href="insertSubCategoryPage">Add CategoryRelation</a></li>
 						<li><a href="addProduct">Add Product</a></li>
-						<li><a href="#">Add Interest</a></li>
+						<li><a href="advertizement">Add Advertizement</a></li>
 						<li><a href="logout">Log out</a></li>
 						<!-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE <span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
