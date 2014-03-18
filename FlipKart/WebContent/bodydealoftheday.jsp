@@ -5,6 +5,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Deal of the Day</title>
+
+<link href="asset/CSS/headstyle.css" rel="stylesheet"> 
+<link href="asset/CSS/Index.css" rel="stylesheet">
+<link href="asset/CSS/starter-template.css" rel="stylesheet">
+	
+<!-- Bootstrap core CSS -->
+<link href="asset/CSS/bootstrap.css" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
+	
+<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
+<script src="asset/JavaScripts/bootstrap.min.js"></script>  
+
 </head>
 <body>
 	<center>

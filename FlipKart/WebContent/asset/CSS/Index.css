@@ -6,6 +6,8 @@ html, body {
     background-color:#F7F5EE;
 }
 
+*{margin:0px;padding:0px;}
+
 .bckgroundblack{
 	background-color: #222222;
 }
@@ -78,3 +80,4 @@ html, body {
     overflow: visible;
     -moz-box-sizing: content-box;
 }
+

@@ -31,7 +31,7 @@ CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
   `productId` INT NOT NULL ,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
-  `image` BLOB NOT NULL ,
+  `image` LONGBLOB NOT NULL ,
   `offer` INT NULL ,
   `categoryId` VARCHAR(50) NOT NULL ,
   `keywords` VARCHAR(150) NOT NULL ,
@@ -191,7 +191,7 @@ CREATE  TABLE `FlipKartDatabase`.`CategoryRelation` (
 
 CREATE  TABLE `FlipKartDatabase`.`Advertizement` (
   `productId` INT NOT NULL ,
-  `image` BLOB NOT NULL ,
+  `image` LONGBLOB NOT NULL ,
   `timeStamp` DATETIME NOT NULL ,
   INDEX `fk_Advertizement_productId` (`productId` ASC) ,
   CONSTRAINT `fk_Advertizement_productId`

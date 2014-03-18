@@ -9,6 +9,7 @@
 
 <!-- Custom styles for this template -->
 <link href="asset/CSS/Index.css" rel="stylesheet">
+<link href="asset/CSS/headerstyle.css" rel="stylesheet">
 <link href="asset/CSS/starter-template.css" rel="stylesheet">
 
 <!-- Bootstrap core CSS -->
@@ -21,6 +22,44 @@
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 <script src="asset/JavaScripts/bootstrap.min.js"></script>
 <script src="asset/JavaScripts/drophover.js"></script>
+
+<!-- ------------------------Feedback------------------------- -->
+	
+	
+	<style type="text/css">
+	
+	  *{margin:0px;padding:0px;}
+      #suggestPost
+      {
+        background:transparent url(asset/Images/suggest-post.png) no-repeat scroll 0px 0px;
+        height:170px;
+        position:fixed;
+        top:300px;
+        width:40px;
+        right:0px;
+        margine-right:0px;
+        padding-right:0px;
+      }
+      div#suggestPost:hover
+      {
+        background-position: 0px 0px;
+      }
+      #suggestPost a
+      {
+        display:block;
+        height:170px;
+        width:40px;
+      }
+	      
+      #funkystyling {
+    background: white url(asset/Images/search.jpg) left no-repeat;
+    padding-left: 17px;
+}
+    </style>
+	
+	
+<!-- -------------------------------------------------------------------- -->	
+
 </head>
 <body>
 
@@ -36,15 +75,15 @@
 			<div class="container">
 				<div class="col-md-5">	
 					<br>
-					  <input type="text" name="friendId" class="form-control" placeholder="Search"> 
+					  <input type="text" name="friendId" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 					</div>
 				<div class="col-md-1">
-					<font color="#ffffff"><a href="#">Signup</a></font><br>
+					<a href="#">Signup</a><br>
 					<button type="submit" class="btn btn-warning" >SEARCH</button>
 				</div>
 				
 				<div class="col-md-2">
-					<font color="#ffffff"><a href="loginPage">Login</a></font><br>
+					<a href="loginPage">Login</a><br>
 					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
 				</div>
 				
@@ -166,13 +205,11 @@
 		</div> 
 		
 	<div class="col-md-1">
-		
+	
 			<br><br><br><br><br><br><br><br><br><br><br>
 			
-			<div id="webklipper-publisher-widget-container-content" style="margin: 0px; padding: 0px; position: fixed; border-width: 1p…8.5px; z-index: 16776273; display: block; overflow: visible;">
-			 <button type="button" class="btn btn-info vertical" style="color: black">Feedback</button>
-			</div>
-		</div>
+			<div id="suggestPost"><a href="#" ></a></div>
+	</div>	
 			
 		<!-- Data on the page -->
 		<br>
@@ -189,87 +226,112 @@
 			
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
+			   <div class="scroll-content-item ui-widget-header border">
 			  	<a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="100px">
-				    	<h6> Mobile </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="100px">
-				    	<h6> Laptop </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="100px">
-				    	<h6> Tablets </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="100px">
-				    	<h6> Camera </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="90px" width="100px">
-				    	<h6> Mobile Accessories </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/laptopaccessories.jpg" alt="laptopaccessories" height="90px" width="100px">
-				    	<h6> Laptop Accessories </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="100px">
-				    	<h6> Audio & Video </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="90px" width="100px">
-				    	<h6> Gaming Consoles </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/personal.jpg" alt="personal" height="90px" width="100px">
-				    	<h6> Personal Appliances </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/healthcare.jpg" alt="healthcare" height="90px" width="100px">
-				    	<h6> Healthcare Devices </h6>
-				    </div>
-			    </a>
-			  </div>
+				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="90px"><br>
+				</a>
+				<h6> Mobile </h6>
+			   </div>
+				    
+			    <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="90px"><br>
+				</a>
+				<h6> Laptop </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="90px"><br>
+				</a>
+				<h6> Tablet </h6>
+			   </div>
+			   
+			  	<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="90px"><br>
+				</a>
+				<h6> Camera </h6>
+			   </div>
+			   
+			  	<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="80px" width="90px"><br>
+				</a>
+				<h6> Mobile Accessories </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/laptopaccessories.jpg" alt="Laptopaccessories" height="80px" width="90px"><br>
+				</a>
+				<h6> Laptop Accessories </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="90px"><br>
+				</a>
+				<h6> Audio & Video </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="80px" width="90px"><br>
+				</a>
+				<h6> Gaming Consoles </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/personal.jpg" alt="personal" height="80px" width="90px"><br>
+				</a>
+				<h6> Personal Appliances </h6>
+			   </div>
+			    
+				<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/healthcare.jpg" alt="healthcare" height="80px" width="90px"><br>
+				</a>
+				<h6> Healthcare Devices </h6>
+			   </div>
+			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
 			  </div>
 			</div>
-
+		</div>
 			
 			<!-- ------------------------------------------------------------------- -->
 			
 			
 				<div class="col-md-3">
-					<img src="asset/Images/ipads.jpg" alt="ipad">
+					<br>
+					<div class="border">
+						<img src="asset/Images/ipads.jpg" alt="ipad" height="230px" width="145px" >
+					</div>
+					<br>
 				</div>
+				
+				<div class="col-md-6">
+					<br>
+					<div class="border">
+						<img src="asset/Images/router.jpg" alt="router" height="230px" width="350px">
+					</div>
+					<br>
+				</div>
+				
 				<div class="col-md-3">
-					<img src="asset/Images/homeappliance.jpg" alt="homeappliance">
+					<br>
+					<div class="border">
+						<img src="asset/Images/homeappliance.jpg" alt="homeappliance" height="230px" >
+					</div>
+					<br>
 				</div>
-				<div class="col-md-3">
-					<img src="asset/Images/router.jpg" alt="router">
-				</div>
+				
 			</div>
 			
+		
 			<div class="container">
 				<div class="row">
 						FASHION
@@ -319,6 +381,7 @@
 				</h6>
 				<img src="asset/Images/GIFTS.jpg" alt="Gifts" height="100px" width="150px">
 				<button class="btn btn-danger" type="button">SEND E-GIFT VOUCHER</button>
+			
 				</center>
 		
 			</div>
@@ -370,7 +433,8 @@
 		</div>
 		
 		<div class="col-md-1"></div>
-		
+	
+	
 		<script>
    $(function(){
       // Cycles the carousel to a particular frame 
@@ -388,6 +452,7 @@
        });
    });
 </script>
+
 <style>
   .scroll-pane { overflow: auto; width: 99%; float:left; }
   .scroll-content { width: 1200px; float: left; }

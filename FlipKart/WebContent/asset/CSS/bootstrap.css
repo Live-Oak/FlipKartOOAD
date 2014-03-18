@@ -47,7 +47,9 @@ html {
 }
 
 body {
-  margin: 0;
+  margin 0px;
+  width:100%;
+  padding-right:0px;
 }
 
 a:focus {
@@ -857,8 +859,8 @@ pre code {
 .col-lg-12 {
   position: relative;
   min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .col-xs-1,
@@ -4275,7 +4277,10 @@ textarea.input-group-sm > .input-group-btn > .btn {
     background-image: none;
   }
 }
-
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
+ 
 @media (min-width: 768px) {
   .navbar-nav {
     float: left;

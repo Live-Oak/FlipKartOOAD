@@ -18,6 +18,30 @@
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 
+	<style type="text/css">
+   
+      #suggestPost
+      {
+        background:transparent url(asset/Images/suggest-post.png) no-repeat scroll 0px 0px;
+        height:170px;
+        position:fixed;
+        top:300px;
+        width:40px;
+        right:0px;
+        margine-right:0px;
+        padding-right:0px;
+      }
+      div#suggestPost:hover
+      {
+        background-position: 0px 0px;
+      }
+      #suggestPost a
+      {
+        display:block;
+        height:170px;
+        width:40px;
+      }
+      </style>
 </head>
 <body>
 	<!-- Carousel -->
@@ -100,14 +124,12 @@
 			</div>
 		</div> 
 		
-	<div class="col-md-1">
-		
+		<div class="col-md-1">
+	
 			<br><br><br><br><br><br><br><br><br><br><br>
 			
-			<div id="webklipper-publisher-widget-container-content" style="margin: 0px; padding: 0px; position: fixed; border-width: 1p…8.5px; z-index: 16776273; display: block; overflow: visible;">
-			 <button type="button" class="btn btn-info vertical" style="color: black">Feedback</button>
-			</div>
-		</div>
+			<div id="suggestPost"><a href="#" ></a></div>
+	</div>	
 			
 		<!-- Data on the page -->
 		<br>
@@ -124,85 +146,109 @@
 			
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
+			   <div class="scroll-content-item ui-widget-header border">
 			  	<a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="100px">
-				    	<h6> Mobile </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="100px">
-				    	<h6> Laptop </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="100px">
-				    	<h6> Tablets </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="100px">
-				    	<h6> Camera </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="90px" width="100px">
-				    	<h6> Mobile Accessories </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/laptopaccessories.jpg" alt="laptopaccessories" height="90px" width="100px">
-				    	<h6> Laptop Accessories </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="100px">
-				    	<h6> Audio & Video </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="90px" width="100px">
-				    	<h6> Gaming Consoles </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/personal.jpg" alt="personal" height="90px" width="100px">
-				    	<h6> Personal Appliances </h6>
-				    </div>
-			    </a>
-			    <a href="#">
-				    <div class="scroll-content-item ui-widget-header">
-				    	<img src="asset/Images/healthcare.jpg" alt="healthcare" height="90px" width="100px">
-				    	<h6> Healthcare Devices </h6>
-				    </div>
-			    </a>
-			  </div>
+				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="90px"><br>
+				</a>
+				<h6> Mobile </h6>
+			   </div>
+				    
+			    <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="90px"><br>
+				</a>
+				<h6> Laptop </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="90px"><br>
+				</a>
+				<h6> Tablet </h6>
+			   </div>
+			   
+			  	<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="90px"><br>
+				</a>
+				<h6> Camera </h6>
+			   </div>
+			   
+			  	<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="80px" width="90px"><br>
+				</a>
+				<h6> Mobile Accessories </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/laptopaccessories.jpg" alt="Laptopaccessories" height="80px" width="90px"><br>
+				</a>
+				<h6> Laptop Accessories </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="90px"><br>
+				</a>
+				<h6> Audio & Video </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="80px" width="90px"><br>
+				</a>
+				<h6> Gaming Consoles </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/personal.jpg" alt="personal" height="80px" width="90px"><br>
+				</a>
+				<h6> Personal Appliances </h6>
+			   </div>
+			    
+				<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/healthcare.jpg" alt="healthcare" height="80px" width="90px"><br>
+				</a>
+				<h6> Healthcare Devices </h6>
+			   </div>
+			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
 			  </div>
 			</div>
-
+		</div>
 			
 			<!-- ------------------------------------------------------------------- -->
 			
 			
 				<div class="col-md-3">
-					<img src="asset/Images/ipads.jpg" alt="ipad">
+					<br>
+					<div class="border">
+						<img src="asset/Images/ipads.jpg" alt="ipad" height="230px" width="145px" >
+					</div>
+					<br>
 				</div>
+				
+				<div class="col-md-6">
+					<br>
+					<div class="border">
+						<img src="asset/Images/router.jpg" alt="router" height="230px" width="350px">
+					</div>
+					<br>
+				</div>
+				
 				<div class="col-md-3">
-					<img src="asset/Images/homeappliance.jpg" alt="homeappliance">
+					<br>
+					<div class="border">
+						<img src="asset/Images/homeappliance.jpg" alt="homeappliance" height="230px" >
+					</div>
+					<br>
 				</div>
-				<div class="col-md-3">
-					<img src="asset/Images/router.jpg" alt="router">
-				</div>
+				
 			</div>
 			
 			<div class="container">
