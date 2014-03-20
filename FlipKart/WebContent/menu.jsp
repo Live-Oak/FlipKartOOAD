@@ -8,7 +8,14 @@
 	<link rel="icon" type="/favicon.png" href="asset/Images/flipkartlogo.png">
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
+	<link rel="stylesheet" href="asset/CSS/jquery-ui.css">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
+<!-- 	<link rel="stylesheet" href="asset/CSS/login.css"> -->
+<link rel="stylesheet" href="asset/CSS/reveal.css">	
+<script type="text/javascript" src="asset/JavaScripts/jquery-1.4.4.min.js"></script> 
+<script type="text/javascript" src="asset/JavaScripts/jquery-1.6.min.js"></script>
+<script type="text/javascript" src="asset/JavaScripts/jquery.reveal.js"></script>
+<script type="text/javascript" src="asset/JavaScripts/jquery-ui.js"></script> 
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
@@ -27,9 +34,36 @@
 	}
     </style>
     
+<script type="text/javascript">
+<!--
+// Form validation code will come here.
+function validate()
+{
+ 
+   if( document.form_signup.password.value != document.form_signup.reenter_password.value )
+   {
+     alert( "Paaswords entered do not match!!" );
+     document.form_signup.password.focus() ;
+     return false;
+   }
+}
+
+</script>
+    
+    
+    
 </head>
 
 <body>
+    <script type="text/javascript">
+		$(document).ready(	  
+		  /* This is the function that will get executed after the DOM is fully loaded */
+		  function () 
+		  {			  
+		    $( "#DOB").datepicker({dateFormat: 'yy-mm-dd'});
+		  }	
+		);
+	</script>
 	
 <!-- The first layer with logo and search -->
 
@@ -46,12 +80,12 @@
 					  <input type="text" name="friendId" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 					</div>
 				<div class="col-md-1">
-					<a href="#">Signup</a><br>
+					<a href="#" class="big-link" data-reveal-id="myModal1">Signup</a><br>
 					<button type="submit" class="btn btn-warning" >SEARCH</button>
 				</div>
 				
 				<div class="col-md-2">
-					<a href="loginPage">Login</a><br>
+					<a href="#" class="big-link" data-reveal-id="myModal">Login</a><br>					
 					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
 				</div>
 				
@@ -93,5 +127,80 @@
 		</div>
 	</div>
 	
+
+<div id="myModal" class="reveal-modal">
+		
+		        <h2 align="center">Login</h2>
+		      	<hr>
+
+		<br>
+		<form id="form_login" action="login" method="post">
+			<input type="text" class="textbox" name="name" placeholder="Email Adderess" required autofocus><br><br>
+			<input type="password" class="textbox" name="pwd" placeholder="Enter Password" required><br><br><br>
+			<button type="submit" class="css_button">LOGIN</button>
+		</form>
+<br>
+		<div class="forgot_password">
+		    <p>FORGOT YOUR PASSWORD?</p>
+				<form class="forgot_password_form" action="#">
+	           			<input type="email" class="textbox" name="email" size="18" placeholder="E-mail address" />
+	            		<button type="submit" class="css_button" >SUBMIT</button>
+	    			</form>
+		</div>
+<a class="Signup big-link Close" data-reveal-id="myModal1">New User?</a>	
+<a class="close_button Close">&#215;</a>		
+</div>
+
+<div id="myModal1" class="reveal-modal">
+		
+		        <h2 align="center">Sign Up</h2>
+		      	<hr>
+		<br>
+		<form name="form_signup" onsubmit="return(validate());">
+			<input type="text" class="textbox" placeholder="Enter Username" required autofocus><br>
+			<input type="text" class="textbox" placeholder="Enter First Name" required><br>
+			<input type="text" class="textbox" placeholder="Enter Last Name" required><br>
+			<input type="text" id="DOB" name="DOB" class="textbox" placeholder="Enter Date of Birth"  required><br><br>
+
+			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br>
+			<input type="password" class="textbox" name="reenter_password" placeholder="Re-Enter Password" required><br><br>
+		        
+			<textarea rows="2" cols="18" name="address1" class="textbox" placeholder="Enter Address 1" required></textarea><br>
+			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 1" required></textarea><br>
+			<input type="text" id="city" class="textbox" placeholder="Enter City"  required><br>
+			<input type="text" id="country" class="textbox" placeholder="Enter Country"  required><br>
+			<input type="number" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
+			    <script type="text/javascript">
+        			var specialKeys = new Array();
+        			specialKeys.push(8); //Backspace
+        			function IsNumeric(e) 
+				{
+        		    	var keyCode = e.which ? e.which : e.keyCode
+            			var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            			document.getElementById("error").style.display = ret ? "none" : "inline";
+            			return ret;
+        			}
+			    </script>
+			<br><br>
+			<input type="email" id="email" class="textbox" placeholder="Enter e-mail"  required><br>
+			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required><br><br>
+			<button type="submit" id="create_account">SIGN UP NOW!</button>
+			<button type="reset" id="create_account">RESET!</button><br>
+			<a href="#" class="Signup big-link Close" data-reveal-id="myModal">Already a user?</a>	
+		</form>
+			<a class="close_button Close">&#215;</a>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
