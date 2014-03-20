@@ -16,16 +16,13 @@
 <link href="asset/CSS/bootstrap.css" rel="stylesheet">
 <!-- Bootstrap theme -->
 <link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+
 <script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 <script src="asset/JavaScripts/bootstrap.min.js"></script>
 <script src="asset/JavaScripts/drophover.js"></script>
 <link rel="stylesheet" href="asset/CSS/reveal.css">	
 <link rel="stylesheet" href="asset/CSS/jquery-ui.css">	
 <script type="text/javascript" src="asset/JavaScripts/jquery-ui.js"></script> 
-
-<script type="text/javascript" src="asset/JavaScripts/jquery-1.4.4.min.js"></script> 
-<script type="text/javascript" src="asset/JavaScripts/jquery-1.6.min.js"></script>
 <script type="text/javascript" src="asset/JavaScripts/jquery.reveal.js"></script>
     
 <script type="text/javascript">
@@ -44,13 +41,14 @@ function validate()
 
 </script>
     <script type="text/javascript">
-		$(document).ready(	  
+ 
+    	  
 		  /* This is the function that will get executed after the DOM is fully loaded */
-		  function () 
+		  function bind_func() 
 		  {			  
 		    $( "#DOB").datepicker({dateFormat: 'yy-mm-dd'});
 		  }	
-		);
+		
 	</script>
 
 
@@ -113,7 +111,7 @@ function validate()
 					<button type="submit" class="btn btn-warning" >SEARCH</button>
 				</div>
 				
-				<div class="col-md-2">
+				<div class="col-md-2" >
 					<a href="#" class="big-link" data-reveal-id="myModal">Login</a><br>
 					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
 				</div>
@@ -593,7 +591,7 @@ function validate()
   
   
   
-<div id="myModal1" class="reveal-modal">
+<div id="myModal1" class="reveal-modal" onload="bind_func()">
 		
 		        <h2 align="center">Sign Up</h2>
 		      	<hr>
@@ -627,7 +625,22 @@ function validate()
 			<br><br>
 			<input type="email" id="email" class="textbox" placeholder="Enter e-mail"  required><br>
 			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required><br><br>
-			<button type="submit" id="create_account" class="signin_link">SIGN UP NOW!</button>
+			<button type="submit" id="create_account" class="signin_link" onclick="phonenumber(document.form_signup.phone)">SIGN UP NOW!</button>
+			<script type="text/javascript">
+			function phonenumber(inputtxt)  
+			{  
+			  var phoneno = /^\d{10}$/;  
+			  if(inputtxt.value.match(phoneno))  
+			  {  
+			      return true;  
+			  }  
+			  else  
+			  {  
+			     alert("Not a valid Phone Number");  
+			     return false;  
+			  }  
+			  }  
+        	</script>
 			<button type="reset" id="create_account">RESET!</button><br>
 				
 		</form>
