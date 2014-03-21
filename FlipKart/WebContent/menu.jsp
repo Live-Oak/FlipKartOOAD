@@ -12,20 +12,16 @@
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
 <!-- 	<link rel="stylesheet" href="asset/CSS/login.css"> -->
 <link rel="stylesheet" href="asset/CSS/reveal.css">	
-<script type="text/javascript" src="asset/JavaScripts/jquery-1.4.4.min.js"></script> 
-<script type="text/javascript" src="asset/JavaScripts/jquery-1.6.min.js"></script>
-<script type="text/javascript" src="asset/JavaScripts/jquery.reveal.js"></script>
-<script type="text/javascript" src="asset/JavaScripts/jquery-ui.js"></script> 
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/drophover.js"></script>
+	<script src="asset/JavaScripts/jquery-ui.js"></script> 
+	<script src="asset/JavaScripts/jquery.reveal.js"></script>
 	
 	<style type="text/css">
 	  #funkystyling {
@@ -56,13 +52,7 @@ function validate()
 
 <body>
     <script type="text/javascript">
-		$(document).ready(	  
-		  /* This is the function that will get executed after the DOM is fully loaded */
-		  function () 
-		  {			  
-		    $( "#DOB").datepicker({dateFormat: 'yy-mm-dd'});
-		  }	
-		);
+		
 	</script>
 	
 <!-- The first layer with logo and search -->
@@ -80,12 +70,12 @@ function validate()
 					  <input type="text" name="friendId" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 					</div>
 				<div class="col-md-1">
-					<a href="#" class="big-link" data-reveal-id="myModal1">Signup</a><br>
+					<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
 					<button type="submit" class="btn btn-warning" >SEARCH</button>
 				</div>
 				
 				<div class="col-md-2">
-					<a href="#" class="big-link" data-reveal-id="myModal">Login</a><br>					
+					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
 					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
 				</div>
 				
@@ -169,7 +159,7 @@ function validate()
 			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 1" required></textarea><br>
 			<input type="text" id="city" class="textbox" placeholder="Enter City"  required><br>
 			<input type="text" id="country" class="textbox" placeholder="Enter Country"  required><br>
-			<input type="number" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+			<input type="text" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
@@ -184,7 +174,19 @@ function validate()
 			    </script>
 			<br><br>
 			<input type="email" id="email" class="textbox" placeholder="Enter e-mail"  required><br>
-			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required><br><br>
+			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br><br>
+			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
+			    <script type="text/javascript">
+        			var specialKeys = new Array();
+        			specialKeys.push(8); //Backspace
+        			function IsNumber(e) 
+				{
+        		    	var keyCode = e.which ? e.which : e.keyCode
+            			var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            			document.getElementById("error_phone").style.display = ret ? "none" : "inline";
+            			return ret;
+        			}
+			    </script>
 			<button type="submit" id="create_account">SIGN UP NOW!</button>
 			<button type="reset" id="create_account">RESET!</button><br>
 			<a href="#" class="Signup big-link Close" data-reveal-id="myModal">Already a user?</a>	
