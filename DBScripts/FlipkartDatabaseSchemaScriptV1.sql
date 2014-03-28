@@ -2,9 +2,10 @@ CREATE DATABASE FlipKartDatabase;
 
 
 CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
-  `userId` INT NOT NULL ,
+  `userId` INT NOT NULL AUTO_INCREMENT ,
   `firstName` VARCHAR(45) NOT NULL ,
   `lastName` VARCHAR(45) NULL ,
+  `password` VARCHAR(45) NOT NULL ,
   `role` VARCHAR(45) NOT NULL ,
   `dateOfBirth` DATE NOT NULL ,
   `addressLine1` VARCHAR(100) NOT NULL ,
@@ -19,7 +20,7 @@ CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
 
 
 CREATE  TABLE `FlipKartDatabase`.`Category` (
-  `categoryId` VARCHAR(50) NOT NULL ,
+  `categoryId` VARCHAR(50) NOT NULL AUTO_INCREMENT ,
   `categoryName` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`categoryId`) );
 
@@ -28,7 +29,7 @@ CREATE  TABLE `FlipKartDatabase`.`Category` (
 
 
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
-  `productId` INT NOT NULL ,
+  `productId` INT NOT NULL AUTO_INCREMENT,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
   `image` LONGBLOB NOT NULL ,
