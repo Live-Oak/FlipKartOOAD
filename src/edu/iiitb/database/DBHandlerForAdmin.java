@@ -33,13 +33,13 @@ public class DBHandlerForAdmin {
 	DBConnectivity db=new DBConnectivity();
 	Connection con = db.createConnection();
 	
-	public boolean chkForIDAlreadyExists(int id) throws SQLException
+	public boolean chkForEmailIDAlreadyExists(String email) throws SQLException
 	{
-		String query="select userId from UserCredantials";
+		String query="select email from UserCredantials";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			if(rs.getInt("userId")==id)
+			if(rs.getString("email").equals(email))
 				return true;
 		}
 		return false;
@@ -50,11 +50,12 @@ public class DBHandlerForAdmin {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 		String date = sdf.format(new java.util.Date());
 		String[] splitedDate=user.getDate().split("T");
-		String query="INSERT INTO UserCredantials(`userId`,`firstName`,`lastName`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
-		prep.setInt(1, user.getUserId());
-		prep.setString(2, user.getFirstName());
-		prep.setString(3, user.getLastName());
+		
+		prep.setString(1, user.getFirstName());
+		prep.setString(2, user.getLastName());
+		prep.setString(3, user.getPassword());
 		prep.setString(4, user.getRole());
 		prep.setString(5, splitedDate[0]);
 		prep.setString(6, user.getAddress1());
@@ -69,16 +70,34 @@ public class DBHandlerForAdmin {
 		
 		if(user.getRole().equals("Seller"))
 		{
-			String queryForSeller="INSERT INTO Seller(`userId`,`description`) VALUES(?,?)";
-			PreparedStatement prepForSeller =con.prepareStatement(queryForSeller);
-			prepForSeller.setInt(1, user.getUserId());
-			prepForSeller.setString(2, user.getSellerDescription());
-			prepForSeller.execute();
+			try
+			{
+				int id = fetchUserIDIntForm(user.getEmail());
+				String queryForSeller="INSERT INTO Seller(`userId`,`description`) VALUES(?,?)";
+				PreparedStatement prepForSeller =con.prepareStatement(queryForSeller);
+				prepForSeller.setInt(1, id);
+				prepForSeller.setString(2, user.getSellerDescription());
+				prepForSeller.execute();
+			} catch(Exception e)
+			{
+				System.out.println("Exception at fetching id for Role seller");
+			}
+			
 		}
 		
 		return true;
 	}
-
+	
+	public void fetchUserIdWithRole(ArrayList<String> user) throws SQLException
+	{
+		String query = "select userId , role from UserCredantials";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			user.add(Integer.toString(rs.getInt("userId"))+"_"+rs.getString("role"));
+		}
+	}
+	
 	public void fetchUserID(ArrayList<String> userID) throws SQLException {
 		// TODO Auto-generated method stub
 		
@@ -90,11 +109,34 @@ public class DBHandlerForAdmin {
 		}
 	}
 	
+	public int fetchUserIDIntForm(String email) throws SQLException
+	{
+		String query = "select userId , email from UserCredantials";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			if(rs.getString("email").equals(email))
+				return rs.getInt("userId");
+		}
+		return 0;
+	}
+	
 	public void deleteUserFromDB(int id) throws SQLException
 	{
-		String query = "DELETE FROM UserCredantials WHERE  userId = "+id+"";
-		Statement st=(Statement) con.createStatement();
-		st.executeUpdate(query);
+		try
+		{
+			String query = "DELETE FROM UserCredantials WHERE  userId = "+id+"";
+			Statement st=(Statement) con.createStatement();
+			st.executeUpdate(query);
+		} catch(SQLException e)
+		{
+			String query1 = "DELETE FROM Seller WHERE  userId = "+id+"";
+			Statement st1=(Statement) con.createStatement();
+			st1.executeUpdate(query1);
+			String query2 = "DELETE FROM UserCredantials WHERE  userId = "+id+"";
+			Statement st2=(Statement) con.createStatement();
+			st2.executeUpdate(query2);
+		}
 		
 	}
 	
@@ -222,6 +264,30 @@ public class DBHandlerForAdmin {
 			productId.add(rs.getString("productId"));
 		}
 		
+	}
+
+	public void fetchCategoryName(ArrayList<String> categoryName) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String query = "select categoryName from Category";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			categoryName.add(rs.getString("categoryName"));
+		}
+		
+	}
+
+	public boolean chkForCategoryNameAlreadyExists(String categoryName) throws SQLException {
+		// TODO Auto-generated method stub
+		String query="select categoryName from Category";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			if(rs.getString("categoryName").equals(categoryName))
+				return true;
+		}
+		return false;
 	}
 	
 }

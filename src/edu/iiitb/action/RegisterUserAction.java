@@ -28,7 +28,7 @@ public class RegisterUserAction extends ActionSupport implements ModelDriven<Use
 		try
 		{
 			// Dont use else in  validate()
-			if(dbHandler.chkForIDAlreadyExists(userData.getUserId()))
+			if(dbHandler.chkForEmailIDAlreadyExists(userData.getEmail()))
 				addFieldError("userId", "UserId already exists");
 			/*else 
 				addActionMessage("Registration successful");*/

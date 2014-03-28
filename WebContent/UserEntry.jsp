@@ -53,9 +53,10 @@ $(document).ready(function(){
 		<div class="col-md-4"></div>
 		<div class="col-md-2">
 	<h4>		<br><br>
-			User-ID ::	<br>
+			
 			FirstName :: <br>
 			LastName :: <br>
+			Password ::	<br>
 			Role :: <br> <br>
 			DateOfBirth :: <br>
 			AddressLine 1 <br> <br> <br> <br>
@@ -69,9 +70,10 @@ $(document).ready(function(){
 	</h4>	</div>
 		<div class="col-md-2">
 			<br><br>
-			<s:textfield  name="userId"  required="true" placeholder="Enter User-id"></s:textfield><br>
+			
 			<input type="text" name="firstName" required="true"  placeholder="Enter FirstName"><br>
 			<input type="text" name="lastName" required="true"  placeholder="Enter LastName"><br>
+			<input type="password" name="password" required="true"  placeholder="Enter Password"><br>
 				<select id="role" name="role">
 						<option>--Select--</option>
 						<option>Seller</option>

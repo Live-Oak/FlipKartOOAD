@@ -46,10 +46,11 @@ public class FetchSubCategoryId {
 	
 	public String execute()
 	{
+		String[] idRole = getCategoryId().split("_");
 		subCategoryId = new ArrayList<String>();
 		DBHandlerForAdmin dbhandler = new DBHandlerForAdmin();
 		try {
-			dbhandler.fetchSubCategoryId(subCategoryId,getCategoryId());
+			dbhandler.fetchSubCategoryId(subCategoryId,idRole[0]);
 			return "success";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

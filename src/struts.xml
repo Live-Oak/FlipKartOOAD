@@ -28,9 +28,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">RegisterPage</result>
 			</action>
 			
-			<action name="insertCategoryPage">
+			<!-- <action name="insertCategoryPage">
 				<result type="tiles">InserCategoryPage</result>
-			</action>
+			</action> -->
 			
 			<action name="apppage">
 				<result type="tiles">Apppage</result>
@@ -48,8 +48,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">Ebooks</result>
 			</action>
 			
-			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryID">
+			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryDetails">
 				<result name="success" type="tiles">InserSubCategoryPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="insertCategoryPage" class="edu.iiitb.action.FetchCategoryDetails" method="fetchCategoryName">
+				<result name="success" type="tiles">InserCategoryPage</result>
 				<result name="error">/error.jsp</result>
 			</action>
 			
@@ -70,7 +75,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 			
 			<action name="inserCategory" class="edu.iiitb.action.AddCategoryInfo">
-				<result name="input" type="tiles">InserCategoryPage</result>
+				<result name="input" type="redirectAction">insertCategoryPage</result>
 				<result name="success" type="tiles" >Administrator</result>
 				<result name="error">/error.jsp</result>
 			</action>
@@ -85,7 +90,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 			
-			<action name="addProduct" class="edu.iiitb.action.FetchCategoryID">
+			<action name="addProduct" class="edu.iiitb.action.FetchCategoryDetails">
 				<result name="success" type="tiles" >AddProductPage</result>
 				<result name="error">/error.jsp</result>
 			</action>
