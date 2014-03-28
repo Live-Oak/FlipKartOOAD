@@ -95,7 +95,8 @@ public class ProductInfo {
 		return categoryID;
 	}
 	public void setCategoryID(String categoryID) {
-		this.categoryID = categoryID;
+		String[] idName = categoryID.split("_");
+		this.categoryID = idName[0];
 	}
 	public String getKeywords() {
 		return keywords;

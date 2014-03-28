@@ -47,10 +47,11 @@ public class CategoryRelationship extends ActionSupport{
 	
 	public String execute()
 	{
+		String[] idName = id.split("_");
 		DBHandlerForAdmin dbhandler = new DBHandlerForAdmin();
 		try
 		{
-			dbhandler.insetCategoryRelationship(getId(),getId2());
+			dbhandler.insetCategoryRelationship(idName[0],getId2());
 			addActionMessage("Relationship inserted Successfully");
 			return "success";
 		}catch(SQLException e)

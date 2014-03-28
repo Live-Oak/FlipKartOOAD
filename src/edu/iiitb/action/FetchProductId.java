@@ -27,10 +27,17 @@ public class FetchProductId {
 	public String execute()
 	{
 		productId = new ArrayList<String>();
+		ArrayList<String> id = new ArrayList<String>();
+		ArrayList<String> pName = new ArrayList<String>();
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		
 		try {
-			dbHandler.fetchProductID(productId);
+			dbHandler.fetchProductID(id);
+			dbHandler.fetchProductName(pName);
+			for(int i = 0;i<pName.size();i++)
+			{
+				productId.add(id.get(i)+"_"+pName.get(i));
+			}
 			return "success";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -80,7 +80,7 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 			{
 				dbHandler.fetchCategoryID(categoryId);
 				addFieldError("productID", "");
-				servletRequest.setAttribute("errorMessage", "PRODUCT ID " + prod.getProductID() +" EXISTS !!!");
+				servletRequest.setAttribute("errorMessage", "PRODUCT ID already EXISTS !!!");
 		
 			}
 				

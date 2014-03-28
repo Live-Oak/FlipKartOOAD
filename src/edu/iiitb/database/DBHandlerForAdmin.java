@@ -248,7 +248,7 @@ public class DBHandlerForAdmin {
 		 Timestamp time =  new Timestamp(date.getTime());
 		String query = "Insert into Advertizement values(?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
-		stmnt.setInt(1,adv.getProductID());
+		stmnt.setString(1,adv.getProductID());
 		stmnt.setBlob(2, adv.getImage());
 		stmnt.setTimestamp(3, time);
 		stmnt.execute();
@@ -288,6 +288,16 @@ public class DBHandlerForAdmin {
 				return true;
 		}
 		return false;
+	}
+
+	public void fetchProductName(ArrayList<String> pName) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select productName from ProductInfo";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			pName.add(rs.getString("productName"));
+		}
 	}
 	
 }

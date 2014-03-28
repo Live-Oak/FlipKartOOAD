@@ -6,29 +6,28 @@ import java.sql.Timestamp;
 
 public class Advertizement {
 
-	private int productID;
+	
+	
 	private InputStream image;
 	private Timestamp timeStamp;
 	
 	File myFile;
-	String myFileFileName,myFileContentType;
-	
+	String myFileFileName,myFileContentType,productID;
 	
 	/**
 	 * @return the productID
 	 */
-	public int getProductID() {
+	public String getProductID() {
 		return productID;
 	}
 	/**
 	 * @param productID the productID to set
 	 */
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setProductID(String productID) {
+		String[] idName = productID.split("_");
+		this.productID = idName[0];
 	}
-	/**
-	 * @return the image
-	 */
+	
 	public InputStream getImage() {
 		return image;
 	}
