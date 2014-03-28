@@ -1,0 +1,21 @@
+@CHARSET "ISO-8859-1";
+.cart-header{
+	height : 50px;
+	border-bottom: 1px solid black;
+	padding-top: 20px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	font-size: 20px;
+}
+
+.cartContainer{
+	height: 400px;
+}
+
+.empty-cart{
+	padding: 50px;
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	border: 1px solid gray;
+}

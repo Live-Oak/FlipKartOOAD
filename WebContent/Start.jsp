@@ -21,9 +21,11 @@
 <script src="asset/JavaScripts/bootstrap.min.js"></script>
 <script src="asset/JavaScripts/drophover.js"></script>
 <link rel="stylesheet" href="asset/CSS/reveal.css">	
-<link rel="stylesheet" href="asset/CSS/jquery-ui.css">	
+<link rel="stylesheet" href="asset/CSS/jquery-ui.css">
+<link rel="stylesheet" href="asset/CSS/cart.css">	
 <script type="text/javascript" src="asset/JavaScripts/jquery-ui.js"></script> 
 <script type="text/javascript" src="asset/JavaScripts/jquery.reveal.js"></script>
+<script src="asset/JavaScripts/cart.js"></script>
     
 <script type="text/javascript">
 <!--
@@ -113,7 +115,7 @@ function validate()
 				
 				<div class="col-md-2" >
 					<a href="#" class="big-link" data-reveal-id="myModal">Login</a><br>
-					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
+					<button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button>
 				</div>
 				
 			</div>
@@ -646,11 +648,22 @@ function validate()
 		</form>
 
 		<a  class="Signup big-link Close" data-reveal-id="myModal">Already a user?</a>
-			<a class="close_button Close">&#215;</a>
+			<a class="close-reveal-modal">x</a>
 	</div>
 
-  
-  
+  	<div id="cartModel" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
+		<div id="cartHeader" class="cart-header">CART(0)</div>
+		<div class="cartContainer">
+			<center>
+			<div id="emptyCart" class="empty-cart">
+				There are no items in this cart.<br><br>
+				<button id="continueShopping" type="button" class="btn btn-primary" > CONTINUE SHOPPING </button>
+			</div>
+			</center>
+		</div>
+		<a class="close-reveal-modal">×</a>
+	</div>
+  	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
   
   
   

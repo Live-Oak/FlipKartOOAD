@@ -76,7 +76,7 @@ function validate()
 				
 				<div class="col-md-2">
 					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
-					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
+					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button>
 				</div>
 				
 			</div>
