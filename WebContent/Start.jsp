@@ -606,7 +606,7 @@ function validate()
 			<input type="password" class="textbox" name="reenter_password" placeholder="Re-Enter Password" required><br><br>
 		        
 			<textarea rows="2" cols="18" name="address1" class="textbox" placeholder="Enter Address 1" required></textarea><br>
-			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 1" required></textarea><br>
+			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 2" required></textarea><br>
 			<input type="text" id="city" class="textbox" placeholder="Enter City"  required><br>
 			<input type="text" id="country" class="textbox" placeholder="Enter Country"  required><br>
 			<input type="number" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">

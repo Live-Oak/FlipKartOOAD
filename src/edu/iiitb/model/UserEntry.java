@@ -14,7 +14,19 @@ public class UserEntry {
 	int userId,pinCode;
 	String firstName,lastName,role,address1,address2,city,country,email,sellerDescription;
 	
-	String date;
+	String date,password;
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	/**
 	 * @param date the date to set
 	 */
