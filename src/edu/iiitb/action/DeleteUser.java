@@ -40,9 +40,10 @@ public class DeleteUser extends ActionSupport{
 	public String execute()
 	{
 		// This array is used because in the dropDown list userId and Role are seprated by a '_'
-		String[] idRole=getId().split("_");
+		
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try {
+			String[] idRole=getId().split("_");
 			dbHandler.deleteUserFromDB(Integer.parseInt(idRole[0]));
 			addActionMessage("User Has Been Deleted Successfully");
 			return "success";
