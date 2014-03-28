@@ -648,7 +648,7 @@ function validate()
 		</form>
 
 		<a  class="Signup big-link Close" data-reveal-id="myModal">Already a user?</a>
-			<a class="close-reveal-modal">x</a>
+			<a class="close_button Close">&#215;</a>	
 	</div>
 
   	<div id="cartModel" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">

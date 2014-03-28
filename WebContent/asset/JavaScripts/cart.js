@@ -9,6 +9,11 @@ $(document).ready(function(){
 		     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
 		});
 		
+		$("#continueShopping").click(function(){
+			$("#cartModel").trigger('reveal:close');
+		});
+		
+		
 	});
 	
 });

@@ -3,7 +3,7 @@
 	height : 50px;
 	border-bottom: 1px solid black;
 	padding-top: 20px;
-	padding-left: 10px;
+	padding-left: 20px;
 	padding-bottom: 10px;
 	font-size: 20px;
 }
@@ -19,3 +19,20 @@
 	margin-right: 20px;
 	border: 1px solid gray;
 }
+
+.cart-revealmodel {
+		visibility: hidden;
+		top: 100px; 
+		left: 50%;
+		margin-left: -440px;
+		width: 800px;
+		background: #eee url(modal-gloss.png) no-repeat -200px -80px;
+		position: absolute;
+		z-index: 101;
+		-moz-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		-moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+		-box-shadow: 0 0 10px rgba(0,0,0,.4);
+	}	
