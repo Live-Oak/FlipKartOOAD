@@ -14,6 +14,7 @@ import edu.iiitb.database.DBHandlerForAdmin;
  */
 public class FetchUserIDForDelete {
 
+	// Used for ID_Role
 	ArrayList<String> userID;
 	
 	/**
@@ -35,7 +36,7 @@ public class FetchUserIDForDelete {
 		userID =  new ArrayList<String>();
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try {
-			dbHandler.fetchUserID(userID);
+			dbHandler.fetchUserIdWithRole(userID);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Exception at execute() of FetchUserIDForDelete.java ");
@@ -44,8 +45,7 @@ public class FetchUserIDForDelete {
 		}
 		return "success";
 	}
-	
-	
+
 
 
 	

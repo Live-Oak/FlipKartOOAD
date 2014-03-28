@@ -18,16 +18,23 @@
 		
 		
 		<div class="col-md-2">
-			<br><br>
-			Category-ID :: <br><br><br>
+			<br><br><br><br>
+			Category Already Exist :: <br><br>
+			Category-ID :: <br><br>
 			Category Name :: <br><br>
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary" value="Insert"/>
 		</div>
 		
 		<div class="col-md-2">
 			<br><br>
-			<s:textfield  name="categoryId" required="true" placeholder="Enter Category-id"></s:textfield> <br><br>
-			<input type="text" name="categoryName" required="true"  placeholder="Enter CategoryName"> <br><br>
+			<h3>
+			<select id="dropDown">
+				<s:iterator value="categryName">
+					 <option>  <s:property /> </option> 
+				 </s:iterator>
+			 </select><br> </h3>
+			<s:textfield name="categoryId" required="true"  placeholder="Enter CategoryName"/> <br><br>
+			<input type="text" name="categoryName" required="true"  placeholder="Enter CategoryName"/> <br><br>
 			<input type="reset" class="btn btn-primary" name="Reset"/>
 		</div>
 		

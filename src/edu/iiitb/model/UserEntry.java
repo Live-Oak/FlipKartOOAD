@@ -11,7 +11,7 @@ package edu.iiitb.model;
  */
 public class UserEntry {
 
-	int userId,pinCode;
+	int pinCode;
 	String firstName,lastName,role,address1,address2,city,country,email,sellerDescription;
 	
 	String date,password;
@@ -52,18 +52,7 @@ public class UserEntry {
 	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	/**
-	 * @return the userId
-	 */
-	public int getUserId() {
-		return userId;
-	}
-	/**
-	 * @param userId the userId to set
-	 */
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+	
 	/**
 	 * @return the pinCode
 	 */

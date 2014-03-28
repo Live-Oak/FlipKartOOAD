@@ -15,27 +15,35 @@ import edu.iiitb.database.DBHandlerForAdmin;
  */
 public class DeleteUser extends ActionSupport{
 	
-	int id;
+	String id;
 	
+	
+
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
+
+
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
+
+
 	public String execute()
 	{
+		// This array is used because in the dropDown list userId and Role are seprated by a '_'
+		String[] idRole=getId().split("_");
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try {
-			dbHandler.deleteUserFromDB(getId());
+			dbHandler.deleteUserFromDB(Integer.parseInt(idRole[0]));
 			addActionMessage("User Has Been Deleted Successfully");
 			return "success";
 		} catch (SQLException e) {
