@@ -662,7 +662,7 @@ function validate()
 			</center>
 		</div>
 		<a class="close-reveal-modal">×</a>
-		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="continueShopping" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
+		<a href="http://localhost:8081/FlipKart/place.jsp"><button id="continueShopping" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
   

@@ -299,5 +299,83 @@ public class DBHandlerForAdmin {
 			pName.add(rs.getString("productName"));
 		}
 	}
+
+	public void viewUserData(ArrayList<UserEntry> user) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select * from UserCredantials";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			UserEntry entry = new UserEntry();
+			entry.setUserId(rs.getInt("userId"));
+			entry.setFirstName(rs.getString("firstName"));
+			entry.setLastName(rs.getString("lastName"));
+			entry.setRole(rs.getString("role"));
+			entry.setEmail(rs.getString("email"));
+			entry.setPhonenumber(rs.getString("phoneNumber"));
+			entry.setCity(rs.getString("city"));
+			user.add(entry);
+		}
+	}
+
+	public void viewProductData(ArrayList<ProductInfo> product) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select * from ProductInfo";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			ProductInfo entry = new ProductInfo();
+			entry.setProductID(rs.getInt("productId"));
+			entry.setProductName(rs.getString("productName"));
+			entry.setCategoryID(rs.getString("categoryId"));
+			entry.setDescription(rs.getString("description"));
+			entry.setPrice(rs.getFloat("price"));
+			product.add(entry);
+		}
+	}
+
+	public void viewCategoryData(ArrayList<CategoryModel> category) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select * from Category";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			CategoryModel entry = new CategoryModel();
+			entry.setCategoryId(rs.getString("categoryId"));
+			entry.setCategoryName(rs.getString("categoryName"));
+			category.add(entry);
+		}
+	}
+
+	public void viewSubCategoryData(ArrayList<CategoryModel> category) throws SQLException{
+		// TODO Auto-generated method stub
+		String query = "select * from Category";
+		ArrayList<String> id = new ArrayList<String>();
+		fetchDistinctSubCategoryID(id);
+		ResultSet rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				if(id.contains(rs.getString("categoryId")))
+				{
+					CategoryModel entry = new CategoryModel();
+					entry.setCategoryId(rs.getString("categoryId"));
+					entry.setCategoryName(rs.getString("categoryName"));
+					category.add(entry);
+				}
+			}
+		
+	}
+
+	private void fetchDistinctSubCategoryID(ArrayList<String> id) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "SELECT distinct(subCategoryId) FROM CategoryRelation";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			id.add(rs.getString(1));
+		}
+	}
+	
+	
 	
 }

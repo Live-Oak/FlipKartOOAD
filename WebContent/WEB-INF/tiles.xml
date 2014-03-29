@@ -13,6 +13,27 @@
 		    <put-attribute name="footer"   value="/Adminfooter.jsp"/>
    		</definition>
    		
+   		<definition name="SubCategoryData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/subcategory.jsp"></put-attribute>
+   		</definition>
+   			
+   		<definition name="CategoryData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/category.jsp"></put-attribute>
+   		</definition>
+   		
+   		<definition name="UserData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/users.jsp"></put-attribute>
+   		</definition>
+   		
+   		
+   		<definition name="ProductData" extends="Administrator">
+   			<put-attribute name="title" value="Product Info"/>
+   			<put-attribute name="body" value="/products.jsp"></put-attribute>
+   		</definition>
+   		
    		<definition name="RegisterPage" extends="Administrator">
    			<put-attribute name="title" value="Registration"/>
    			<put-attribute name="body"   value="/UserEntry.jsp"/>

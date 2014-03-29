@@ -69,17 +69,15 @@
 						<li><a href="insertSubCategoryPage">Add CategoryRelation</a></li>
 						<li><a href="addProduct">Add Product</a></li>
 						<li><a href="advertizement">Add Advertizement</a></li>
-						<li><a href="logout">Log out</a></li>
-						<!-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE <span class="caret"></span></a>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">View DB <span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-								<li><a href="#">SPORTS & FITNESS </a></li>
-								<li class="divider" role="presentation"></li>
-								<li><a href="#">TEAM SPORTS</a></li>
-								<li><a href="#">INDOOR GAMES</a></li>
-								<li><a href="#">OTHER SPORTS</a></li>
-								<li><a href="#">FITNESS</a></li>
+								<li><a href="viewUser">Users</a></li>
+								<li><a href="viewProduct">Products</a></li>
+								<li><a href="viewCategory">Category</a></li>
+								<li><a href="viewSubCategory">Sub-Category</a></li>
 							</ul>
-						</li> -->
+						</li> 
+					<li><a href="logout">Log out</a></li>	
 					</ul>
 				</div>
 			</div>

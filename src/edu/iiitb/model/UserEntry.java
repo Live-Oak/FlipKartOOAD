@@ -11,10 +11,25 @@ package edu.iiitb.model;
  */
 public class UserEntry {
 
-	int pinCode;
+	int pinCode,userId;
+	
 	String firstName,lastName,role,address1,address2,city,country,email,sellerDescription;
 	
 	String date,password;
+	String phonenumber;
+	
+	/**
+	 * @return the userId
+	 */
+	public int getUserId() {
+		return userId;
+	}
+	/**
+	 * @param userId the userId to set
+	 */
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	/**
 	 * @return the password
 	 */
@@ -33,7 +48,7 @@ public class UserEntry {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	String phonenumber;
+	
 	/**
 	 * @return the date
 	 */

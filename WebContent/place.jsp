@@ -81,7 +81,7 @@ $(document).ready(function(){
   });
   $("#confirmOrder").click(function(){
 	  
-	  window.location = "http://localhost:8080/FlipKart/";
+	  window.location = "http://localhost:8081/FlipKart/";
 	  
   });
 });

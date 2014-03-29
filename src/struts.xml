@@ -16,6 +16,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result>/login.html</result>
 			</action>
 			
+			
 			<action name="adminhome" >
 				<result type="tiles">Administrator</result>
 			</action>
@@ -46,6 +47,26 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			<action name="ebooks">
 				<result type="tiles">Ebooks</result>
+			</action>
+			
+			<action name="viewUser" class="edu.iiitb.action.FetchDatabaseInfo">
+				<result name="success" type="tiles">UserData</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="viewProduct" class="edu.iiitb.action.FetchDatabaseInfo" method="productFetch">
+				<result name="success" type="tiles">ProductData</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="viewCategory" class="edu.iiitb.action.FetchDatabaseInfo" method="categoryFetch">
+				<result name="success" type="tiles">CategoryData</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="viewSubCategory" class="edu.iiitb.action.FetchDatabaseInfo" method="subCategoryFetch">
+				<result name="success" type="tiles">SubCategoryData</result>
+				<result name="error">/error.jsp</result>
 			</action>
 			
 			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryDetails">
