@@ -35,13 +35,49 @@ function validate()
  
    if( document.form_signup.password.value != document.form_signup.reenter_password.value )
    {
-     alert( "Paaswords entered do not match!!" );
+     alert( "Passwords entered do not match!!" );
      document.form_signup.password.focus() ;
      return false;
    }
 }
 
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#create_account").click(function()
+			{
+
+		$.ajax({
+		    type: 'POST',
+		    url:'signmeup?email='+$("#email").val(),
+		    failure: function(data){
+		    	$("#notify").html(data.message);
+		     }});	
+	});
+	
+});
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("p").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'useravailable?email='+$("#email").val(),
+		    success: function(data){
+		    	alert(data.message+"hello");
+		    	$("#notify").html(data.message);
+		     }});	
+	});
+});
+
+
+</script>
+
+
+
+
     <script type="text/javascript">
  
     	  
@@ -625,6 +661,8 @@ function validate()
 			    </script>
 			<br><br>
 			<input type="email" id="email" name="email" class="textbox" placeholder="Enter e-mail"  required><br>
+			<p>Check for availability</p>
+			<label id="notify"></label>
 			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required ><br><br>
 			<button type="submit" id="create_account" class="signin_link" onclick="phonenumber(document.form_signup.phone)">SIGN UP NOW!</button>
 			<script type="text/javascript">

@@ -14,11 +14,11 @@ public class SignupAction extends ActionSupport implements ModelDriven<SignupMod
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
+		String message;
 		SignupModel userData = new SignupModel();
 		DBHandlerForUser dbHandler = new DBHandlerForUser();
 		
-		public void validate()
+	/*	public void validate()
 		{
 			
 /*			try
@@ -33,15 +33,46 @@ public class SignupAction extends ActionSupport implements ModelDriven<SignupMod
 				System.out.println(" Exception at validate() in RegisterUserAction.java ");
 				e.printStackTrace();
 			}
-		*/	
+			
+		}
+		*/
+		public void setMessage(String message)
+		{
+			this.message=message;
+		}
+		public String getMessage()
+		{
+			return message;
 		}
 		
-		
-		public String execute() throws SQLException
+		/*public String Validate() throws SQLException
 		{
+			boolean check;
+			System.out.println(userData.getEmail());
+					check = dbHandler.chkForEmailIDAlreadyExists(userData.getEmail());
+					if (check) 
+					{
+						message = "Email already present";
+						
+					}
+					else
+					{
+						
+					}
+				
+			return "success";
+
+		}
+
+*/
+public String execute() throws SQLException
+		{
+	System.out.println(userData.getEmail());
 			if(dbHandler.chkForEmailIDAlreadyExists(userData.getEmail()))
-				return "invalid";
-			
+			{
+				message = "Email already present";
+				return "failure";
+			}
 			try {
 				dbHandler.SignupUserinDB(userData);
 				SendMailSSL.sendEmail(userData.getEmail(),userData.getFirstName());

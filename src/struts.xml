@@ -146,8 +146,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success">/Start.jsp</result>
 				<result name="invalid">/sorry.jsp</result>
 				<result name="error">/error.jsp</result>
+				 <result name="failure" type="json"/>
+			
+			</action>
+			<action name="useravailable" class="edu.iiitb.action.UserAvailabilityAction" method="Validate">
+				<result name="success" type="json"/>
+				
 			</action>
 						
+								
 	</package>
 
 </struts>
