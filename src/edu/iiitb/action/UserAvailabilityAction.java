@@ -57,16 +57,16 @@ public void setSession(Map session) {
 
 public String Validate() throws SQLException
 {
-	String email = (String) session.get("email");
 	System.out.println("kdnvksndvknbdsvkbk");
 	System.out.println(getEmail());
 	System.out.println(email);
 	if(dbHandler.chkForEmailIDAlreadyExists(getEmail()))
 	{
 		System.out.println(getEmail());
-		message = "Email already present";
+		message = "notavailable";
 	}
-		message="use it!!";
+	else
+		message="available";
 	return "success";
 
 }

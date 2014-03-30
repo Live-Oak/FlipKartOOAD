@@ -67,23 +67,22 @@ public class SignupAction extends ActionSupport implements ModelDriven<SignupMod
 */
 public String execute() throws SQLException
 		{
-	System.out.println(userData.getEmail());
 			if(dbHandler.chkForEmailIDAlreadyExists(userData.getEmail()))
 			{
 				message = "Email already present";
-				return "failure";
+				
 			}
 			try {
 				dbHandler.SignupUserinDB(userData);
 				SendMailSSL.sendEmail(userData.getEmail(),userData.getFirstName());
-				
+				return "success";
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				System.out.println("Error execute() of RegisterUserAction.java ");
 				e.printStackTrace();
 				return "error";
 			}
-			return "success";
+		
 		}
 
 		

@@ -46,13 +46,16 @@ function validate()
 $(document).ready(function(){
 	$("#create_account").click(function()
 			{
-
-		$.ajax({
-		    type: 'POST',
-		    url:'signmeup?email='+$("#email").val(),
-		    failure: function(data){
-		    	$("#notify").html(data.message);
-		     }});	
+		var status=$("#notify").html();
+		if(status=="available")
+		{
+			$("#form_signup").submit();
+		}
+		else
+		{
+			$("#notify").html("not available");
+		}
+			
 	});
 	
 });
@@ -66,7 +69,7 @@ $(document).ready(function(){
 		    type: 'POST',	    
 		    url:'useravailable?email='+$("#email").val(),
 		    success: function(data){
-		    	alert(data.message+"hello");
+		    	alert(email+data.message+"hello");
 		    	$("#notify").html(data.message);
 		     }});	
 	});
@@ -634,7 +637,7 @@ $(document).ready(function(){
 		        <h2 align="center">Sign Up</h2>
 		      	<hr>
 		<br>
-		<form name="form_signup" method="post" action="signmeup" onsubmit="return(validate());" >
+		<form id="form_signup" name="form_signup" method="post" action="signmeup" onsubmit="return(validate());" >
 			<input type="text" class="textbox" name="firstName" placeholder="Enter First Name" required><br>
 			<input type="text" class="textbox" name="lastName" placeholder="Enter Last Name" required><br>
 			<input type="text" id="DOB" name="date" class="textbox" placeholder="Enter Date"  required><br><br>
@@ -661,10 +664,10 @@ $(document).ready(function(){
 			    </script>
 			<br><br>
 			<input type="email" id="email" name="email" class="textbox" placeholder="Enter e-mail"  required><br>
-			<p>Check for availability</p>
+			<p id="checking">Check for availability</p>
 			<label id="notify"></label>
 			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required ><br><br>
-			<button type="submit" id="create_account" class="signin_link" onclick="phonenumber(document.form_signup.phone)">SIGN UP NOW!</button>
+			<button type="button" id="create_account" class="signin_link" onclick="phonenumber(document.form_signup.phone)">SIGN UP NOW!</button>
 			<script type="text/javascript">
 			function phonenumber(inputtxt)  
 			{  
