@@ -135,6 +135,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 			
+			<action name="signmeup" class="edu.iiitb.action.SignupAction">
+				<result name="success">/Start.jsp</result>
+				<result name="invalid">/sorry.jsp</result>
+				<result name="error">/error.jsp</result>
+			</action>
+						
 	</package>
 
 </struts>

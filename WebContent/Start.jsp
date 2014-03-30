@@ -598,20 +598,19 @@ function validate()
 		        <h2 align="center">Sign Up</h2>
 		      	<hr>
 		<br>
-		<form name="form_signup" onsubmit="return(validate());">
-			<input type="text" class="textbox" placeholder="Enter Username" required autofocus><br>
-			<input type="text" class="textbox" placeholder="Enter First Name" required><br>
-			<input type="text" class="textbox" placeholder="Enter Last Name" required><br>
-			<input type="text" id="DOB" name="DOB" class="textbox" placeholder="Enter Date"  required><br><br>
+		<form name="form_signup" method="post" action="signmeup" onsubmit="return(validate());" >
+			<input type="text" class="textbox" name="firstName" placeholder="Enter First Name" required><br>
+			<input type="text" class="textbox" name="lastName" placeholder="Enter Last Name" required><br>
+			<input type="text" id="DOB" name="date" class="textbox" placeholder="Enter Date"  required><br><br>
 
 			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br>
 			<input type="password" class="textbox" name="reenter_password" placeholder="Re-Enter Password" required><br><br>
 		        
 			<textarea rows="2" cols="18" name="address1" class="textbox" placeholder="Enter Address 1" required></textarea><br>
 			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 2" required></textarea><br>
-			<input type="text" id="city" class="textbox" placeholder="Enter City"  required><br>
-			<input type="text" id="country" class="textbox" placeholder="Enter Country"  required><br>
-			<input type="number" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+			<input type="text" id="city" name="city" class="textbox" placeholder="Enter City"  required><br>
+			<input type="text" id="country" name="country" class="textbox" placeholder="Enter Country"  required><br>
+			<input type="number" id="pincode" name="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
@@ -625,8 +624,8 @@ function validate()
         			}
 			    </script>
 			<br><br>
-			<input type="email" id="email" class="textbox" placeholder="Enter e-mail"  required><br>
-			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required><br><br>
+			<input type="email" id="email" name="email" class="textbox" placeholder="Enter e-mail"  required><br>
+			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required ><br><br>
 			<button type="submit" id="create_account" class="signin_link" onclick="phonenumber(document.form_signup.phone)">SIGN UP NOW!</button>
 			<script type="text/javascript">
 			function phonenumber(inputtxt)  
