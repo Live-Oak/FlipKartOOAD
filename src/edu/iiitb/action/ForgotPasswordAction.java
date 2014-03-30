@@ -21,23 +21,12 @@ private String password;
 	public String execute() throws SQLException
 	{	
 		String password;
-		System.out.println(getEmail());
-		if(dbHandler.chkForEmailIDAlreadyExists(getEmail()))
-		{
-			System.out.println("skdhnkvhnkjvn");
 			password=dbHandler.getPasswordformDB(getEmail());
-			System.out.println(password);
-
 			SendMailSSL.sendPassword(getEmail(),password);
 			return "success";
 
-		}
-			else
-		{
-				System.out.println("hello");
-				return "invalid";
-
-		}
+		
+		
 	}
 	public String getEmail() {
 		return email;

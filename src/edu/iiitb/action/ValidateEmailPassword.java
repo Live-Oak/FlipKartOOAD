@@ -57,16 +57,8 @@ public void setSession(Map session) {
 
 public String Validate() throws SQLException
 {
-	System.out.println("kd");
-	System.out.println(getEmail());
-	System.out.println("hdjhdjh");
-	System.out.println(getPassword());
-	System.out.println(email);
-	System.out.println("hello");
-	System.out.println(password);
 	String compare;
 	compare=dbHandler.chkForEmailID_PasswordAlreadyExists(getEmail(),getPassword());
-	System.out.println(compare);
 	if(compare.equals("invalid"))
 	{
 		System.out.println(getEmail());

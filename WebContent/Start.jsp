@@ -66,6 +66,30 @@ $(document).ready(function(){
 
 
 </script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#forgot_password_button").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'forgot_password_validation ?email=' + $("#email_forgot").val() ,
+		    success: function(data){
+		    	$("#check_email_forgot").html(data.message);
+		    	var status=$("#check_email_forgot").html();
+		    	if(status=="available")
+		    		{
+					$("#forgot_password_form").submit();		    			
+		    		}
+		    	else
+		    		{
+		    			$("#check_email_forgot").html("Invalid email Id");
+		    		}
+		     }});	
+	});
+});
+
+
+</script>
 
 <script type="text/javascript">
 $(document).ready(function(){
@@ -647,9 +671,10 @@ $(document).ready(function(){
 <br>
 		<div class="forgot_password">
 		    <p>FORGOT YOUR PASSWORD?</p>
-				<form class="forgot_password_form" action="forgotpassword">
-	           			<input type="email" class="textbox" name="email" size="18" placeholder="E-mail address" />
-	            		<button type="submit" class="css_button" >SUBMIT</button>
+				<form class="forgot_password_form" id="forgot_password_form" action="forgotpassword">
+	           			<input type="email" class="textbox" id="email_forgot" name="email" size="18" placeholder="E-mail address" />
+	            		<label id="check_email_forgot"></label>
+	            		<button type="button" id="forgot_password_button" class="css_button" >SUBMIT</button>
 	    		</form>
 		</div>
 <a class="Signup big-link Close" data-reveal-id="myModal1">New User?</a>	

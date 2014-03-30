@@ -6,7 +6,7 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.database.DBHandlerForUser;
 
-public class UserAvailabilityAction extends ActionSupport
+public class Forgot_Password_Validation extends ActionSupport
 {
 
 	/**
@@ -57,9 +57,8 @@ public void setSession(Map session) {
 
 public String Validate() throws SQLException
 {
-	if(dbHandler.chkForEmailIDAlreadyExists(getEmail()))
+	if(!dbHandler.chkForEmailIDAlreadyExists(getEmail()))
 	{
-		System.out.println(getEmail());
 		message = "notavailable";
 	}
 	else
