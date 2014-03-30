@@ -4,12 +4,9 @@
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 	import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 	import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
@@ -68,6 +65,28 @@ public class DBHandlerForUser {
 			
 			
 			return true;
+		}
+
+		public String chkForEmailID_PasswordAlreadyExists(String email,
+				String password) throws SQLException 
+		{
+			String role=null;
+			String query="select email,password,role from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println(email+password);
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email)&&rs.getString("password").equals(password))
+					role=rs.getString("role");
+			}
+			System.out.println(role);
+			if (role==null)
+			{
+				System.out.println(role);
+				return "invalid";
+			}
+			return role;
+				
 		}
 		
 		

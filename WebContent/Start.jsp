@@ -574,8 +574,8 @@ function validate()
 		      	<hr>
 		<br>
 		<form id="form_login" action="login" method="post">
-			<input type="text" class="textbox" name="name" placeholder="Email Adderess" required autofocus><br><br>
-			<input type="password" class="textbox" name="pwd" placeholder="Enter Password" required><br><br><br>
+			<input type="email" class="textbox" name="email" placeholder="Email Adderess" required autofocus><br><br>
+			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br><br><br>
 			<button type="submit" class="css_button">LOGIN</button>
 		</form>
 <br>

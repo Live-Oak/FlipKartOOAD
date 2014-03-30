@@ -2,33 +2,33 @@ package edu.iiitb.model;
 
 public class Login {
 
-	String name;
-	String pwd;
+	String email;
+	String password;
 	
 	
 	/**
 	 * @return the name
 	 */
-	public String getName() {
-		return name;
+	public String getEmail() {
+		return email;
 	}
 	/**
 	 * @param name the name to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	/**
 	 * @return the pwd
 	 */
-	public String getPwd() {
-		return pwd;
+	public String getPassword() {
+		return password;
 	}
 	/**
 	 * @param pwd the pwd to set
 	 */
-	public void setPwd(String pwd) {
-		this.pwd = pwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 	
