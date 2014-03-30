@@ -88,9 +88,25 @@ public class DBHandlerForUser {
 			return role;
 				
 		}
+
+		public String getPasswordformDB(String email) throws SQLException 
+		{
+			// TODO Auto-generated method stub
+			String query="select email,password from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			String password=null;
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+				{
+					password=rs.getString("password");
+			
+				}
+			}
+			return password;
+		
+		}	
 		
 		
-		
-		
-	}
+}
 

@@ -18,6 +18,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<action name="loginPage">
 				<result>/login.html</result>
 			</action>
+			<action name="forgotpassword" class="edu.iiitb.action.ForgotPasswordAction">
+				<result name="success">/Start.jsp</result>
+				<result name="invalid">/sorry.jsp</result>
+			</action>
 			
 			
 			<action name="adminhome" >

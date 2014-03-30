@@ -49,4 +49,37 @@ public class SendMailSSL {
 			throw new RuntimeException(e);
 		}
 	}
+	public static void sendPassword(String to , String password) {
+		
+		Config.loadProperties();
+		Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.socketFactory.port", "465");
+		props.put("mail.smtp.socketFactory.class",
+				"javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.port", "465");
+ 
+		Session session = Session.getDefaultInstance(props,
+			new javax.mail.Authenticator() {
+				protected PasswordAuthentication getPasswordAuthentication() {
+					return new PasswordAuthentication(Config.USERNAME,Config.MAILIDPASSWORD);
+				}
+			});
+ 
+		try {
+ 
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(Config.EMAILID));
+			message.setRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(to));
+			message.setSubject("FlipKart Team");
+			message.setText("Your password is "+password+"\n\n To avoid losing your password chose it carefully\n\n\n Flipkart Live Oak Team" );
+			Transport.send(message);
+  
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }
