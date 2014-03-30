@@ -24,19 +24,26 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>{
 	private static final long serialVersionUID = 4685471000633757714L;
 	Login details = new Login();
 	DBHandlerForUser dbHandler = new DBHandlerForUser();
+	private String message;
+	public String getMessage() {
+		return message;
+	}
+
+	/**
+	 * @param message the message to set
+	 */
+	public void setMessage(String message) {
+		this.message = message;
+	}
 
 	public String execute()
 	{
 		String role;
 		try
 		{
+			System.out.println(details.getEmail()+details.getPassword());
 			role=dbHandler.chkForEmailID_PasswordAlreadyExists(details.getEmail(),details.getPassword());
-					if(role.equals("invalid"))
-					{
-						System.out.println(role);
-						return "invalid";
-					}
-					else if(role.equals("admin"))
+					if(role.equals("admin"))
 						return "admin";
 					else if(role.equals("user"))
 						return "user";

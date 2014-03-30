@@ -44,8 +44,34 @@ function validate()
 </script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#login_button").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'check_login_password ?email=' + $("#emaill").val() + '&password=' + $("#passwordl").val(),
+		    success: function(data){
+		    	$("#check_email_password").html(data.message);
+		    	var status=$("#check_email_password").html();
+		    	if(status=="available")
+		    		{
+					$("#form_login").submit();		    			
+		    		}
+		    	else
+		    		{
+		    			$("#check_email_password").html("Invalid email or password");
+		    		}
+		     }});	
+	});
+});
+
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
 	$("#create_account").click(function()
 			{
+    	
 		var status=$("#notify").html();
 		if(status=="available")
 		{
@@ -69,7 +95,7 @@ $(document).ready(function(){
 		    type: 'POST',	    
 		    url:'useravailable?email='+$("#email").val(),
 		    success: function(data){
-		    	alert(email+data.message+"hello");
+		    	
 		    	$("#notify").html(data.message);
 		     }});	
 	});
@@ -613,9 +639,10 @@ $(document).ready(function(){
 		      	<hr>
 		<br>
 		<form id="form_login" action="login" method="post">
-			<input type="email" class="textbox" name="email" placeholder="Email Adderess" required autofocus><br><br>
-			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br><br><br>
-			<button type="submit" class="css_button">LOGIN</button>
+			<input type="email" class="textbox" id="emaill" name="email" placeholder="Email Adderess" required autofocus><br><br>
+			<input type="password" class="textbox" id="passwordl" name="password" placeholder="Enter Password" required><br><br><br>
+			<label id="check_email_password"></label>
+			<button type="button" id="login_button" class="css_button">LOGIN</button>
 		</form>
 <br>
 		<div class="forgot_password">
