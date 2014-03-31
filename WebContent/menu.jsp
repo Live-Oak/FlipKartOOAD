@@ -261,6 +261,8 @@ $(document).ready(function(){
 			    </script>
 			<br><br>
 			<input type="email" id="email" class="textbox" placeholder="Enter e-mail"  required><br>
+			<p id="checking">Check for availability</p>
+			<label id="notify"></label>
 			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br><br>
 			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
@@ -274,7 +276,7 @@ $(document).ready(function(){
             			return ret;
         			}
 			    </script>
-			<button type="submit" id="create_account">SIGN UP NOW!</button>
+			<button type="button" id="create_account">SIGN UP NOW!</button>
 			<button type="reset" id="create_account">RESET!</button><br>
 			<a href="#" class="Signup big-link Close" data-reveal-id="myModal">Already a user?</a>	
 		</form>
