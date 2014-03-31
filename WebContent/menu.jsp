@@ -218,9 +218,10 @@ $(document).ready(function(){
 <br>
 		<div class="forgot_password">
 		    <p>FORGOT YOUR PASSWORD?</p>
-				<form class="forgot_password_form" action="#">
-	           			<input type="email" class="textbox" name="email" size="18" placeholder="E-mail address" />
-	            		<button type="submit" class="css_button" >SUBMIT</button>
+				<form class="forgot_password_form" id="forgot_password_form" action="forgotpassword">
+	           			<input type="email" class="textbox" id="email_forgot" name="email" size="18" placeholder="E-mail address" />
+	            		<label id="check_email_forgot"></label>
+	            		<button type="button" id="forgot_password_button" class="css_button" >SUBMIT</button>
 	    			</form>
 		</div>
 <a class="Signup big-link Close" data-reveal-id="myModal1">New User?</a>	
