@@ -1,10 +1,12 @@
 	package edu.iiitb.database;
 
-	import java.sql.Date;
+	import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 	import com.mysql.jdbc.Connection;
 
@@ -105,6 +107,50 @@ public class DBHandlerForUser {
 		
 		}	
 		
+		public ArrayList<Advertizement> getadvertizement() throws SQLException, IOException
+		{
+			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
+			DBConnectivity db=new DBConnectivity();
+			com.mysql.jdbc.Connection con= db.createConnection();																
+			
+			String query="SELECT * FROM flipkartdatabase.advertizement";
 		
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				Advertizement obj = new Advertizement();
+				obj.setProductId(rs.getInt("productId"));
+				obj.setTimeStamp(rs.getTimestamp("timeStamp"));
+				obj.setPhoto(rs.getString("image"));
+				obj.setCaption(rs.getString("caption"));
+				
+				System.out.println(rs.getString("image"));
+				System.out.println(rs.getInt("productID"));
+				advertize.add(obj);
+				
+			}
+			return advertize;
+		}
+		
+		public ArrayList<CategoryModel> getsubcategorylist(int parentcategoryId) throws SQLException, IOException
+		{
+			ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
+			DBConnectivity db=new DBConnectivity();
+			com.mysql.jdbc.Connection con= db.createConnection();																
+			
+			String query= " SELECT flipkartdatabase.category.categoryName, flipkartdatabase.category.categoryId FROM flipkartdatabase.category, flipkartdatabase.categoryrelation WHERE flipkartdatabase.category.categoryId = flipkartdatabase.categoryrelation.subCategoryId AND flipkartdatabase.categoryrelation.categoryId =" + parentcategoryId;  
+		
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				CategoryModel obj = new CategoryModel();
+				obj.setCategoryName(rs.getString("categoryName"));
+				obj.setCategoryId(rs.getString("categoryId"));
+				categoryModel.add(obj);
+			}
+			return categoryModel;
+		}
 }
 

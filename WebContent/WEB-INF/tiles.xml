@@ -54,7 +54,7 @@
    			<put-attribute name="body"   value="/InsertSubCategory.jsp"/>
    		</definition>
    		
-   		<definition name="Login" template="/TilePage.jsp">
+   		<definition name="start" template="/TilePage.jsp">
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
    			<put-attribute name="header" value="/header.jsp"/>
    			<put-attribute name="menu"   value="/menu.jsp"/>
@@ -62,22 +62,22 @@
 		    <put-attribute name="footer"   value="/footer.jsp"/>
    		</definition>
    
-   		<definition name="Apppage" extends="Login">
+   		<definition name="Apppage" extends="start">
    			<put-attribute name="title" value="Flipkart.com"/>
    			<put-attribute name="body"   value="/bodyapp.jsp"/>
    		</definition>
    		
-   		<definition name="Motopage" extends="Login">
+   		<definition name="Motopage" extends="start">
    			<put-attribute name="title" value="Flipkart.com"/>
    			<put-attribute name="body"   value="/bodymoto.jsp"/>
    		</definition>
    		
-   		<definition name="Dealoftheday" extends="Login">
+   		<definition name="Dealoftheday" extends="start">
    			<put-attribute name="title" value="Flipkart.com"/>
    			<put-attribute name="body"   value="/bodydealoftheday.jsp"/>
    		</definition>
    		
-   		<definition name="Ebooks" extends="Login">
+   		<definition name="Ebooks" extends="start">
    			<put-attribute name="title" value="Flipkart.com"/>
    			<put-attribute name="body"   value="/Ebooks.jsp"/>
    		</definition>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,7 +47,7 @@
 <body>
 	<!-- Carousel -->
 	
-
+ <form action="Start_page" method="post" enctype="multipart/form-data">
 	<div class="col-md-2 "></div>
 	
 	<div class="col-md-7">
@@ -60,38 +61,50 @@
 					        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
 					        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
 					      </ol>
+					    
 						<div class="carousel-inner">
-							<div class="item">
-								<img src="asset/Images/1.jpg" alt="First slide"
-									style="height: 350px; width: 100%; display: block;">
-							</div>
-							<div class="item active">
-								<img src="asset/Images/2.jpg" alt="Second slide"
-									style="height: 350px; width: 100%; display: block;">
-							</div>
-							<div class="item">
-								<img src="asset/Images/3.jpg" alt="Third slide"
-									style="height: 350px; width: 100%; display: block;">
-							</div>
-							<div class="item">
-								<img src="asset/Images/4.jpg" alt="Third slide"
-									style="height: 350px; width: 100%; display: block;">
-							</div>
+							<s:iterator value="advertizement">
+							<s:if test="%{productId==1}">
+								<div class="item active">
+									<img src="<s:property value="photo"/>" alt="slide"
+										style="height: 350px; width: 100%; display: block;">
+								</div>
+							</s:if>
+							<s:if test="%{productId!=1}">
+								<div class="item">
+									<img src="<s:property value="photo"/>" alt="slide"
+										style="height: 350px; width: 100%; display: block;">
+								</div>
+							</s:if>
+							</s:iterator>
 						</div>
 						
 						 <div style="text-align:center;">
-						 	  <div class="col-md-3">
-						 	  	<button type="button" class="btn slide-one">HOLI SALE <br> EXTRA 25% & 35% OFF</button>
-						      </div>
-						      <div class="col-md-3">
-						      	<button type="button" class="btn slide-two">EXTRA 25% & 35% OFF <br> ON MENS WEAR</button>
-						      </div>
-						      <div class="col-md-3">
-						        <button type="button" class="btn slide-three">EXTRA RUPEES 1,599 & <br> 10% DISCOUNT</button>
-  							  </div>
-  							  <div class="col-md-3">
-						        <button type="button" class="btn slide-four">EXTRA RUPEES 1,599 <br> & 10% DISCOUNT</button>
-  							  </div>
+						 	  <s:iterator value="advertizement">
+								<s:if test="%{productId==1}">
+									<div class="col-md-2">
+										<button type="button" class="btn slide-one"><font size=1><s:property value="caption"/></font></button>
+									</div>
+								</s:if>
+								
+								<s:if test="%{productId==2}">
+									<div class="col-md-4">
+										<button type="button" class="btn slide-two"><font size=1><s:property value="caption"/></font></button>
+									</div>
+								</s:if>
+								
+								<s:if test="%{productId==3}">
+									<div class="col-md-3">
+										<button type="button" class="btn slide-three"><font size=1><s:property value="caption"/></font></button>
+									</div>
+								</s:if>
+								
+								<s:if test="%{productId==4}">
+									<div class="col-md-3">
+										<button type="button" class="btn slide-four"><font size=1><s:property value="caption"/></font></button>
+									</div>
+								</s:if>
+							 </s:iterator>
   						 </div>
 						<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
 						<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -202,20 +215,6 @@
 				<h6> Gaming Consoles </h6>
 			   </div>
 			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
-				    	<img src="asset/Images/personal.jpg" alt="personal" height="80px" width="90px"><br>
-				</a>
-				<h6> Personal Appliances </h6>
-			   </div>
-			    
-				<div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
-				    	<img src="asset/Images/healthcare.jpg" alt="healthcare" height="80px" width="90px"><br>
-				</a>
-				<h6> Healthcare Devices </h6>
-			   </div>
-			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
 			  </div>
@@ -248,25 +247,175 @@
 					</div>
 					<br>
 				</div>
-				
+				<!-- ------------------------------------------------------------------- -->
 			</div>
 			
 			<div class="container">
 				<div class="row">
 						FASHION
 				</div>
-			</div>
-			
-			<div class="container">
-				<div class="row">
-						BOOKS
-				</div>	
-			</div>
-			
-			<div class="container">
-				<div class="row">
-						ALL OTHER STORE
+				<br>
+				<div class="col-md-4">
+					<div class="border">
+						<center><h6> Men <span class="caret"></span></h6>
+					  	<a href="#">
+						    	<img src="asset/Images/man.png" alt="mobile"><br>
+						</a>
+						</center>
+					</div>
+					<br>
 				</div>
+				
+				<div class="col-md-4">
+					<div class="border">
+						<center><h6> Women <span class="caret"></span></h6>
+					  	<a href="#">
+						    	<img src="asset/Images/woman.png" alt="laptop"><br>
+						</a>
+						</center>
+					</div>
+					<br>
+			   	</div>
+			   	
+			   	<div class="col-md-4">
+			   		<div class="border">
+				   		<center><h6> Kids & Baby <span class="caret"></span></h6>
+					  	<a href="#">
+						    	<img src="asset/Images/kids.png" alt="tablet"><br>
+						</a>
+						</center>
+						</div>
+					<br>
+			    </div>
+			    
+			    <!-- ------------------------------------------------------------------- -->
+			
+			
+				<div class="col-md-3">
+					<br>
+					<div class="border">
+						<img src="asset/Images/signature.jpg" alt="signature" height="230px" width="145px" >
+					</div>
+					<br>
+				</div>
+				
+				<div class="col-md-6">
+					<br>
+					<div class="border">
+						<img src="asset/Images/footwear.jpg" alt="footwear" height="230px" width="350px">
+					</div>
+					<br>
+				</div>
+				
+				<div class="col-md-3">
+					<br>
+					<div class="border">
+						<img src="asset/Images/fresh.jpg" alt="fresh" height="230px" >
+					</div>
+					<br>
+				</div>
+				<!-- ------------------------------------------------------------------- -->
+			    
+			  </div>
+			<div class="container">
+				<div class="row">
+						BOOKS AND MEDIA
+				</div>	
+				
+					<!-- ----------------------------------------------------------------- -->
+			
+		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
+			  <div id="slider" class="scroll-content">
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/literature.jpg" alt="literature" height="90px" width="90px"><br>
+				</a>
+				<h6> Literature </h6>
+			   </div>
+				    
+			    <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/academic.jpg" alt="academic" height="90px" width="90px"><br>
+				</a>
+				<h6> Academic </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/entrance.jpg" alt="entrance" height="90px" width="90px"><br>
+				</a>
+				<h6> Entrance </h6>
+			   </div>
+			   
+			  	<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/ebooks1.png" alt="ebooks" height="90px" width="90px"><br>
+				</a>
+				<h6> Ebooks </h6>
+			   </div>
+			   
+			  	<div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/music.jpg" alt="music" height="80px" width="90px"><br>
+				</a>
+				<h6> Music </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/tvshows.jpg" alt="tvshows" height="80px" width="90px"><br>
+				</a>
+				<h6> TV Shows </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/games.jpg" alt="games" height="90px" width="90px"><br>
+				</a>
+				<h6> Games </h6>
+			   </div>
+			   
+			   <div class="scroll-content-item ui-widget-header border">
+			  	<a href="#">
+				    	<img src="asset/Images/stationary.jpg" alt="stationary" height="80px" width="90px"><br>
+				</a>
+				<h6> Stationary </h6>
+			   </div>
+			   
+			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
+			    <div class="scroll-bar"></div>
+			  </div>
+			</div>
+		</div>
+				<!-- ------------------------------------------------------------------- -->
+			
+			
+				<div class="col-md-3">
+					<br>
+					<div class="border">
+						<img src="asset/Images/religion.jpg" alt="religion" height="230px" width="145px" >
+					</div>
+					<br>
+				</div>
+				
+				<div class="col-md-6">
+					<br>
+					<div class="border">
+						<img src="asset/Images/philosphy.jpg" alt="philosphy" height="230px" width="350px">
+					</div>
+					<br>
+				</div>
+				
+				<div class="col-md-3">
+					<br>
+					<div class="border">
+						<img src="asset/Images/ebook.jpg" alt="ebook" height="230px" >
+					</div>
+					<br>
+				</div>
+				<!-- ------------------------------------------------------------------- -->
+				
+				
 			</div>
 			
 		</div>
@@ -304,7 +453,8 @@
 		
 			</div>
 		</div>
-	
+	</form>
+	<br><br><br><br>
 		<script>
    $(function(){
       // Cycles the carousel to a particular frame 
@@ -324,14 +474,14 @@
 </script>
 <style>
   .scroll-pane { overflow: auto; width: 99%; float:left; }
-  .scroll-content { width: 1200px; float: left; }
+  .scroll-content { width: 1000px; float: left; }
   .scroll-content-item { width: 100px; height: 120px; float: left; margin: 10px; font-size: 3em; line-height: 96px; text-align: center; }
   .scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
   .scroll-bar-wrap .ui-slider { background: none; border:0; height: 2em; margin: 0 auto;  }
   .scroll-bar-wrap .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
   .scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.5em; }
   .scroll-bar-wrap .ui-slider-handle .ui-icon { margin: -8px auto 0; position: relative; top: 50%; }
-  </style>
+ </style>
   <script>
   $(function() {
     //scrollpane parts

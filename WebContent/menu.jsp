@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -178,26 +179,70 @@ $(document).ready(function(){
 					</button>
 				</div>
 				
+				<form action="Start_page" method="post" enctype="multipart/form-data">
+				
 				<div class="navbar-collapse collapse navbar-ex1-collapse">
 					<ul class="nav nav-pills">
-						<li><a href="#">ELECTRONICS<span class="caret"></span></a></li>
-						<li><a href="#">MEN <span class="caret"></span></a></li>
-						<li><a href="#">WOMEN<span class="caret"></span></a></li>
-						<li><a href="#">BABY & KIDS<span class="caret"></span></a></li>
-						<li><a href="#">BOOKS & MEDIA <span class="caret"></span></a></li>
-						<li><a href="#">HOME & KITCHEN <span class="caret"></span></a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE <span class="caret"></span></a>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-								<li><a href="#">SPORTS & FITNESS </a></li>
-								<li class="divider" role="presentation"></li>
-								<li><a href="#">TEAM SPORTS</a></li>
-								<li><a href="#">INDOOR GAMES</a></li>
-								<li><a href="#">OTHER SPORTS</a></li>
-								<li><a href="#">FITNESS</a></li>
+									<s:iterator value="categoryModel1">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									<s:iterator value="categoryModel2">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">WOMEN<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									<s:iterator value="categoryModel3">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BABY & KIDS<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									<s:iterator value="categoryModel4">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BOOKS & MEDIA<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									<s:iterator value="categoryModel5">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">HOME & KITCHEN<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									<s:iterator value="categoryModel6">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
+							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									<s:iterator value="categoryModel7">	
+										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li class="divider" role="presentation"></li>
+									</s:iterator>
 							</ul>
 						</li>
 					</ul>
 				</div>
+				
+				</form>
 			</div>
 		</div>
 	</div>

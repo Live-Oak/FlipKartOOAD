@@ -136,6 +136,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 			
+			<action name="Start_page" class="edu.iiitb.action.StartAction">
+				<result name="success" type="tiles">start</result>
+				<result name="error">/error.jsp</result>
+			</action>
 			
 			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
 				<result name="success" type="tiles">InserAdvertizementPage</result>
