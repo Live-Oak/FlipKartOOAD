@@ -46,91 +46,6 @@ function validate()
 
 </script>
     
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#login_button").click(function()
-			{
-		$.ajax({
-		    type: 'POST',	    
-		    url:'check_login_password ?email=' + $("#emaill").val() + '&password=' + $("#passwordl").val(),
-		    success: function(data){
-		    	$("#check_email_password").html(data.message);
-		    	var status=$("#check_email_password").html();
-		    	if(status=="available")
-		    		{
-					$("#form_login").submit();		    			
-		    		}
-		    	else
-		    		{
-		    			$("#check_email_password").html("Invalid email or password");
-		    		}
-		     }});	
-	});
-});
-
-
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#forgot_password_button").click(function()
-			{
-		$.ajax({
-		    type: 'POST',	    
-		    url:'forgot_password_validation ?email=' + $("#email_forgot").val() ,
-		    success: function(data){
-		    	$("#check_email_forgot").html(data.message);
-		    	var status=$("#check_email_forgot").html();
-		    	if(status=="available")
-		    		{
-					$("#forgot_password_form").submit();		    			
-		    		}
-		    	else
-		    		{
-		    			$("#check_email_forgot").html("Invalid email Id");
-		    		}
-		     }});	
-	});
-});
-
-
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){
-	$("#create_account").click(function()
-			{
-    	
-		var status=$("#notify").html();
-		if(status=="available")
-		{
-			$("#form_signup").submit();
-		}
-		else
-		{
-			$("#notify").html("not available");
-		}
-			
-	});
-	
-});
-
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$("p").click(function()
-			{
-		$.ajax({
-		    type: 'POST',	    
-		    url:'useravailable?email='+$("#email").val(),
-		    success: function(data){
-		    	
-		    	$("#notify").html(data.message);
-		     }});	
-	});
-});
-
-
-</script>
     
     
 </head>
@@ -210,10 +125,9 @@ $(document).ready(function(){
 
 		<br>
 		<form id="form_login" action="login" method="post">
-			<input type="email" class="textbox" id="emaill" name="email" placeholder="Email Adderess" required autofocus><br><br>
-			<input type="password" class="textbox" name="password" id="passwordl" placeholder="Enter Password" required><br><br><br>
-			<label id="check_email_password"></label>
-			<button type="button" id="login_button" class="css_button">LOGIN</button>
+			<input type="text" class="textbox" name="name" placeholder="Email Adderess" required autofocus><br><br>
+			<input type="password" class="textbox" name="pwd" placeholder="Enter Password" required><br><br><br>
+			<button type="submit" class="css_button">LOGIN</button>
 		</form>
 <br>
 		<div class="forgot_password">
