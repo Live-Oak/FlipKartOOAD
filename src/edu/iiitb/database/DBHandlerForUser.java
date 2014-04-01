@@ -113,7 +113,7 @@ public class DBHandlerForUser {
 			DBConnectivity db=new DBConnectivity();
 			com.mysql.jdbc.Connection con= db.createConnection();																
 			
-			String query="SELECT * FROM flipkartdatabase.advertizement";
+			String query="SELECT * FROM Advertizement";
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -139,7 +139,7 @@ public class DBHandlerForUser {
 			DBConnectivity db=new DBConnectivity();
 			com.mysql.jdbc.Connection con= db.createConnection();																
 			
-			String query= " SELECT flipkartdatabase.category.categoryName, flipkartdatabase.category.categoryId FROM flipkartdatabase.category, flipkartdatabase.categoryrelation WHERE flipkartdatabase.category.categoryId = flipkartdatabase.categoryrelation.subCategoryId AND flipkartdatabase.categoryrelation.categoryId =" + parentcategoryId;  
+			String query= " SELECT FlipKartDatabase.Category.categoryName, Category.categoryId FROM Category, CategoryRelation WHERE FlipKartDatabase.Category.categoryId = FlipKartDatabase.CategoryRelation.subCategoryId AND FlipKartDatabase.CategoryRelation.categoryId =" + parentcategoryId;  
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
