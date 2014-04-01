@@ -8,7 +8,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			<action name="login" class="edu.iiitb.action.LoginAction">
 				<result name="admin" type="tiles">Administrator</result>
-				<result name="user">/menu.jsp</result>
+				<result name="user">/MenuHomePage.jsp</result>
 				<result name="seller">/menu.jsp</result>
 				<result name="invalid" type="json"></result>
 				<result name="error">/error.jsp</result>

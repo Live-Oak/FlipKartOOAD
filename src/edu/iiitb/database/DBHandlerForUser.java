@@ -152,5 +152,26 @@ public class DBHandlerForUser {
 			}
 			return categoryModel;
 		}
+
+				public String getfName(String email) throws SQLException
+		{
+			// TODO Auto-generated method stub
+			String query="select email,firstName from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			String fName=null;
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+				{
+					fName=rs.getString("firstName");
+			
+				}
+			}
+			System.out.println(fName);
+			return fName;
+		
+		}	
+		
+
 }
 
