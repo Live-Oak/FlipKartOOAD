@@ -26,13 +26,11 @@ CREATE  TABLE `FlipKartDatabase`.`Category` (
 
 
 
-
-
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
   `productId` INT NOT NULL,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
-  `image` LONGBLOB NOT NULL ,
+  `image` VARCHAR(45) NOT NULL ,
   `offer` INT NULL ,
   `categoryId` VARCHAR(50) NOT NULL ,
   `keywords` VARCHAR(150) NOT NULL ,
@@ -167,12 +165,6 @@ CREATE  TABLE `FlipKartDatabase`.`Payment` (
 
 
 
-
-
-
-
-
-
 CREATE  TABLE `FlipKartDatabase`.`CategoryRelation` (
   `categoryId` VARCHAR(50) NOT NULL ,
   `subCategoryId` VARCHAR(50) NOT NULL ,
@@ -192,14 +184,16 @@ CREATE  TABLE `FlipKartDatabase`.`CategoryRelation` (
 
 CREATE  TABLE `FlipKartDatabase`.`Advertizement` (
   `productId` INT NOT NULL ,
-  `image` LONGBLOB NOT NULL ,
+  `image` VARCHAR(45) NOT NULL ,
   `timeStamp` DATETIME NOT NULL ,
+  `caption` VARCHAR(100) NOT NULL,
   INDEX `fk_Advertizement_productId` (`productId` ASC) ,
   CONSTRAINT `fk_Advertizement_productId`
     FOREIGN KEY (`productId` )
     REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
 
 
 CREATE  TABLE `FlipKartDatabase`.`Seller` (
@@ -265,14 +259,5 @@ CREATE  TABLE `FlipKartDatabase`.`ReviewNRating` (
     REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-
-
-
-
-
-
-
-
 
 

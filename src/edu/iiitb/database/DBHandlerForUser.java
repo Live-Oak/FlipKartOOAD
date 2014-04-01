@@ -153,7 +153,8 @@ public class DBHandlerForUser {
 			return categoryModel;
 		}
 
-				public String getfName(String email) throws SQLException
+		
+		public String getfName(String email) throws SQLException
 		{
 			// TODO Auto-generated method stub
 			String query="select email,firstName from UserCredantials";

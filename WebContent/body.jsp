@@ -243,7 +243,7 @@
 				<div class="col-md-3">
 					<br>
 					<div class="border">
-						<img src="asset/Images/homeappliance.jpg" alt="homeappliance" height="230px" >
+						<img src="asset/Images/lavaup.jpg" alt="lavaup" height="230px" >
 					</div>
 					<br>
 				</div>
