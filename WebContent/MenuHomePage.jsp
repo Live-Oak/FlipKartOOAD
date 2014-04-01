@@ -67,7 +67,7 @@
 				</div>
 				
 				<div class="col-md-2">
-					<a href="#" class="big-link Close">Login</a><br>					
+					<a href="logout" class="big-link Close">Logout</a><br>					
 					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button>
 				</div>
 				

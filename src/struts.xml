@@ -29,7 +29,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 			
 			<action name="logout">
-				<result type="tiles">Login</result>
+				<result name="success" type="tiles">start</result>
 			</action>
 			
 			<action name="registerUser">
