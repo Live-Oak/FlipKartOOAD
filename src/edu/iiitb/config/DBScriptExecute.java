@@ -44,12 +44,11 @@ public class DBScriptExecute {
 			runner.runScript(reader);
 			reader.close();
 			
-			/* To execute insert script
-			 * 
-			 * reader = new InputStreamReader(new FileInputStream("DBScripts/FlipkartInsertScript.sql"));
+			 
+			  reader = new InputStreamReader(new FileInputStream("DBScripts/FlipkartInsertScript.sql"));
 			runner.runScript(reader);
 			
-			reader.close();*/
+			reader.close();
 			
 			con.close();
 			

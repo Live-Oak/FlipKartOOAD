@@ -1,7 +1,3 @@
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(01, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', '25% OFF ON CAMERA');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(02, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(03, 'asset/Images/leo.jpg', '2014-03-30 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(04, 'asset/Images/mclp.jpg', '2014-03-30 19:26:38', 'GET YOUR HAND ON MOTO G');
 
 
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`) VALUES ('01', 'Electronics');
@@ -134,6 +130,11 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('31', 'Skullcandy S6SCFY-059 Crusher Over-the-ear Headset', '7999', 'asset/Images/skullcandy3.jpg', '2020', '01', 'Gaming, Electronics, Laptop accessories, Laptop, ', 'In-the-ear Headphone, 20-20000 Hz Frequency','Skullcandy' ,'1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('32', 'Transcend MicroSD Card 8 GB Class 4', '355', 'asset/Images/transcend.jpg', '120', '01', 'Mobile accessories, Electronics, Laptop accessories, Mobile, ', 'Class 4 Memory Card, Easy to use','Transcend' ,'5');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('33', 'SanDisk Cruzer Blade 16 GB Pen Drive', '399', 'asset/Images/sandisk.jpg', '0', '01', 'Electronics, Laptop accessories, Laptop, ', 'USB 2.0, Easy to use','SanDisk' ,'3');
+
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(01, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', '25% OFF ON CAMERA');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(02, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(03, 'asset/Images/leo.jpg', '2014-03-30 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(04, 'asset/Images/mclp.jpg', '2014-03-30 19:26:38', 'GET YOUR HAND ON MOTO G');
 
 
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('01',  'Mobile');
