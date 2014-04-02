@@ -150,57 +150,74 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 			
 			<action name="deleteUser" class="edu.iiitb.action.FetchUserIDForDelete">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">DeleteUserPage</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="deleteUserDetails" class="edu.iiitb.action.DeleteUser">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">Administrator</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="inserCategory" class="edu.iiitb.action.AddCategoryInfo">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="input" type="redirectAction">insertCategoryPage</result>
 				<result name="success" type="tiles" >Administrator</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="fetchSubCategoryId" class="edu.iiitb.action.FetchSubCategoryId">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="json"/>
-				 <result name="error">/error.jsp</result>
+     			 <result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="insertCategoryRelation" class="edu.iiitb.action.CategoryRelationship">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">Administrator</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="addProduct" class="edu.iiitb.action.FetchCategoryDetails">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles" >AddProductPage</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="insertProduct" class="edu.iiitb.action.AdminAddProduct">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="input" type="tiles">AddProductPage</result>
-					
 				<result name="success" type="tiles">Administrator</result>
 				<result name="error">/error.jsp</result>
-			
+				<result name="login">/index.jsp</result>			
 			</action>
 			
 			<action name="inserAdvertisement" class="edu.iiitb.action.AddAdvertizement">
+				<interceptor-ref name="secureStack"></interceptor-ref>			
 				<result name="success" type="tiles">Administrator</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>			
 			</action>
 			
 			<action name="Start_page" class="edu.iiitb.action.StartAction">
 				<result name="success" type="tiles">start</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>			
 			</action>
 			
 			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
+				<interceptor-ref name="secureStack"></interceptor-ref>			
 				<result name="success" type="tiles">InserAdvertizementPage</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>			
 			</action>
 			
 			<action name="signmeup" class="edu.iiitb.action.SignupAction">
