@@ -56,7 +56,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			
 			<action name="adminhome" >
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Administrator</result>
+				<result name="login">/index.jsp</result>		
 			</action>
 			
 			<action name="logout" class="edu.iiitb.action.LogoutAction">
@@ -64,7 +66,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 			
 			<action name="registerUser">
+				<interceptor-ref name="secureStack"></interceptor-ref>			
 				<result type="tiles">RegisterPage</result>
+				<result name="login">/index.jsp</result>		
 			</action>
 			
 			<!-- <action name="insertCategoryPage">
@@ -72,55 +76,77 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action> -->
 			
 			<action name="apppage">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Apppage</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="motopage">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Motopage</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="dealoftheday">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Dealoftheday</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="ebooks">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Ebooks</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="viewUser" class="edu.iiitb.action.FetchDatabaseInfo">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">UserData</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="viewProduct" class="edu.iiitb.action.FetchDatabaseInfo" method="productFetch">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">ProductData</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="viewCategory" class="edu.iiitb.action.FetchDatabaseInfo" method="categoryFetch">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">CategoryData</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="viewSubCategory" class="edu.iiitb.action.FetchDatabaseInfo" method="subCategoryFetch">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">SubCategoryData</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryDetails">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">InserSubCategoryPage</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="insertCategoryPage" class="edu.iiitb.action.FetchCategoryDetails" method="fetchCategoryName">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="success" type="tiles">InserCategoryPage</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="enterUserDeatils" class="edu.iiitb.action.RegisterUserAction" method="execute">
+				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result name="input" type="tiles">RegisterPage</result>
 				<result name="success" type="tiles" >Administrator</result>
 				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
 			</action>
 			
 			<action name="deleteUser" class="edu.iiitb.action.FetchUserIDForDelete">
