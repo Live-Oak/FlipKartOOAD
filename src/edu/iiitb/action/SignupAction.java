@@ -73,12 +73,15 @@ public String execute() throws SQLException
 				
 			}
 			try {
+				System.out.println("hello1");
+				System.out.println(userData.getPincode());
 				dbHandler.SignupUserinDB(userData);
+				System.out.println("hello2");
 				SendMailSSL.sendEmail(userData.getEmail(),userData.getFirstName());
 				return "success";
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				System.out.println("Error execute() of RegisterUserAction.java ");
+				System.out.println("Error execute() of SignupUserAction.java ");
 				e.printStackTrace();
 				return "error";
 			}

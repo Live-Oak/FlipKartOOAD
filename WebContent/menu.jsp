@@ -102,13 +102,14 @@ $(document).ready(function(){
 			{
     	
 		var status=$("#notify").html();
-		if(status=="available")
+		if(status=="Enjoy Flipkart User Experience")
 		{
+			
 			$("#form_signup").submit();
 		}
 		else
 		{
-			$("#notify").html("not available");
+			$("#notify").html("Please check Email id availabilty");
 		}
 			
 	});
@@ -278,20 +279,19 @@ $(document).ready(function(){
 		        <h2 align="center">Sign Up</h2>
 		      	<hr>
 		<br>
-		<form name="form_signup" onsubmit="return(validate());">
-			<input type="text" class="textbox" placeholder="Enter Username" required autofocus><br>
-			<input type="text" class="textbox" placeholder="Enter First Name" required><br>
-			<input type="text" class="textbox" placeholder="Enter Last Name" required><br>
-			<input type="text" id="DOB" name="DOB" class="textbox" placeholder="Enter Date of Birth"  required><br><br>
+		<form id="form_signup" name="form_signup" action="signmeup" onsubmit="return(validate());" method="post">
+			<input type="text" class="textbox" name="firstName" placeholder="Enter First Name" required><br>
+			<input type="text" class="textbox" name="lastName" placeholder="Enter Last Name" required><br>
+			<input type="text" id="DOB" name="date" class="textbox" placeholder="Enter Date of Birth"  required><br><br>
 
 			<input type="password" class="textbox" name="password" placeholder="Enter Password" required><br>
 			<input type="password" class="textbox" name="reenter_password" placeholder="Re-Enter Password" required><br><br>
 		        
 			<textarea rows="2" cols="18" name="address1" class="textbox" placeholder="Enter Address 1" required></textarea><br>
 			<textarea rows="2" cols="18" name="address2" class="textbox" placeholder="Enter Address 1" required></textarea><br>
-			<input type="text" id="city" class="textbox" placeholder="Enter City"  required><br>
-			<input type="text" id="country" class="textbox" placeholder="Enter Country"  required><br>
-			<input type="text" id="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
+			<input type="text" id="city" name="city" class="textbox" placeholder="Enter City"  required><br>
+			<input type="text" id="country" name="country" class="textbox" placeholder="Enter Country"  required><br>
+			<input type="text" id="pincode" name="pincode" class="textbox" placeholder="Enter Pincode"  required onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;">
 			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
         			var specialKeys = new Array();
@@ -305,10 +305,10 @@ $(document).ready(function(){
         			}
 			    </script>
 			<br><br>
-			<input type="email" id="email" class="textbox" placeholder="Enter e-mail"  required><br>
+			<input type="email" id="email" name="email" class="textbox" placeholder="Enter e-mail"  required><br>
 			<p id="checking">Check for availability</p>
 			<label id="notify"></label>
-			<input type="text" id="phone" class="textbox" placeholder="Enter Phone no"  required onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br><br>
+			<input type="text" id="phone" name="phonenumber" class="textbox" placeholder="Enter Phone no"  required onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br><br>
 			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
 			    <script type="text/javascript">
         			var specialKeys = new Array();

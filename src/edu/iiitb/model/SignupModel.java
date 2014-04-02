@@ -2,7 +2,7 @@ package edu.iiitb.model;
 
 public class SignupModel {
 
-		int pincode;
+		private String pincode;
 		
 		String firstName,lastName,role,address1,address2,city,country,email;
 		
@@ -47,18 +47,6 @@ public class SignupModel {
 			this.phonenumber = phonenumber;
 		}
 		
-		/**
-		 * @return the pinCode
-		 */
-		public int getPinCode() {
-			return pincode;
-		}
-		/**
-		 * @param pinCode the pinCode to set
-		 */
-		public void setPinCode(int pincode) {
-			this.pincode = pincode;
-		}
 		
 		/**
 		 * @return the firstName
@@ -147,6 +135,12 @@ public class SignupModel {
 		/**
 		 * @return the sellerDescription
 		 */
+		public String getPincode() {
+			return pincode;
+		}
+		public void setPincode(String pincode) {
+			this.pincode = pincode;
+		}
 
 		
 		

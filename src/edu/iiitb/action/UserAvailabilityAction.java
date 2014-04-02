@@ -60,10 +60,10 @@ public String Validate() throws SQLException
 	if(dbHandler.chkForEmailIDAlreadyExists(getEmail()))
 	{
 		System.out.println(getEmail());
-		message = "notavailable";
+		message = "Please add valid email id";
 	}
 	else
-		message="available";
+		message="Enjoy Flipkart User Experience";
 	return "success";
 
 }

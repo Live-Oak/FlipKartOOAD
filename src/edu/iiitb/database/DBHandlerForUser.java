@@ -44,6 +44,7 @@ public class DBHandlerForUser {
 		{	
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			String date = sdf.format(new java.util.Date());
+			System.out.println(user.getDate());
 			String[] splitedDate=user.getDate().split("T");
 			String query="INSERT INTO UserCredantials(`firstName`,`lastName`,`password`,`role`,`dateOfBirth`,`addressLine1`,`addressLine2`,`city`,`country`,`pinCode`,`email`,`phoneNumber`,`dateOfRegistration`) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			PreparedStatement prep =con.prepareStatement(query);
@@ -57,7 +58,7 @@ public class DBHandlerForUser {
 			prep.setString(7, user.getAddress2());
 			prep.setString(8, user.getCity());
 			prep.setString(9, user.getCountry());
-			prep.setInt(10, user.getPinCode());
+			prep.setString(10, user.getPincode());
 			prep.setString(11, user.getEmail());
 			prep.setString(12, user.getPhonenumber());
 			prep.setString(13, date );
