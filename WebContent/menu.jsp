@@ -254,7 +254,7 @@ $(document).ready(function(){
 		      	<hr>
 
 		<br>
-		<form id="form_login" action="login" method="post">
+		<form id="form_login" action="loginAction" method="post">
 			<input type="email" class="textbox" id="emaill" name="email" placeholder="Email Adderess" required autofocus><br><br>
 			<input type="password" class="textbox" name="password" id="passwordl" placeholder="Enter Password" required><br><br><br>
 			<label id="check_email_password"></label>

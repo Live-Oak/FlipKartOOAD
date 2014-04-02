@@ -4,15 +4,46 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 <struts>
 <constant name="struts.devMode" value="true"/>
-	<package name="default" extends="tiles-default,json-default">
+	<package name="default" extends="tiles-default,json-default" namespace="/">
 			
-			<action name="login" class="edu.iiitb.action.LoginAction">
-				<result name="admin" type="tiles">Administrator</result>
-				<result name="user">/MenuHomePage.jsp</result>
+			<interceptors>
+				<interceptor name="authenticationInterceptor" 
+				class="edu.iiitb.Interceptor.LoginAuthentication"/>
+					<interceptor-stack name="secureStack">
+						<interceptor-ref name="authenticationInterceptor"/>
+						<interceptor-ref name="defaultStack"/>
+					</interceptor-stack>
+			</interceptors>
+			
+		<action name="login">
+			<result>/index.jsp</result>
+		</action>
+			
+			<action name="loginAction" class="edu.iiitb.action.LoginAction">
+				<result name="admin" type="redirectAction">
+					<param name="actionName">Admin</param>
+					<param name="namespace">/</param>
+				</result>
+				<result name="user" type="redirectAction">
+					<param name="actionName">MenuHome</param>
+					<param name="namespace">/</param>
+				</result>
 				<result name="seller">/menu.jsp</result>
 				<result name="invalid" type="json"></result>
 				<result name="error">/error.jsp</result>
 				<result name="success" type="tiles">LoginPage</result>
+			</action>
+			
+			<action name="MenuHome">
+				<interceptor-ref name="secureStack"></interceptor-ref>
+				<result>/MenuHomePage.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
+			
+			<action name="Admin">
+				<interceptor-ref name="secureStack"></interceptor-ref>
+				<result type="tiles">Administrator</result>
+				<result name="login">/index.jsp</result>		
 			</action>
 			
 			<action name="loginPage">
@@ -28,8 +59,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result type="tiles">Administrator</result>
 			</action>
 			
-			<action name="logout">
-				<result name="success" type="tiles">start</result>
+			<action name="logout" class="edu.iiitb.action.LogoutAction">
+				<result name="success">/index.jsp</result>
 			</action>
 			
 			<action name="registerUser">
