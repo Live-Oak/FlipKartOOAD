@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.sun.mail.iap.Response;
 
+import edu.iiitb.config.Config;
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.model.ProductInfo;
 
@@ -93,14 +94,13 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 	
 	public String execute() 
 	{
-		
-		String destPath = servletRequest.getSession().getServletContext().getRealPath("/");
+		Config.loadProperties();
+		String destPath = Config.FILESTOREPATH;
 		
 		File destFile = new File(destPath,prod.getMyFileFileName());
 		try {
 			FileUtils.copyFile(prod.getMyFile(), destFile);
-			FileInputStream inputStream = new FileInputStream(destFile);
-			prod.setImage(inputStream);
+			prod.setImage("asset/Images/"+prod.getMyFileFileName());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
