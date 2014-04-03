@@ -27,7 +27,7 @@ CREATE  TABLE `FlipKartDatabase`.`Category` (
 
 
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
-  `productId` INT NOT NULL,
+  `productId` INT NOT NULL ,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
   `image` VARCHAR(500) NOT NULL ,

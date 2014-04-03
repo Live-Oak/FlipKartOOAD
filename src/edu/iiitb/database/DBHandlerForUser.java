@@ -178,7 +178,7 @@ public class DBHandlerForUser {
 		{
 			System.out.println("ProductId in dbhandler : " +Productid);
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select * from flipkartdatabase.productinfo where flipkartdatabase.productinfo.productId = '" + Productid + "'";
+			String query="select * from FlipKartDatabase.ProductInfo where FlipKartDatabase.ProductInfo.productId = '" + Productid + "'";
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -203,7 +203,7 @@ public class DBHandlerForUser {
 		{
 			//System.out.println("keyword in dbhandler : " +keyword);
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select flipkartdatabase.productinfo.productId, flipkartdatabase.productinfo.productName, flipkartdatabase.productinfo.price, flipkartdatabase.productinfo.image, flipkartdatabase.productinfo.offer, flipkartdatabase.productinfo.categoryId, flipkartdatabase.productinfo.description, flipkartdatabase.productinfo.brand, flipkartdatabase.productinfo.warranty from flipkartdatabase.productinfo, flipkartdatabase.keywords where flipkartdatabase.productinfo.productId = flipkartdatabase.keywords.productId and flipkartdatabase.keywords.keyword = '" + keyword + "'";       
+			String query="select FlipKartDatabase.ProductInfo.productId, FlipKartDatabase.ProductInfo.productName, FlipKartDatabase.ProductInfo.price, FlipKartDatabase.ProductInfo.image, FlipKartDatabase.ProductInfo.offer, FlipKartDatabase.ProductInfo.categoryId, FlipKartDatabase.ProductInfo.description, FlipKartDatabase.ProductInfo.brand, FlipKartDatabase.ProductInfo.warranty from FlipKartDatabase.ProductInfo, FlipKartDatabase.Keywords where FlipKartDatabase.ProductInfo.productId = FlipKartDatabase.Keywords.productId and FlipKartDatabase.Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
