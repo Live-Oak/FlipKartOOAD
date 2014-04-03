@@ -248,7 +248,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json"/>	
 			</action>
 			
-
+			<action name="stockData" class="edu.iiitb.action.FetchStockInfo">
+				<result name="success" type="tiles">Stock</result>
+				<result name="error">/error.jsp</result>
+			</action>
 								
 	</package>
 
