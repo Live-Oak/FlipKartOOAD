@@ -10,12 +10,24 @@ public class ProductInfo {
 	int productID,offer,warranty;
 	String productName,categoryID,keywords,description,brand;
 	float price;
-	String photo;
-	InputStream image;
+	
+	String image;
 	File myFile;
 	String myFileFileName,myFileContentType;
 	
 	
+	/**
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(String image) {
+		this.image = image;
+	}
 	/**
 	 * @return the myFile
 	 */
@@ -52,26 +64,9 @@ public class ProductInfo {
 	public void setMyFileContentType(String myFileContentType) {
 		this.myFileContentType = myFileContentType;
 	}
-	/**
-	 * @return the image
-	 */
-	public InputStream getImage() {
-		return image;
-	}
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(InputStream image) {
-		this.image = image;
-		
-	}
 
-	public String getPhoto() {
-		return photo;
-	}
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+
+
 	public int getProductID() {
 		return productID;
 	}

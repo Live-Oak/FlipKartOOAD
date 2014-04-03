@@ -232,7 +232,7 @@ public class DBHandlerForAdmin {
 		stmnt.setInt(1,prod.getProductID());
 		stmnt.setString(2, prod.getProductName());
 		stmnt.setFloat(3, prod.getPrice());
-		stmnt.setBlob(4, prod.getImage());
+		stmnt.setString(4, prod.getImage());
 		stmnt.setInt(5, prod.getOffer());
 		stmnt.setString(6,prod.getCategoryID());
 		stmnt.setString(7,prod.getKeywords());

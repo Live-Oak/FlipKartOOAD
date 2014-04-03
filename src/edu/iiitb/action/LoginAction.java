@@ -90,14 +90,14 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>, Se
 								System.out.println("hfhjgjhghjghghgvghv");
 								try
 								{
-									if(compare.equals("user"))
+									if(compare.equals("User"))
 									{
 										String fname=dbHandler.getfName(details.getEmail());
 										System.out.println(fname);
 										session.put("fname",fname);
 										return "user";
 									}
-									else if(compare.equals("admin"))
+									else if(compare.equals("Admin"))
 									{
 										return "admin";
 									}

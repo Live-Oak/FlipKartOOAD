@@ -187,7 +187,7 @@ public class DBHandlerForUser {
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
 				obj.setPrice(rs.getFloat("price"));
-				obj.setPhoto(rs.getString("image"));
+				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
 				obj.setDescription(rs.getString("description"));
@@ -212,7 +212,7 @@ public class DBHandlerForUser {
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
 				obj.setPrice(rs.getFloat("price"));
-				obj.setPhoto(rs.getString("image"));
+				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
 				obj.setDescription(rs.getString("description"));

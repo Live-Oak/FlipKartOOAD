@@ -32,7 +32,7 @@
 					<br>
 					<center>
 						<s:iterator value="productinfo">
-							<img src="<s:property value="photo"/>" alt="<s:property value="productID"/>"><br>
+							<img src="<s:property value="image"/>" alt="<s:property value="productID"/>"><br>
 						</s:iterator>
 					</center>
 			</div>
