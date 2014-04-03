@@ -5,6 +5,7 @@ INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `pass
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Nikhil', 'Agrawal', 'nikhil', 'User', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'nikhil.agrawal@iiitb.org', '7829607021', '2014-04-03');
 INSERT INTO `FlipKartDatabase`.`UserCredantials` (`firstName`, `lastName`, `password`, `role`, `dateOfBirth`, `addressLine1`, `addressLine2`, `city`, `country`, `pinCode`, `email`, `phoneNumber`, `dateOfRegistration`) VALUES ('Prashant', 'Ruwali', 'prashant', 'Seller', '1991-12-08', 'IIITB', 'EC', 'Bangalore', 'India', 560100, 'prashant.ruwali@iiitb.org', '9481133281', '2014-04-03');
 
+INSERT INTO `FlipKartDatabase`.`Seller` (`sellerId`, `userId`, `description`) VALUES (1, 4, 'Good');
 
 
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`) VALUES ('01', 'Electronics');

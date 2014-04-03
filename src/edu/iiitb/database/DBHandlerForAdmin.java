@@ -221,15 +221,11 @@ public class DBHandlerForAdmin {
 	
 	public void registerProduct(ProductInfo prod) throws SQLException
 	{
-		
-		
-		int productid = prod.getProductID();
-		//System.out.println("Image(inserting) :" + prod.getImage());
 		String query = "Insert into ProductInfo(`productId`,`productName`,`price`,`image`,`offer`" +
 				",`categoryId`,`keywords`,`description`,`brand`,`warranty`) " +
 				" values(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
-		stmnt.setInt(1,prod.getProductID());
+		stmnt.setInt(1, prod.getProductID());
 		stmnt.setString(2, prod.getProductName());
 		stmnt.setFloat(3, prod.getPrice());
 		stmnt.setString(4, prod.getImage());
@@ -240,6 +236,19 @@ public class DBHandlerForAdmin {
 		stmnt.setString(9,prod.getBrand());
 		stmnt.setInt(10,prod.getWarranty());
 		stmnt.execute();	
+		// Update Stock table
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(new java.util.Date());
+		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
+		PreparedStatement stmnt1 = con.prepareStatement(query1);
+		stmnt1.setInt(1, prod.getProductID());
+		stmnt1.setInt(2, 0);
+		stmnt1.setInt(3, prod.getMinimumQuantity());
+		stmnt1.setInt(4, 1000);
+		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
+		stmnt1.setString(6, date);
+		stmnt1.execute();
+		System.out.println("Executed");
 	}
 	
 	public void addAdvertisement(Advertizement adv) throws SQLException
@@ -375,7 +384,44 @@ public class DBHandlerForAdmin {
 			id.add(rs.getString(1));
 		}
 	}
+
+	public void fetchIdForGivenRole(ArrayList<String> ID, String string) throws SQLException {
+		// TODO Auto-generated method stub
+		String query;
+		if(string.equals("Seller"))
+		{
+			query = "SELECT sellerId FROM Seller";
+			ResultSet rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				System.out.println("Paras");
+				ID.add(Integer.toString(rs.getInt(1)));
+			}
+			
+		}
+		else if(string.equals("User") || string.equals("Admin"))
+		{
+			query = "select userId , role from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				if(rs.getString(2).equals(string))
+					ID.add(Integer.toString(rs.getInt(1)));
+			}
+		}
+		
+	}
 	
+	public void fetchSellerIdWithRole(ArrayList<String> ID) throws SQLException
+	{
+		String query = "select u.firstName , u.lastName , s.sellerId from UserCredantials as u , Seller as s WHERE  u.userId = s.userId";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+				String idName = Integer.toString(rs.getInt(3))+"_"+rs.getString(1)+" "+rs.getString(2);
+				ID.add(idName);
+		}
+	}
 	
 	
 }
