@@ -174,6 +174,54 @@ public class DBHandlerForUser {
 		
 		}	
 		
-
+		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
+		{
+			System.out.println("ProductId in dbhandler : " +Productid);
+			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
+			String query="select * from flipkartdatabase.productinfo where flipkartdatabase.productinfo.productId = '" + Productid + "'";
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				ProductInfo obj = new ProductInfo();
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getFloat("price"));
+				obj.setPhoto(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				ProductInfo.add(obj);
+			}
+			
+			return ProductInfo;
+		}
+		
+		public ArrayList<ProductInfo> getproductlist(String keyword) throws SQLException
+		{
+			//System.out.println("keyword in dbhandler : " +keyword);
+			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
+			String query="select flipkartdatabase.productinfo.productId, flipkartdatabase.productinfo.productName, flipkartdatabase.productinfo.price, flipkartdatabase.productinfo.image, flipkartdatabase.productinfo.offer, flipkartdatabase.productinfo.categoryId, flipkartdatabase.productinfo.description, flipkartdatabase.productinfo.brand, flipkartdatabase.productinfo.warranty from flipkartdatabase.productinfo, flipkartdatabase.keywords where flipkartdatabase.productinfo.productId = flipkartdatabase.keywords.productId and flipkartdatabase.keywords.keyword = '" + keyword + "'";       
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				ProductInfo obj = new ProductInfo();
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getFloat("price"));
+				obj.setPhoto(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				ProductInfo.add(obj);
+			}
+			
+			return ProductInfo;
+		}
 }
 

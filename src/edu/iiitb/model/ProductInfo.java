@@ -10,7 +10,7 @@ public class ProductInfo {
 	int productID,offer,warranty;
 	String productName,categoryID,keywords,description,brand;
 	float price;
-	
+	String photo;
 	InputStream image;
 	File myFile;
 	String myFileFileName,myFileContentType;
@@ -66,7 +66,12 @@ public class ProductInfo {
 		
 	}
 
-	
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public int getProductID() {
 		return productID;
 	}
