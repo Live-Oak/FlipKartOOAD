@@ -16,8 +16,24 @@ public class FetchCategoryDetails {
 	
 	ArrayList<String> categoryId;
  	ArrayList<String> categryName;
+	ArrayList<String> sellerId;
 	
-	
+
+
+	/**
+	 * @return the sellerId
+	 */
+	public ArrayList<String> getSellerId() {
+		return sellerId;
+	}
+
+
+	/**
+	 * @param sellerId the sellerId to set
+	 */
+	public void setSellerId(ArrayList<String> sellerId) {
+		this.sellerId = sellerId;
+	}
 
 
 	/**
@@ -54,6 +70,7 @@ public class FetchCategoryDetails {
 
 	public String execute()
 	{
+		sellerId = new ArrayList<String>();
 		categoryId = new ArrayList<String>();
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		ArrayList<String> cName = new ArrayList<String>();
@@ -61,6 +78,10 @@ public class FetchCategoryDetails {
 		try {
 			dbHandler.fetchCategoryID(cId);
 			dbHandler.fetchCategoryName(cName);
+			dbHandler.fetchSellerIdWithRole(sellerId);
+			
+			for(int i = 0;i<sellerId.size();i++)
+				System.out.println("Seller id is :: "+sellerId.get(i));
 			for(int i=0;i<cName.size();i++)
 				categoryId.add(cId.get(i)+"_"+cName.get(i));
 			return "success";

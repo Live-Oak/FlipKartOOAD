@@ -77,6 +77,7 @@
 								<li><a href="viewSubCategory">Sub-Category</a></li>
 							</ul>
 						</li> 
+						<li><a href="stockData">Stock</a></li>
 					<li><a href="logout">Log out</a></li>	
 					</ul>
 				</div>

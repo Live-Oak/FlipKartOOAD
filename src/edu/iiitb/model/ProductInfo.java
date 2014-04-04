@@ -11,11 +11,48 @@ public class ProductInfo {
 	String productName,categoryID,keywords,description,brand;
 	float price;
 	
-	InputStream image;
+	String image;
 	File myFile;
-	String myFileFileName,myFileContentType;
+	String myFileFileName,myFileContentType,sellerID;
+	int minimumQuantity;
 	
-	
+	/**
+	 * @return the minimumQuantity
+	 */
+	public int getMinimumQuantity() {
+		return minimumQuantity;
+	}
+	/**
+	 * @param minimumQuantity the minimumQuantity to set
+	 */
+	public void setMinimumQuantity(int minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
+	}
+	/**
+	 * @return the sellerID
+	 */
+	public String getSellerID() {
+		return sellerID;
+	}
+	/**
+	 * @param sellerID the sellerID to set
+	 */
+	public void setSellerID(String sellerID) {
+		String[] split = sellerID.split("_");
+		this.sellerID = split[0];
+	}
+	/**
+	 * @return the image
+	 */
+	public String getImage() {
+		return image;
+	}
+	/**
+	 * @param image the image to set
+	 */
+	public void setImage(String image) {
+		this.image = image;
+	}
 	/**
 	 * @return the myFile
 	 */
@@ -52,21 +89,9 @@ public class ProductInfo {
 	public void setMyFileContentType(String myFileContentType) {
 		this.myFileContentType = myFileContentType;
 	}
-	/**
-	 * @return the image
-	 */
-	public InputStream getImage() {
-		return image;
-	}
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(InputStream image) {
-		this.image = image;
-		
-	}
 
-	
+
+
 	public int getProductID() {
 		return productID;
 	}

@@ -18,16 +18,20 @@
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="asset/CSS/cart.css">
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	<script src="asset/JavaScripts/jquery-ui.js"></script>
 	<script src="asset/JavaScripts/drophover.js"></script>
-	<script src="asset/JavaScripts/jquery-ui.js"></script> 
 	<script src="asset/JavaScripts/jquery.reveal.js"></script>
+	<script src="asset/JavaScripts/cart.js"></script>
+	
+	
 	
 	<style type="text/css">
 	  #funkystyling {
     background: white url(asset/Images/search.jpg) left no-repeat;
-    padding-left: 17px;
+    padding-left: 27px;
 	}
     </style>
     
@@ -152,18 +156,20 @@ $(document).ready(function(){
 		</div>
 
 			<div class="container">
-				<div class="col-md-5">	
-					<br>
-					  <input type="text" name="friendId" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
+				<form action="Browseresult"  method="post">
+					<div class="col-md-5">	
+						<br>
+						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
+						</div>
+					<div class="col-md-1">
+						<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<button type="submit" class="btn btn-warning" >SEARCH</button>
 					</div>
-				<div class="col-md-1">
-					<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
-					<button type="submit" class="btn btn-warning" >SEARCH</button>
-				</div>
+				</form>
 				
 				<div class="col-md-2">
 					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
-					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button>
+					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button></a>
 				</div>
 				
 			</div>
@@ -327,14 +333,22 @@ $(document).ready(function(){
 		</form>
 			<a class="close_button Close">&#215;</a>
 	</div>
-
-
-
-
-
-
-
-
+	
+	
+	<div id="cartModel" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
+		<div id="cartHeader" class="cart-header">CART(0)</div>
+		<div class="cartContainer">
+			<center>
+			<div id="emptyCart" class="empty-cart">
+				There are no items in this cart.<br><br>
+				<button id="continueShopping" type="button" class="btn btn-primary Close" > CONTINUE SHOPPING </button>
+			</div>
+			</center>
+		</div>
+		<a class="close-reveal-modal Close">×</a>
+		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="continueShopping" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
+	</div>
+  	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
 
 
 

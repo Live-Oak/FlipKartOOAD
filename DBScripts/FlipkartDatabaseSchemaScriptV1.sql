@@ -27,10 +27,10 @@ CREATE  TABLE `FlipKartDatabase`.`Category` (
 
 
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
-  `productId` INT NOT NULL,
+  `productId` INT NOT NULL ,
   `productName` VARCHAR(100) NOT NULL ,
   `price` FLOAT NOT NULL ,
-  `image` VARCHAR(45) NOT NULL ,
+  `image` VARCHAR(500) NOT NULL ,
   `offer` INT NULL ,
   `categoryId` VARCHAR(50) NOT NULL ,
   `keywords` VARCHAR(150) NOT NULL ,

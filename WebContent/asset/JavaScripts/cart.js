@@ -1,6 +1,5 @@
 $(document).ready(function(){
-	
-	$("#cartButton").click(function(){
+$("#cartButton").click(function(){
 		
 		$("#cartModel").reveal({
 		     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
@@ -15,5 +14,8 @@ $(document).ready(function(){
 		
 		
 	});
-	
 });
+	
+	
+	
+
