@@ -22,8 +22,6 @@ public class FetchDatabaseInfo {
 	
 	
 
-	
-
 	public String execute() {
 		
 		user = new ArrayList<UserEntry>();
@@ -43,10 +41,13 @@ public class FetchDatabaseInfo {
 	public String productFetch()
 	{
 		product = new ArrayList<ProductInfo>();
+		
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try
 		{
 			dbHandler.viewProductData(product);
+			
+				
 		}catch(SQLException e)
 		{
 			System.out.println("Exception at productFetch() of FetchUser.java");
@@ -87,6 +88,9 @@ public class FetchDatabaseInfo {
 		}
 		return "success";
 	}
+	
+
+
 	
 	/**
 	 * @return the user

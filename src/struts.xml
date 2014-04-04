@@ -87,6 +87,16 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="login">/index.jsp</result>
 			</action>
 			
+			<action name="Browseresult" class="edu.iiitb.action.BrowseAction">
+				<result name="success" type="tiles">BrowsePage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
+			<action name="getProductDetail" class="edu.iiitb.action.getProductDetail">
+				<result name="success" type="tiles">ProductPage</result>
+				<result name="error">/error.jsp</result>
+			</action>
+			
 			<action name="dealoftheday">
 				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Dealoftheday</result>
@@ -238,7 +248,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json"/>	
 			</action>
 			
-
+			<action name="stockData" class="edu.iiitb.action.FetchStockInfo">
+				<result name="success" type="tiles">Stock</result>
+				<result name="error">/error.jsp</result>
+			</action>
 								
 	</package>
 

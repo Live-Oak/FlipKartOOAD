@@ -31,7 +31,7 @@
 	<style type="text/css">
 	  #funkystyling {
     background: white url(asset/Images/search.jpg) left no-repeat;
-    padding-left: 17px;
+    padding-left: 27px;
 	}
     </style>
     
@@ -156,14 +156,16 @@ $(document).ready(function(){
 		</div>
 
 			<div class="container">
-				<div class="col-md-5">	
-					<br>
-					  <input type="text" name="friendId" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
+				<form action="Browseresult"  method="post">
+					<div class="col-md-5">	
+						<br>
+						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
+						</div>
+					<div class="col-md-1">
+						<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<button type="submit" class="btn btn-warning" >SEARCH</button>
 					</div>
-				<div class="col-md-1">
-					<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
-					<button type="submit" class="btn btn-warning" >SEARCH</button>
-				</div>
+				</form>
 				
 				<div class="col-md-2">
 					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					

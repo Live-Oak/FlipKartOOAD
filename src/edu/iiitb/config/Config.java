@@ -14,6 +14,7 @@ public class Config {
 	public static String EMAILID = null;
 	public static String USERNAME = null;
 	public static String MAILIDPASSWORD = null;
+	public static String FILESTOREPATH = null;
 	
 	public static void loadProperties()
 	{
@@ -35,7 +36,8 @@ public class Config {
 						EMAILID = prop.getProperty("emailid");
 						USERNAME = prop.getProperty("username");
 						MAILIDPASSWORD = prop.getProperty("mailidpassword");
-						
+						FILESTOREPATH = prop.getProperty("filestorepath");
+
 		} catch(Exception e)
 		{
 			//System.out.println("Exception in Config.java "+e);

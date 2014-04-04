@@ -30,7 +30,14 @@
 						<option><s:property/></option>		
 						</s:iterator>		
 						</select><br>	
+		<label>Seller ID</label>
 						
+						<select id="dropDown" name="sellerID">
+						<s:iterator value="sellerId">
+						<option><s:property/></option>		
+						</s:iterator>		
+						</select><br>				
+		<label>Product Minimum Quantity</label ><s:textfield name ="minimumQuantity" required="true" placeholder="minimum quantity"></s:textfield><br>				
 		<label>Keywords</label ><s:textfield name ="keywords" required="true" placeholder="keywords"></s:textfield><br>
 		<label>Description about the product</label><s:textfield name ="description" required="true" placeholder="Describe the Item/Product"></s:textfield><br>
 		<label>Brand Name</label><s:textfield name ="brand" required="true" placeholder="Brand"></s:textfield><br>
