@@ -11,6 +11,16 @@ public class BrowseAction extends ActionSupport
 {
 	ArrayList<ProductInfo> productinfo;
 	String keyword;
+	ArrayList<String> companyList;
+	
+	public ArrayList<String> getCompanyList() {
+		return companyList;
+	}
+
+	public void setCompanyList(ArrayList<String> companyList) {
+		this.companyList = companyList;
+	}
+
 
 	public String getKeyword() {
 		return keyword;
@@ -35,6 +45,7 @@ public class BrowseAction extends ActionSupport
 		{
 			//System.out.println("keyword in action : " +keyword);
 			productinfo = dbHandlerForUser.getproductlist(keyword);
+			companyList = dbHandlerForUser.getCompanylist(keyword);
 		}
 		catch(Exception e)
 		{

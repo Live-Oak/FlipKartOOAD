@@ -19,12 +19,67 @@
 	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	
+	<%-- <script type="text/javascript">
+	$(document).ready(function(){
+		$("#login_button").click(function()
+				{
+			$.ajax({
+			    type: 'POST',	    
+			    url:'check_login_password ?email=' + $("#emaill").val() + '&password=' + $("#passwordl").val(),
+			    success: function(data){
+			    	$("#check_email_password").html(data.message);
+			    	var status=$("#check_email_password").html();
+			    	if(status=="available")
+			    		{
+						$("#form_login").submit();		    			
+			    		}
+			    	else
+			    		{
+			    			$("#check_email_password").html("Invalid email or password");
+			    		}
+			     }});	
+		});
+	});
 
+
+	</script> --%>
+	
+	
 </head>
 <body>
-	<div class="col-md-3 "></div>
+		<div class="col-md-1 "></div>
+		<div class="col-md-3 ">
+			<div class="background">
+				<br>
+				<h4><b>BROWSE</b></h4>
+				<hr noshade>
+				<h5><b>REFINE</b></h5>
+				<hr>
+				<h5>Price</h5>
+				<hr>
+				<form>
+					<input type="checkbox" name="checkbox" value="" id="2000"> Rs. 2000 and Below<br>
+					<input type="checkbox" name="checkbox" value="" id="2001,5000"> Rs. 2001 - Rs. 5000<br>
+					<input type="checkbox" name="checkbox" value="" id="5001,10000"> Rs. 5001 - Rs. 10000<br>
+					<input type="checkbox" name="checkbox" value="" id="10001,18000"> Rs. 10001 - Rs. 18000<br>
+					<input type="checkbox" name="checkbox" value="" id="18001,25000"> Rs. 18001 - Rs. 25000<br>
+					<input type="checkbox" name="checkbox" value="" id="25001,35000"> Rs. 25001 - Rs. 35000<br>
+					<input type="checkbox" name="checkbox" value="" id="35000+"> Rs. 35001 and Above
+				</form> 
+				<hr>
+				<h5>Company Name</h5>
+				<hr>
+				<form>
+					<s:iterator value="companyList">
+					<input type="checkbox" name="checkbox" value="" id="<s:property />"> <s:property /><br>
+					</s:iterator>
+				</form> 
+				<br><br><br>
+			</div>
+		</div>
 	
-	<div class="col-md-8">
+	<div class="col-md-7 background">
 			<b> Showing all the products in the category </b><br><br>
 			<s:iterator value="productinfo">
 				<div class="col-md-4">
