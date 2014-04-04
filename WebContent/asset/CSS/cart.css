@@ -13,7 +13,6 @@
 }
 
 .empty-cart{
-	padding: 50px;
 	margin-top: 10px;
 	margin-left: 20px;
 	margin-right: 20px;
@@ -37,3 +36,39 @@
 		-webkit-box-shadow:1px 0px 6px 8px rgba(118, 118, 116, 0.74);
 		box-shadow:1px 0px 6px 8px rgba(118, 118, 116, 0.74);
 	}	
+	
+
+.productName{
+	float:left;
+	margin-left:20px;
+	width:200px;
+}
+
+.qty{
+	float:left;
+	margin-left:20px;
+	width:50px;
+}
+
+.price{
+	float:left;
+	margin-left:20px;
+	width:120px;
+}
+
+.subtotal{
+	float:left;
+	margin-left:20px;
+	width:120px;
+}
+
+.remove{
+	float:left;
+	margin-left:20px
+}
+
+.totalcost {
+	float:right;
+	margin-top:20px;
+	margin-right:20px;
+}

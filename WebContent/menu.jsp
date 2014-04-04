@@ -199,7 +199,7 @@ $(document).ready(function(){
 					<%
 						}
 					%>
-					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button></a>
+					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;"> CART (0) </div> </button></a>
 				</div>
 				
 			</div>
@@ -373,17 +373,45 @@ $(document).ready(function(){
 				There are no items in this cart.<br><br>
 				<button id="continueShopping" type="button" class="btn btn-primary Close" > CONTINUE SHOPPING </button>
 			</div>
-			<div id="productList" class="empty-cart">
+			<div id="productInfo" class="empty-cart">
+				<div style="margin-bottom:50px;">
+					<div style='float:left;width:80px;'>IMAGE</div>
+		    		<div style='float:left;margin-left:20px;width:200px;'>ITEM</div>
+		    		<div style='float:left;margin-left:20px;width:50px;'> QTY </div>
+		    		<div style='float:left;margin-left:20px;width:120px;'>PRICE</div>
+		    		<div style='float:left;margin-left:20px;width:120px;'>SUB-TOTAL</div>
+		    		<div style='float:left;margin-left:20px;'></div>
+				</div>
+				<div id="list">
+				
+				
+				</div>
 				
 			</div>
 			</center>
 		</div>
 		<a class="close-reveal-modal Close">×</a>
-		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="continueShopping" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
+		<div style="height:50px;">
+			<div style="" id="totalCost" class="totalcost">Total Cost : 0</div>
+		</div>
+		<button id="continueShoppingBottom" type="button" class="btn btn-primary Close" style="float:left"> CONTINUE SHOPPING </button>
+		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="placeOrder" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
 
+<script type="text/javascript">
+$.ajax({
+    type: 'GET',
+    url:'getProductsFromCart',
+    success: function(data){
+    	if( data.count != undefined && data.count != 0  )
+		{
+    		$("#productCount").html("CART ("+data.count+")");
+		}
+    }
+    });
 
+</script>
 
 </body>
 </html>
