@@ -22,22 +22,13 @@
 	
 	<%-- <script type="text/javascript">
 	$(document).ready(function(){
-		$("#login_button").click(function()
+		$("#name of checkbox").change(function()
 				{
 			$.ajax({
 			    type: 'POST',	    
-			    url:'check_login_password ?email=' + $("#emaill").val() + '&password=' + $("#passwordl").val(),
+			    url:'update_product_list?value=' + ("#checkbox_id").is(':checked') + '&productname=' + $("#collect the value from session or from url").val(),
 			    success: function(data){
-			    	$("#check_email_password").html(data.message);
-			    	var status=$("#check_email_password").html();
-			    	if(status=="available")
-			    		{
-						$("#form_login").submit();		    			
-			    		}
-			    	else
-			    		{
-			    			$("#check_email_password").html("Invalid email or password");
-			    		}
+			    	update the result on the page
 			     }});	
 		});
 	});
