@@ -95,6 +95,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<action name="getProductDetail" class="edu.iiitb.action.getProductDetail">
 				<result name="success" type="tiles">ProductPage</result>
 				<result name="error">/error.jsp</result>
+	
 			</action>
 			
 			<action name="dealoftheday">
