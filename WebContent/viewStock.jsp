@@ -22,8 +22,13 @@
 <!--
 	// Form validation code will come here.
 	function validate() {
-
-		if (document.form_stock.minimumQuantity.value > (document.form_stock.availableQuantity.value + document.form_stock.orderQuantity.value)) {
+		
+	var a = parseInt(document.form_stock.minimumQty.value , 10);
+	var b = parseInt(document.form_stock.availableQty.value , 10);
+	var c = parseInt(document.form_stock.orderQty.value , 10);
+	var d = b+c;
+	
+		if ( a > d) {
 			alert("Still below Minimum Qty value .. Order more");
 			document.form_stock.orderQuantity.focus();
 			return false;
@@ -134,17 +139,17 @@
 			<input type="text" class="textbox" id="sName" name="sellerName"
 				placeholder="Seller Name" required><br>
 			<br> Minimum Quantity &nbsp;&nbsp; <input type="text"
-				class="textbox" id="mQty" name="minimumQuantity"
+				class="textbox" id="mQty" name="minimumQty"
 				placeholder="Minimum Product Quantity" required
 				onkeypress="return IsNumeric(event);" ondrop="return false;"
 				onpaste="return false;"><br>
 			<br> Available Quantity &nbsp;&nbsp; <input type="text"
-				class="textbox" id="aQty" name="availableQuantity"
+				class="textbox" id="aQty" name="availableQty"
 				placeholder="Available Product Quantity" required
 				onkeypress="return IsNumeric(event);" ondrop="return false;"
 				onpaste="return false;"><br>
 			<br> Order Quantity &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
-				type="text" class="textbox" id="oQty" name="orderQuantity"
+				type="text" class="textbox" id="oQty" name="orderQty"
 				placeholder="Ordered Quantity" required
 				onkeypress="return IsNumeric(event);" ondrop="return false;"
 				onpaste="return false;"> <br>
@@ -162,7 +167,7 @@
 			</script>
 			<br>
 			<br>
-			<button type="button" id="create_account">SIGN UP NOW!</button>
+			<button type="button" id="create_account">OrderProduct</button>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<button type="reset" id="create_account">RESET!</button>
 			<br>
