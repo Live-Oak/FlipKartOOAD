@@ -36,7 +36,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			<action name="MenuHome">
 				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result>/MenuHomePage.jsp</result>
+				<result>/menu.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
 			
@@ -263,6 +263,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 			
 			<action name="addProductToCart" class="edu.iiitb.action.CartManager" method="addToCart">
+				<result name="success" type="json"/>
+			</action>
+			
+			<action name="getProductsFromCart" class="edu.iiitb.action.CartManager" method="getCartProducts">
 				<result name="success" type="json"/>
 			</action>
 								

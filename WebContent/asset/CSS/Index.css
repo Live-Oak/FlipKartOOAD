@@ -12,6 +12,17 @@ html, body {
 	background-color: #222222;
 }
 
+.giveMeEllipsis {
+   overflow: hidden;
+   height:20px;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 1; /* number of lines to show */
+   line-height: 20px;        /* fallback */
+   max-height: 1*10;       /* fallback */
+}
+
 .background{
 	background-color: #ffffff;
 	padding-left: 20px;
@@ -84,4 +95,3 @@ html, body {
     overflow: visible;
     -moz-box-sizing: content-box;
 }
-
