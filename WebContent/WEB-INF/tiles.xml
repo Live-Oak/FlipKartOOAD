@@ -13,6 +13,11 @@
 		    <put-attribute name="footer"   value="/Adminfooter.jsp"/>
    		</definition>
    		
+   		<definition name="Stock" extends="Administrator">
+   			<put-attribute name="title" value="Stock Data"/>
+   			<put-attribute name="body" value="/viewStock.jsp"/>
+   		</definition>
+   		
    		<definition name="SubCategoryData" extends="Administrator">
    			<put-attribute name="title" value="Users Info"/>
    			<put-attribute name="body" value="/subcategory.jsp"></put-attribute>
@@ -112,7 +117,7 @@
    			<put-attribute name="body"   value="/Ebooks.jsp"/>
    		</definition>
    		
-   		<definition name="BrowsePage" extends="start">
+   		<definition name="Browse_SearchPage" extends="start">
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
    			<put-attribute name="body"   value="/bodysearch.jsp"/>
    		</definition>

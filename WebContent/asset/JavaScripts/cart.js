@@ -1,19 +1,56 @@
 $(document).ready(function(){
+	$("#buyNow").click(function(){
+		var pId = $("#productId").attr("pid");
+		var qty = 1;
+		$.ajax({
+		    type: 'POST',
+		    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		    data : {
+		    	productId : pId,
+		    	quantity : qty
+		    },
+		    url:'addProductToCart',
+		    success: function(data){
+		    	$("#cartButton").click();
+		     }});	
+	});
+	
 	
 	$("#cartButton").click(function(){
 		
-		$("#cartModel").reveal({
-		     animation: 'fadeAndPop',                   //fade, fadeAndPop, none
-		     animationspeed: 300,                       //how fast animtions are
-		     closeonbackgroundclick: true,              //if you click background will modal close?
-		     dismissmodalclass: 'close-reveal-modal'    //the class of a button or element that will close an open modal
-		});
-		
-		$("#continueShopping").click(function(){
-			$("#cartModel").trigger('reveal:close');
-		});
-		
-		
+		$("#emptyCart").hide();
+    	
+    	$.ajax({
+		    type: 'GET',
+		    url:'getProductsFromCart',
+		    success: function(data){
+		    	if(data.count == 0 || data.count == undefined)
+		    		{
+		    			$("#emptyCart").show();
+		    		}
+		    	else
+		    		{
+		    			$("#productList").empty().show();
+		    			$.each(data.products, function(count,product) { 
+		    				$("#productList").append("<div style='border:1px solid;float:left;width:100%;' pid='"+product.prodtctID+
+		    					"'><img src='"+product.image+"' height='80px' width='80px' style='float:left' />"+
+		    					"<div style='float:left;'>"+product.productName+"</div>"+
+		    					"<div style='float:left;'>"+product.quantity+"</div>"+
+		    					"<div style='float:left;'>"+product.price+"</div>"+
+		    					"<div style='float:left;'><a>remove</a></div>"+
+		    					" </div>");
+		    			});
+		    		}
+		     }});	
+    	
 	});
 	
+	
+	
+	
+
 });
+	
+	
+	
+

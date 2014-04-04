@@ -141,7 +141,7 @@ public class DBHandlerForUser {
 			DBConnectivity db=new DBConnectivity();
 			com.mysql.jdbc.Connection con= db.createConnection();																
 			
-			String query= " SELECT FlipKartDatabase.Category.categoryName, Category.categoryId FROM Category, CategoryRelation WHERE FlipKartDatabase.Category.categoryId = FlipKartDatabase.CategoryRelation.subCategoryId AND FlipKartDatabase.CategoryRelation.categoryId =" + parentcategoryId;  
+			String query= " SELECT Category.categoryName, Category.categoryId FROM Category, CategoryRelation WHERE Category.categoryId = CategoryRelation.subCategoryId AND CategoryRelation.categoryId =" + parentcategoryId;  
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -173,6 +173,24 @@ public class DBHandlerForUser {
 			System.out.println(fName);
 			return fName;
 		
+		}
+
+		public String chkUserId(String email) throws SQLException
+		{
+			// TODO Auto-generated method stub
+			String query="select email,userId from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			String userId=null;
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+				{
+					userId=rs.getString("userId");
+			
+				}
+			}
+			System.out.println(userId);
+			return userId;
 		}	
 		
 		public UserEntry getpersonalinfo(String email) throws SQLException
@@ -202,7 +220,7 @@ public class DBHandlerForUser {
 		{
 			System.out.println("ProductId in dbhandler : " +Productid);
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select * from FlipKartDatabase.ProductInfo where FlipKartDatabase.ProductInfo.productId = '" + Productid + "'";
+			String query="select * from ProductInfo where ProductInfo.productId = '" + Productid + "'";
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -223,11 +241,37 @@ public class DBHandlerForUser {
 			return ProductInfo;
 		}
 		
+		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
+		{
+			System.out.println("category in dbhandler : " +category);
+			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				System.out.println("product is : " +rs.getString("productName") );
+				ProductInfo obj = new ProductInfo();
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getFloat("price"));
+				obj.setImage(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				ProductInfo.add(obj);
+			}
+			
+			return ProductInfo;
+		}
+		
 		public ArrayList<ProductInfo> getproductlist(String keyword) throws SQLException
 		{
 			//System.out.println("keyword in dbhandler : " +keyword);
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select FlipKartDatabase.ProductInfo.productId, FlipKartDatabase.ProductInfo.productName, FlipKartDatabase.ProductInfo.price, FlipKartDatabase.ProductInfo.image, FlipKartDatabase.ProductInfo.offer, FlipKartDatabase.ProductInfo.categoryId, FlipKartDatabase.ProductInfo.description, FlipKartDatabase.ProductInfo.brand, FlipKartDatabase.ProductInfo.warranty from FlipKartDatabase.ProductInfo, FlipKartDatabase.Keywords where FlipKartDatabase.ProductInfo.productId = FlipKartDatabase.Keywords.productId and FlipKartDatabase.Keywords.keyword = '" + keyword + "'";       
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Keywords where ProductInfo.productId = Keywords.productId and Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())

@@ -18,11 +18,15 @@
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="asset/CSS/cart.css" rel="stylesheet">
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	<script src="asset/JavaScripts/jquery-ui.js"></script>
 	<script src="asset/JavaScripts/drophover.js"></script>
-	<script src="asset/JavaScripts/jquery-ui.js"></script> 
 	<script src="asset/JavaScripts/jquery.reveal.js"></script>
+	<script src="asset/JavaScripts/cart.js"></script>
+	
+	
 	
 	<style type="text/css">
 	  #funkystyling {
@@ -138,6 +142,9 @@ $(document).ready(function(){
 </head>
 
 <body>
+ <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
+
+<%@ page import="edu.iiitb.model.*" %>
     <script type="text/javascript">
 		
 	</script>
@@ -158,14 +165,41 @@ $(document).ready(function(){
 						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 						</div>
 					<div class="col-md-1">
-						<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<%
+						if(session.getAttribute("user") == null)
+						{
+						%>
+							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<%
+						}else
+						{
+						%>
+							<%Login l = new Login();%>
+							<a href="#">Hi <%= session.getValue("fname")%>!</a>	
+						<%
+						}
+						%>
 						<button type="submit" class="btn btn-warning" >SEARCH</button>
 					</div>
 				</form>
 				
 				<div class="col-md-2">
+					
+					<%
+						if(session.getAttribute("user") == null)
+						{
+					%>
 					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
-					<button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button>
+					<%
+						}else
+						{
+					%>
+					
+					<a href="logout" class="big-link Close">Logout</a><br>
+					<%
+						}
+					%>
+					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button></a>
 				</div>
 				
 			</div>
@@ -189,7 +223,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel1">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -197,7 +231,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel2">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -205,7 +239,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">WOMEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel3">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -213,7 +247,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BABY & KIDS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel4">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -221,7 +255,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BOOKS & MEDIA<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel5">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -229,7 +263,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">HOME & KITCHEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel6">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -237,7 +271,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel7">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -329,14 +363,25 @@ $(document).ready(function(){
 		</form>
 			<a class="close_button Close">&#215;</a>
 	</div>
-
-
-
-
-
-
-
-
+	
+	
+	<div id="cartModel" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
+		<div id="cartHeader" class="cart-header">CART(0)</div>
+		<div class="cartContainer">
+			<center>
+			<div id="emptyCart" class="empty-cart">
+				There are no items in this cart.<br><br>
+				<button id="continueShopping" type="button" class="btn btn-primary Close" > CONTINUE SHOPPING </button>
+			</div>
+			<div id="productList" class="empty-cart">
+				
+			</div>
+			</center>
+		</div>
+		<a class="close-reveal-modal Close">×</a>
+		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="continueShopping" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
+	</div>
+  	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
 
 
 

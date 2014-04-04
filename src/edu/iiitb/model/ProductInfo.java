@@ -13,9 +13,34 @@ public class ProductInfo {
 	
 	String image;
 	File myFile;
-	String myFileFileName,myFileContentType;
+	String myFileFileName,myFileContentType,sellerID;
+	int minimumQuantity;
 	
-	
+	/**
+	 * @return the minimumQuantity
+	 */
+	public int getMinimumQuantity() {
+		return minimumQuantity;
+	}
+	/**
+	 * @param minimumQuantity the minimumQuantity to set
+	 */
+	public void setMinimumQuantity(int minimumQuantity) {
+		this.minimumQuantity = minimumQuantity;
+	}
+	/**
+	 * @return the sellerID
+	 */
+	public String getSellerID() {
+		return sellerID;
+	}
+	/**
+	 * @param sellerID the sellerID to set
+	 */
+	public void setSellerID(String sellerID) {
+		String[] split = sellerID.split("_");
+		this.sellerID = split[0];
+	}
 	/**
 	 * @return the image
 	 */

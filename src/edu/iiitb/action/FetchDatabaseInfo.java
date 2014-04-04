@@ -24,9 +24,12 @@ public class FetchDatabaseInfo {
 
 	
 
+<<<<<<< HEAD
 
 	
 
+=======
+>>>>>>> 0c1587c4b28ced6c00506c953c657456b19a5cfb
 	public String execute() {
 		
 		user = new ArrayList<UserEntry>();
@@ -46,14 +49,23 @@ public class FetchDatabaseInfo {
 	public String productFetch()
 	{
 		product = new ArrayList<ProductInfo>();
+<<<<<<< HEAD
 		sellerId = new ArrayList<String>();
+=======
+		
+>>>>>>> 0c1587c4b28ced6c00506c953c657456b19a5cfb
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try
 		{
 			dbHandler.viewProductData(product);
+<<<<<<< HEAD
 			dbHandler.fetchIdForGivenRole(sellerId , "Seller");
 			for(int i = 0;i<sellerId.size();i++)
 				System.out.println("Seller id is :: "+sellerId.get(i));
+=======
+			
+				
+>>>>>>> 0c1587c4b28ced6c00506c953c657456b19a5cfb
 		}catch(SQLException e)
 		{
 			System.out.println("Exception at productFetch() of FetchUser.java");
@@ -96,6 +108,7 @@ public class FetchDatabaseInfo {
 	}
 	
 
+<<<<<<< HEAD
 	/**
 	 * @return the sellerId
 	 */
@@ -109,6 +122,9 @@ public class FetchDatabaseInfo {
 	public void setSellerId(ArrayList<String> sellerId) {
 		this.sellerId = sellerId;
 	}
+=======
+
+>>>>>>> 0c1587c4b28ced6c00506c953c657456b19a5cfb
 	
 	/**
 	 * @return the user

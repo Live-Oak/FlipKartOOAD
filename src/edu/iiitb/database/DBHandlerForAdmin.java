@@ -18,6 +18,8 @@ import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.model.ViewRequestSeller;
+import edu.iiitb.model.ViewStock;
 
 /**
  * @author paras
@@ -221,15 +223,11 @@ public class DBHandlerForAdmin {
 	
 	public void registerProduct(ProductInfo prod) throws SQLException
 	{
-		
-		
-		int productid = prod.getProductID();
-		//System.out.println("Image(inserting) :" + prod.getImage());
 		String query = "Insert into ProductInfo(`productId`,`productName`,`price`,`image`,`offer`" +
 				",`categoryId`,`keywords`,`description`,`brand`,`warranty`) " +
 				" values(?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
-		stmnt.setInt(1,prod.getProductID());
+		stmnt.setInt(1, prod.getProductID());
 		stmnt.setString(2, prod.getProductName());
 		stmnt.setFloat(3, prod.getPrice());
 		stmnt.setString(4, prod.getImage());
@@ -240,6 +238,19 @@ public class DBHandlerForAdmin {
 		stmnt.setString(9,prod.getBrand());
 		stmnt.setInt(10,prod.getWarranty());
 		stmnt.execute();	
+		// Update Stock table
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(new java.util.Date());
+		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
+		PreparedStatement stmnt1 = con.prepareStatement(query1);
+		stmnt1.setInt(1, prod.getProductID());
+		stmnt1.setInt(2, 0);
+		stmnt1.setInt(3, prod.getMinimumQuantity());
+		stmnt1.setInt(4, 1000);
+		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
+		stmnt1.setString(6, date);
+		stmnt1.execute();
+		System.out.println("Executed");
 	}
 	
 	public void addAdvertisement(Advertizement adv) throws SQLException
@@ -403,6 +414,78 @@ public class DBHandlerForAdmin {
 		
 	}
 	
+	public void fetchSellerIdWithRole(ArrayList<String> ID) throws SQLException
+	{
+		String query = "select u.firstName , u.lastName , s.sellerId from UserCredantials as u , Seller as s WHERE  u.userId = s.userId";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+				String idName = Integer.toString(rs.getInt(3))+"_"+rs.getString(1)+" "+rs.getString(2);
+				ID.add(idName);
+		}
+	}
 	
+	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId) throws SQLException
+	{
+		String query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+				+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+				+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+"";
+		
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			ViewStock model = new ViewStock();
+			model.setProductId(rs.getInt(1));
+			model.setAvailableQty(rs.getInt(2));
+			model.setMinimumQty(rs.getInt(3));
+			model.setSellerId(rs.getInt(4));
+			model.setSellerName(rs.getString(5)+" "+rs.getString(6));
+			model.setProductName(rs.getString(7));
+			model.setProductImagePath(rs.getString(8));
+			stock.add(model);
+		}
+	}
+
+	public void updateMinimumQuantityOfProduct(int sellerId , int productId , int minQty) throws SQLException
+	{
+		String query="update Stock set minimumQuantity = '" + minQty + "' where productId = '" + productId + "' and sellerId ='" + sellerId+"'";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("Product Minimum Quantity updated");
+	}
+	
+	public void insertOrderProductForStock(ViewStock order) throws SQLException {
+		// TODO Auto-generated method stub
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(new java.util.Date());
+		String query = "insert into OrderStock (`productId`,`sellerId`,`orderQuantity`,`orderDate`) values (?,?,?,?)";
+		PreparedStatement stmnt = con.prepareStatement(query);
+		stmnt.setInt(1,order.getProductId());
+		stmnt.setInt(2, order.getSellerId());
+		stmnt.setInt(3,order.getOrderQty());
+		stmnt.setString(4, date);
+		stmnt.execute();
+	}
+	
+	public void fetchPurchaseProductRequestForAdmin(ArrayList<ViewRequestSeller> requests) throws SQLException
+	{
+		String query = "select uc.userId , uc.firstName , uc.lastName , pd.productId , pd.productName ,"
+				+ " sum(os.orderQuantity) , os.sellerId , os.productId from OrderStock as os , Seller as sl , "
+				+ "UserCredantials as uc , ProductInfo as pd where sl.sellerId = os.sellerId and sl.userId = uc.userId "
+				+ "and os.productId = pd.productId group by pd.productId , os.sellerId";
+		
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			ViewRequestSeller model = new ViewRequestSeller();
+			model.setCustomerId(rs.getInt(7));
+			model.setProductId(rs.getInt(4));
+			model.setCustomerName(rs.getString(2)+" "+rs.getString(3));
+			model.setProductName(rs.getString(5));
+			model.setOrderQty(rs.getInt(6));
+			requests.add(model);
+		}
+		
+	}
 	
 }
