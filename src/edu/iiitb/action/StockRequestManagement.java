@@ -23,7 +23,9 @@ public class StockRequestManagement extends ActionSupport implements ModelDriven
 	{
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try {
-			dbHandler.insertOrderForStock(order);
+			dbHandler.updateMinimumQuantityOfProduct(order.getSellerId(), order.getProductId(), order.getMinimumQty());
+			dbHandler.insertOrderProductForStock(order);
+			addActionMessage("Order Has been placed.. waiting for approval");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Exception at execute() of StockRequestManagement.java");

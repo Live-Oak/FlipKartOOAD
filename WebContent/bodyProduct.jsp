@@ -13,12 +13,13 @@
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
-	<!-- Bootstrap theme -->
-	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+	<!-- Bootstrap theme -->
+	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">	
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	
+	
 </head>
 <body>
 
@@ -67,6 +68,7 @@
 								<hr>
 							</div>
 						</div>
+						<input type="hidden" pid="<s:property value="productID"/>" id="productId"/>
 						<s:property value="warranty"/> year manufacturer warranty for Phone and 6 months warranty for in the box accessories <s:property value="brand"/> and Free Transit Insurance. <br>
 						<hr>
 						<!--<s:property value="categoryID"/><br>
@@ -77,7 +79,7 @@
 							<br>-->
 					</s:iterator>
 					
-					<button type="button" class="btn btn-danger" id="buyNow">BUY NOW</button>
+					<button type="button" class="btn btn-danger"  id="buyNow">BUY NOW</button>
 			</div>
 		</div>
 		<br>
@@ -99,24 +101,5 @@
 	
 	<div class="col-md-1 "></div>
 	
-	
-<script type="text/javascript">
-$("#buyNow").click(function(){
-	
-	$.ajax({
-	    type: 'POST',
-	    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-	    data : {
-	    	productId : 1,
-	    	quantity : 1
-	    },
-	    url:'addProductToCart',
-	    success: function(data){
-	    	
-	    	alert("success");
-	     }});	
-});
-
-</script>	
 </body>
 </html>
