@@ -208,6 +208,28 @@ CREATE  TABLE `FlipKartDatabase`.`Seller` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE  TABLE `FlipKartDatabase`.`OrderStock` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `productId` INT(11) NOT NULL ,
+  `sellerId` INT(11) NOT NULL ,
+  `orderQuantity` INT(11) NOT NULL ,
+  `orderDate` DATE NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_OrderStock_pId` (`productId` ASC) ,
+  INDEX `fk_OrderStock_sId` (`sellerId` ASC) ,
+  CONSTRAINT `fk_OrderStock_pId`
+    FOREIGN KEY (`productId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_OrderStock_sId`
+    FOREIGN KEY (`sellerId` )
+    REFERENCES `FlipKartDatabase`.`Seller` (`sellerId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+    
+    
+    
 
 CREATE  TABLE `FlipKartDatabase`.`Stock` (
   `productId` INT NOT NULL ,
