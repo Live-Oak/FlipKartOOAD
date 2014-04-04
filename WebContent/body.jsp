@@ -141,56 +141,56 @@
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Mobile">
 				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="90px"><br>
 				</a>
 				<h6> Mobile </h6>
 			   </div>
 				    
 			    <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Laptop">
 				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="90px"><br>
 				</a>
 				<h6> Laptop </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Tablet">
 				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="90px"><br>
 				</a>
 				<h6> Tablet </h6>
 			   </div>
 			   
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Camera">
 				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="90px"><br>
 				</a>
 				<h6> Camera </h6>
 			   </div>
 			   
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Mobile Accessories">
 				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="80px" width="90px"><br>
 				</a>
 				<h6> Mobile Accessories </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Laptop Accessories">
 				    	<img src="asset/Images/laptopaccessories.jpg" alt="Laptopaccessories" height="80px" width="90px"><br>
 				</a>
 				<h6> Laptop Accessories </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Home audio & Mp3 players">
 				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="90px"><br>
 				</a>
 				<h6> Audio & Video </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Gaming Consoles">
 				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="80px" width="90px"><br>
 				</a>
 				<h6> Gaming Consoles </h6>
@@ -239,7 +239,7 @@
 				<div class="col-md-4">
 					<div class="border">
 						<center><h6> Men <span class="caret"></span></h6>
-					  	<a href="#">
+					  	<a href="getSearchresult?categoryname=Men">
 						    	<img src="asset/Images/man.png" alt="mobile"><br>
 						</a>
 						</center>
@@ -250,7 +250,7 @@
 				<div class="col-md-4">
 					<div class="border">
 						<center><h6> Women <span class="caret"></span></h6>
-					  	<a href="#">
+					  	<a href="getSearchresult?categoryname=Women">
 						    	<img src="asset/Images/woman.png" alt="laptop"><br>
 						</a>
 						</center>
@@ -261,7 +261,7 @@
 			   	<div class="col-md-4">
 			   		<div class="border">
 				   		<center><h6> Kids & Baby <span class="caret"></span></h6>
-					  	<a href="#">
+					  	<a href="getSearchresult?categoryname=Baby and Kids">
 						    	<img src="asset/Images/kids.png" alt="tablet"><br>
 						</a>
 						</center>
@@ -308,56 +308,56 @@
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Literature">
 				    	<img src="asset/Images/literature.jpg" alt="literature" height="90px" width="90px"><br>
 				</a>
 				<h6> Literature </h6>
 			   </div>
 				    
 			    <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Academic">
 				    	<img src="asset/Images/academic.jpg" alt="academic" height="90px" width="90px"><br>
 				</a>
 				<h6> Academic </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Entrance">
 				    	<img src="asset/Images/entrance.jpg" alt="entrance" height="90px" width="90px"><br>
 				</a>
 				<h6> Entrance </h6>
 			   </div>
 			   
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Ebooks">
 				    	<img src="asset/Images/ebooks1.png" alt="ebooks" height="90px" width="90px"><br>
 				</a>
 				<h6> Ebooks </h6>
 			   </div>
 			   
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Music">
 				    	<img src="asset/Images/music.jpg" alt="music" height="80px" width="90px"><br>
 				</a>
 				<h6> Music </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=TV Shows">
 				    	<img src="asset/Images/tvshows.jpg" alt="tvshows" height="80px" width="90px"><br>
 				</a>
 				<h6> TV Shows </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Games">
 				    	<img src="asset/Images/games.jpg" alt="games" height="90px" width="90px"><br>
 				</a>
 				<h6> Games </h6>
 			   </div>
 			   
 			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="#">
+			  	<a href="getSearchresult?categoryname=Stationary">
 				    	<img src="asset/Images/stationary.jpg" alt="stationary" height="80px" width="90px"><br>
 				</a>
 				<h6> Stationary </h6>
