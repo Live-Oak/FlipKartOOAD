@@ -217,6 +217,32 @@ public class DBHandlerForUser {
 			return ProductInfo;
 		}
 		
+		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
+		{
+			System.out.println("category in dbhandler : " +category);
+			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				System.out.println("product is : " +rs.getString("productName") );
+				ProductInfo obj = new ProductInfo();
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getFloat("price"));
+				obj.setImage(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				ProductInfo.add(obj);
+			}
+			
+			return ProductInfo;
+		}
+		
 		public ArrayList<ProductInfo> getproductlist(String keyword) throws SQLException
 		{
 			//System.out.println("keyword in dbhandler : " +keyword);

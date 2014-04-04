@@ -32,11 +32,13 @@
 							<center>
 								<br>
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
-									<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="70px"><br><br>
+									<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto"><br><br>
 								</a>
+								<div class="giveMeEllipsis">
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
 									<font size="4" color="black"><s:property value="productName"/></font><br>
 								</a>
+								</div>
 								<hr>
 								Rs. <s:property value="price"/><br>
 								<hr>

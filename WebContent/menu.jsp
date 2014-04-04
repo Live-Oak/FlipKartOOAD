@@ -223,7 +223,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel1">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -231,7 +231,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel2">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -239,7 +239,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">WOMEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel3">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -247,7 +247,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BABY & KIDS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel4">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -255,7 +255,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BOOKS & MEDIA<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel5">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -263,7 +263,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">HOME & KITCHEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel6">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -271,7 +271,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel7">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>

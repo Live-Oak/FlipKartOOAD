@@ -9,7 +9,7 @@ package edu.iiitb.model;
  */
 public class ViewStock {
 
-	int productId , availableQty , minimumQty , sellerId;
+	int productId , availableQty , minimumQty , orderQty , sellerId;
 	String sellerName , productName , productImagePath ,statusImage;
 	
 	/**
@@ -59,6 +59,19 @@ public class ViewStock {
 	 */
 	public void setMinimumQty(int minimumQty) {
 		this.minimumQty = minimumQty;
+	}
+	
+	/**
+	 * @return the orderQty
+	 */
+	public int getOrderQty() {
+		return orderQty;
+	}
+	/**
+	 * @param orderQty the orderQty to set
+	 */
+	public void setOrderQty(int orderQty) {
+		this.orderQty = orderQty;
 	}
 	/**
 	 * @return the sellerId

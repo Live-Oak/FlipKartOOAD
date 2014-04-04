@@ -444,5 +444,18 @@ public class DBHandlerForAdmin {
 			stock.add(model);
 		}
 	}
+
+	public void insertOrderForStock(ViewStock order) throws SQLException {
+		// TODO Auto-generated method stub
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(new java.util.Date());
+		String query = "insert into OrderStock (`productId`,`sellerId`,`orderQuantity`,`orderDate`) values (?,?,?,?)";
+		PreparedStatement stmnt = con.prepareStatement(query);
+		stmnt.setInt(1,order.getProductId());
+		stmnt.setInt(2, order.getSellerId());
+		stmnt.setInt(3,order.getOrderQty());
+		stmnt.setString(4, date);
+		stmnt.execute();
+	}
 	
 }
