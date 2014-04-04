@@ -77,7 +77,7 @@
 							<br>-->
 					</s:iterator>
 					
-					<button type="submit" class="btn btn-danger" >BUY NOW</button>
+					<button type="button" class="btn btn-danger" id="buyNow">BUY NOW</button>
 			</div>
 		</div>
 		<br>
@@ -99,5 +99,24 @@
 	
 	<div class="col-md-1 "></div>
 	
+	
+<script type="text/javascript">
+$("#buyNow").click(function(){
+	
+	$.ajax({
+	    type: 'POST',
+	    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+	    data : {
+	    	productId : 1,
+	    	quantity : 1
+	    },
+	    url:'addProductToCart',
+	    success: function(data){
+	    	
+	    	alert("success");
+	     }});	
+});
+
+</script>	
 </body>
 </html>
