@@ -154,8 +154,8 @@ $(document).ready(function(){
 	<div class="navbar-fixed-top">
 	<div class="col-md-2"></div>
 		<div class="col-md-2">
-				<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px">
-				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font>
+			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px"> 
+				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
 		</div>
 
 			<div class="container">
