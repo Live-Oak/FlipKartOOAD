@@ -53,7 +53,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>, Se
 	{
 		String role;
 		String compare;
-		
+		String userId;
 		try
 		{
 /*			System.out.println(details.getEmail()+details.getPassword());
@@ -82,9 +82,16 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>, Se
 							}
 							else
 							{
-								User l1=new User(details.getEmail(),details.getPassword());
+								userId=dbHandler.chkUserId(details.getEmail());
+								User l2 = new User();
+								l2.setUserId(userId);
+								System.out.println(l2.getUserId());
+								User l1=new User(details.getEmail(),details.getPassword(),l2.getUserId());
 								System.out.println(details.getEmail()+details.getPassword());
 								System.out.println("session "+l1.getEmail()+l1.getPassword());
+								userId=dbHandler.chkUserId(details.getEmail());
+								System.out.println(userId);
+								
 								session.put("user",l1);
 								System.out.println("session"+l1);
 								System.out.println("hfhjgjhghjghghgvghv");
