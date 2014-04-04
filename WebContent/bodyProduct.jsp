@@ -13,12 +13,13 @@
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
-	<!-- Bootstrap theme -->
-	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+	<!-- Bootstrap theme -->
+	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">	
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	
+	
 </head>
 <body>
 
@@ -45,18 +46,21 @@
 						<b><s:property value="productName"/></b><br>
 						</font>
 						<hr>
-							key features
+							<s:iterator value="description">
+								<s:property/>
+							</s:iterator>
 						<hr>
 						<div class="container">
 							<div class="col-md-6 ">
 								<s:if test="%{offer==0}">
-									<font size="5" >
+									<font size="5" color="#76553B">
 										Rs. <s:property value="price"/><br>
 									</font>
 								</s:if>
 								<s:if test="%{offer>0}">
-									<font size="5" >
-									Rs. <strike><s:property value="price"/></strike><br>
+									<font size="5" color="#76553B">
+									<font color="#848484">Rs. <strike><s:property value="price"/></strike></font><br>
+									Rs. ${price-offer}
 									</font>
 								</s:if>
 								<hr>
@@ -67,6 +71,7 @@
 								<hr>
 							</div>
 						</div>
+						<input type="hidden" pid="<s:property value="productID"/>" id="productId"/>
 						<s:property value="warranty"/> year manufacturer warranty for Phone and 6 months warranty for in the box accessories <s:property value="brand"/> and Free Transit Insurance. <br>
 						<hr>
 						<!--<s:property value="categoryID"/><br>
@@ -77,7 +82,7 @@
 							<br>-->
 					</s:iterator>
 					
-					<button type="button" class="btn btn-danger" id="buyNow">BUY NOW</button>
+					<button type="button" class="btn btn-danger"  id="buyNow">BUY NOW</button>
 			</div>
 		</div>
 		<br>
@@ -99,24 +104,5 @@
 	
 	<div class="col-md-1 "></div>
 	
-	
-<script type="text/javascript">
-$("#buyNow").click(function(){
-	
-	$.ajax({
-	    type: 'POST',
-	    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-	    data : {
-	    	productId : 1,
-	    	quantity : 1
-	    },
-	    url:'addProductToCart',
-	    success: function(data){
-	    	
-	    	alert("success");
-	     }});	
-});
-
-</script>	
 </body>
 </html>

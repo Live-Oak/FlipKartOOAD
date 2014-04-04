@@ -18,6 +18,7 @@ import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.model.ViewRequestSeller;
 import edu.iiitb.model.ViewStock;
 
 /**
@@ -443,6 +444,48 @@ public class DBHandlerForAdmin {
 			model.setProductImagePath(rs.getString(8));
 			stock.add(model);
 		}
+	}
+
+	public void updateMinimumQuantityOfProduct(int sellerId , int productId , int minQty) throws SQLException
+	{
+		String query="update Stock set minimumQuantity = '" + minQty + "' where productId = '" + productId + "' and sellerId ='" + sellerId+"'";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("Product Minimum Quantity updated");
+	}
+	
+	public void insertOrderProductForStock(ViewStock order) throws SQLException {
+		// TODO Auto-generated method stub
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		String date = sdf.format(new java.util.Date());
+		String query = "insert into OrderStock (`productId`,`sellerId`,`orderQuantity`,`orderDate`) values (?,?,?,?)";
+		PreparedStatement stmnt = con.prepareStatement(query);
+		stmnt.setInt(1,order.getProductId());
+		stmnt.setInt(2, order.getSellerId());
+		stmnt.setInt(3,order.getOrderQty());
+		stmnt.setString(4, date);
+		stmnt.execute();
+	}
+	
+	public void fetchPurchaseProductRequestForAdmin(ArrayList<ViewRequestSeller> requests) throws SQLException
+	{
+		String query = "select uc.userId , uc.firstName , uc.lastName , pd.productId , pd.productName ,"
+				+ " sum(os.orderQuantity) , os.sellerId , os.productId from OrderStock as os , Seller as sl , "
+				+ "UserCredantials as uc , ProductInfo as pd where sl.sellerId = os.sellerId and sl.userId = uc.userId "
+				+ "and os.productId = pd.productId group by pd.productId , os.sellerId";
+		
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			ViewRequestSeller model = new ViewRequestSeller();
+			model.setCustomerId(rs.getInt(7));
+			model.setProductId(rs.getInt(4));
+			model.setCustomerName(rs.getString(2)+" "+rs.getString(3));
+			model.setProductName(rs.getString(5));
+			model.setOrderQty(rs.getInt(6));
+			requests.add(model);
+		}
+		
 	}
 	
 }

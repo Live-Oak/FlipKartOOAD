@@ -3,23 +3,30 @@
  */
 package edu.iiitb.action;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.database.DBHandlerForCart;
 import edu.iiitb.model.CartModel;
+import edu.iiitb.model.User;
 
 /**
  * @author PrashantN
  *
  */
-public class CartManager extends ActionSupport{
+public class CartManager extends ActionSupport implements SessionAware{
 	
 	private int userid;
 	private int productId;
 	private int quantity;
 	private ArrayList<CartModel> products;
+	private int count;
+	private Map session;
 	
 	public CartManager() {
 		
@@ -91,19 +98,61 @@ public class CartManager extends ActionSupport{
 		this.products = products;
 	}
 
+	/**
+	 * @return the count
+	 */
+	public int getCount() {
+		return count;
+	}
+
+	/**
+	 * @param count the count to set
+	 */
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
+	public Map getSession() {
+		return session;
+	}
+
+	public void setSession(Map session) {
+		this.session = session;
+	}
+
 	public String addToCart()
 	{
-		int uid = 4;
+		User user = (User)session.get("user");
 		
 		try {
-			DBHandlerForCart.addToCart(uid,productId,quantity);
+			DBHandlerForCart.addToCart(Integer.parseInt(user.getUserId().trim()),productId,quantity);
 		} catch (Exception e) {
 			System.out.println("unable to add product to cart..!!!");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "success";
+		
+		
 	}
 	
+	public String getCartProducts()
+	{
+		User user = (User)session.get("user");
+		try {
+			products = DBHandlerForCart.getProducts(Integer.parseInt(user.getUserId().trim()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Unable to fetch datat from cart...!!!");
+			e.printStackTrace();
+		}
+		
+		count = products.size();
+		return "success";
+	}
+
+
 	
+
 }

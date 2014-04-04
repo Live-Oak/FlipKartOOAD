@@ -18,7 +18,7 @@
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="asset/CSS/cart.css">
+	<link href="asset/CSS/cart.css" rel="stylesheet">
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
@@ -142,6 +142,9 @@ $(document).ready(function(){
 </head>
 
 <body>
+ <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
+
+<%@ page import="edu.iiitb.model.*" %>
     <script type="text/javascript">
 		
 	</script>
@@ -151,8 +154,8 @@ $(document).ready(function(){
 	<div class="navbar-fixed-top">
 	<div class="col-md-2"></div>
 		<div class="col-md-2">
-				<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px">
-				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font>
+			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px"> 
+				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
 		</div>
 
 			<div class="container">
@@ -162,14 +165,41 @@ $(document).ready(function(){
 						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 						</div>
 					<div class="col-md-1">
-						<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<%
+						if(session.getAttribute("user") == null)
+						{
+						%>
+							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<%
+						}else
+						{
+						%>
+							<%Login l = new Login();%>
+							<a href="#">Hi <%= session.getValue("fname")%>!</a>	
+						<%
+						}
+						%>
 						<button type="submit" class="btn btn-warning" >SEARCH</button>
 					</div>
 				</form>
 				
 				<div class="col-md-2">
+					
+					<%
+						if(session.getAttribute("user") == null)
+						{
+					%>
 					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
-					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button></a>
+					<%
+						}else
+						{
+					%>
+					
+					<a href="logout" class="big-link Close">Logout</a><br>
+					<%
+						}
+					%>
+					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;"> CART (0) </div> </button></a>
 				</div>
 				
 			</div>
@@ -193,7 +223,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel1">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -201,7 +231,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel2">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -209,7 +239,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">WOMEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel3">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -217,7 +247,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BABY & KIDS<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel4">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -225,7 +255,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BOOKS & MEDIA<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel5">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -233,7 +263,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">HOME & KITCHEN<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel6">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -241,7 +271,7 @@ $(document).ready(function(){
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									<s:iterator value="categoryModel7">	
-										<li><a href="#"><s:property value="categoryName"/></a></li>
+										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
 										<li class="divider" role="presentation"></li>
 									</s:iterator>
 							</ul>
@@ -343,14 +373,45 @@ $(document).ready(function(){
 				There are no items in this cart.<br><br>
 				<button id="continueShopping" type="button" class="btn btn-primary Close" > CONTINUE SHOPPING </button>
 			</div>
+			<div id="productInfo" class="empty-cart">
+				<div style="margin-bottom:50px;">
+					<div style='float:left;width:80px;'>IMAGE</div>
+		    		<div style='float:left;margin-left:20px;width:200px;'>ITEM</div>
+		    		<div style='float:left;margin-left:20px;width:50px;'> QTY </div>
+		    		<div style='float:left;margin-left:20px;width:120px;'>PRICE</div>
+		    		<div style='float:left;margin-left:20px;width:120px;'>SUB-TOTAL</div>
+		    		<div style='float:left;margin-left:20px;'></div>
+				</div>
+				<div id="list">
+				
+				
+				</div>
+				
+			</div>
 			</center>
 		</div>
 		<a class="close-reveal-modal Close">×</a>
-		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="continueShopping" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
+		<div style="height:50px;">
+			<div style="" id="totalCost" class="totalcost">Total Cost : 0</div>
+		</div>
+		<button id="continueShoppingBottom" type="button" class="btn btn-primary Close" style="float:left"> CONTINUE SHOPPING </button>
+		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="placeOrder" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
 
+<script type="text/javascript">
+$.ajax({
+    type: 'GET',
+    url:'getProductsFromCart',
+    success: function(data){
+    	if( data.count != undefined && data.count != 0  )
+		{
+    		$("#productCount").html("CART ("+data.count+")");
+		}
+    }
+    });
 
+</script>
 
 </body>
 </html>

@@ -65,6 +65,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>, Se
 					{*/
 						User l = (User)session.get("user");
 						System.out.println("session"+l);
+						
 						if(l!=null)
 						{
 							System.out.println("yahan se uthaya");
@@ -110,6 +111,9 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>, Se
 									}
 									else
 									{
+										String fname=dbHandler.getfName(details.getEmail());
+										System.out.println(fname);
+										session.put("fname",fname);
 										return "seller";
 									}
 								}

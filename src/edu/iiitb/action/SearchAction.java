@@ -7,12 +7,12 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.database.DBHandlerForUser;
 import edu.iiitb.model.ProductInfo;
 
-public class BrowseAction extends ActionSupport 
-{
+public class SearchAction extends ActionSupport{
+
 	ArrayList<ProductInfo> productinfo;
-	String keyword;
+	String categoryname;
 	ArrayList<String> companyList;
-	
+
 	public ArrayList<String> getCompanyList() {
 		return companyList;
 	}
@@ -21,13 +21,12 @@ public class BrowseAction extends ActionSupport
 		this.companyList = companyList;
 	}
 
-
-	public String getKeyword() {
-		return keyword;
+	public String getCategoryname() {
+		return categoryname;
 	}
 
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
 	}
 
 	public ArrayList<ProductInfo> getProductinfo() {
@@ -43,9 +42,10 @@ public class BrowseAction extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			//System.out.println("keyword in action : " +keyword);
-			productinfo = dbHandlerForUser.getproductlist(keyword);
-			companyList = dbHandlerForUser.getCompanylist(keyword);
+			System.out.println("categoryname in action : " +categoryname);
+			productinfo = dbHandlerForUser.getproductlistoncategory(categoryname);
+			companyList = dbHandlerForUser.getCompanylistoncategory(categoryname);
+			
 		}
 		catch(Exception e)
 		{

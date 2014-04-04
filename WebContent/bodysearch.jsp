@@ -19,12 +19,58 @@
 	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	
+	<%-- <script type="text/javascript">
+	$(document).ready(function(){
+		$("#name of checkbox").change(function()
+				{
+			$.ajax({
+			    type: 'POST',	    
+			    url:'update_product_list?value=' + ("#checkbox_id").is(':checked') + '&productname=' + $("#collect the value from session or from url").val(),
+			    success: function(data){
+			    	update the result on the page
+			     }});	
+		});
+	});
 
+
+	</script> --%>
+	
+	
 </head>
 <body>
-	<div class="col-md-3 "></div>
+		<div class="col-md-1 "></div>
+		<div class="col-md-3 ">
+			<div class="background">
+				<br>
+				<h4><b>BROWSE</b></h4>
+				<hr noshade>
+				<h5><b>REFINE</b></h5>
+				<hr>
+				<h5>Price</h5>
+				<hr>
+				<form>
+					<input type="checkbox" name="checkbox" value="" id="2000"> Rs. 2000 and Below<br>
+					<input type="checkbox" name="checkbox" value="" id="2001,5000"> Rs. 2001 - Rs. 5000<br>
+					<input type="checkbox" name="checkbox" value="" id="5001,10000"> Rs. 5001 - Rs. 10000<br>
+					<input type="checkbox" name="checkbox" value="" id="10001,18000"> Rs. 10001 - Rs. 18000<br>
+					<input type="checkbox" name="checkbox" value="" id="18001,25000"> Rs. 18001 - Rs. 25000<br>
+					<input type="checkbox" name="checkbox" value="" id="25001,35000"> Rs. 25001 - Rs. 35000<br>
+					<input type="checkbox" name="checkbox" value="" id="35000+"> Rs. 35001 and Above
+				</form> 
+				<hr>
+				<h5>Company Name</h5>
+				<hr>
+				<form>
+					<s:iterator value="companyList">
+					<input type="checkbox" name="checkbox" value="" id="<s:property />"> <s:property /><br>
+					</s:iterator>
+				</form> 
+				<br><br><br>
+			</div>
+		</div>
 	
-	<div class="col-md-8">
+	<div class="col-md-7 background">
 			<b> Showing all the products in the category </b><br><br>
 			<s:iterator value="productinfo">
 				<div class="col-md-4">
@@ -32,11 +78,13 @@
 							<center>
 								<br>
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
-									<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="70px"><br><br>
+									<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto"><br><br>
 								</a>
+								<div class="giveMeEllipsis">
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
 									<font size="4" color="black"><s:property value="productName"/></font><br>
 								</a>
+								</div>
 								<hr>
 								Rs. <s:property value="price"/><br>
 								<hr>

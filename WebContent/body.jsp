@@ -20,7 +20,7 @@
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 
 	<style type="text/css">
-   
+	  
       #suggestPost
       {
         background:transparent url(asset/Images/suggest-post.png) no-repeat scroll 0px 0px;
@@ -51,16 +51,9 @@
 	<div class="col-md-2 "></div>
 	
 	<div class="col-md-7">
-			<div>
-				<center>
 					<div id="myCarousel" class="carousel slide">
 						<!-- Indicators -->
-						 <ol class="carousel-indicators">
-					        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-					        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-					        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-					        <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-					      </ol>
+						 
 					    
 						<div class="carousel-inner">
 							<s:iterator value="advertizement">
@@ -79,39 +72,26 @@
 							</s:iterator>
 						</div>
 						
-						 <div style="text-align:center;">
 						 	  <s:iterator value="advertizement">
-								<s:if test="%{productId==1}">
-									<div class="col-md-2">
-										<button type="button" class="btn slide-one"><font size=1><s:property value="caption"/></font></button>
-									</div>
+								<s:if test="%{productId==1}">	
+										<button type="button" class="btn slide-one" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
 								<s:if test="%{productId==2}">
-									<div class="col-md-4">
-										<button type="button" class="btn slide-two"><font size=1><s:property value="caption"/></font></button>
-									</div>
+										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/>></button>
 								</s:if>
 								
 								<s:if test="%{productId==3}">
-									<div class="col-md-3">
-										<button type="button" class="btn slide-three"><font size=1><s:property value="caption"/></font></button>
-									</div>
+										<button type="button" class="btn slide-three" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
 								<s:if test="%{productId==4}">
-									<div class="col-md-3">
-										<button type="button" class="btn slide-four"><font size=1><s:property value="caption"/></font></button>
-									</div>
+										<button type="button" class="btn slide-four" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 							 </s:iterator>
-  						 </div>
-						<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
-						<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-left"></span></a>
+ 
 					</div>
-				</center>
-				<br> <br>
-			</div>
+			
 		</div>
 		
 		<!-- Side of the page -->
@@ -135,6 +115,7 @@
 				<img src="asset/Images/smalladdbottom.jpg" alt="exclusive on flipkart" height="130px" width="160px">
 			</a> </center>
 			</div>
+			<br> 
 		</div> 
 		
 		<div class="col-md-1">
@@ -458,16 +439,16 @@
 		<script>
    $(function(){
       // Cycles the carousel to a particular frame 
-      $(".slide-one").click(function(){
+      $(".slide-one").hover(function(){
          $("#myCarousel").carousel(0);
       });
-      $(".slide-two").click(function(){
+      $(".slide-two").hover(function(){
          $("#myCarousel").carousel(1);
       });
-      $(".slide-three").click(function(){
+      $(".slide-three").hover(function(){
          $("#myCarousel").carousel(2);
       });
-      $(".slide-four").click(function(){
+      $(".slide-four").hover(function(){
           $("#myCarousel").carousel(3);
        });
    });
