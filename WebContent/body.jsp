@@ -57,13 +57,13 @@
 					    
 						<div class="carousel-inner">
 							<s:iterator value="advertizement">
-							<s:if test="%{productId==1}">
+							<s:if test="%{productId==27}">
 								<div class="item active">
 									<img src="<s:property value="photo"/>" alt="slide"
 										style="height: 350px; width: 100%; display: block;">
 								</div>
 							</s:if>
-							<s:if test="%{productId!=1}">
+							<s:if test="%{productId!=27}">
 								<div class="item">
 									<img src="<s:property value="photo"/>" alt="slide"
 										style="height: 350px; width: 100%; display: block;">
@@ -73,15 +73,15 @@
 						</div>
 						
 						 	  <s:iterator value="advertizement">
-								<s:if test="%{productId==1}">	
+								<s:if test="%{productId==27}">	
 										<button type="button" class="btn slide-one" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:24%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
-								<s:if test="%{productId==2}">
-										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:25%;white-space: normal;border-radius: 0;"><s:property value="caption"/>></button>
+								<s:if test="%{productId==30}">
+										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:25%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
-								<s:if test="%{productId==3}">
+								<s:if test="%{productId==7}">
 										<button type="button" class="btn slide-three" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:24%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
