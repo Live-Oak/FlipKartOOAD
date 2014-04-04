@@ -10,7 +10,7 @@ package edu.iiitb.model;
 public class ViewRequestSeller {
 
 	int customerId , productId ,  orderQty ;  
-	String customerName ,productName ;
+	String customerName ,productName , productImage;
 	/**
 	 * @return the customerId
 	 */
@@ -70,6 +70,18 @@ public class ViewRequestSeller {
 	 */
 	public void setProductName(String productName) {
 		this.productName = productName;
+	}
+	/**
+	 * @return the productImage
+	 */
+	public String getProductImage() {
+		return productImage;
+	}
+	/**
+	 * @param productImage the productImage to set
+	 */
+	public void setProductImage(String productImage) {
+		this.productImage = productImage;
 	}
 	
 	

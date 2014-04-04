@@ -470,7 +470,7 @@ public class DBHandlerForAdmin {
 	public void fetchPurchaseProductRequestForAdmin(ArrayList<ViewRequestSeller> requests) throws SQLException
 	{
 		String query = "select uc.userId , uc.firstName , uc.lastName , pd.productId , pd.productName ,"
-				+ " sum(os.orderQuantity) , os.sellerId , os.productId from OrderStock as os , Seller as sl , "
+				+ " sum(os.orderQuantity) , os.sellerId , os.productId , pd.image from OrderStock as os , Seller as sl , "
 				+ "UserCredantials as uc , ProductInfo as pd where sl.sellerId = os.sellerId and sl.userId = uc.userId "
 				+ "and os.productId = pd.productId group by pd.productId , os.sellerId";
 		
@@ -483,9 +483,26 @@ public class DBHandlerForAdmin {
 			model.setCustomerName(rs.getString(2)+" "+rs.getString(3));
 			model.setProductName(rs.getString(5));
 			model.setOrderQty(rs.getInt(6));
+			model.setProductImage(rs.getString(9));
 			requests.add(model);
 		}
 		
+	}
+
+	public void deleteProductPurchaseEntry(int productId, int customerId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "DELETE FROM OrderStock where productId = " + productId + " and sellerId =" + customerId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("OrderStock rows Deleted");
+	}
+
+	public void updateProductQuantity(int productId, int purchaseQty , int sellerId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query="update Stock set availableQuantity = " + purchaseQty + " where productId = " + productId + " and sellerId =" + sellerId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("Product Available Quantity updated");
 	}
 	
 }
