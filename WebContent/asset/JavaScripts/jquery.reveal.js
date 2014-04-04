@@ -157,6 +157,6 @@
 			}	
 			
         });//each call
-    }//orbit plugin call
+    };//orbit plugin call
 })(jQuery);
         

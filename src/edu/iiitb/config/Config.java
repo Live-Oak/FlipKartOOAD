@@ -37,10 +37,11 @@ public class Config {
 						USERNAME = prop.getProperty("username");
 						MAILIDPASSWORD = prop.getProperty("mailidpassword");
 						FILESTOREPATH = prop.getProperty("filestorepath");
-			
+
 		} catch(Exception e)
 		{
-			System.out.println("Exception in Config.java "+e);
+			//System.out.println("Exception in Config.java "+e);
+			e.printStackTrace();
 		} finally {
 			if (input != null) {
 				try {

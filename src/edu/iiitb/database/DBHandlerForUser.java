@@ -172,6 +172,24 @@ public class DBHandlerForUser {
 			System.out.println(fName);
 			return fName;
 		
+		}
+
+		public String chkUserId(String email) throws SQLException
+		{
+			// TODO Auto-generated method stub
+			String query="select email,userId from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			String userId=null;
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+				{
+					userId=rs.getString("userId");
+			
+				}
+			}
+			System.out.println(userId);
+			return userId;
 		}	
 		
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException

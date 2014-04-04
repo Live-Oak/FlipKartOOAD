@@ -18,6 +18,7 @@ import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.model.ViewStock;
 
 /**
  * @author paras
@@ -423,5 +424,25 @@ public class DBHandlerForAdmin {
 		}
 	}
 	
+	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId) throws SQLException
+	{
+		String query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+				+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+				+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+"";
+		
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			ViewStock model = new ViewStock();
+			model.setProductId(rs.getInt(1));
+			model.setAvailableQty(rs.getInt(2));
+			model.setMinimumQty(rs.getInt(3));
+			model.setSellerId(rs.getInt(4));
+			model.setSellerName(rs.getString(5)+" "+rs.getString(6));
+			model.setProductName(rs.getString(7));
+			model.setProductImagePath(rs.getString(8));
+			stock.add(model);
+		}
+	}
 	
 }
