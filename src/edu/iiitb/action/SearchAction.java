@@ -11,6 +11,15 @@ public class SearchAction extends ActionSupport{
 
 	ArrayList<ProductInfo> productinfo;
 	String categoryname;
+	ArrayList<String> companyList;
+
+	public ArrayList<String> getCompanyList() {
+		return companyList;
+	}
+
+	public void setCompanyList(ArrayList<String> companyList) {
+		this.companyList = companyList;
+	}
 
 	public String getCategoryname() {
 		return categoryname;
@@ -35,6 +44,8 @@ public class SearchAction extends ActionSupport{
 		{
 			System.out.println("categoryname in action : " +categoryname);
 			productinfo = dbHandlerForUser.getproductlistoncategory(categoryname);
+			companyList = dbHandlerForUser.getCompanylistoncategory(categoryname);
+			
 		}
 		catch(Exception e)
 		{

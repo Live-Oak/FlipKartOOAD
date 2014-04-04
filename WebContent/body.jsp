@@ -20,7 +20,7 @@
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 
 	<style type="text/css">
-   
+	  
       #suggestPost
       {
         background:transparent url(asset/Images/suggest-post.png) no-repeat scroll 0px 0px;
@@ -74,24 +74,22 @@
 						
 						 	  <s:iterator value="advertizement">
 								<s:if test="%{productId==1}">	
-										<button type="button" class="btn slide-one" style="height:80px;font-size:15px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;"><s:property value="caption"/></button>
+										<button type="button" class="btn slide-one" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
 								<s:if test="%{productId==2}">
-										<button type="button" class="btn slide-two" style="height:80px;font-size:15px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;"><s:property value="caption"/>></button>
+										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;border-radius: 0;"><s:property value="caption"/>></button>
 								</s:if>
 								
 								<s:if test="%{productId==3}">
-										<button type="button" class="btn slide-three" style="height:80px;font-size:15px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;"><s:property value="caption"/></button>
+										<button type="button" class="btn slide-three" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
 								<s:if test="%{productId==4}">
-										<button type="button" class="btn slide-four" style="height:80px;font-size:15px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;"><s:property value="caption"/></button>
+										<button type="button" class="btn slide-four" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:189px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 							 </s:iterator>
-  					
-						<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a> 
-						<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-left"></span></a>
+ 
 					</div>
 			
 		</div>
@@ -441,16 +439,16 @@
 		<script>
    $(function(){
       // Cycles the carousel to a particular frame 
-      $(".slide-one").click(function(){
+      $(".slide-one").hover(function(){
          $("#myCarousel").carousel(0);
       });
-      $(".slide-two").click(function(){
+      $(".slide-two").hover(function(){
          $("#myCarousel").carousel(1);
       });
-      $(".slide-three").click(function(){
+      $(".slide-three").hover(function(){
          $("#myCarousel").carousel(2);
       });
-      $(".slide-four").click(function(){
+      $(".slide-four").hover(function(){
           $("#myCarousel").carousel(3);
        });
    });

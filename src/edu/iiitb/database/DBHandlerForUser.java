@@ -127,8 +127,8 @@ public class DBHandlerForUser {
 				obj.setPhoto(rs.getString("image"));
 				obj.setCaption(rs.getString("caption"));
 				
-				System.out.println(rs.getString("image"));
-				System.out.println(rs.getInt("productID"));
+				//System.out.println(rs.getString("image"));
+				//System.out.println(rs.getInt("productID"));
 				advertize.add(obj);
 				
 			}
@@ -218,7 +218,7 @@ public class DBHandlerForUser {
 		
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
 		{
-			System.out.println("ProductId in dbhandler : " +Productid);
+			//System.out.println("ProductId in dbhandler : " +Productid);
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			String query="select * from ProductInfo where ProductInfo.productId = '" + Productid + "'";
 			ResultSet rs=db.executeQuery(query, con);
@@ -243,14 +243,14 @@ public class DBHandlerForUser {
 		
 		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
 		{
-			System.out.println("category in dbhandler : " +category);
+			//System.out.println("category in dbhandler : " +category);
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
 			{
-				System.out.println("product is : " +rs.getString("productName") );
+				//System.out.println("product is : " +rs.getString("productName") );
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
@@ -265,6 +265,22 @@ public class DBHandlerForUser {
 			}
 			
 			return ProductInfo;
+		}
+		
+		public ArrayList<String> getCompanylistoncategory(String category) throws SQLException
+		{
+			//System.out.println("category in dbhandler : " +category);
+			ArrayList<String> companyname = new ArrayList<String>();	
+			String query="select distinct(ProductInfo.brand) from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				//System.out.println("product is : " +rs.getString("brand") );
+				companyname.add(rs.getString("brand"));
+			}
+			
+			return companyname;
 		}
 		
 		public ArrayList<ProductInfo> getproductlist(String keyword) throws SQLException
@@ -290,6 +306,22 @@ public class DBHandlerForUser {
 			}
 			
 			return ProductInfo;
+		}
+		
+		public ArrayList<String> getCompanylist(String keyword) throws SQLException
+		{
+			//System.out.println("keyword in dbhandler : " +keyword);
+			ArrayList<String> companyname = new ArrayList<String>();	
+			String query="select distinct(ProductInfo.brand) from ProductInfo, Keywords where ProductInfo.productId = Keywords.productId and Keywords.keyword = '" + keyword + "'";       
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				//System.out.println("product is : " +rs.getString("brand") );
+				companyname.add(rs.getString("brand"));
+			}
+			
+			return companyname;
 		}
 }
 

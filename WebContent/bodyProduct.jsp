@@ -46,18 +46,21 @@
 						<b><s:property value="productName"/></b><br>
 						</font>
 						<hr>
-							key features
+							<s:iterator value="description">
+								<s:property/>
+							</s:iterator>
 						<hr>
 						<div class="container">
 							<div class="col-md-6 ">
 								<s:if test="%{offer==0}">
-									<font size="5" >
+									<font size="5" color="#76553B">
 										Rs. <s:property value="price"/><br>
 									</font>
 								</s:if>
 								<s:if test="%{offer>0}">
-									<font size="5" >
-									Rs. <strike><s:property value="price"/></strike><br>
+									<font size="5" color="#76553B">
+									<font color="#848484">Rs. <strike><s:property value="price"/></strike></font><br>
+									Rs. ${price-offer}
 									</font>
 								</s:if>
 								<hr>
