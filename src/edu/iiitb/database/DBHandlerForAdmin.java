@@ -375,6 +375,33 @@ public class DBHandlerForAdmin {
 			id.add(rs.getString(1));
 		}
 	}
+
+	public void fetchIdForGivenRole(ArrayList<String> ID, String string) throws SQLException {
+		// TODO Auto-generated method stub
+		String query;
+		if(string.equals("Seller"))
+		{
+			query = "SELECT sellerId FROM Seller";
+			ResultSet rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				System.out.println("Paras");
+				ID.add(Integer.toString(rs.getInt(1)));
+			}
+			
+		}
+		else if(string.equals("User") || string.equals("Admin"))
+		{
+			query = "select userId , role from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				if(rs.getString(2).equals(string))
+					ID.add(Integer.toString(rs.getInt(1)));
+			}
+		}
+		
+	}
 	
 	
 	

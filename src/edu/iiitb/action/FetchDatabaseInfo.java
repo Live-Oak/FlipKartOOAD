@@ -19,8 +19,11 @@ public class FetchDatabaseInfo {
 	ArrayList<UserEntry> user;
 	ArrayList<ProductInfo> product;
 	ArrayList<CategoryModel> category;
+	ArrayList<String> sellerId;
 	
+
 	
+
 
 	
 
@@ -43,10 +46,14 @@ public class FetchDatabaseInfo {
 	public String productFetch()
 	{
 		product = new ArrayList<ProductInfo>();
+		sellerId = new ArrayList<String>();
 		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
 		try
 		{
 			dbHandler.viewProductData(product);
+			dbHandler.fetchIdForGivenRole(sellerId , "Seller");
+			for(int i = 0;i<sellerId.size();i++)
+				System.out.println("Seller id is :: "+sellerId.get(i));
 		}catch(SQLException e)
 		{
 			System.out.println("Exception at productFetch() of FetchUser.java");
@@ -86,6 +93,21 @@ public class FetchDatabaseInfo {
 			return "error";
 		}
 		return "success";
+	}
+	
+
+	/**
+	 * @return the sellerId
+	 */
+	public ArrayList<String> getSellerId() {
+		return sellerId;
+	}
+
+	/**
+	 * @param sellerId the sellerId to set
+	 */
+	public void setSellerId(ArrayList<String> sellerId) {
+		this.sellerId = sellerId;
 	}
 	
 	/**

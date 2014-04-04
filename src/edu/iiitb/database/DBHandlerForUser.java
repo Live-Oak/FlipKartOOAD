@@ -16,6 +16,7 @@ import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
 
+
 	/**
 	 * @author paras
 	 *
@@ -173,6 +174,29 @@ public class DBHandlerForUser {
 			return fName;
 		
 		}	
+		
+		public UserEntry getpersonalinfo(String email) throws SQLException
+		{
+			// TODO Auto-generated method stub
+			DBConnectivity db=new DBConnectivity();
+			Connection con=db.createConnection();
+			String query="select * from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			UserEntry user = new UserEntry();
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+				{
+			
+			user.setFirstName(rs.getString("firstName"));
+			user.setLastName(rs.getString("lastName"));
+			user.setPhonenumber(rs.getString("phoneNumber"));
+				}
+		}
+			return user;
+		}
+		
+	
 		
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
 		{
