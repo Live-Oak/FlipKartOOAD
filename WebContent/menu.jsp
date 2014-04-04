@@ -18,7 +18,7 @@
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="asset/CSS/cart.css">
+	<link href="asset/CSS/cart.css" rel="stylesheet">
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
@@ -142,6 +142,9 @@ $(document).ready(function(){
 </head>
 
 <body>
+ <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
+
+<%@ page import="edu.iiitb.model.*" %>
     <script type="text/javascript">
 		
 	</script>
@@ -162,13 +165,40 @@ $(document).ready(function(){
 						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 						</div>
 					<div class="col-md-1">
-						<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<%
+						if(session.getAttribute("user") == null)
+						{
+						%>
+							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+						<%
+						}else
+						{
+						%>
+							<%Login l = new Login();%>
+							<a href="#">Hi <%= session.getValue("fname")%>!</a>	
+						<%
+						}
+						%>
 						<button type="submit" class="btn btn-warning" >SEARCH</button>
 					</div>
 				</form>
 				
 				<div class="col-md-2">
+					
+					<%
+						if(session.getAttribute("user") == null)
+						{
+					%>
 					<a href="#" class="big-link Close" data-reveal-id="myModal">Login</a><br>					
+					<%
+						}else
+						{
+					%>
+					
+					<a href="logout" class="big-link Close">Logout</a><br>
+					<%
+						}
+					%>
 					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART (0) </button></a>
 				</div>
 				
@@ -342,6 +372,9 @@ $(document).ready(function(){
 			<div id="emptyCart" class="empty-cart">
 				There are no items in this cart.<br><br>
 				<button id="continueShopping" type="button" class="btn btn-primary Close" > CONTINUE SHOPPING </button>
+			</div>
+			<div id="productList" class="empty-cart">
+				
 			</div>
 			</center>
 		</div>
