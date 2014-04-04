@@ -137,8 +137,126 @@ $(document).ready(function(){
 
 
 </script>
-    
-    
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=1;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#electronics").html(temp);
+			     }
+			});
+		});
+</script> 
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=12;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel2, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#men").html(temp);
+			     }
+			});
+		});
+</script> 
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=13;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel3, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#women").html(temp);
+			     }
+			});
+		});
+</script>    
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=14;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel4, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#baby").html(temp);
+			     }
+			});
+		});
+</script>    
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=3;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel5, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#books").html(temp);
+			     }
+			});
+		});
+</script>     
+ 
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=34;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel6, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#home").html(temp);
+			     }
+			});
+		});
+</script>    
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=41;
+		var temp;
+			$.ajax({
+			    type: 'POST',	    
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel7, function(count, stock) {
+			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	});
+			    	$("#more").html(temp);
+			     }
+			});
+		});
+</script>    
+
 </head>
 
 <body>
@@ -221,59 +339,31 @@ $(document).ready(function(){
 				<div class="navbar-collapse collapse navbar-ex1-collapse">
 					<ul class="nav nav-pills">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel1">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="electronics" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel2">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="men" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">WOMEN<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel3">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="women" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BABY & KIDS<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel4">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="baby" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">BOOKS & MEDIA<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel5">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="books" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">HOME & KITCHEN<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel6">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="home" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MORE STORE<span class="caret"></span></a>
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
-									<s:iterator value="categoryModel7">	
-										<li><a href="getSearchresult?categoryname=<s:property value="categoryName"/>"><s:property value="categoryName"/></a></li>
-										<li class="divider" role="presentation"></li>
-									</s:iterator>
+							<ul id="more" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 							</ul>
 						</li>
 					</ul>

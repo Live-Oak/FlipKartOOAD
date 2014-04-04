@@ -13,6 +13,16 @@ public class StartAction extends ActionSupport
 	ArrayList<Advertizement> advertizement;
 	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
 
+	int category;
+
+	public int getCategory() {
+		return category;
+	}
+
+	public void setCategory(int category) {
+		this.category = category;
+	}
+	
 	public ArrayList<CategoryModel> getCategoryModel4() {
 		return categoryModel4;
 	}
@@ -85,13 +95,6 @@ public class StartAction extends ActionSupport
 		try
 		{
 			advertizement = dbHandlerForUser.getadvertizement();
-			categoryModel1 = dbHandlerForUser.getsubcategorylist(1);
-			categoryModel2 = dbHandlerForUser.getsubcategorylist(12);
-			categoryModel3 = dbHandlerForUser.getsubcategorylist(13);
-			categoryModel4 = dbHandlerForUser.getsubcategorylist(14);
-			categoryModel5 = dbHandlerForUser.getsubcategorylist(3);
-			categoryModel6 = dbHandlerForUser.getsubcategorylist(34);
-			categoryModel7 = dbHandlerForUser.getsubcategorylist(41);
 		}
 		catch(Exception e)
 		{
@@ -101,5 +104,26 @@ public class StartAction extends ActionSupport
 		
 		return "success";
 	}
+	
+	public String getMenuCatagory()
+	{
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		try
+		{
+			categoryModel1 = dbHandlerForUser.getsubcategorylist(category);
+			categoryModel2 = dbHandlerForUser.getsubcategorylist(category);
+			categoryModel3 = dbHandlerForUser.getsubcategorylist(category);
+			categoryModel4 = dbHandlerForUser.getsubcategorylist(category);
+			categoryModel5 = dbHandlerForUser.getsubcategorylist(category);
+			categoryModel6 = dbHandlerForUser.getsubcategorylist(category);
+			categoryModel7 = dbHandlerForUser.getsubcategorylist(category);
+		}
+		catch(Exception e)
+		{
+			
+		}
+		return "success";
+	}
+	
 	
 }
