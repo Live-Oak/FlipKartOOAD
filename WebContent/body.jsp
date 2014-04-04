@@ -74,19 +74,19 @@
 						
 						 	  <s:iterator value="advertizement">
 								<s:if test="%{productId==1}">	
-										<button type="button" class="btn slide-one" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
+										<button type="button" class="btn slide-one" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:24%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
 								<s:if test="%{productId==2}">
-										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/>></button>
+										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:25%;white-space: normal;border-radius: 0;"><s:property value="caption"/>></button>
 								</s:if>
 								
 								<s:if test="%{productId==3}">
-										<button type="button" class="btn slide-three" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
+										<button type="button" class="btn slide-three" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:24%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
 								<s:if test="%{productId==4}">
-										<button type="button" class="btn slide-four" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:180px;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
+										<button type="button" class="btn slide-four" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:25%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 							 </s:iterator>
  
