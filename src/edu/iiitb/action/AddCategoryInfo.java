@@ -3,11 +3,15 @@
  */
 package edu.iiitb.action;
 
+import java.io.File;
 import java.sql.SQLException;
+
+import org.apache.commons.io.FileUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import edu.iiitb.config.Config;
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.model.CategoryModel;
 
@@ -34,6 +38,20 @@ public class AddCategoryInfo extends ActionSupport implements ModelDriven<Catego
 	
 	public String execute()
 	{
+		
+		Config.loadProperties();
+		String destPath = Config.FILESTOREPATH;
+		
+		File destFile = new File(destPath,categoryInfo.getMyFileFileName());
+		try {
+			FileUtils.copyFile(categoryInfo.getMyFile(), destFile);
+			categoryInfo.setCategoryImage("asset/Images/"+categoryInfo.getMyFileFileName());
+		} catch (Exception e) {
+			System.out.println("Exception at execute() of AddCategoryInfo .. Image uploading time");
+			// TODO: handle exception
+		}
+		
+		
 		try {
 			dbHandler.addCategoryinDB(categoryInfo);
 			addActionMessage("Category Inserted Successfully");

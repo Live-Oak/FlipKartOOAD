@@ -159,10 +159,11 @@ public class DBHandlerForAdmin {
 
 	public void addCategoryinDB(CategoryModel categoryInfo) throws SQLException {
 		// TODO Auto-generated method stub
-		String query="INSERT INTO Category(`categoryId`,`categoryName`) VALUES(?,?)";
+		String query="INSERT INTO Category(`categoryId`,`categoryName`,`image`) VALUES(?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
 		prep.setString(1, categoryInfo.getCategoryId());
 		prep.setString(2, categoryInfo.getCategoryName());
+		prep.setString(3, categoryInfo.getCategoryImage());
 		prep.execute();
 	}
 
