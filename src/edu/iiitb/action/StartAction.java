@@ -12,6 +12,16 @@ public class StartAction extends ActionSupport
 {
 	ArrayList<Advertizement> advertizement;
 	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
+	int[] value = new int[4];
+	
+ 
+	public int[] getValue() {
+		return value;
+	}
+
+	public void setValue(int[] value) {
+		this.value = value;
+	}
 
 	int category;
 
@@ -89,12 +99,16 @@ public class StartAction extends ActionSupport
 	
 	public String execute()
 	{
-
+		
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 	
 		try
 		{
 			advertizement = dbHandlerForUser.getadvertizement();
+			for(int i=0; i<advertizement.size(); i++)
+			{
+				value[i] = advertizement.get(i).getProductId();
+			}
 		}
 		catch(Exception e)
 		{
