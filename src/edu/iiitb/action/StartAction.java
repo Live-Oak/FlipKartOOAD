@@ -11,7 +11,15 @@ import edu.iiitb.model.CategoryModel;
 public class StartAction extends ActionSupport 
 {
 	ArrayList<Advertizement> advertizement;
-	ArrayList<CategoryModel> Categoryelectronics;
+	ArrayList<CategoryModel> Categoryelectronics, Categorybooks;
+	public ArrayList<CategoryModel> getCategorybooks() {
+		return Categorybooks;
+	}
+
+	public void setCategorybooks(ArrayList<CategoryModel> categorybooks) {
+		Categorybooks = categorybooks;
+	}
+
 	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
 	int[] value = new int[4];
 	
@@ -111,6 +119,7 @@ public class StartAction extends ActionSupport
 				value[i] = advertizement.get(i).getProductId();
 			}
 			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
+			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
 			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryName());
 			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryImage());
 		}

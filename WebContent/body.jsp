@@ -62,14 +62,18 @@
 							<s:iterator value="advertizement">
 							<s:if test="%{productId==value[1]}">
 								<div class="item active">
-									<img src="<s:property value="photo"/>" alt="slide"
-										style="height: 350px; width: 100%; display: block;">
+									<a href="getProductDetail?productID=<s:property value="productId"/>">
+										<img src="<s:property value="photo"/>" alt="slide"
+											style="height: 350px; width: 100%; display: block;">
+									</a>
 								</div>
 							</s:if>
 							<s:if test="%{productId!=value[1]}">
 								<div class="item">
-									<img src="<s:property value="photo"/>" alt="slide"
-										style="height: 350px; width: 100%; display: block;">
+									<a href="getProductDetail?productID=<s:property value="productId"/>">
+										<img src="<s:property value="photo"/>" alt="slide"
+											style="height: 350px; width: 100%; display: block;">
+									</a>
 								</div>
 							</s:if>
 							</s:iterator>
@@ -141,7 +145,6 @@
 						ELECTRONICS
 				</div>
 	<!-- ----------------------------------------------------------------- -->
-			
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
 			  <s:iterator value="Categoryelectronics">
@@ -261,64 +264,17 @@
 				</div>	
 				
 					<!-- ----------------------------------------------------------------- -->
-			
+	
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Literature">
-				    	<img src="asset/Images/literature.jpg" alt="literature" height="90px" width="90px"><br>
-				</a>
-				<h6> Literature </h6>
-			   </div>
-				    
-			    <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Academic">
-				    	<img src="asset/Images/academic.jpg" alt="academic" height="90px" width="90px"><br>
-				</a>
-				<h6> Academic </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Entrance">
-				    	<img src="asset/Images/entrance.jpg" alt="entrance" height="90px" width="90px"><br>
-				</a>
-				<h6> Entrance </h6>
-			   </div>
-			   
+			   <s:iterator value="Categorybooks">
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Ebooks">
-				    	<img src="asset/Images/ebooks1.png" alt="ebooks" height="90px" width="90px"><br>
+			  	<a href="getSearchresult?categoryname=<s:property value="categoryName"/>">
+				    	<img src="<s:property value="categoryImage"/>" alt="<s:property value="categoryName"/>" height="80px" width="90px"><br>
 				</a>
-				<h6> Ebooks </h6>
+				<h6> <s:property value="categoryName"/> </h6>
 			   </div>
-			   
-			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Music">
-				    	<img src="asset/Images/music.jpg" alt="music" height="80px" width="90px"><br>
-				</a>
-				<h6> Music </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=TV Shows">
-				    	<img src="asset/Images/tvshows.jpg" alt="tvshows" height="80px" width="90px"><br>
-				</a>
-				<h6> TV Shows </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Games">
-				    	<img src="asset/Images/games.jpg" alt="games" height="90px" width="90px"><br>
-				</a>
-				<h6> Games </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Stationary">
-				    	<img src="asset/Images/stationary.jpg" alt="stationary" height="80px" width="90px"><br>
-				</a>
-				<h6> Stationary </h6>
-			   </div>
+			  </s:iterator>
 			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
@@ -412,9 +368,9 @@
 </script>
 <style>
   .scroll-pane { overflow: auto; width: 99%; float:left; }
-  .scroll-content { width: 1000px; float: left; }
-  .scroll-content-item { width: 100px; height: 120px; float: left; margin: 10px; font-size: 3em; line-height: 96px; text-align: center; }
-  .scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
+  .scroll-content { width: 950px; float: left; }
+  .scroll-content-item { width: 100px; height: 120px; float: left; margin: 2px; font-size: 3em; line-height: 96px; text-align: center; }
+  .scroll-bar-wrap { clear: left; padding: 4px 4px 0 2px; margin: 4px -1px -1px -1px; }
   .scroll-bar-wrap .ui-slider { background: none; border:0; height: 2em; margin: 0 auto;  }
   .scroll-bar-wrap .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
   .scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.5em; }
