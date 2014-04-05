@@ -13,7 +13,7 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('03', 'Books and Media','asset/Images/mobile.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('04', 'Laptop','asset/Images/laptop.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('05', 'Camera','asset/Images/camera.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('06', 'Tablet','asset/Images/tablet.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('06', 'Tablet','asset/Images/tablet.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('07', 'Mobile','asset/Images/mobile.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('08', 'Mobile accessories','asset/Images/mobileaccessories.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('09', 'Laptop accessories','asset/Images/laptopaccessories.jpg');

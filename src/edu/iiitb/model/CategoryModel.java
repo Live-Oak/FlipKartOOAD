@@ -9,7 +9,15 @@ package edu.iiitb.model;
  */
 public class CategoryModel {
 
-	String categoryId,categoryName;
+	String categoryId,categoryName,categoryImage;
+
+	public String getCategoryImage() {
+		return categoryImage;
+	}
+
+	public void setCategoryImage(String categoryImage) {
+		this.categoryImage = categoryImage;
+	}
 
 	/**
 	 * @return the categoryId

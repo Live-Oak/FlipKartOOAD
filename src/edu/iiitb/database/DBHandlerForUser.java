@@ -165,6 +165,29 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			return categoryModel;
 		}
+		
+		public ArrayList<CategoryModel> getsubcategorydeatils(int parentcategoryId) throws SQLException, IOException
+		{
+			ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
+			DBConnectivity db=new DBConnectivity();
+			Connection con= db.createConnection();																
+			
+			String query= " SELECT Category.categoryName, Category.categoryId, Category.image FROM Category, CategoryRelation WHERE Category.categoryId = CategoryRelation.subCategoryId AND CategoryRelation.categoryId =" + parentcategoryId;  
+		
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				CategoryModel obj = new CategoryModel();
+				obj.setCategoryName(rs.getString("categoryName"));
+				obj.setCategoryId(rs.getString("categoryId"));
+				obj.setCategoryImage(rs.getString("image"));
+				System.out.println(rs.getString("categoryName"));
+				categoryModel.add(obj);
+			}
+			db.closeConnection(con);
+			return categoryModel;
+		}
 
 		
 		public String getfName(String email) throws SQLException

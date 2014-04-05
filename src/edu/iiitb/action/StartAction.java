@@ -11,6 +11,7 @@ import edu.iiitb.model.CategoryModel;
 public class StartAction extends ActionSupport 
 {
 	ArrayList<Advertizement> advertizement;
+	ArrayList<CategoryModel> Categoryelectronics;
 	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
 	int[] value = new int[4];
 	
@@ -109,6 +110,9 @@ public class StartAction extends ActionSupport
 			{
 				value[i] = advertizement.get(i).getProductId();
 			}
+			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
+			System.out.println("On action " +Categoryelectronics.get(1).getCategoryName());
+			System.out.println("On action " +Categoryelectronics.get(1).getCategoryImage());
 		}
 		catch(Exception e)
 		{
@@ -118,6 +122,14 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
+	public ArrayList<CategoryModel> getCategoryelectronics() {
+		return Categoryelectronics;
+	}
+
+	public void setCategoryelectronics(ArrayList<CategoryModel> categoryelectronics) {
+		Categoryelectronics = categoryelectronics;
+	}
+
 	public String getMenuCatagory()
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();

@@ -131,7 +131,8 @@
 		<!-- Data on the page -->
 		<br>
 		<br>
-		<div class="col-md-2"></div>
+		<div class="col-md-2">
+		</div>
 		
 		<div class="col-md-7">
 			
@@ -143,61 +144,14 @@
 			
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Mobile">
-				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="90px"><br>
-				</a>
-				<h6> Mobile </h6>
-			   </div>
-				    
-			    <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Laptop">
-				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="90px"><br>
-				</a>
-				<h6> Laptop </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Tablet">
-				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="90px"><br>
-				</a>
-				<h6> Tablet </h6>
-			   </div>
-			   
+			  <s:iterator value="Categoryelectronics">
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Camera">
-				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="90px"><br>
+			  	<a href="getSearchresult?categoryname=<s:property value="categoryName"/>">
+				    	<img src="<s:property value="categoryImage"/>" alt="<s:property value="categoryName"/>" height="80px" width="90px"><br>
 				</a>
-				<h6> Camera </h6>
+				<h6> <s:property value="categoryName"/> </h6>
 			   </div>
-			   
-			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Mobile Accessories">
-				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="80px" width="90px"><br>
-				</a>
-				<h6> Mobile Accessories </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Laptop Accessories">
-				    	<img src="asset/Images/laptopaccessories.jpg" alt="Laptopaccessories" height="80px" width="90px"><br>
-				</a>
-				<h6> Laptop Accessories </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Home audio & Mp3 players">
-				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="90px"><br>
-				</a>
-				<h6> Audio & Video </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Gaming Consoles">
-				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="80px" width="90px"><br>
-				</a>
-				<h6> Gaming Consoles </h6>
-			   </div>
+			  </s:iterator>
 			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
