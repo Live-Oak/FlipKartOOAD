@@ -78,29 +78,29 @@
 				<div class="col-md-4">
 						<div class="border">
 								<br>
+								<center>
 								<s:if test="%{availableQuantity >= minimumQuantity}">
 									<s:if test="%{offer==0}">
 										<a href="getProductDetail?productID=<s:property value="productID"/>">
-											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" style="position: absolute; top: 20px; left: 20px;" height="140px" width="auto" >
-											<br><br><br><br><br><br><br><br><br><br>
+											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
+											<br><br><br>
 										</a>
 									</s:if>
 									<s:if test="%{offer>0}">
 										<a href="getProductDetail?productID=<s:property value="productID"/>">
-											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" style="position: absolute; top: 20px; left: 20px;" height="140px" width="auto" >
-											<img src="asset/Images/offer.jpg" alt="offer" height="40px" style="position: relative; top:130px; left:10;">
-											<br><br><br><br><br><br><br><br><br>
+											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+											<img src="asset/Images/offer.jpg" alt="offer" height="40px" >
+											
 										</a>
 									</s:if>
 								</s:if>
 								<s:if test="%{availableQuantity < minimumQuantity}">
 										<a href="#">
-											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" style="position: absolute; top: 20px; left: 20px;" height="140px" width="auto" >
-											<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px" style="position: relative; top:120px; left:10;">
-											<br><br><br><br><br><br><br><br><br>
+											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+											<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+										
 										</a>
 								</s:if>
-								<center>
 								<div class="giveMeEllipsis">
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
 									<font size="4" color="black"><s:property value="productName"/></font><br>
