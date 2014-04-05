@@ -3,7 +3,7 @@
  */
 package edu.iiitb.database;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -248,7 +248,7 @@ public class DBHandlerForAdmin {
 		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
 		PreparedStatement stmnt1 = con.prepareStatement(query1);
 		stmnt1.setInt(1, prod.getProductID());
-		stmnt1.setInt(2, 0);
+		stmnt1.setInt(2, 5);
 		stmnt1.setInt(3, prod.getMinimumQuantity());
 		stmnt1.setInt(4, 1000);
 		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));

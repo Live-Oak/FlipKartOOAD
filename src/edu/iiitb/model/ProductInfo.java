@@ -133,7 +133,7 @@ public class ProductInfo {
 		return keywords;
 	}
 	public void setKeywords(String keywords) {
-		this.keywords = keywords;
+		this.keywords = keywords+",";
 	}
 	public String getDescription() {
 		return description;

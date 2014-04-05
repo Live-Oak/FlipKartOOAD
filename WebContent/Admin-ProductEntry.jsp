@@ -37,7 +37,8 @@
 						<s:iterator value="sellerId">
 						<option><s:property/></option>		
 						</s:iterator>		
-						</select><br>				
+						</select><br>	
+		<label>MinimumQuantity</label ><s:textfield name ="minimumQuantity" required="true" placeholder="minimumQuantity"></s:textfield><br>							
 		<label>Keywords</label ><s:textfield name ="keywords" required="true" placeholder="keywords"></s:textfield><br>
 		<label>Description about the product</label><s:textfield name ="description" required="true" placeholder="Describe the Item/Product"></s:textfield><br>
 		<label>Brand Name</label><s:textfield name ="brand" required="true" placeholder="Brand"></s:textfield><br>
