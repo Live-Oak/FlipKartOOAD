@@ -485,7 +485,7 @@ $(document).ready(function(){
 			<div style="" id="totalCost" class="totalcost">Total Cost : 0</div>
 		</div>
 		<button id="continueShoppingBottom" type="button" class="btn btn-primary Close" style="float:left"> CONTINUE SHOPPING </button>
-		<a href="http://localhost:8080/FlipKart/place.jsp"><button id="placeOrder" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
+		<a href="placeOrder"><button id="placeOrder" type="button" class="btn btn-primary" style="float:right;">PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
 
