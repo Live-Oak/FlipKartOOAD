@@ -101,7 +101,6 @@ public class StartAction extends ActionSupport
 			System.out.println("Error Start Action "+e);
 			return "error";
 		}
-		
 		return "success";
 	}
 	
@@ -120,7 +119,7 @@ public class StartAction extends ActionSupport
 		}
 		catch(Exception e)
 		{
-			
+			System.out.println("Exception at getMenuCategory() of StartAction.java");
 		}
 		return "success";
 	}

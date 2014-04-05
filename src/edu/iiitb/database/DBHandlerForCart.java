@@ -24,7 +24,7 @@ public class DBHandlerForCart {
 	
 	public static void addToCart(int uid,int productId,int quantity) throws Exception
 	{
-		String query="INSERT INTO cart(userId,productId,quantity) VALUES (?,?,?);";
+		String query="INSERT INTO Cart(userId,productId,quantity) VALUES (?,?,?);";
 		PreparedStatement prep =con.prepareStatement(query);	
 		prep.setInt(1,uid);
 		prep.setInt(2,productId);
@@ -35,7 +35,7 @@ public class DBHandlerForCart {
 	public static ArrayList<CartModel> getProducts(int uid) throws SQLException
 	{
 		ArrayList<CartModel> products = new ArrayList<CartModel>(); 
-		String query = "select p.productId,p.productName,p.image,p.price,c.quantity from cart c inner join productinfo p where c.userId = "+uid+" and c.productId = p.productID;";
+		String query = "select p.productId,p.productName,p.image,p.price,c.quantity from Cart c inner join ProductInfo p where c.userId = "+uid+" and c.productId = p.productID;";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{

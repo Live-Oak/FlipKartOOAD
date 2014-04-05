@@ -114,7 +114,7 @@ public class DBHandlerForUser {
 			DBConnectivity db=new DBConnectivity();
 			com.mysql.jdbc.Connection con= db.createConnection();																
 			
-			String query="SELECT * FROM advertizement ORDER BY advertizement.timeStamp desc LIMIT 4";
+			String query="SELECT * FROM Advertizement ORDER BY Advertizement.timeStamp desc LIMIT 4";
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -131,6 +131,7 @@ public class DBHandlerForUser {
 				advertize.add(obj);
 				
 			}
+			db.closeConnection(con);
 			return advertize;
 		}
 		
@@ -151,6 +152,7 @@ public class DBHandlerForUser {
 				obj.setCategoryId(rs.getString("categoryId"));
 				categoryModel.add(obj);
 			}
+			db.closeConnection(con);
 			return categoryModel;
 		}
 
@@ -213,7 +215,7 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				ProductInfo.add(obj);
 			}
-			
+			db.closeConnection(con);
 			return ProductInfo;
 		}
 		
@@ -239,7 +241,7 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				ProductInfo.add(obj);
 			}
-			
+			db.closeConnection(con);
 			return ProductInfo;
 		}
 		
@@ -247,7 +249,7 @@ public class DBHandlerForUser {
 		{
 			//System.out.println("category in dbhandler : " +category);
 			ArrayList<String> companyname = new ArrayList<String>();	
-			String query="select distinct(ProductInfo.brand) from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
+			String query="select distinct(ProductInfo.brand) from ProductInfo, Category where Category.categoryId = ProductInfo.categoryId and Category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -255,7 +257,7 @@ public class DBHandlerForUser {
 				//System.out.println("product is : " +rs.getString("brand") );
 				companyname.add(rs.getString("brand"));
 			}
-			
+			db.closeConnection(con);
 			return companyname;
 		}
 		
@@ -280,7 +282,7 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				ProductInfo.add(obj);
 			}
-			
+			db.closeConnection(con);
 			return ProductInfo;
 		}
 		
@@ -296,7 +298,7 @@ public class DBHandlerForUser {
 				//System.out.println("product is : " +rs.getString("brand") );
 				companyname.add(rs.getString("brand"));
 			}
-			
+			db.closeConnection(con);
 			return companyname;
 		}
 }
