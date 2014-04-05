@@ -143,11 +143,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 
 
-			<action name="adminhome">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result type="tiles">Administrator</result>
-				<result name="login">/index.jsp</result>
-			</action>
+			
 
 			<action name="logout" class="edu.iiitb.action.LogoutAction">
 				<result name="success">/index.jsp</result>
