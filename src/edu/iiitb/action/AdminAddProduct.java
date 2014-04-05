@@ -104,11 +104,12 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 			// TODO: handle exception
 		}
 		
-		
-		
+
 		try {
 			
 			dbHandler.registerProduct(prod);
+			dbHandler.updateKeywordForProduct(prod.getProductID() , prod.getKeywords().split(","));
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

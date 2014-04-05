@@ -257,6 +257,14 @@ public class DBHandlerForAdmin {
 		System.out.println("Executed");
 	}
 	
+	public void deleteProduct(int productId) throws SQLException
+	{
+		String query = "DELETE FROM ProductInfo where productId = "+productId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("ProductInfo rows Deleted");
+	}
+	
 	public void addAdvertisement(Advertizement adv) throws SQLException
 	{
 		 java.util.Date date= new java.util.Date();
@@ -507,6 +515,18 @@ public class DBHandlerForAdmin {
 		Statement st=(Statement) con.createStatement();
 		st.executeUpdate(query);
 		System.out.println("Product Available Quantity updated");
+	}
+
+	public void updateKeywordForProduct(int productID, String[] split) throws SQLException {
+		// TODO Auto-generated method stub
+		for(int i=0;i<split.length;i++)
+		{
+			String query = "Insert into Keywords(`productId`,`keyword`) values(?,?)";
+			PreparedStatement stmnt = con.prepareStatement(query);
+			stmnt.setInt(1, productID);
+			stmnt.setString(2, split[i]);
+			stmnt.execute();
+		}
 	}
 	
 }
