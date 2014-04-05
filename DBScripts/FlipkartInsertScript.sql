@@ -36,11 +36,11 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('26', 'Baby care','asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('27', 'Toy and Games','asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('28', 'Books','asset/Images/kids.png');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('29', 'eBooks','asset/Images/kids.png');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('30', 'Music','asset/Images/kids.png');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('31', 'Movie & TV Shows','asset/Images/kids.png');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('32', 'Games','asset/Images/kids.png');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('33', 'Stationary','asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('29', 'eBooks','asset/Images/ebook.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('30', 'Music','asset/Images/music.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('31', 'Movie & TV Shows','asset/Images/tvshows.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('32', 'Games','asset/Images/games.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('33', 'Stationary','asset/Images/stationary.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('34', 'Home & Kitchen','asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('35', 'Home Furnishing','asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('36', 'Bed','asset/Images/kids.png');
@@ -58,12 +58,6 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('48', 'Literature','asset/Images/litrature.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('49', 'Academic','asset/Images/academic.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('50', 'Entrance','asset/Images/entrance.png');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('51', 'Ebooks','asset/Images/ebook.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('52', 'Music','asset/Images/music.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('53', 'TV Shows','asset/Images/tvshows.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('54', 'Games','asset/Images/games.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('55', 'Stationary','asset/Images/stationary.jpg');
-
 
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '04');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '05');
@@ -98,6 +92,9 @@ INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('03', '31');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('03', '32');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('03', '33');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('03', '48');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('03', '49');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('03', '50');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('34', '35');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('34', '36');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('34', '37');

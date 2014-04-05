@@ -111,8 +111,8 @@ public class StartAction extends ActionSupport
 				value[i] = advertizement.get(i).getProductId();
 			}
 			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
-			System.out.println("On action " +Categoryelectronics.get(1).getCategoryName());
-			System.out.println("On action " +Categoryelectronics.get(1).getCategoryImage());
+			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryName());
+			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryImage());
 		}
 		catch(Exception e)
 		{

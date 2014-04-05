@@ -182,7 +182,7 @@ public class DBHandlerForUser {
 				obj.setCategoryName(rs.getString("categoryName"));
 				obj.setCategoryId(rs.getString("categoryId"));
 				obj.setCategoryImage(rs.getString("image"));
-				System.out.println(rs.getString("categoryName"));
+				//System.out.println(rs.getString("categoryName"));
 				categoryModel.add(obj);
 			}
 			db.closeConnection(con);
