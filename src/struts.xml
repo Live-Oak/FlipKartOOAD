@@ -130,6 +130,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="tiles">SellerTile</result>
 				<result name="error">/error.jsp</result>
 			</action>
+			
+			<action name="rejectProductReuest" class="edu.iiitb.action.SellerRequestAction" method="rejectRequest" >
+				<result name="success" type="tiles">SellerTile</result>
+				<result name="error">/error.jsp</result>
+			</action>
 
 			
 			<action name="forgotpassword" class="edu.iiitb.action.ForgotPasswordAction">
