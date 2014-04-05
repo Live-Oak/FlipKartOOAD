@@ -22,8 +22,8 @@ CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
 CREATE  TABLE `FlipKartDatabase`.`Category` (
   `categoryId` VARCHAR(50) NOT NULL ,
   `categoryName` VARCHAR(100) NOT NULL ,
+  `image` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`categoryId`) );
-
 
 
 CREATE  TABLE `FlipKartDatabase`.`ProductInfo` (
