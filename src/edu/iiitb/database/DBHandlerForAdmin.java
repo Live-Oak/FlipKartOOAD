@@ -86,7 +86,7 @@ public class DBHandlerForAdmin {
 			}
 			
 		}
-		
+	//	db.closeConnection(con);
 		return true;
 	}
 	
@@ -98,6 +98,7 @@ public class DBHandlerForAdmin {
 		{
 			user.add(Integer.toString(rs.getInt("userId"))+"_"+rs.getString("role"));
 		}
+	//	db.closeConnection(con);
 	}
 	
 	public void fetchUserID(ArrayList<String> userID) throws SQLException {
@@ -109,6 +110,7 @@ public class DBHandlerForAdmin {
 		{
 			userID.add(Integer.toString(rs.getInt("userId")));
 		}
+	//	db.closeConnection(con);
 	}
 	
 	public int fetchUserIDIntForm(String email) throws SQLException
@@ -139,6 +141,7 @@ public class DBHandlerForAdmin {
 			Statement st2=(Statement) con.createStatement();
 			st2.executeUpdate(query2);
 		}
+	//	db.closeConnection(con);
 		
 	}
 	
