@@ -45,6 +45,9 @@ public class DBConnectivity {
 		return null;
 	}
 	
-	
+	public void closeConnection(Connection con) throws SQLException
+	{
+		con.close();
+	}
 }
 

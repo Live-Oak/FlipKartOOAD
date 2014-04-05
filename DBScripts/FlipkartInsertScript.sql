@@ -139,10 +139,13 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('32', 'Transcend MicroSD Card 8 GB Class 4', '355', 'asset/Images/transcend.jpg', '120', '08', 'Mobile accessories, Electronics, Laptop accessories, Mobile, ', 'Class 4 Memory Card, Easy to use','Transcend' ,'5');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('33', 'SanDisk Cruzer Blade 16 GB Pen Drive', '399', 'asset/Images/sandisk.jpg', '0', '09', 'Electronics, Laptop accessories, Laptop, ', 'USB 2.0, Easy to use','SanDisk' ,'3');
 
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(01, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', '25% OFF ON CAMERA');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(02, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(03, 'asset/Images/leo.jpg', '2014-03-30 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(04, 'asset/Images/mclp.jpg', '2014-03-30 19:26:38', 'GET YOUR HAND ON MOTO G');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(05, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', '25% OFF ON CAMERA');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/mclp.jpg', '2014-03-31 19:26:38', 'GET YOUR HAND ON MOTO G');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(04, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/motog.jpg', '2014-04-02 19:26:38', 'UPGRADE TO MOTOG RS.2000 OFF');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(30, 'asset/Images/juicer.jpg', '2014-04-03 19:26:38', 'EXTRA 15% OFF ON JUICER');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(27, 'asset/Images/toy.jpg', '2014-04-03 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF');
 
 
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('01',  'Mobile');
@@ -235,6 +238,41 @@ INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('32', 
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('33',  'Electronics');
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('33',  'Laptop');
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('33',  'Laptop accessories');
+
+
+insert into `FlipKartDatabase`.`Stock` values (1 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (2 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (3 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (4 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (5 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (6 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (7 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (8 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (9 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (10 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (11 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (12 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (13 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (14 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (15 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (16 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (17 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (18 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (19 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (20 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (21 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (22 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (23 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (24 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (25 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (26 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (27 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (28 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (29 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (30 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (31 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (32 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (33 , 0 , 0 , 1000 , 1 , '2014-04-03');
 
 
 

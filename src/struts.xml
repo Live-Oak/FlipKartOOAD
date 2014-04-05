@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts  
-Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">  
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 <struts>
-<constant name="struts.devMode" value="true"/>
-	<package name="default" extends="tiles-default,json-default" namespace="/">
-			
-			<interceptors>
-				<interceptor name="authenticationInterceptor" 
-				class="edu.iiitb.Interceptor.LoginAuthentication"/>
-					<interceptor-stack name="secureStack">
-						<interceptor-ref name="authenticationInterceptor"/>
-						<interceptor-ref name="defaultStack"/>
-					</interceptor-stack>
-			</interceptors>
-			
+	<constant name="struts.devMode" value="true" />
+	<package name="default" extends="tiles-default,json-default"
+		namespace="/">
+
+		<interceptors>
+			<interceptor name="authenticationInterceptor"
+				class="edu.iiitb.Interceptor.LoginAuthentication" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="authenticationInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+
 		<action name="login">
 			<result>/index.jsp</result>
 		</action>
+<<<<<<< HEAD
 			
 			<action name="loginAction" class="edu.iiitb.action.LoginAction">
 				<result name="admin" type="redirectAction">
@@ -108,210 +110,300 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			<!-- <action name="insertCategoryPage">
 				<result type="tiles">InserCategoryPage</result>
+=======
+
+		<action name="loginAction" class="edu.iiitb.action.LoginAction">
+			<result name="admin" type="redirectAction">
+				<param name="actionName">Admin</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="user" type="redirectAction">
+				<param name="actionName">MenuHome</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="seller" type="redirectAction">
+				<param name="actionName">SellerLogin</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="invalid" type="json"></result>
+			<result name="error">/error.jsp</result>
+			<result name="success" type="tiles">LoginPage</result>
+		</action>
+		
+		<action name="SellerLogin" class="edu.iiitb.action.SellerRequestAction">
+			<result name="success" type="tiles">SellerTile</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="approveProductReuest" class="edu.iiitb.action.SellerRequestAction" method="approveRequest">
+			<result name="success" type="tiles">SellerTile</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="MenuHome">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result>/index.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="Admin">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">Administrator</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="loginPage">
+			<result>/login.html</result>
+		</action>
+		<action name="forgotpassword" class="edu.iiitb.action.ForgotPasswordAction">
+			<result name="success">/Start.jsp</result>
+			<result name="invalid">/sorry.jsp</result>
+		</action>
+
+
+		<action name="adminhome">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">Administrator</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="logout" class="edu.iiitb.action.LogoutAction">
+			<result name="success">/index.jsp</result>
+		</action>
+
+		<action name="registerUser">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">RegisterPage</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<!-- <action name="insertCategoryPage"> <result type="tiles">InserCategoryPage</result> 
+>>>>>>> 7298eca5b48cd99042adef90539ff54a5d6a1e08
 			</action> -->
-			
-			<action name="apppage">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result type="tiles">Apppage</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="motopage">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result type="tiles">Motopage</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="Browseresult" class="edu.iiitb.action.BrowseAction">
-				<result name="success" type="tiles">Browse_SearchPage</result>
-				<result name="error">/error.jsp</result>
-			</action>
-			
-			<action name="getSearchresult" class="edu.iiitb.action.SearchAction">
-				<result name="success" type="tiles">Browse_SearchPage</result>
-				<result name="error">/error.jsp</result>
-			</action>
-			
-			<action name="getProductDetail" class="edu.iiitb.action.getProductDetail">
-				<result name="success" type="tiles">ProductPage</result>
-				<result name="error">/error.jsp</result>
-			</action>
-			
-			<action name="dealoftheday">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result type="tiles">Dealoftheday</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="ebooks">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result type="tiles">Ebooks</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="viewUser" class="edu.iiitb.action.FetchDatabaseInfo">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">UserData</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="viewProduct" class="edu.iiitb.action.FetchDatabaseInfo" method="productFetch">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">ProductData</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="viewCategory" class="edu.iiitb.action.FetchDatabaseInfo" method="categoryFetch">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">CategoryData</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="viewSubCategory" class="edu.iiitb.action.FetchDatabaseInfo" method="subCategoryFetch">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">SubCategoryData</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryDetails">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">InserSubCategoryPage</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="insertCategoryPage" class="edu.iiitb.action.FetchCategoryDetails" method="fetchCategoryName">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">InserCategoryPage</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="enterUserDeatils" class="edu.iiitb.action.RegisterUserAction" method="execute">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="input" type="tiles">RegisterPage</result>
-				<result name="success" type="tiles" >Administrator</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="deleteUser" class="edu.iiitb.action.FetchUserIDForDelete">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">DeleteUserPage</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="deleteUserDetails" class="edu.iiitb.action.DeleteUser">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">Administrator</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="inserCategory" class="edu.iiitb.action.AddCategoryInfo">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="input" type="redirectAction">insertCategoryPage</result>
-				<result name="success" type="tiles" >Administrator</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="fetchSubCategoryId" class="edu.iiitb.action.FetchSubCategoryId">
-				<interceptor-ref name="secureStack"></interceptor-ref>
+
+		<action name="apppage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">Apppage</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="motopage">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">Motopage</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="Browseresult" class="edu.iiitb.action.BrowseAction">
+			<result name="success" type="tiles">Browse_SearchPage</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getSearchresult" class="edu.iiitb.action.SearchAction">
+			<result name="success" type="tiles">Browse_SearchPage</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="getProductDetail" class="edu.iiitb.action.getProductDetail">
+			<result name="success" type="tiles">ProductPage</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="dealoftheday">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">Dealoftheday</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="ebooks">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result type="tiles">Ebooks</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="viewUser" class="edu.iiitb.action.FetchDatabaseInfo">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">UserData</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="viewProduct" class="edu.iiitb.action.FetchDatabaseInfo"
+			method="productFetch">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">ProductData</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="viewCategory" class="edu.iiitb.action.FetchDatabaseInfo"
+			method="categoryFetch">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">CategoryData</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="viewSubCategory" class="edu.iiitb.action.FetchDatabaseInfo"
+			method="subCategoryFetch">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">SubCategoryData</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="insertSubCategoryPage" class="edu.iiitb.action.FetchCategoryDetails">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">InserSubCategoryPage</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="insertCategoryPage" class="edu.iiitb.action.FetchCategoryDetails"
+			method="fetchCategoryName">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">InserCategoryPage</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="enterUserDeatils" class="edu.iiitb.action.RegisterUserAction"
+			method="execute">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="input" type="tiles">RegisterPage</result>
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="deleteUser" class="edu.iiitb.action.FetchUserIDForDelete">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">DeleteUserPage</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="deleteUserDetails" class="edu.iiitb.action.DeleteUser">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="inserCategory" class="edu.iiitb.action.AddCategoryInfo">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="input" type="redirectAction">insertCategoryPage</result>
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="fetchSubCategoryId" class="edu.iiitb.action.FetchSubCategoryId">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="json" />
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="insertCategoryRelation" class="edu.iiitb.action.CategoryRelationship">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="addProduct" class="edu.iiitb.action.FetchCategoryDetails">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">AddProductPage</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="insertProduct" class="edu.iiitb.action.AdminAddProduct">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="input" type="tiles">AddProductPage</result>
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="inserAdvertisement" class="edu.iiitb.action.AddAdvertizement">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="Start_page" class="edu.iiitb.action.StartAction">
+			<result name="success" type="tiles">start</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="getCatagories" class="edu.iiitb.action.StartAction" method="getMenuCatagory">
 				<result name="success" type="json"/>
-     			 <result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="insertCategoryRelation" class="edu.iiitb.action.CategoryRelationship">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles">Administrator</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="addProduct" class="edu.iiitb.action.FetchCategoryDetails">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="success" type="tiles" >AddProductPage</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>
-			</action>
-			
-			<action name="insertProduct" class="edu.iiitb.action.AdminAddProduct">
-				<interceptor-ref name="secureStack"></interceptor-ref>
-				<result name="input" type="tiles">AddProductPage</result>
-				<result name="success" type="tiles">Administrator</result>
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>			
-			</action>
+		</action>
 			
-			<action name="inserAdvertisement" class="edu.iiitb.action.AddAdvertizement">
-				<interceptor-ref name="secureStack"></interceptor-ref>			
-				<result name="success" type="tiles">Administrator</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>			
-			</action>
-			
-			<action name="Start_page" class="edu.iiitb.action.StartAction">
-				<result name="success" type="tiles">start</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>			
-			</action>
-			
-			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
-				<interceptor-ref name="secureStack"></interceptor-ref>			
-				<result name="success" type="tiles">InserAdvertizementPage</result>
-				<result name="error">/error.jsp</result>
-				<result name="login">/index.jsp</result>			
-			</action>
-			
-			<action name="signmeup" class="edu.iiitb.action.SignupAction">
-				<result name="success">/index.jsp</result>
-				<result name="invalid">/sorry.jsp</result>
-				<result name="error">/error.jsp</result>
-				 <result name="failure" type="json"/>
-			
-			</action>
-			<action name="useravailable" class="edu.iiitb.action.UserAvailabilityAction" method="Validate">
-				<result name="success" type="json"/>
-			</action>
-						
-			<action name="check_login_password" class="edu.iiitb.action.ValidateEmailPassword" method="Validate">
-				<result name="success" type="json"/>	
-			</action>
-			<action name="forgot_password_validation" class="edu.iiitb.action.Forgot_Password_Validation" method="Validate">
-				<result name="success" type="json"/>	
-			</action>
-			
-			<action name="stockForProduct" class="edu.iiitb.action.FetchSpecificStock">
-				<result name="success" type="json"/>	
-			</action>
-			
-			<action name="stockData" class="edu.iiitb.action.FetchStockInfo">
-				<result name="success" type="tiles">Stock</result>
-				<result name="error">/error.jsp</result>
-			</action>
-			
-			<action name="addProductToCart" class="edu.iiitb.action.CartManager" method="addToCart">
-				<result name="success" type="json"/>
-			</action>
-			
-			<action name="getProductsFromCart" class="edu.iiitb.action.CartManager" method="getCartProducts">
-				<result name="success" type="json"/>
-			</action>
-								
-			<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
-				<result name="success" type="redirectAction">
-					<param name="actionName">stockData</param>
-					<param name="namespace">/</param>
-				</result>
-				<result name="error">/error.jsp</result>
-			</action>					
+		<action name="advertizement" class="edu.iiitb.action.FetchProductId">
+			<interceptor-ref name="secureStack"></interceptor-ref>
+			<result name="success" type="tiles">InserAdvertizementPage</result>
+			<result name="error">/error.jsp</result>
+			<result name="login">/index.jsp</result>
+		</action>
+
+		<action name="signmeup" class="edu.iiitb.action.SignupAction">
+			<result name="success">/index.jsp</result>
+			<result name="invalid">/sorry.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="failure" type="json" />
+
+		</action>
+		<action name="useravailable" class="edu.iiitb.action.UserAvailabilityAction"
+			method="Validate">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="check_login_password" class="edu.iiitb.action.ValidateEmailPassword"
+			method="Validate">
+			<result name="success" type="json" />
+		</action>
+		<action name="forgot_password_validation" class="edu.iiitb.action.Forgot_Password_Validation"
+			method="Validate">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="stockForProduct" class="edu.iiitb.action.FetchSpecificStock">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="stockData" class="edu.iiitb.action.FetchStockInfo">
+			<result name="success" type="tiles">Stock</result>
+			<result name="error">/error.jsp</result>
+		</action>
+
+		<action name="addProductToCart" class="edu.iiitb.action.CartManager"
+			method="addToCart">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="getProductsFromCart" class="edu.iiitb.action.CartManager"
+			method="getCartProducts">
+			<result name="success" type="json" />
+		</action>
+
+		<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
+			<result name="success" type="redirectAction">
+				<param name="actionName">stockData</param>
+				<param name="namespace">/</param>
+			</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="placeOrder">
+			<result>/place.jsp</result>
+		</action>
+		
 	</package>
 
 </struts>

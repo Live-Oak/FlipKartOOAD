@@ -27,22 +27,27 @@ public class DBHandlerForUser {
 	 * 
 	 */
 		DBConnectivity db=new DBConnectivity();
-		Connection con = db.createConnection();
+		
 		
 		public boolean chkForEmailIDAlreadyExists(String email) throws SQLException
 		{
+			Connection con = db.createConnection();
 			String query="select email from UserCredantials";
 			ResultSet rs=db.executeQuery(query, con);
 			while(rs.next())
 			{
 				if(rs.getString("email").equals(email))
+				{
+					con.close();
 					return true;
+				}
 			}
 			return false;
 		}
 		
 		public boolean SignupUserinDB(SignupModel user) throws SQLException
 		{	
+			Connection con = db.createConnection();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 			String date = sdf.format(new java.util.Date());
 			System.out.println(user.getDate());
@@ -65,13 +70,14 @@ public class DBHandlerForUser {
 			prep.setString(13, date );
 			prep.execute();
 			
-			
+			con.close();
 			return true;
 		}
 
 		public String chkForEmailID_PasswordAlreadyExists(String email,
 				String password) throws SQLException 
 		{
+			Connection con = db.createConnection();
 			String role=null;
 			String query="select email,password,role from UserCredantials";
 			ResultSet rs=db.executeQuery(query, con);
@@ -87,6 +93,7 @@ public class DBHandlerForUser {
 				System.out.println(role);
 				return "invalid";
 			}
+			con.close();
 			return role;
 				
 		}
@@ -94,6 +101,7 @@ public class DBHandlerForUser {
 		public String getPasswordformDB(String email) throws SQLException 
 		{
 			// TODO Auto-generated method stub
+			Connection con = db.createConnection();
 			String query="select email,password from UserCredantials";
 			ResultSet rs=db.executeQuery(query, con);
 			String password=null;
@@ -105,17 +113,18 @@ public class DBHandlerForUser {
 			
 				}
 			}
+			con.close();
 			return password;
 		
 		}	
 		
 		public ArrayList<Advertizement> getadvertizement() throws SQLException, IOException
 		{
+			Connection con = db.createConnection();
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
-			DBConnectivity db=new DBConnectivity();
-			com.mysql.jdbc.Connection con= db.createConnection();																
+			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT * FROM Advertizement";
+			String query="SELECT * FROM Advertizement ORDER BY Advertizement.timeStamp desc LIMIT 4";
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -127,11 +136,12 @@ public class DBHandlerForUser {
 				obj.setPhoto(rs.getString("image"));
 				obj.setCaption(rs.getString("caption"));
 				
-				//System.out.println(rs.getString("image"));
-				//System.out.println(rs.getInt("productID"));
+				System.out.println(rs.getString("caption"));
+				System.out.println(rs.getInt("productID"));
 				advertize.add(obj);
 				
 			}
+			db.closeConnection(con);
 			return advertize;
 		}
 		
@@ -139,7 +149,7 @@ public class DBHandlerForUser {
 		{
 			ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
 			DBConnectivity db=new DBConnectivity();
-			com.mysql.jdbc.Connection con= db.createConnection();																
+			Connection con= db.createConnection();																
 			
 			String query= " SELECT Category.categoryName, Category.categoryId FROM Category, CategoryRelation WHERE Category.categoryId = CategoryRelation.subCategoryId AND CategoryRelation.categoryId =" + parentcategoryId;  
 		
@@ -152,6 +162,7 @@ public class DBHandlerForUser {
 				obj.setCategoryId(rs.getString("categoryId"));
 				categoryModel.add(obj);
 			}
+			db.closeConnection(con);
 			return categoryModel;
 		}
 
@@ -159,6 +170,7 @@ public class DBHandlerForUser {
 		public String getfName(String email) throws SQLException
 		{
 			// TODO Auto-generated method stub
+			Connection con = db.createConnection();
 			String query="select email,firstName from UserCredantials";
 			ResultSet rs=db.executeQuery(query, con);
 			String fName=null;
@@ -171,6 +183,7 @@ public class DBHandlerForUser {
 				}
 			}
 			System.out.println(fName);
+			con.close();
 			return fName;
 		
 		}
@@ -178,6 +191,7 @@ public class DBHandlerForUser {
 		public String chkUserId(String email) throws SQLException
 		{
 			// TODO Auto-generated method stub
+			Connection con = db.createConnection();
 			String query="select email,userId from UserCredantials";
 			ResultSet rs=db.executeQuery(query, con);
 			String userId=null;
@@ -190,6 +204,7 @@ public class DBHandlerForUser {
 				}
 			}
 			System.out.println(userId);
+			con.close();
 			return userId;
 		}	
 		
@@ -236,6 +251,7 @@ public class DBHandlerForUser {
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
 		{
 			//System.out.println("ProductId in dbhandler : " +Productid);
+			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			String query="select * from ProductInfo where ProductInfo.productId = '" + Productid + "'";
 			ResultSet rs=db.executeQuery(query, con);
@@ -254,15 +270,16 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				ProductInfo.add(obj);
 			}
-			
+			db.closeConnection(con);
 			return ProductInfo;
 		}
 		
 		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
 		{
 			//System.out.println("category in dbhandler : " +category);
+			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Category where Category.categoryId = ProductInfo.categoryId and Category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -280,15 +297,16 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				ProductInfo.add(obj);
 			}
-			
+			db.closeConnection(con);
 			return ProductInfo;
 		}
 		
 		public ArrayList<String> getCompanylistoncategory(String category) throws SQLException
 		{
 			//System.out.println("category in dbhandler : " +category);
+			Connection con = db.createConnection();
 			ArrayList<String> companyname = new ArrayList<String>();	
-			String query="select distinct(ProductInfo.brand) from ProductInfo, category where category.categoryId = ProductInfo.categoryId and category.categoryName = '" + category + "'";       
+			String query="select distinct(ProductInfo.brand) from ProductInfo, Category where Category.categoryId = ProductInfo.categoryId and Category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -296,13 +314,14 @@ public class DBHandlerForUser {
 				//System.out.println("product is : " +rs.getString("brand") );
 				companyname.add(rs.getString("brand"));
 			}
-			
+			db.closeConnection(con);
 			return companyname;
 		}
 		
 		public ArrayList<ProductInfo> getproductlist(String keyword) throws SQLException
 		{
 			//System.out.println("keyword in dbhandler : " +keyword);
+			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Keywords where ProductInfo.productId = Keywords.productId and Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
@@ -321,13 +340,14 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				ProductInfo.add(obj);
 			}
-			
+			db.closeConnection(con);
 			return ProductInfo;
 		}
 		
 		public ArrayList<String> getCompanylist(String keyword) throws SQLException
 		{
 			//System.out.println("keyword in dbhandler : " +keyword);
+			Connection con = db.createConnection();
 			ArrayList<String> companyname = new ArrayList<String>();	
 			String query="select distinct(ProductInfo.brand) from ProductInfo, Keywords where ProductInfo.productId = Keywords.productId and Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
@@ -337,7 +357,7 @@ public class DBHandlerForUser {
 				//System.out.println("product is : " +rs.getString("brand") );
 				companyname.add(rs.getString("brand"));
 			}
-			
+			db.closeConnection(con);
 			return companyname;
 		}
 }
