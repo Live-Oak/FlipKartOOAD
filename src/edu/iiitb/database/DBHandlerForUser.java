@@ -214,6 +214,23 @@ public class DBHandlerForUser {
 			return user;
 		}
 		
+		public void updatepersonalinfo(UserEntry user) throws SQLException
+		{
+			DBConnectivity db=new DBConnectivity();
+			Connection con=db.createConnection();
+
+			String query1="UPDATE UserCredantials SET firstName =?,lastName =?,phoneNumber =? WHERE email=?";
+			PreparedStatement prep1 =con.prepareStatement(query1);
+			prep1.setString(1, user.getFirstName());
+			prep1.setString(2, user.getLastName());
+			prep1.setString(3, user.getPhonenumber());
+			prep1.setString(4, user.getEmail());
+			System.out.println("in db handler for user");
+			
+			prep1.execute();
+			
+		}
+		
 	
 		
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException

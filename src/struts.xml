@@ -46,6 +46,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="login">/index.jsp</result>
 			</action>
 			
+			<action name="UpdatePersonalInfo" class="edu.iiitb.action.UpdatePersonal_info">
+				<result name="success" type="redirectAction">
+				<param name="actionName">Personal-info</param>
+					<param name="namespace">/</param>
+				</result>
+				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
+			
 			<action name="ChangePassword">
 				<result type="tiles">ChangePasswordTile</result>
 				<result name="login">/index.jsp</result>

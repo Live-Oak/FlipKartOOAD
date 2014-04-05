@@ -75,11 +75,12 @@ li.padding {color: #848484;
 		<div class="col-md-6">
 			<h3> Personal Information</h3>
 			<br>
+			<form>
 			<table style="width:400px">
 			<tr> <td style="text-align:left">First Name </td> 
-			<td> <input type="text" class="textbox" name="firstName" value="<s:property value="user.FirstName"/>"> </td> </tr>
+			<td> <input type="text" class="textbox" name="firstname" value="<s:property value="user.FirstName"/>"> </td> </tr>
 			<tr> <td style="text-align:left">Last Name </td> 
-			<td> <input type="text" class="textbox" name="lastName" value="<s:property value="user.LastName"/>"> </td> </tr>
+			<td> <input type="text" class="textbox" name="lastname" value="<s:property value="user.LastName"/>"> </td> </tr>
 			<tr> <td style="text-align:left">Mobile Number </td> 
 			<td> <input type="text" class="textbox" name="mobilenumber" value="<s:property value="user.Phonenumber"/>"> </td> </tr>
 			<tr> <td style="text-align:left">Landline Number </td> 
@@ -91,9 +92,10 @@ li.padding {color: #848484;
 						
 		    </select>	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td> </tr>
 			<tr> <td></td>
-			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES" onClick="form.action='UpdatePersonalInfo';"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
+		    </form>
 		</div>
 		
 		
