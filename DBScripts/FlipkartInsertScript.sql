@@ -258,40 +258,43 @@ INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('37', 
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('37',  'Juicer');
 
 
-insert into `FlipKartDatabase`.`Stock` values (1 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (2 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (3 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (4 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (5 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (6 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (7 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (1 , 10 , 3 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (2 , 0 , 5 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (3 , 20 , 10 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (4 , 5 , 7 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (5 , 0 , 1 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (6 , 10 , 12 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (7 , 10 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (8 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (9 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (9 , 0 , 1 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (10 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (11 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (12 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (13 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (14 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (11 , 5 , 2 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (12 , 2 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (13 , 3 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (14 , 5 , 7 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (15 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (16 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (17 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (16 , 1 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (17 , 1 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (18 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (19 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (19 , 8 , 10 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (20 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (21 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (22 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (21 , 10 , 20 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (22 , 15 , 10 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (23 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (24 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (25 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (26 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (27 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (24 , 0 , 10 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (25 , 5 , 5 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (26 , 7 , 4 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (27 , 3 , 5 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (28 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (29 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (29 , 2 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (30 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (31 , 0 , 0 , 1000 , 1 , '2014-04-03');
+insert into `FlipKartDatabase`.`Stock` values (31 , 1 , 0 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (32 , 0 , 0 , 1000 , 1 , '2014-04-03');
-insert into `FlipKartDatabase`.`Stock` values (33 , 0 , 0 , 1000 , 1 , '2014-04-03');
-
+insert into `FlipKartDatabase`.`Stock` values (33 , 10 , 5 , 1000 , 1 , '2014-04-04');
+insert into `FlipKartDatabase`.`Stock` values (34 , 15 , 20 , 1000 , 1 , '2014-04-04');
+insert into `FlipKartDatabase`.`Stock` values (35 , 12 , 20 , 1000 , 1 , '2014-04-04');
+insert into `FlipKartDatabase`.`Stock` values (36 , 5 , 10 , 1000 , 1 , '2014-04-05');
+insert into `FlipKartDatabase`.`Stock` values (37 , 7 , 5 , 1000 , 1 , '2014-04-06');
 
 
 
