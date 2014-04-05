@@ -20,6 +20,7 @@
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	
+	
 	<%-- <script type="text/javascript">
 	$(document).ready(function(){
 		$("#name of checkbox").change(function()
@@ -72,6 +73,7 @@
 	
 	<div class="col-md-7 background">
 			<b> Showing all the products in the category </b><br><br>
+			
 			<s:iterator value="productinfo">
 				<div class="col-md-4">
 						<div class="border">
@@ -86,7 +88,17 @@
 								</a>
 								</div>
 								<hr>
-								Rs. <s:property value="price"/><br>
+								<s:if test="%{offer==0}">
+									<font size="5" color="#76553B">
+										Rs. <s:property value="price"/><br>
+									</font>
+								</s:if>
+								<s:if test="%{offer>0}">
+									<font size="5px" color="#76553B">
+									Rs. ${price-offer}
+									<img src="asset/Images/offer1.jpg" alt="offer" height="30px">
+									</font>
+								</s:if>
 								<hr>
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
@@ -100,7 +112,8 @@
 						</div><br>
 					</div>
 			</s:iterator>
-	</div>
+			</div>
+	
 	<div class="col-md-1 "></div>
 	
 </body>

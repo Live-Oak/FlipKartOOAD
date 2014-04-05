@@ -19,7 +19,7 @@
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	
-	
+
 </head>
 <body>
 
@@ -61,6 +61,7 @@
 									<font size="5" color="#76553B">
 									<font color="#848484">Rs. <strike><s:property value="price"/></strike></font><br>
 									Rs. ${price-offer}
+									<img src="asset/Images/offer1.jpg" alt="offer" height="30px">
 									</font>
 								</s:if>
 								<hr>
