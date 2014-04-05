@@ -344,7 +344,7 @@ public class DBHandlerForAdmin {
 			entry.setProductName(rs.getString("productName"));
 			entry.setCategoryID(rs.getString("categoryId"));
 			entry.setDescription(rs.getString("description"));
-			entry.setPrice(rs.getFloat("price"));
+			entry.setPrice(rs.getInt("price"));
 			product.add(entry);
 		}
 	}
