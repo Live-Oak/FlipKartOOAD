@@ -303,7 +303,7 @@ public class DBHandlerForUser {
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			  
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, stock.availableQuantity, stock.minimumQuantity from ProductInfo, category, stock where ProductInfo.categoryId = category.categoryId and  ProductInfo.productId = stock.productId and category.categoryName = '" + category + "'";       
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -349,7 +349,7 @@ public class DBHandlerForUser {
 			//System.out.println("keyword in dbhandler : " +keyword);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, stock.availableQuantity, stock.minimumQuantity from ProductInfo, Keywords, stock where ProductInfo.productId = Keywords.productId and  ProductInfo.productId = stock.productId and Keywords.keyword = '" + keyword + "'";       
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Keywords, Stock where ProductInfo.productId = Keywords.productId and  ProductInfo.productId = Stock.productId and Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
