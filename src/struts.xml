@@ -103,9 +103,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="login">/index.jsp</result>
 		</action>
 
-			<action name="insertCategoryPage">
-			<result type="tiles">InserCategoryPage</result>
-			</action>
+			
 
 			<action name="loginAction" class="edu.iiitb.action.LoginAction">
 				<result name="admin" type="redirectAction">

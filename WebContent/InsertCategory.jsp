@@ -22,6 +22,7 @@
 			Category Already Exist :: <br><br>
 			Category-ID :: <br><br>
 			Category Name :: <br><br>
+			Category Image :: <br><br>
 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input type="submit" class="btn btn-primary" value="Insert"/>
 		</div>
 		
@@ -35,6 +36,7 @@
 			 </select><br> </h3>
 			<s:textfield name="categoryId" required="true"  placeholder="Enter CategoryName"/> <br><br>
 			<input type="text" name="categoryName" required="true"  placeholder="Enter CategoryName"/> <br><br>
+			<input type="file" name="myFile" required="true"/> <br><br>
 			<input type="reset" class="btn btn-primary" name="Reset"/>
 		</div>
 		
