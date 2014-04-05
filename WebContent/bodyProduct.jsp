@@ -33,7 +33,7 @@
 					<br>
 					<center>
 						<s:iterator value="productinfo">
-							<img src="<s:property value="image"/>" alt="<s:property value="productID"/>"><br>
+								<img src="<s:property value="image"/>" alt="<s:property value="productID"/>"><br>
 						</s:iterator>
 					</center>
 			</div>
@@ -60,8 +60,8 @@
 								<s:if test="%{offer>0}">
 									<font size="5" color="#76553B">
 									<font color="#848484">Rs. <strike><s:property value="price"/></strike></font><br>
-									Rs. ${price-offer}
-									<img src="asset/Images/offer1.jpg" alt="offer" height="30px">
+									Rs. ${price-offer} 
+									
 									</font>
 								</s:if>
 								<hr>

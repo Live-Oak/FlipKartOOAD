@@ -284,7 +284,7 @@ public class DBHandlerForUser {
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
-				obj.setPrice(rs.getFloat("price"));
+				obj.setPrice(rs.getInt("price"));
 				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
@@ -302,7 +302,8 @@ public class DBHandlerForUser {
 			//System.out.println("category in dbhandler : " +category);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Category where Category.categoryId = ProductInfo.categoryId and Category.categoryName = '" + category + "'";       
+			  
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, stock.availableQuantity, stock.minimumQuantity from ProductInfo, category, stock where ProductInfo.categoryId = category.categoryId and  ProductInfo.productId = stock.productId and category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -311,13 +312,15 @@ public class DBHandlerForUser {
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
-				obj.setPrice(rs.getFloat("price"));
+				obj.setPrice(rs.getInt("price"));
 				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
 				obj.setDescription(rs.getString("description"));
 				obj.setBrand(rs.getString("brand"));
 				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
 				ProductInfo.add(obj);
 			}
 			db.closeConnection(con);
@@ -346,7 +349,7 @@ public class DBHandlerForUser {
 			//System.out.println("keyword in dbhandler : " +keyword);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Keywords where ProductInfo.productId = Keywords.productId and Keywords.keyword = '" + keyword + "'";       
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, stock.availableQuantity, stock.minimumQuantity from ProductInfo, Keywords, stock where ProductInfo.productId = Keywords.productId and  ProductInfo.productId = stock.productId and Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -354,13 +357,15 @@ public class DBHandlerForUser {
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
-				obj.setPrice(rs.getFloat("price"));
+				obj.setPrice(rs.getInt("price"));
 				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
 				obj.setDescription(rs.getString("description"));
 				obj.setBrand(rs.getString("brand"));
 				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
 				ProductInfo.add(obj);
 			}
 			db.closeConnection(con);
