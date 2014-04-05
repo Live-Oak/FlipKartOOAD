@@ -58,7 +58,7 @@ public class DBHandlerForUser {
 			prep.setString(1, user.getFirstName());
 			prep.setString(2, user.getLastName());
 			prep.setString(3, user.getPassword());
-			prep.setString(4, "user");
+			prep.setString(4, "User");
 			prep.setString(5, splitedDate[0]);
 			prep.setString(6, user.getAddress1());
 			prep.setString(7, user.getAddress2());

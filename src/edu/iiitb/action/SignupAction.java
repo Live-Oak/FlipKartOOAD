@@ -73,10 +73,8 @@ public String execute() throws SQLException
 				
 			}
 			try {
-				System.out.println("hello1");
 				System.out.println(userData.getPincode());
 				dbHandler.SignupUserinDB(userData);
-				System.out.println("hello2");
 				SendMailSSL.sendEmail(userData.getEmail(),userData.getFirstName());
 				return "success";
 			} catch (SQLException e) {
