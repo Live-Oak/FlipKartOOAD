@@ -118,13 +118,13 @@ public class DBHandlerForUser {
 		
 		}	
 		
-		public ArrayList<Advertizement> getadvertizement() throws SQLException, IOException
+		public ArrayList<Advertizement> getadvertizement(String Type) throws SQLException, IOException
 		{
 			Connection con = db.createConnection();
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT * FROM Advertizement ORDER BY Advertizement.timeStamp desc LIMIT 4";
+			String query="SELECT * FROM Advertizement where Advertizement.advertizementType= '" +Type +"' ORDER BY Advertizement.timeStamp desc LIMIT 4";
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -140,6 +140,40 @@ public class DBHandlerForUser {
 				//System.out.println(rs.getInt("productID"));
 				advertize.add(obj);
 				
+			}
+			db.closeConnection(con);
+			return advertize;
+		}
+		
+		public ArrayList<Advertizement> getadvertizementforfront(String Type, String category) throws SQLException, IOException
+		{
+			System.out.println("value in handler : " +Type);
+			System.out.println("value in handler : " +category);
+			Connection con = db.createConnection();
+			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
+			DBConnectivity db=new DBConnectivity();															
+			
+			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, Productinfo, Categoryrelation as c1, Categoryrelation as c2 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = Productinfo.productId and Productinfo.categoryId = c2.subCategoryId and c1.categoryId ='"+category+"' and c2.categoryId = c1.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+		
+			ResultSet rs=db.executeQuery(query, con);
+			
+			if (rs.next() == false)
+			{
+				query = "SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, Productinfo, Categoryrelation where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = Productinfo.productId and productinfo.categoryId = Categoryrelation.subCategoryId and Categoryrelation.categoryId = '"+category+"' ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+				rs=db.executeQuery(query, con);
+			}
+			else
+				rs.previous();
+			while(rs.next())
+			{
+				System.out.println("hi");
+				Advertizement obj = new Advertizement();
+				obj.setProductId(rs.getInt("productId"));
+				obj.setPhoto(rs.getString("image"));
+	
+				System.out.println(rs.getInt("productId"));
+				System.out.println(rs.getString("image"));
+				advertize.add(obj);
 			}
 			db.closeConnection(con);
 			return advertize;

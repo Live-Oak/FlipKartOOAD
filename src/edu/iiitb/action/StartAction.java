@@ -10,7 +10,7 @@ import edu.iiitb.model.CategoryModel;
 
 public class StartAction extends ActionSupport 
 {
-	ArrayList<Advertizement> advertizement;
+	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook;
 	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
 	public ArrayList<CategoryModel> getCategoryfashion() {
 		return Categoryfashion;
@@ -121,11 +121,14 @@ public class StartAction extends ActionSupport
 	
 		try
 		{
-			advertizement = dbHandlerForUser.getadvertizement();
+			advertizement = dbHandlerForUser.getadvertizement("carousel");
 			for(int i=0; i<advertizement.size(); i++)
 			{
 				value[i] = advertizement.get(i).getProductId();
 			}
+			advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general","01");
+			advertizementfashion = dbHandlerForUser.getadvertizementforfront("general","02");
+			advertizementbook = dbHandlerForUser.getadvertizementforfront("general","03");
 			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
 			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
 			Categoryfashion = dbHandlerForUser.getsubcategorydeatils(2);
@@ -140,6 +143,32 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
+	public ArrayList<Advertizement> getAdvertizementelectronics() {
+		return advertizementelectronics;
+	}
+
+	public void setAdvertizementelectronics(
+			ArrayList<Advertizement> advertizementelectronics) {
+		this.advertizementelectronics = advertizementelectronics;
+	}
+
+	public ArrayList<Advertizement> getAdvertizementfashion() {
+		return advertizementfashion;
+	}
+
+	public void setAdvertizementfashion(
+			ArrayList<Advertizement> advertizementfashion) {
+		this.advertizementfashion = advertizementfashion;
+	}
+
+	public ArrayList<Advertizement> getAdvertizementbook() {
+		return advertizementbook;
+	}
+
+	public void setAdvertizementbook(ArrayList<Advertizement> advertizementbook) {
+		this.advertizementbook = advertizementbook;
+	}
+
 	public ArrayList<CategoryModel> getCategoryelectronics() {
 		return Categoryelectronics;
 	}

@@ -187,11 +187,12 @@ CREATE  TABLE `FlipKartDatabase`.`Advertizement` (
   `image` VARCHAR(45) NOT NULL ,
   `timeStamp` DATETIME NOT NULL ,
   `caption` VARCHAR(100) NOT NULL,
+  `advertizementType` VARCHAR(20) NOT NULL,
   INDEX `fk_Advertizement_productId` (`productId` ASC) ,
   CONSTRAINT `fk_Advertizement_productId`
     FOREIGN KEY (`productId` )
     REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
-    ON DELETE NO ACTION
+	ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
 
