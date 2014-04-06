@@ -17,8 +17,8 @@
 	<img src="asset/Images/apppage.JPG" alt="anytime anywhere"/> 
 	<br><br><br>
 	<h2>- or - <br>
-	Give a missed call at 1800-208-1001 to download the App<br>
-	You will receive an SMS once you give us a missed call</h2>
+	You can Download your app from the Play store<br>
+	</h2>
 	</center>
 </body>
 </html>

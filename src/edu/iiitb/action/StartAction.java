@@ -11,7 +11,15 @@ import edu.iiitb.model.CategoryModel;
 public class StartAction extends ActionSupport 
 {
 	ArrayList<Advertizement> advertizement;
-	ArrayList<CategoryModel> Categoryelectronics, Categorybooks;
+	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
+	public ArrayList<CategoryModel> getCategoryfashion() {
+		return Categoryfashion;
+	}
+
+	public void setCategoryfashion(ArrayList<CategoryModel> categoryfashion) {
+		Categoryfashion = categoryfashion;
+	}
+
 	public ArrayList<CategoryModel> getCategorybooks() {
 		return Categorybooks;
 	}
@@ -120,6 +128,7 @@ public class StartAction extends ActionSupport
 			}
 			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
 			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
+			Categoryfashion = dbHandlerForUser.getsubcategorydeatils(2);
 			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryName());
 			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryImage());
 		}

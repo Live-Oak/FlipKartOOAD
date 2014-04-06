@@ -19,7 +19,7 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('09', 'Laptop accessories','asset/Images/laptopaccessories.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('10', 'Gaming Consoles','asset/Images/gamingconsoles.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('11', 'Home audio & Mp3 players','asset/Images/audio&video.jpg');
-INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('12', 'Men','asset/Images/man.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('12', 'Men','asset/Images/man.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('13', 'Women','asset/Images/woman.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('14', 'Baby and Kids','asset/Images/kids.png');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('15', 'Clothing','asset/Images/kids.png');
@@ -67,6 +67,9 @@ INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '09');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '10');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '11');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('02', '12');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('02', '13');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('02', '14');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('12', '15');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('12', '16');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('12', '17');

@@ -79,27 +79,34 @@
 						<div class="border">
 								<br>
 								<center>
-								<s:if test="%{availableQuantity >= minimumQuantity}">
-									<s:if test="%{offer==0}">
-										<a href="getProductDetail?productID=<s:property value="productID"/>">
-											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
-											<br><br><br>
-										</a>
-									</s:if>
-									<s:if test="%{offer>0}">
-										<a href="getProductDetail?productID=<s:property value="productID"/>">
-											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
-											<img src="asset/Images/offer.jpg" alt="offer" height="40px" >
-											
-										</a>
-									</s:if>
+								<s:if test="%{availableQuantity == 0}">
+									<a href="#">
+										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+										<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+									</a>
 								</s:if>
-								<s:if test="%{availableQuantity < minimumQuantity}">
-										<a href="#">
-											<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
-											<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
-										
-										</a>
+								<s:if test="%{availableQuantity != 0}">
+									<s:if test="%{availableQuantity >= minimumQuantity}">
+										<s:if test="%{offer==0}">
+											<a href="getProductDetail?productID=<s:property value="productID"/>">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
+												<br><br><br>
+											</a>
+										</s:if>
+										<s:if test="%{offer>0}">
+											<a href="getProductDetail?productID=<s:property value="productID"/>">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+												<img src="asset/Images/offer.jpg" alt="offer" height="40px" >
+												
+											</a>
+										</s:if>
+									</s:if>
+									<s:if test="%{availableQuantity < minimumQuantity}">
+											<a href="#">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+												<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+											</a>
+									</s:if>
 								</s:if>
 								<div class="giveMeEllipsis">
 								<a href="getProductDetail?productID=<s:property value="productID"/>">

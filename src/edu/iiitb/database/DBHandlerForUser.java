@@ -136,8 +136,8 @@ public class DBHandlerForUser {
 				obj.setPhoto(rs.getString("image"));
 				obj.setCaption(rs.getString("caption"));
 				
-				System.out.println(rs.getString("caption"));
-				System.out.println(rs.getInt("productID"));
+				//System.out.println(rs.getString("caption"));
+				//System.out.println(rs.getInt("productID"));
 				advertize.add(obj);
 				
 			}

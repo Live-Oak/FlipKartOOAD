@@ -20,10 +20,7 @@
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 
 	<style type="text/css">
-	  input:focus
-	{
-		background-color:yellow;
-	}
+	  
       #suggestPost
       {
         background:transparent url(asset/Images/suggest-post.png) no-repeat scroll 0px 0px;
@@ -60,7 +57,7 @@
 					    <s:property value="#msg" />
 						<div class="carousel-inner">
 							<s:iterator value="advertizement">
-							<s:if test="%{productId==value[1]}">
+							<s:if test="%{productId==value[2]}">
 								<div class="item active">
 									<a href="getProductDetail?productID=<s:property value="productId"/>">
 										<img src="<s:property value="photo"/>" alt="slide"
@@ -68,7 +65,7 @@
 									</a>
 								</div>
 							</s:if>
-							<s:if test="%{productId!=value[1]}">
+							<s:if test="%{productId!=value[2]}">
 								<div class="item">
 									<a href="getProductDetail?productID=<s:property value="productId"/>">
 										<img src="<s:property value="photo"/>" alt="slide"
@@ -196,38 +193,18 @@
 						FASHION
 				</div>
 				<br>
-				<div class="col-md-4">
-					<div class="border">
-						<center><h6> Men <span class="caret"></span></h6>
-					  	<a href="getSearchresult?categoryname=Men">
-						    	<img src="asset/Images/man.png" alt="mobile"><br>
-						</a>
-						</center>
-					</div>
-					<br>
-				</div>
 				
-				<div class="col-md-4">
-					<div class="border">
-						<center><h6> Women <span class="caret"></span></h6>
-					  	<a href="getSearchresult?categoryname=Women">
-						    	<img src="asset/Images/woman.png" alt="laptop"><br>
-						</a>
-						</center>
-					</div>
-					<br>
-			   	</div>
-			   	
-			   	<div class="col-md-4">
-			   		<div class="border">
-				   		<center><h6> Kids & Baby <span class="caret"></span></h6>
-					  	<a href="getSearchresult?categoryname=Baby and Kids">
-						    	<img src="asset/Images/kids.png" alt="tablet"><br>
-						</a>
-						</center>
+				<s:iterator value="Categoryfashion">
+					<div class="col-md-4">
+					  	<div class="border">
+						  	<center><h6><s:property value="categoryName"/> <span class="caret"></span></h6>
+							  	<a href="getSearchresult?categoryname=<s:property value="categoryName"/>">
+								    	<img src="<s:property value="categoryImage"/>" alt="<s:property value="categoryName"/>"><br>
+								</a>
+							</center>
 						</div>
-					<br>
-			    </div>
+					</div>
+			    </s:iterator>
 			    
 			    <!-- ------------------------------------------------------------------- -->
 			

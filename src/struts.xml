@@ -154,15 +154,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 			<action name="apppage">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Apppage</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="motopage">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Motopage</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="Browseresult" class="edu.iiitb.action.BrowseAction">
@@ -181,15 +177,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 
 			<action name="dealoftheday">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Dealoftheday</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="ebooks">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Ebooks</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="viewUser" class="edu.iiitb.action.FetchDatabaseInfo">
