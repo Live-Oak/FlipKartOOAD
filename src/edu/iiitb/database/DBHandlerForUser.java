@@ -153,13 +153,13 @@ public class DBHandlerForUser {
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, Productinfo, Categoryrelation as c1, Categoryrelation as c2 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = Productinfo.productId and Productinfo.categoryId = c2.subCategoryId and c1.categoryId ='"+category+"' and c2.categoryId = c1.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c2.subCategoryId and c1.categoryId ='"+category+"' and c2.categoryId = c1.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
 			if (rs.next() == false)
 			{
-				query = "SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, Productinfo, Categoryrelation where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = Productinfo.productId and productinfo.categoryId = Categoryrelation.subCategoryId and Categoryrelation.categoryId = '"+category+"' ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+				query = "SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = '"+category+"' ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
 				rs=db.executeQuery(query, con);
 			}
 			else
