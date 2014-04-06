@@ -149,14 +149,34 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('35', 'HP Compaq 15-a002TU Laptop (3rd Gen Ci3/ 4GB/ 500GB/ Ubuntu) ', '36000', 'asset/Images/compaq.jpg', '18000', '04', 'Laptop, Electronics', 'Core i3 (3rd Gen), 500 GB HDD,48 GB DDR3 RAM, Ubuntu', 'HP', '3');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('36', 'Annie Toys 6 in 1 Educational Solar Energy Kit - Series-2 ', '559', 'asset/Images/toys.jpg', '180', '27', 'Gifts,Kids', 'Learn Concept Of Solar Energy,Use Solar Energy,Easy to Assemble and Play', 'Annie', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('37', 'Philips HL1631/J 500 Juicer ', '2295', 'asset/Images/juicer1.jpg', '344', '40', 'Home appliances,Juicer', 'Juice Extractor,Juicing Feature,500 W Consumption', 'Philips', '2');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('38', 'TP-LINK TL-WR740N 150Mbps Wireless N Router', '1299', 'asset/Images/router.jpg', '300', '09', 'Router, Laptop, Network', 'Wireless Security Encryption, Wireless speed upto 150 Mbps, Clear Channel Assessment , Supports SPI Firewall, IP Based Bandwidth Control, IP Based Bandwidth Control', 'TP-Link', '3');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('39', 'Apple iPod iPod Shuffle 2GB 2 GB ', '3700', 'asset/Images/dealoftheday.jpg', '1200', '11', 'Music, MP3, Ipods, Ipads', 'iPod Shuffle 2GB, Silver', 'Apple', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('40', 'Denver Black.Code Eau de Parfum - 50 ml ', '200', 'asset/Images/denver.jpg', '10', '19', 'Fragrance, Perfume, Men', 'Intense and Sensual, Long-lasting Fragrance', 'Denver', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('41', 'Catwalk Flats ', '1095', 'asset/Images/catwalk.jpg', '500', '16', 'Footwear, Women, Flat', 'Fabric Detailing, Panel and Stitch Detail, 104 gm (per single Sandal) - Weight of the product may vary depending on size.', 'Catwalk', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('42', 'Butterflies Perforated Design Hand Bag ', '1399', 'asset/Images/wpurse.jpg', '400', '20', 'Purse, Women', 'Hand Bag, PU, Beige', 'Butterflies', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('43', 'An Introduction to Indian Philosophy ', '196', 'asset/Images/philosophy1.jpg', '40', '48', 'Philosophy, Books', 'SATISCHANDRA CHATTERJEE,  RUPA PUBLICATIONS INDIA PVT LTD, Paperback, English', 'RUPA', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('44', 'Discover Your Destiny : With The Monk who Sold his Ferrari ', '195', 'asset/Images/discover.jpg', '10', '28', 'Religion, Books', 'Robin Sharma, Jaico Publishing House, Paperback, English', 'Jaico', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('45', 'The Oath of the Vayuputras ', '350', 'asset/Images/theoath.jpg', '230', '28', 'Religion, Books, Ebooks', 'English, Westland, 1.11 MB', 'Westland', '1');
 
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(19, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', 'UPTO 25% OFF ON CAMERA');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(05, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/mclp.jpg', '2014-03-31 19:26:38', 'GET YOUR HAND ON MOTO G');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(35, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/motog.jpg', '2014-04-02 19:26:38', 'UPGRADE TO MOTOG RS.2000 OFF');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(37, 'asset/Images/juicer.jpg', '2014-04-03 19:26:38', 'EXTRA 15% OFF ON JUICER');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(36, 'asset/Images/toy.jpg', '2014-04-03 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(19, 'asset/Images/clc.jpg', '2014-03-30 19:26:38', 'UPTO 25% OFF ON CAMERA', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(05, 'asset/Images/km.jpg', '2014-03-30 19:26:38', 'INTRODUCING KOCHADAIYAAN RANGE OF PHONES', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(07, 'asset/Images/mclp.jpg', '2014-03-31 19:26:38', 'GET YOUR HAND ON MOTO G', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(35, 'asset/Images/leo.jpg', '2014-04-01 19:26:38', 'EXCHANGE OFFER FLAT 50% OFF', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/motog.jpg', '2014-04-02 19:26:38', 'UPGRADE TO MOTOG RS.2000 OFF', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(37, 'asset/Images/juicer.jpg', '2014-04-03 19:26:38', 'EXTRA 15% OFF ON JUICER', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(36, 'asset/Images/toy.jpg', '2014-04-03 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF', 'carousel');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(39, 'asset/Images/ipads.jpg', '2014-04-05 23:26:38', 'BEST IPADS DEALS', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(38, 'asset/Images/router.jpg', '2014-04-05 23:26:38', 'LAST DAY OF ROUTER DEAL 15% OFF', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(06, 'asset/Images/lavaup.jpg', '2014-04-05 23:26:38', 'LAVA XTRONE DEALS', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(40, 'asset/Images/signature.jpg', '2014-04-05 23:26:38', 'OFFER ON SIGNATURE PERFUME', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(41, 'asset/Images/footwear.jpg', '2014-04-05 23:26:38', 'LAST DAY OF DEAL EXTRA 15% OFF', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(42, 'asset/Images/fresh.jpg', '2014-04-05 23:26:38', 'GET THE FRESH FASHION ARRIVAL', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(43, 'asset/Images/philosphy.jpg', '2014-04-05 23:26:38', 'BEST OF PHILOSPHY BOOKS', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(44, 'asset/Images/religion.jpg', '2014-04-05 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(45, 'asset/Images/ebook.jpg', '2014-04-05 23:26:38', 'LAST THE BEST DEAL ON EBOOK', 'general');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(39, 'asset/Images/dealoftheday.jpg', '2014-04-05 23:26:38', 'BEST IPADS DEALS', 'dealoftheday');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(45, 'asset/Images/flipkartbook.jpg', '2014-04-05 23:26:38', 'LAST THE BEST DEAL ON EBOOK', 'sidebar');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/smalladdbottom.jpg', '2014-04-05 23:26:38', 'UPGRADE TO MOTOG RS.2000 OFF', 'sidebar');
 
 
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('01',  'Mobile');
@@ -259,7 +279,28 @@ INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('36', 
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('36',  'Kids');
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('37',  'Home appliances');
 INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('37',  'Juicer');
-
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('38',  'Router');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('38',  'Laptop');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('38',  'Network');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('39',  'Music');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('39',  'MP3');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('39',  'Ipods');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('39',  'Ipads');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('40',  'Fragrance');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('40',  'Perfume');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('40',  'Men');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('41',  'Footwear');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('41',  'Women');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('41',  'Flat');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('42',  'Purse');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('42',  'Women');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('43',  'Philosophy');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('43',  'Books');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('44',  'Religion');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('44',  'Books');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('45',  'Religion');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('45',  'Books');
+INSERT INTO `FlipKartDatabase`.`Keywords`(`productId`, `keyword`) VALUES ('45',  'Ebooks');
 
 insert into `FlipKartDatabase`.`Stock` values (1 , 10 , 3 , 1000 , 1 , '2014-04-03');
 insert into `FlipKartDatabase`.`Stock` values (2 , 0 , 5 , 1000 , 1 , '2014-04-03');
@@ -298,7 +339,14 @@ insert into `FlipKartDatabase`.`Stock` values (34 , 15 , 20 , 1000 , 1 , '2014-0
 insert into `FlipKartDatabase`.`Stock` values (35 , 12 , 20 , 1000 , 1 , '2014-04-04');
 insert into `FlipKartDatabase`.`Stock` values (36 , 5 , 10 , 1000 , 1 , '2014-04-05');
 insert into `FlipKartDatabase`.`Stock` values (37 , 7 , 5 , 1000 , 1 , '2014-04-06');
-
+insert into `FlipKartDatabase`.`Stock` values (38 , 5 , 4 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (39 , 9 , 5 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (40 , 11 , 4 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (41 , 10 , 5 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (42 , 15 , 5 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (43 , 12 , 5 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (44 , 9 , 5 , 1000 , 1 , '2014-04-06');
+insert into `FlipKartDatabase`.`Stock` values (45 , 7 , 5 , 1000 , 1 , '2014-04-06');
 
 
 

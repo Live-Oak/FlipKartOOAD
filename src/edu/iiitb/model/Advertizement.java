@@ -8,7 +8,14 @@ public class Advertizement {
 
 	private int productId;
 	private InputStream image;
-	private String photo;
+	private String photo, type;
+
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	private Timestamp timeStamp;
 	public int getProductId() {
 		return productId;

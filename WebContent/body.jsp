@@ -54,7 +54,6 @@
 					<div id="myCarousel" class="carousel slide">
 						<!-- Indicators -->
 						
-					    <s:property value="#msg" />
 						<div class="carousel-inner">
 							<s:iterator value="advertizement">
 							<s:if test="%{productId==value[2]}">
@@ -161,30 +160,19 @@
 			
 			<!-- ------------------------------------------------------------------- -->
 			
-			
-				<div class="col-md-3">
-					<br>
+			 <s:iterator value="advertizementelectronics">
+			 	<center>
+			 	<div class="col-md-4">
+			 		<br>
 					<div class="border">
-						<img src="asset/Images/ipads.jpg" alt="ipad" height="230px" width="145px" >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
-					<br>
-				</div>
+			 	</div>
+			 	</center>
+			 </s:iterator>
 				
-				<div class="col-md-6">
-					<br>
-					<div class="border">
-						<img src="asset/Images/router.jpg" alt="router" height="230px" width="350px">
-					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-3">
-					<br>
-					<div class="border">
-						<img src="asset/Images/lavaup.jpg" alt="lavaup" height="230px" >
-					</div>
-					<br>
-				</div>
 				<!-- ------------------------------------------------------------------- -->
 			</div>
 			
@@ -209,29 +197,18 @@
 			    <!-- ------------------------------------------------------------------- -->
 			
 			
-				<div class="col-md-3">
-					<br>
+			 <s:iterator value="advertizementfashion">
+			 	<center>
+			 	<div class="col-md-4">
+			 		<br>
 					<div class="border">
-						<img src="asset/Images/signature.jpg" alt="signature" height="230px" width="145px" >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-6">
-					<br>
-					<div class="border">
-						<img src="asset/Images/footwear.jpg" alt="footwear" height="230px" width="350px">
-					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-3">
-					<br>
-					<div class="border">
-						<img src="asset/Images/fresh.jpg" alt="fresh" height="230px" >
-					</div>
-					<br>
-				</div>
+			 	</div>
+			 	</center>
+			 </s:iterator>
 				<!-- ------------------------------------------------------------------- -->
 			    
 			  </div>
@@ -261,29 +238,18 @@
 				<!-- ------------------------------------------------------------------- -->
 			
 			
-				<div class="col-md-3">
-					<br>
+			<s:iterator value="advertizementbook">
+				<center>
+			 	<div class="col-md-4">
+			 		<br>
 					<div class="border">
-						<img src="asset/Images/religion.jpg" alt="religion" height="230px" width="145px" >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-6">
-					<br>
-					<div class="border">
-						<img src="asset/Images/philosphy.jpg" alt="philosphy" height="230px" width="350px">
-					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-3">
-					<br>
-					<div class="border">
-						<img src="asset/Images/ebook.jpg" alt="ebook" height="230px" >
-					</div>
-					<br>
-				</div>
+			 	</div>
+			 	</center>
+			 </s:iterator>
 				<!-- ------------------------------------------------------------------- -->
 				
 				
