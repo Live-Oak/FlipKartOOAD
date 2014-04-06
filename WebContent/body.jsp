@@ -161,12 +161,16 @@
 			<!-- ------------------------------------------------------------------- -->
 			
 			 <s:iterator value="advertizementelectronics">
+			 	<center>
 			 	<div class="col-md-4">
 			 		<br>
 					<div class="border">
-						<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
 			 	</div>
+			 	</center>
 			 </s:iterator>
 				
 				<!-- ------------------------------------------------------------------- -->
@@ -194,12 +198,16 @@
 			
 			
 			 <s:iterator value="advertizementfashion">
+			 	<center>
 			 	<div class="col-md-4">
 			 		<br>
 					<div class="border">
-						<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
 			 	</div>
+			 	</center>
 			 </s:iterator>
 				<!-- ------------------------------------------------------------------- -->
 			    
@@ -231,12 +239,16 @@
 			
 			
 			<s:iterator value="advertizementbook">
+				<center>
 			 	<div class="col-md-4">
 			 		<br>
 					<div class="border">
-						<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
 			 	</div>
+			 	</center>
 			 </s:iterator>
 				<!-- ------------------------------------------------------------------- -->
 				

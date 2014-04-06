@@ -147,8 +147,8 @@ public class DBHandlerForUser {
 		
 		public ArrayList<Advertizement> getadvertizementforfront(String Type, String category) throws SQLException, IOException
 		{
-			System.out.println("value in handler : " +Type);
-			System.out.println("value in handler : " +category);
+			//System.out.println("value in handler : " +Type);
+			//System.out.println("value in handler : " +category);
 			Connection con = db.createConnection();
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
@@ -171,8 +171,8 @@ public class DBHandlerForUser {
 				obj.setProductId(rs.getInt("productId"));
 				obj.setPhoto(rs.getString("image"));
 	
-				System.out.println(rs.getInt("productId"));
-				System.out.println(rs.getString("image"));
+				//System.out.println(rs.getInt("productId"));
+				//System.out.println(rs.getString("image"));
 				advertize.add(obj);
 			}
 			db.closeConnection(con);
