@@ -186,7 +186,7 @@ CREATE  TABLE `FlipKartDatabase`.`Advertizement` (
   `productId` INT NOT NULL ,
   `image` VARCHAR(45) NOT NULL ,
   `timeStamp` DATETIME NOT NULL ,
-  `caption` VARCHAR(100) NOT NULL,
+  `caption` VARCHAR(100) NOT NULL, 
   INDEX `fk_Advertizement_productId` (`productId` ASC) ,
   CONSTRAINT `fk_Advertizement_productId`
     FOREIGN KEY (`productId` )
