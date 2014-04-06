@@ -10,6 +10,7 @@
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
+		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
@@ -19,6 +20,7 @@
 	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	
 	
 	<%-- <script type="text/javascript">
@@ -36,7 +38,25 @@
 
 
 	</script> --%>
-	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$(".addtocompare").change(function()
+				{
+		$(".addtocompare").is(':checked');
+		alert("hello");
+		var maxAllowed = 4;
+		var cnt = $("input[name='compare']:checked").length;
+			      if (cnt > maxAllowed)
+			      {
+			         $(this).prop("checked", "");
+			         alert('Select maximum ' + maxAllowed + ' technologies!');
+			     }
+			      
+			
+			});
+		
+	});
+		</script>
 	
 </head>
 <body>
@@ -127,7 +147,9 @@
 								<hr>
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
-								<input type="checkbox" name="addtocompare" value=""> Add to compare<br>
+								<input type="checkbox"  class="addtocompare" name="compare">Add To Compare</input>
+								<hr>
+								<br><br><br>
 								<!--<s:property value="categoryID"/><br>
 								<s:property value="price"/><br>
 								<s:property value="offer"/><br>
@@ -138,8 +160,10 @@
 					</div>
 			</s:iterator>
 			</div>
+
+	<div class="col-md-1 ">
 	
-	<div class="col-md-1 "></div>
-	
+	</div>
+				
 </body>
 </html>

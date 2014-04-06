@@ -357,7 +357,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				method="getCartProducts">
 				<result name="success" type="json" />
 			</action>
-
+			
+			
+			
 			<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
 				<result name="success" type="redirectAction">
 					<param name="actionName">stockData</param>
