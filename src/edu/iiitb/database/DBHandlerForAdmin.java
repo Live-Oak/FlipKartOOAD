@@ -3,7 +3,7 @@
  */
 package edu.iiitb.database;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -86,7 +86,7 @@ public class DBHandlerForAdmin {
 			}
 			
 		}
-		
+	//	db.closeConnection(con);
 		return true;
 	}
 	
@@ -98,6 +98,7 @@ public class DBHandlerForAdmin {
 		{
 			user.add(Integer.toString(rs.getInt("userId"))+"_"+rs.getString("role"));
 		}
+	//	db.closeConnection(con);
 	}
 	
 	public void fetchUserID(ArrayList<String> userID) throws SQLException {
@@ -109,6 +110,7 @@ public class DBHandlerForAdmin {
 		{
 			userID.add(Integer.toString(rs.getInt("userId")));
 		}
+	//	db.closeConnection(con);
 	}
 	
 	public int fetchUserIDIntForm(String email) throws SQLException
@@ -139,6 +141,7 @@ public class DBHandlerForAdmin {
 			Statement st2=(Statement) con.createStatement();
 			st2.executeUpdate(query2);
 		}
+	//	db.closeConnection(con);
 		
 	}
 	
@@ -156,10 +159,11 @@ public class DBHandlerForAdmin {
 
 	public void addCategoryinDB(CategoryModel categoryInfo) throws SQLException {
 		// TODO Auto-generated method stub
-		String query="INSERT INTO Category(`categoryId`,`categoryName`) VALUES(?,?)";
+		String query="INSERT INTO Category(`categoryId`,`categoryName`,`image`) VALUES(?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
 		prep.setString(1, categoryInfo.getCategoryId());
 		prep.setString(2, categoryInfo.getCategoryName());
+		prep.setString(3, categoryInfo.getCategoryImage());
 		prep.execute();
 	}
 
@@ -244,13 +248,21 @@ public class DBHandlerForAdmin {
 		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
 		PreparedStatement stmnt1 = con.prepareStatement(query1);
 		stmnt1.setInt(1, prod.getProductID());
-		stmnt1.setInt(2, 0);
+		stmnt1.setInt(2, 5);
 		stmnt1.setInt(3, prod.getMinimumQuantity());
 		stmnt1.setInt(4, 1000);
 		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
 		stmnt1.setString(6, date);
 		stmnt1.execute();
 		System.out.println("Executed");
+	}
+	
+	public void deleteProduct(int productId) throws SQLException
+	{
+		String query = "DELETE FROM ProductInfo where productId = "+productId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("ProductInfo rows Deleted");
 	}
 	
 	public void addAdvertisement(Advertizement adv) throws SQLException
@@ -340,7 +352,7 @@ public class DBHandlerForAdmin {
 			entry.setProductName(rs.getString("productName"));
 			entry.setCategoryID(rs.getString("categoryId"));
 			entry.setDescription(rs.getString("description"));
-			entry.setPrice(rs.getFloat("price"));
+			entry.setPrice(rs.getInt("price"));
 			product.add(entry);
 		}
 	}
@@ -470,7 +482,7 @@ public class DBHandlerForAdmin {
 	public void fetchPurchaseProductRequestForAdmin(ArrayList<ViewRequestSeller> requests) throws SQLException
 	{
 		String query = "select uc.userId , uc.firstName , uc.lastName , pd.productId , pd.productName ,"
-				+ " sum(os.orderQuantity) , os.sellerId , os.productId from OrderStock as os , Seller as sl , "
+				+ " sum(os.orderQuantity) , os.sellerId , os.productId , pd.image from OrderStock as os , Seller as sl , "
 				+ "UserCredantials as uc , ProductInfo as pd where sl.sellerId = os.sellerId and sl.userId = uc.userId "
 				+ "and os.productId = pd.productId group by pd.productId , os.sellerId";
 		
@@ -483,9 +495,38 @@ public class DBHandlerForAdmin {
 			model.setCustomerName(rs.getString(2)+" "+rs.getString(3));
 			model.setProductName(rs.getString(5));
 			model.setOrderQty(rs.getInt(6));
+			model.setProductImage(rs.getString(9));
 			requests.add(model);
 		}
 		
+	}
+
+	public void deleteProductPurchaseEntry(int productId, int customerId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "DELETE FROM OrderStock where productId = " + productId + " and sellerId =" + customerId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("OrderStock rows Deleted");
+	}
+
+	public void updateProductQuantity(int productId, int purchaseQty , int sellerId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query="update Stock set availableQuantity = " + purchaseQty + " where productId = " + productId + " and sellerId =" + sellerId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("Product Available Quantity updated");
+	}
+
+	public void updateKeywordForProduct(int productID, String[] split) throws SQLException {
+		// TODO Auto-generated method stub
+		for(int i=0;i<split.length;i++)
+		{
+			String query = "Insert into Keywords(`productId`,`keyword`) values(?,?)";
+			PreparedStatement stmnt = con.prepareStatement(query);
+			stmnt.setInt(1, productID);
+			stmnt.setString(2, split[i]);
+			stmnt.execute();
+		}
 	}
 	
 }

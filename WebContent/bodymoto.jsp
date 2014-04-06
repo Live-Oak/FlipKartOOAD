@@ -15,9 +15,9 @@
 	<br><br><br>
 	<img src="asset/Images/motoavailable.jpg" alt="anytime anywhere"/> 
 	<br><br><br>
-	<h2>
-	But One Now<br>
-	</h2>
+	<form action="getProductDetail?productID=">
+	 	<button type="submit" class="btn btn-danger">BUY NOW</button>
+	 </form>
 	</center>
 </body>
 </html>

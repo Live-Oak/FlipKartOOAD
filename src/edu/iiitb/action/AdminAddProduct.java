@@ -4,21 +4,12 @@ import java.sql.SQLException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
-
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-
-import org.apache.catalina.connector.Request;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
-
-import com.mysql.jdbc.Field;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.sun.mail.iap.Response;
-
 import edu.iiitb.config.Config;
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.model.ProductInfo;
@@ -80,7 +71,6 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 			if(dbHandler.chkForProductIDAlreadyExists(prod.getProductID()))
 			{
 				dbHandler.fetchCategoryID(categoryId);
-				addFieldError("productID", "");
 				servletRequest.setAttribute("errorMessage", "PRODUCT ID already EXISTS !!!");
 		
 			}
@@ -105,11 +95,12 @@ public class AdminAddProduct extends ActionSupport implements ModelDriven<Produc
 			// TODO: handle exception
 		}
 		
-		
-		
+
 		try {
 			
 			dbHandler.registerProduct(prod);
+			dbHandler.updateKeywordForProduct(prod.getProductID() , prod.getKeywords().split(","));
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

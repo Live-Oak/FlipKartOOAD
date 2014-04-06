@@ -28,8 +28,6 @@ private Map<String,Object> session;
 	{
 		HttpServletResponse response=null;
 		 response=ServletActionContext.getResponse();
-		 
-		System.out.println("hellooooooo");
 		session.remove("user");
 		return "success";
 	}

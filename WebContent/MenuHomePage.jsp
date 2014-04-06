@@ -61,7 +61,18 @@
 					</div>
 				<div class="col-md-1">
 				<%Login l = new Login();%>
-				<a href="#">Hi <%= session.getValue("fname")%>!</a>
+				
+				<li style="list-style-type:none" class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Hi <%= session.getValue("fname")%>!<span class="caret"></span></a>
+							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+									
+										<li><a href="Personal-info">Account</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="#">Orders</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="logout">Logout</a></li>
+									
+							</ul>
+						</li>
 					
 					<button type="submit" class="btn btn-warning" >SEARCH</button>
 				</div>

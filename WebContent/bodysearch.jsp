@@ -20,6 +20,7 @@
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	
+	
 	<%-- <script type="text/javascript">
 	$(document).ready(function(){
 		$("#name of checkbox").change(function()
@@ -72,21 +73,57 @@
 	
 	<div class="col-md-7 background">
 			<b> Showing all the products in the category </b><br><br>
+			
 			<s:iterator value="productinfo">
 				<div class="col-md-4">
 						<div class="border">
-							<center>
 								<br>
-								<a href="getProductDetail?productID=<s:property value="productID"/>">
-									<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto"><br><br>
-								</a>
+								<center>
+								<s:if test="%{availableQuantity == 0}">
+									<a href="#">
+										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+										<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+									</a>
+								</s:if>
+								<s:if test="%{availableQuantity != 0}">
+									<s:if test="%{availableQuantity >= minimumQuantity}">
+										<s:if test="%{offer==0}">
+											<a href="getProductDetail?productID=<s:property value="productID"/>">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
+												<br><br><br>
+											</a>
+										</s:if>
+										<s:if test="%{offer>0}">
+											<a href="getProductDetail?productID=<s:property value="productID"/>">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+												<img src="asset/Images/offer.jpg" alt="offer" height="40px" >
+												
+											</a>
+										</s:if>
+									</s:if>
+									<s:if test="%{availableQuantity < minimumQuantity}">
+											<a href="#">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+												<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+											</a>
+									</s:if>
+								</s:if>
 								<div class="giveMeEllipsis">
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
 									<font size="4" color="black"><s:property value="productName"/></font><br>
 								</a>
 								</div>
 								<hr>
-								Rs. <s:property value="price"/><br>
+								<s:if test="%{offer==0}">
+									<font size="5px" color="#76553B">
+										Rs. <s:property value="price"/><br>
+									</font>
+								</s:if>
+								<s:if test="%{offer>0}">
+									<font size="5px" color="#76553B">
+									Rs. ${price-offer}
+									</font>
+								</s:if>
 								<hr>
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
@@ -100,7 +137,8 @@
 						</div><br>
 					</div>
 			</s:iterator>
-	</div>
+			</div>
+	
 	<div class="col-md-1 "></div>
 	
 </body>
