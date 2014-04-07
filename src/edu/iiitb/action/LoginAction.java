@@ -84,8 +84,11 @@ public class LoginAction extends ActionSupport implements ModelDriven<Login>, Se
 							else
 							{
 								userId=dbHandler.chkUserId(details.getEmail());
+								role=dbHandler.chkForEmailID(details.getEmail());
 								User l2 = new User();
 								l2.setUserId(userId);
+								l2.setRole(role);
+								System.out.println("user get role: "+l2.getRole());
 								System.out.println(l2.getUserId());
 								User l1=new User(details.getEmail(),details.getPassword(),l2.getUserId());
 								System.out.println(details.getEmail()+details.getPassword());

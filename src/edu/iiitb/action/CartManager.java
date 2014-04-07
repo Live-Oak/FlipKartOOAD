@@ -15,12 +15,12 @@ import edu.iiitb.database.DBHandlerForCart;
 import edu.iiitb.model.CartModel;
 import edu.iiitb.model.User;
 
-/**
- * @author PrashantN
- *
- */
 public class CartManager extends ActionSupport implements SessionAware{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int userid;
 	private int productId;
 	private int quantity;

@@ -98,6 +98,31 @@ public class DBHandlerForUser {
 				
 		}
 
+		
+		public String chkForEmailID(String email) throws SQLException 
+		{
+			Connection con = db.createConnection();
+			String role=null;
+			String query="select email,role from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println(email);
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+					role=rs.getString("role");
+			}
+			System.out.println(role);
+			if (role==null)
+			{
+				System.out.println(role);
+				return "invalid";
+			}
+			con.close();
+			return role;
+				
+		}
+
+		
 		public String getPasswordformDB(String email) throws SQLException 
 		{
 			// TODO Auto-generated method stub
