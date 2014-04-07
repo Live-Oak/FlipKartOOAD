@@ -17,10 +17,10 @@
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+	<script src="asset/JavaScripts/jquery-ui.js"></script>
 	
 	
 	<%-- <script type="text/javascript">
@@ -47,8 +47,6 @@
 		var maxAllowed = 4;	
 		//alert($(event.target).attr("pid"));				Specifies pid 
 		var pId = $(event.target).attr("pid");
-		alert(pId);
-		$("#comparecart").show();
 		var cnt = $("input[name='compare']:checked").length;
 			      if (cnt > maxAllowed)
 			      {
@@ -65,22 +63,29 @@
 					    },
 					    url:'getProductToCompare',
 					    success: function(data){
+					    	
+					    	$("#comparecart").show();
 					    	if(data.count == 0 || data.count == undefined)
 				    		{
-				    			
+					    		
+					    		$("#emptyComparediv").show();
 				    			$("#compare_button").attr("disabled", true);
 				    		}
 					    	else
 					    	{
+					    		
 					    		alert(data.count);
-					    		$("#list").empty();
-					    		$("#comparecart").show();
-					    		$.each(data.products, function(count,product) { 
-				    				$("#list").append("<div style='height:100px;border : 1px solid gray;padding:10px'>"+
-				    						"<img src='"+product.image+"' height='80px' width='80px' style='float:left' />"+
-				    						"<div class='productName'>"+product.productName+"</div>"+
-				    						"<div class='remove'><a style='color:black;'>remove</a></div>"+
-				    				"</div>");	
+					    		$("#producttocompare").show();
+					    		$("#products_to_compare").empty();
+					    		$.each(data.products, function(count,productcompare) 
+					    		{ 	
+					    			alert(productcompare.productName);
+				    				$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
+				    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
+						    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
+				    						"<div class='productName'>"+productcompare.productName+"</div>"+
+				    						
+				    				"</center>"+"</div>");	
 					    		});
 					    	}
 					     }});	
@@ -213,18 +218,21 @@
 			</div>
 
 	</div>
-<<<<<<< HEAD
-<div id="comparecart">Compare Products
+
+<div id="comparecart">
 <a class="close-reveal-modal" id="close_compare">&#215;</a>
-				<div id="list">
-				
-				
+			<div id="emptyComparediv" class="empty-comparison">
+				There are no items to compare.<br><br>
+			</div>
+			<div id="producttocompare" class="empty-comparison">
+			
+				<div id="products_to_compare">
+					
 				</div>
-<input type = "button" id="compare_button" class="compare_button" value="Compare"/>
+			</div>
+<input type = "button" id="compare_button" class="compare_button" value="Compare" action="#"/>
 </div>
 				
-=======
 	<br>			
->>>>>>> branch 'master' of https://github.com/Live-Oak/FlipKartProject.git
 </body>
 </html>

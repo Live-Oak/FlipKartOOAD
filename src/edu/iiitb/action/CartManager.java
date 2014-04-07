@@ -142,7 +142,11 @@ public class CartManager extends ActionSupport implements SessionAware{
 		User user = (User)session.get("user");
 		try {
 			products = DBHandlerForCart.getProducts(Integer.parseInt(user.getUserId().trim()));
-			
+			for(CartModel c : products)
+			{
+				System.out.println(c.getImage());
+			}
+			System.out.println("");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Unable to fetch datat from cart...!!!");

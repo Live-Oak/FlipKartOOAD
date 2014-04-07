@@ -20,11 +20,9 @@ public class DBHandlerforComparison
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			System.out.println(rs.getInt("productId"));
-			System.out.println(rs.getString("productName"));
-
 			products.add(new CompareProductsModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image")));
 		}
+		
 		db.closeConnection(con);
 		return products;
 	}
