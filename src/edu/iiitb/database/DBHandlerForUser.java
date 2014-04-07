@@ -143,13 +143,13 @@ public class DBHandlerForUser {
 		
 		}	
 		
-		public ArrayList<Advertizement> getadvertizement(String Type) throws SQLException, IOException
+		public ArrayList<Advertizement> getadvertizement(String Type, String Limit) throws SQLException, IOException
 		{
 			Connection con = db.createConnection();
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT * FROM Advertizement where Advertizement.advertizementType= '" +Type +"' ORDER BY Advertizement.timeStamp desc LIMIT 4";
+			String query="SELECT * FROM Advertizement where Advertizement.advertizementType= '" +Type +"' ORDER BY Advertizement.timeStamp desc LIMIT " + Limit;
 		
 			ResultSet rs=db.executeQuery(query, con);
 			

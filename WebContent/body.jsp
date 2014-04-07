@@ -111,14 +111,17 @@
 			  </center>
 			 </div>
 			 <br>
-			 <div class="border">
-			<center> 
-				 <h6> <b> EXCLUSIVELY ON FLIPKART </b> </h6> 
-				 <a href="motopage">
-				<img src="asset/Images/smalladdbottom.jpg" alt="exclusive on flipkart" height="130px" width="160px">
-			</a> </center>
-			</div>
-			<br> 
+			 <s:iterator value="dealoftheday">
+			 	<center>
+					<div class="border">
+						 <h6> <b> DEAL OF THE DAY </b></h6>
+						 <h6> <i> <s:property value="caption"/> </i> </h6>
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="130px" width="140px" >
+						</a>
+					</div>
+			 	</center>
+			 </s:iterator>
 		</div> 
 		
 		<div class="col-md-1">
@@ -259,26 +262,18 @@
 		
 		<div class="col-md-2">
 			<br><br>
-			<div class="border">
-				<center> <h6> <i> DEAL OF THE DAY </i></h6>
-				<a href="dealoftheday">
-				<img src="asset/Images/dealoftheday1.jpg" alt="dealoftheday1" height="60px" width="60px">
-				<img src="asset/Images/dealoftheday.jpg" alt="dealoftheday" height="80px" width="80px">
-				</a>
-				<h6> <b> Apple Ipod shuffle (2GB) </b></h6></center>
-			</div>
-			<br><br>
-			
-			<div class="border">
-				<center> <h6> <i>  REALLY ALL YOU WANT INSTANTLY </i></h6>
-				<h6> Download and read Ebooks Instantly. Read Ebboks across your mobile, tablets or computers.</h6>
-				<a href="ebooks">
-				<img src="asset/Images/flipkartbook.png" alt="FLIPKART" height="100px" width="150px">
-				</a>
-				</center>
-			</div>
-			
-			<br><br><br>
+			<s:iterator value="advertizementsidebar">
+			 	<center>
+					<div class="border">
+						 <h6> <i> <s:property value="caption"/> </i> </h6>
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="130px" width="170px" >
+						</a>
+					</div>
+			 	</center>
+			 	<br><br>
+			 </s:iterator>
+			<br>
 			<div class="border">
 				<center> <h6> <i> SEND GIFTS </i></h6>
 				<h6> Last minute gifting is now only a few click away!

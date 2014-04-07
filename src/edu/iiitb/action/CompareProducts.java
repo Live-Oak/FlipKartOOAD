@@ -32,6 +32,12 @@ public class CompareProducts extends ActionSupport
 		System.out.println(getProductId());
 		setProducts(DBHandlerforComparison.getProducts(getProductId()));
 		count=products.size();
+		System.out.println("action");
+		for(CompareProductsModel c : products)
+		{
+			System.out.println("hello");
+			c.getProductName();
+		}
 		return "success";
 	}
 

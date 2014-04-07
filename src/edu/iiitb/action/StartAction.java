@@ -10,8 +10,30 @@ import edu.iiitb.model.CategoryModel;
 
 public class StartAction extends ActionSupport 
 {
-	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook;
+	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook, dealoftheday, advertizementsidebar;
+	
+	public ArrayList<Advertizement> getAdvertizementsidebar() {
+		return advertizementsidebar;
+	}
+
+	public void setAdvertizementsidebar(
+			ArrayList<Advertizement> advertizementsidebar) {
+		this.advertizementsidebar = advertizementsidebar;
+	}
+
 	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
+	
+	
+	public ArrayList<Advertizement> getDealoftheday() {
+		return dealoftheday;
+	}
+
+	public void setDealoftheday(ArrayList<Advertizement> dealoftheday) {
+		this.dealoftheday = dealoftheday;
+	}
+
+	
+
 	public ArrayList<CategoryModel> getCategoryfashion() {
 		return Categoryfashion;
 	}
@@ -121,7 +143,7 @@ public class StartAction extends ActionSupport
 	
 		try
 		{
-			advertizement = dbHandlerForUser.getadvertizement("carousel");
+			advertizement = dbHandlerForUser.getadvertizement("carousel","4");
 			for(int i=0; i<advertizement.size(); i++)
 			{
 				value[i] = advertizement.get(i).getProductId();
@@ -129,11 +151,11 @@ public class StartAction extends ActionSupport
 			advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general","01");
 			advertizementfashion = dbHandlerForUser.getadvertizementforfront("general","02");
 			advertizementbook = dbHandlerForUser.getadvertizementforfront("general","03");
+			advertizementsidebar= dbHandlerForUser.getadvertizement("sidebar","2");
+			dealoftheday= dbHandlerForUser.getadvertizement("dealoftheday","1");
 			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
 			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
 			Categoryfashion = dbHandlerForUser.getsubcategorydeatils(2);
-			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryName());
-			//System.out.println("On action " +Categoryelectronics.get(1).getCategoryImage());
 		}
 		catch(Exception e)
 		{

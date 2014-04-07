@@ -67,10 +67,22 @@
 					    success: function(data){
 					    	if(data.count == 0 || data.count == undefined)
 				    		{
-				    			$("#comparecart").show();
+				    			
 				    			$("#compare_button").attr("disabled", true);
 				    		}
-
+					    	else
+					    	{
+					    		alert(data.count);
+					    		$("#list").empty();
+					    		$("#comparecart").show();
+					    		$.each(data.products, function(count,product) { 
+				    				$("#list").append("<div style='height:100px;border : 1px solid gray;padding:10px'>"+
+				    						"<img src='"+product.image+"' height='80px' width='80px' style='float:left' />"+
+				    						"<div class='productName'>"+product.productName+"</div>"+
+				    						"<div class='remove'><a style='color:black;'>remove</a></div>"+
+				    				"</div>");	
+					    		});
+					    	}
 					     }});	
 			});
 		$('input:checkbox').removeAttr('checked');
@@ -89,6 +101,7 @@
 	</script>
 </head>
 <body>
+	<div class="container">
 		<div class="col-md-1 "></div>
 		<div class="col-md-3 ">
 			<div class="background">
@@ -120,7 +133,7 @@
 			</div>
 		</div>
 	
-	<div class="col-md-7 background">
+	<div class="col-md-8 background">
 			<b> Showing all the products in the category </b><br><br>
 			
 			<s:iterator value="productinfo">
@@ -199,9 +212,8 @@
 			</s:iterator>
 			</div>
 
-	<div class="col-md-1 ">
-	
 	</div>
+<<<<<<< HEAD
 <div id="comparecart">Compare Products
 <a class="close-reveal-modal" id="close_compare">&#215;</a>
 				<div id="list">
@@ -211,5 +223,8 @@
 <input type = "button" id="compare_button" class="compare_button" value="Compare"/>
 </div>
 				
+=======
+	<br>			
+>>>>>>> branch 'master' of https://github.com/Live-Oak/FlipKartProject.git
 </body>
 </html>

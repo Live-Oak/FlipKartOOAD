@@ -175,7 +175,7 @@ INSERT INTO `FlipKartDatabase`.`Advertizement` value(43, 'asset/Images/philosphy
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(44, 'asset/Images/religion.jpg', '2014-04-05 23:26:38', 'LAST DAY OF DEAL EXTRA 25% OFF', 'general');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(45, 'asset/Images/ebook.jpg', '2014-04-05 23:26:38', 'LAST THE BEST DEAL ON EBOOK', 'general');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(39, 'asset/Images/dealoftheday.jpg', '2014-04-05 23:26:38', 'BEST IPADS DEALS', 'dealoftheday');
-INSERT INTO `FlipKartDatabase`.`Advertizement` value(45, 'asset/Images/flipkartbook.jpg', '2014-04-05 23:26:38', 'LAST THE BEST DEAL ON EBOOK', 'sidebar');
+INSERT INTO `FlipKartDatabase`.`Advertizement` value(45, 'asset/Images/flipkartbook.png', '2014-04-05 23:26:38', 'LAST THE BEST DEAL ON EBOOK', 'sidebar');
 INSERT INTO `FlipKartDatabase`.`Advertizement` value(34, 'asset/Images/smalladdbottom.jpg', '2014-04-05 23:26:38', 'UPGRADE TO MOTOG RS.2000 OFF', 'sidebar');
 
 
