@@ -108,31 +108,19 @@
    		<definition name="Apppage" extends="start">
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
    			<put-attribute name="body"   value="/bodyapp.jsp"/>
-   		</definition>
-   		
-   		<definition name="Motopage" extends="start">
-   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
-   			<put-attribute name="body"   value="/bodymoto.jsp"/>
-   		</definition>
-   		
-   		<definition name="Dealoftheday" extends="start">
-   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
-   			<put-attribute name="body"   value="/bodydealoftheday.jsp"/>
-   		</definition>
-   		
-   		<definition name="Ebooks" extends="start">
-   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
-   			<put-attribute name="body"   value="/Ebooks.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
    		</definition>
    		
    		<definition name="Browse_SearchPage" extends="start">
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
    			<put-attribute name="body"   value="/bodysearch.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
    		</definition>
    		
    		<definition name="ProductPage" extends="start">
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
    			<put-attribute name="body"   value="/bodyProduct.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
    		</definition>
    		
    		<definition name="AddProductPage" extends="Administrator">

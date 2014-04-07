@@ -60,6 +60,7 @@
 	
 </head>
 <body>
+	<div class="container">
 		<div class="col-md-1 "></div>
 		<div class="col-md-3 ">
 			<div class="background">
@@ -91,7 +92,7 @@
 			</div>
 		</div>
 	
-	<div class="col-md-7 background">
+	<div class="col-md-8 background">
 			<b> Showing all the products in the category </b><br><br>
 			
 			<s:iterator value="productinfo">
@@ -161,9 +162,7 @@
 			</s:iterator>
 			</div>
 
-	<div class="col-md-1 ">
-	
 	</div>
-				
+	<br>			
 </body>
 </html>
