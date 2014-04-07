@@ -39,6 +39,7 @@
 
 	</script> --%>
 	<script type="text/javascript">
+	var product_id_to_send;
 	$(document).ready(function(){
 		$(".addtocompare").change(function(event)
 				{
@@ -80,15 +81,24 @@
 					    		$.each(data.products, function(count,productcompare) 
 					    		{ 	
 					    			alert(productcompare.productName);
+					    			product_id_to_send=productcompare.productId;
+					    			alert("prev"+product_id_to_send);
 				    				$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
 				    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
 						    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
 				    						"<div class='productName'>"+productcompare.productName+"</div>"+
 				    						
 				    				"</center>"+"</div>");	
+				    				
 					    		});
+					    		
 					    	}
 					     }});	
+			      $("#compare_button").click(function(){
+		    		//	$("#comparecart").hide();
+		    			alert("next"+product_id_to_send);
+		    			
+			      });
 			});
 		$('input:checkbox').removeAttr('checked');
 		
