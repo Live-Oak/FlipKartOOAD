@@ -511,10 +511,21 @@ public class DBHandlerForAdmin {
 
 	public void updateProductQuantity(int productId, int purchaseQty , int sellerId) throws SQLException {
 		// TODO Auto-generated method stub
+		int originalProductQty = fetchProductAvailableQuantity(productId);
+		purchaseQty = originalProductQty+purchaseQty;
 		String query="update Stock set availableQuantity = " + purchaseQty + " where productId = " + productId + " and sellerId =" + sellerId+"";
 		Statement st=(Statement) con.createStatement();
 		st.executeUpdate(query);
 		System.out.println("Product Available Quantity updated");
+	}
+
+	private int fetchProductAvailableQuantity(int productId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select availableQuantity from Stock where productId = '"+productId+"'";
+		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next())
+			return rs.getInt(1);
+		return 0;
 	}
 
 	public void updateKeywordForProduct(int productID, String[] split) throws SQLException {
