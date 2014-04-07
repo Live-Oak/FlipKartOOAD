@@ -45,7 +45,7 @@ public class FetchStockInfo {
 				if(stockInfo.get(i).getAvailableQty() <= stockInfo.get(i).getMinimumQty())
 					stockInfo.get(i).setStatusImage("asset/Images/danger.jpg");
 				else
-					stockInfo.get(i).setStatusImage("asset/Images/safe2.jpeg");
+					stockInfo.get(i).setStatusImage("asset/Images/safe2.jpg");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
