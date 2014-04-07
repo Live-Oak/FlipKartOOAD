@@ -40,24 +40,53 @@
 	</script> --%>
 	<script type="text/javascript">
 	$(document).ready(function(){
-		$(".addtocompare").change(function()
+		$(".addtocompare").change(function(event)
 				{
 		$(".addtocompare").is(':checked');
-		alert("hello");
-		var maxAllowed = 4;
+		//alert(event.target.id);					Specifies id of the target 
+		var maxAllowed = 4;	
+		//alert($(event.target).attr("pid"));				Specifies pid 
+		var pId = $(event.target).attr("pid");
+		alert(pId);
+		$("#comparecart").show();
 		var cnt = $("input[name='compare']:checked").length;
 			      if (cnt > maxAllowed)
 			      {
 			         $(this).prop("checked", "");
-			         alert('Select maximum ' + maxAllowed + ' technologies!');
+			         alert('Select maximum ' + maxAllowed );
 			     }
-			      
-			
+			       
+		
+			      $.ajax({
+					    type: 'GET',
+					    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+					    data : {
+					    	productId : pId
+					    },
+					    url:'getProductToCompare',
+					    success: function(data){
+					    	if(data.count == 0 || data.count == undefined)
+				    		{
+				    			$("#comparecart").show();
+				    			$("#compare_button").attr("disabled", true);
+				    		}
+
+					     }});	
 			});
+		$('input:checkbox').removeAttr('checked');
 		
 	});
 		</script>
-	
+
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#close_compare").click(function(){
+			$("#comparecart").hide();
+			$('.addtocompare').prop('checked', false); 
+		});
+	});
+	</script>
 </head>
 <body>
 		<div class="col-md-1 "></div>
@@ -147,8 +176,17 @@
 								<hr>
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
-								<input type="checkbox"  class="addtocompare" name="compare">Add To Compare</input>
+								<s:if test="%{availableQuantity == 0}">
+								<input type="checkbox" disabled >Add To Compare</input>
+								</s:if>
+								<s:elseif test="%{availableQuantity < minimumQuantity}">
+								<input type="checkbox" disabled >Add To Compare</input>
+								</s:elseif>
+								<s:else>
+									<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="<s:property value="productID"/> "/>Add To Compare</input>
+								</s:else>
 								<hr>
+						
 								<br><br><br>
 								<!--<s:property value="categoryID"/><br>
 								<s:property value="price"/><br>
@@ -164,6 +202,14 @@
 	<div class="col-md-1 ">
 	
 	</div>
+<div id="comparecart">Compare Products
+<a class="close-reveal-modal" id="close_compare">&#215;</a>
+				<div id="list">
+				
+				
+				</div>
+<input type = "button" id="compare_button" class="compare_button" value="Compare"/>
+</div>
 				
 </body>
 </html>

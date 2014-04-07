@@ -37,6 +37,7 @@ public class LoginAuthentication implements Interceptor
 			System.out.println("returning login");
 			return ActionSupport.SUCCESS;
 		}
+		
 		return actionInvocation.invoke();
 	}
 

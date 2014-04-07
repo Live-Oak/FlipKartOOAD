@@ -358,6 +358,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json" />
 			</action>
 			
+			<action name="getProductToCompare" class="edu.iiitb.action.CompareProducts"
+				method="getProductDetails">
+				<result name="success" type="json" />
+			</action>
 			
 			
 			<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
