@@ -13,6 +13,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
+import edu.iiitb.config.Config;
 import edu.iiitb.database.DBHandlerForAdmin;
 import edu.iiitb.model.Advertizement;
 
@@ -70,13 +71,12 @@ public class AddAdvertizement extends ActionSupport implements ModelDriven<Adver
 
 	public String execute()
 	{
-		String destPath = servletRequest.getSession().getServletContext().getRealPath("/");
-		
+		Config.loadProperties();
+		String destPath = Config.FILESTOREPATH;
 		File destFile = new File(destPath,adv.getMyFileFileName());
 		try {
 			FileUtils.copyFile(adv.getMyFile(), destFile);
-			FileInputStream inputStream = new FileInputStream(destFile);
-			adv.setImage(inputStream);
+			adv.setPhoto("asset/Images/"+adv.getMyFileFileName());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -88,6 +88,7 @@ public class AddAdvertizement extends ActionSupport implements ModelDriven<Adver
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("Exception at execute() of AddAdvertisement.java");
 			return "error";
 		}
 		
