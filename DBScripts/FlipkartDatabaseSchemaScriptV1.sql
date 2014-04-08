@@ -282,5 +282,89 @@ CREATE  TABLE `FlipKartDatabase`.`ReviewNRating` (
     REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+    
+    /* Alter Script for Order Table*/
+
+/* Alter Script Order Table */
+ALTER TABLE `FlipKartDatabase`.`Order` DROP FOREIGN KEY `fk_Order_userId` , DROP FOREIGN KEY `fk_Order_productId` ;
+ALTER TABLE `FlipKartDatabase`.`Order` DROP COLUMN `userId` , DROP COLUMN `quantity` , DROP COLUMN `productId` 
+, DROP INDEX `fk_Order_productId` 
+, DROP INDEX `fk_Order_userId`;
+
+ALTER TABLE `FlipKartDatabase`.`Order` CHANGE COLUMN `orderId` `orderId` INT(11) NOT NULL AUTO_INCREMENT  ;
+;
+
+CREATE  TABLE `FlipKartDatabase`.`bankDetails` (
+  `bankId` INT NOT NULL ,
+  `bankName` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`bankId`) );
+
+ALTER TABLE `FlipKartDatabase`.`Payment` CHANGE COLUMN `bank` `bankId` INT NOT NULL  , 
+  ADD CONSTRAINT `fk_Payment_bankId`
+  FOREIGN KEY (`bankId` )
+  REFERENCES `FlipKartDatabase`.`BankDetails` (`bankId` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_Payment_bankId` (`bankId` ASC) ;
+
+/*  Create Script OrderDescription Table*/
+CREATE  TABLE `FlipKartDatabase`.`OrderDescription` (
+  `orderID` INT NOT NULL ,
+  `porductId` INT NOT NULL ,
+  `quantity` INT NOT NULL ,
+  `price` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`orderID`, `porductId`) ,
+  INDEX `fk_orderDescription_orderId` (`orderID` ASC) ,
+  INDEX `fk_orderDescription_productId` (`porductId` ASC) ,
+  CONSTRAINT `fk_orderDescription_orderId`
+    FOREIGN KEY (`orderID` )
+    REFERENCES `FlipKartDatabase`.`Order` (`orderId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orderDescription_productId`
+    FOREIGN KEY (`porductId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+/*  Create Script OrderShippingAddress Table*/
+CREATE  TABLE `FlipKartDatabase`.`OrderShipingAddress` (
+  `orderId` INT NOT NULL ,
+  `customerName` VARCHAR(45) NOT NULL ,
+  `customerEmail` VARCHAR(45) NOT NULL ,
+  `addressLine1` VARCHAR(45) NOT NULL ,
+  `addressLine2` VARCHAR(45) NULL ,
+  `pincode` VARCHAR(6) NOT NULL ,
+  `city` VARCHAR(45) NOT NULL ,
+  `customerPhoneNumber` VARCHAR(10) NOT NULL ,
+  PRIMARY KEY (`orderId`) ,
+  INDEX `fk_OrderShipingAddress_orderId` (`orderId` ASC) ,
+  CONSTRAINT `fk_OrderShipingAddress_orderId`
+    FOREIGN KEY (`orderId` )
+    REFERENCES `FlipKartDatabase`.`Order` (`orderId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+/*  Create Script accountDetails Table*/
+CREATE  TABLE `FlipKartDatabase`.`accountDetails` (
+  `bankId` INT NOT NULL ,
+  `accountCardNumber` INT NOT NULL ,
+  `username` VARCHAR(45) NULL ,
+  `passwordPinCvv` VARCHAR(45) NOT NULL ,
+  `availableBalance` DECIMAL NOT NULL ,
+  `limit` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`accountCardNumber`) ,
+  CONSTRAINT `fk_accountDetails_bankId`
+  FOREIGN KEY (`bankId` )
+  REFERENCES `FlipKartDatabase`.`bankDetails` (`bankId` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION);
+
+
+
+
 
 
