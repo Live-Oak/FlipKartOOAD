@@ -283,8 +283,7 @@ CREATE  TABLE `FlipKartDatabase`.`ReviewNRating` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-    
-    /* Alter Script for Order Table*/
+/* Alter Create  Script for Place Order and Payment Module Table*/
 
 /* Alter Script Order Table */
 ALTER TABLE `FlipKartDatabase`.`Order` DROP FOREIGN KEY `fk_Order_userId` , DROP FOREIGN KEY `fk_Order_productId` ;
@@ -294,19 +293,6 @@ ALTER TABLE `FlipKartDatabase`.`Order` DROP COLUMN `userId` , DROP COLUMN `quant
 
 ALTER TABLE `FlipKartDatabase`.`Order` CHANGE COLUMN `orderId` `orderId` INT(11) NOT NULL AUTO_INCREMENT  ;
 ;
-
-CREATE  TABLE `FlipKartDatabase`.`bankDetails` (
-  `bankId` INT NOT NULL ,
-  `bankName` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`bankId`) );
-
-ALTER TABLE `FlipKartDatabase`.`Payment` CHANGE COLUMN `bank` `bankId` INT NOT NULL  , 
-  ADD CONSTRAINT `fk_Payment_bankId`
-  FOREIGN KEY (`bankId` )
-  REFERENCES `FlipKartDatabase`.`BankDetails` (`bankId` )
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION
-, ADD INDEX `fk_Payment_bankId` (`bankId` ASC) ;
 
 /*  Create Script OrderDescription Table*/
 CREATE  TABLE `FlipKartDatabase`.`OrderDescription` (
@@ -348,23 +334,4 @@ CREATE  TABLE `FlipKartDatabase`.`OrderShipingAddress` (
     ON UPDATE NO ACTION);
 
 
-/*  Create Script accountDetails Table*/
-CREATE  TABLE `FlipKartDatabase`.`accountDetails` (
-  `bankId` INT NOT NULL ,
-  `accountCardNumber` INT NOT NULL ,
-  `username` VARCHAR(45) NULL ,
-  `passwordPinCvv` VARCHAR(45) NOT NULL ,
-  `availableBalance` DECIMAL NOT NULL ,
-  `limit` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`accountCardNumber`) ,
-  CONSTRAINT `fk_accountDetails_bankId`
-  FOREIGN KEY (`bankId` )
-  REFERENCES `FlipKartDatabase`.`bankDetails` (`bankId` )
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION);
-
-
-
-
-
-
+    
