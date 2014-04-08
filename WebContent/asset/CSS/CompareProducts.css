@@ -110,3 +110,20 @@
 	margin-right:20px
 }
 
+.mainselection {
+    overflow:hidden;
+    width:150px;
+    margin-left:5px;
+    background: url("images/dropdown_arrow.png") no-repeat #fff 319px 2px;
+    /* dropdown_arrow.png is a 31x28 image */
+	border:2px solid #c13339;
+}
+select {
+    border:1;
+    background:transparent;
+    height:32px;
+    border:1px solid #d8d8d8;
+    width:150px;
+    margin-left: 10px;
+    -webkit-appearance: none;
+}

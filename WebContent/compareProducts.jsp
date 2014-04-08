@@ -7,6 +7,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="asset/CSS/CompareProducts.css" rel="stylesheet">	
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Compare Products</title>
 </head>
@@ -58,17 +59,14 @@
 													<strong>Add to compare</strong>
 													<br><br><br><br><br><br><br><br><br>
 														<div>
-															<select>
-															  <option value="<s:property value="productName"/>"><s:property value="productName"/></option>
-															  <option value="saab">Saab</option>
-															  <option value="mercedes">Mercedes</option>
-															  <option value="audi">Audi</option>
-															</select>
-															<s:select label="Choose products to compare"
-														        headerKey="-1" headerValue="Select Product"
-														        list="categoryproducts"
-														        name="yourCity"
-														        value="defaultCity" />															 	
+																<div class="mainselection">
+															     <select>
+															     		<option value="Add Product">Add Product</option>
+															     	<s:iterator value="categoryproducts">
+																  		<option value="<s:property/>"><s:property/></option>
+																  	</s:iterator>
+																</select>   
+																</div>
 														</div>					
 													<br><br><br><br><br><br><br><br><br><br>								
 												</center>
@@ -84,12 +82,14 @@
 														<strong>Add to compare</strong>
 														<div>
 														<br><br><br><br><br><br><br><br><br><br><br>
-
+																<div class="mainselection">
 															     <select>
+															     		<option value="Add Product">Add Product</option>
 															     	<s:iterator value="categoryproducts">
 																  		<option value="<s:property/>"><s:property/></option>
 																  	</s:iterator>
 																</select>   
+																</div>
 														</div>
 														<br><br><br><br><br><br><br><br><br>
 													</center>
@@ -101,14 +101,16 @@
 													<center>
 														<strong>Add to compare</strong>
 														<div>
-														<br><br><br><br><br><br><br>
-															<select>
-															  <option value="volvo">Volvo</option>
-															  <option value="saab">Saab</option>
-															  <option value="mercedes">Mercedes</option>
-															  <option value="audi">Audi</option>
-															</select> 	
-														<br><br><br><br><br><br><br>	
+														<br><br><br><br><br><br><br><br><br><br><br>
+																<div class="mainselection">
+															     <select>
+															     		<option value="Add Product">Add Product</option>
+															     	<s:iterator value="categoryproducts">
+																  		<option value="<s:property/>"><s:property/></option>
+																  	</s:iterator>
+																</select>   
+																</div>
+														<br><br><br><br><br><br><br><br><br>
 														</div>
 													</center>
 												</div>
