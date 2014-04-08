@@ -3,7 +3,7 @@
     <%@ taglib prefix="s" uri="/struts-tags"%>
    
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-    
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -55,7 +55,22 @@
 												<div class="border">
 												<br>
 												<center>
-													<br><br><br><p>helllllllll</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+													<strong>Add to compare</strong>
+													<br><br><br><br><br><br><br><br><br>
+														<div>
+															<select>
+															  <option value="<s:property value="productName"/>"><s:property value="productName"/></option>
+															  <option value="saab">Saab</option>
+															  <option value="mercedes">Mercedes</option>
+															  <option value="audi">Audi</option>
+															</select>
+															<s:select label="Choose products to compare"
+														        headerKey="-1" headerValue="Select Product"
+														        list="categoryproducts"
+														        name="yourCity"
+														        value="defaultCity" />															 	
+														</div>					
+													<br><br><br><br><br><br><br><br><br><br>								
 												</center>
 											</div>
 											</div>
@@ -66,7 +81,17 @@
 													<div class="border">
 													<br>
 													<center>
-														<br><br><br><p>helllllllll</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+														<strong>Add to compare</strong>
+														<div>
+														<br><br><br><br><br><br><br><br><br><br><br>
+
+															     <select>
+															     	<s:iterator value="categoryproducts">
+																  		<option value="<s:property/>"><s:property/></option>
+																  	</s:iterator>
+																</select>   
+														</div>
+														<br><br><br><br><br><br><br><br><br>
 													</center>
 												</div>
 												</div>
@@ -74,7 +99,17 @@
 													<div class="border">
 													<br>
 													<center>
-														<br><br><br><p>helllllllll</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+														<strong>Add to compare</strong>
+														<div>
+														<br><br><br><br><br><br><br>
+															<select>
+															  <option value="volvo">Volvo</option>
+															  <option value="saab">Saab</option>
+															  <option value="mercedes">Mercedes</option>
+															  <option value="audi">Audi</option>
+															</select> 	
+														<br><br><br><br><br><br><br>	
+														</div>
 													</center>
 												</div>
 												</div>	

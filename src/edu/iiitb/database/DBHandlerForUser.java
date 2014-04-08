@@ -474,5 +474,26 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			return companyname;
 		}
+
+		public ArrayList<String>  getproductsforcomparison(int categoryId) throws SQLException 
+		{
+			Connection con = db.createConnection();
+			ArrayList<String> categoryproducts = new ArrayList<String>();	
+			String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + categoryId ;       
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println("hello1");
+			while(rs.next())
+			{
+				System.out.println(rs.getString("productName"));
+				categoryproducts.add(rs.getString("productName"));
+			}
+			System.out.println("hello2");
+			for (String i : categoryproducts)
+			System.out.println(i);
+			
+			db.closeConnection(con);
+			
+			return categoryproducts;		
+		}
 }
 

@@ -11,6 +11,16 @@ public class CompareAction
 	ArrayList<Integer> pid= new ArrayList <Integer>(); 
 	ArrayList<ProductInfo> productinfo=new ArrayList<ProductInfo>();
 	ArrayList<String> description;
+	
+	public ArrayList<String> getCategoryproducts() {
+		return categoryproducts;
+	}
+	public void setCategoryproducts(ArrayList<String> categoryproducts) {
+		this.categoryproducts = categoryproducts;
+	}
+
+	ArrayList<String> categoryproducts;
+	
 	public ArrayList<String> getDescription() {
 		return description;
 	}
@@ -33,10 +43,10 @@ public class CompareAction
 
 	public String execute()
 	{
-		System.out.println("fisrt");
 		pid.add(1);
 		pid.add(2);
 		//pid.add(3);
+		int categoryId=7;
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
@@ -49,6 +59,11 @@ public class CompareAction
 			{
 				System.out.println(productinfo.get(i).getAvailableQuantity());
 			}
+			System.out.println("firstwala");
+			categoryproducts=dbHandlerForUser.getproductsforcomparison(categoryId);
+			System.out.println("secondwala");
+			for(String i : categoryproducts)
+			System.out.println(i);
 		}
 		catch(Exception e)
 		{
