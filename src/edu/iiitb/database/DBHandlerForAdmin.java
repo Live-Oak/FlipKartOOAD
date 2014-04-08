@@ -269,11 +269,13 @@ public class DBHandlerForAdmin {
 	{
 		 java.util.Date date= new java.util.Date();
 		 Timestamp time =  new Timestamp(date.getTime());
-		String query = "Insert into Advertizement values(?,?,?)";
+		String query = "Insert into Advertizement values(?,?,?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
 		stmnt.setString(1,adv.getProductID());
-		stmnt.setBlob(2, adv.getImage());
+		stmnt.setString(2, adv.getPhoto());
 		stmnt.setTimestamp(3, time);
+		stmnt.setString(4, adv.getCaption());
+		stmnt.setString(5, adv.getAdvType());
 		stmnt.execute();
 	}
 

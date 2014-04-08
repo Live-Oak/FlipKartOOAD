@@ -23,7 +23,23 @@
 		
 			Image ::	<input type="file" name="myFile" required="true"><br>
 			
-			<br>	<input type="submit" value="Insert"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+			<br>
+			Caption :: 
+			<input type="text" name="caption" required="true"/>
+			
+			<br>
+			Advertisement_Type :: 
+			<select id="dropDown2" name="advType">
+				<option value="carousel">Carousel</option>
+				<option value="general">General</option>
+				<option value="dealoftheday">DealOfTheDay</option>
+				<option value="sidebar">Sidebar</option>
+			</select>
+			
+			<br>
+			
+			
+				<input type="submit" value="Insert"/> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
 			<input type="reset" name="Reset"/>
 		
 		</form>
