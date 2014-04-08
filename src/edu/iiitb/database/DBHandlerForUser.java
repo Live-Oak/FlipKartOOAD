@@ -355,6 +355,33 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			return ProductInfo;
 		}
+		public ProductInfo getproductinfoforcomparison(int Productid) throws SQLException
+		{
+			String category="Mobile";
+			//System.out.println("ProductId in dbhandler : " +Productid);
+			Connection con = db.createConnection();
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "' and ProductInfo.productId = '" + Productid + "'" ;       
+			ResultSet rs=db.executeQuery(query, con);
+			ProductInfo obj = new ProductInfo();
+				
+			while(rs.next())
+			{
+				//System.out.println("product is : " +rs.getString("productName") );
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getInt("price"));
+				obj.setImage(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			}
+			db.closeConnection(con);
+			return obj;
+		}
 		
 		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
 		{

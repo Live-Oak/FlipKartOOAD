@@ -75,7 +75,6 @@
 					    	else
 					    	{
 					    		
-					    		alert(data.count);
 					    		$("#producttocompare").show();
 					    		$("#products_to_compare").empty();
 					    		$.each(data.products, function(count,productcompare) 
@@ -89,23 +88,25 @@
 				    						"<div class='productName'>"+productcompare.productName+"</div>"+
 				    						
 				    				"</center>"+"</div>");	
-				    				
-					    		});
+				    			});
 					    		
 					    	}
 					     }});	
-//			      $("#compare_button").click(function(){
-		    		//	$("#comparecart").hide();
-	//	    			var temp;
+			      $("#compare_button").click(function(){
+			  		$("#comparecart").hide();
+			    		
+	///	    			alert("next"+product_id_to_send);
 		//    			$.ajax({
 		  //  			    type: 'GET',	    
-		    //			    url:'opencompareproductpage',
+		    //			    url:'getdetails_of_product_to_compare?productId=' + product_id_to_send,
 		    	//		    success: function(data){
-		    			    	
-		    		//	    }
+		    		//	    	$("#open_compare_page_form").submit();
+		    			//    }
+		    			
 		   // 			});
+		    			
 
-			 //     });
+			      });
 			});
 		$('input:checkbox').removeAttr('checked');
 		
@@ -247,11 +248,11 @@
 					
 				</div>
 			</div>
-<form action=opencompareproductpage method="get">			
+<form id="open_compare_page_form" action=opencompareproductpage method="get">			
 <input type="submit" class="compare_button" value="Compare" id="compare_button"/>
 </form>
+
 </div>
-				
-	<br>			
+<br>			
 </body>
 </html>

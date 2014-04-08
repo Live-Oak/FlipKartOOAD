@@ -152,8 +152,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<action name="opencompareproductpage" class="edu.iiitb.action.CompareAction">
 				<result name="success" type="tiles">CompareProducts</result>
 			</action>
-
-
+			
+<!-- 			<action name="getdetails_of_product_to_compare" class="edu.iiitb.action.CompareAction" method="formproduct_array_list">
+				<result name="success" type="json"></result>
+			</action> -->
 			<action name="apppage">
 				<result type="tiles">Apppage</result>
 			</action>

@@ -103,13 +103,11 @@
 		</div>
 	</div>
 	
-<<<<<<< HEAD
+
 	<div class="col-md-1 ">hello </div>
 	
-=======
 	<div class="col-md-1 "></div>
 	</div>
 	<br>
->>>>>>> branch 'master' of https://github.com/Live-Oak/FlipKartProject.git
 </body>
 </html>
