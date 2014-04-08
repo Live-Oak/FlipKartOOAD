@@ -29,6 +29,8 @@
 		<div class="col-md-2">
 				<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px">
 				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font>
+			
+				
 		</div>
 
 			<div class="container">
@@ -42,6 +44,7 @@
 				</div>
 				
 				<div class="col-md-2">
+				<a href="logout" class="big-link Close">Logout</a><br>
 				<br>
 					<!-- <button type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px">  CART</button>
 			 -->	</div>
@@ -65,6 +68,7 @@
 				</div>
 			</div>
 		</div>
+	<center> <h2>	Welcome Seller	</h2> </center>
 	</div>
 
 </body>
