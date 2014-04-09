@@ -372,10 +372,21 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 
-			<action name="placeOrder">
+			<!-- <action name="placeOrder">
 				<result>/place.jsp</result>
+			</action> -->
+			
+			<action name="placeOrderActionViaCOD" class="edu.iiitb.action.placeOrderAction" method="placeOrderActionViaCOD">
+				<!-- <result name="success" type="json" /> -->
 			</action>
-
+			
+			<action name="getUserAddressDetails" class="edu.iiitb.action.getUserAddressDetails">
+				<result name="success" type="json" />
+			</action>
+			
+			<action name="placeOrderUserSessionCheck" class="edu.iiitb.action.placeOrderUserSessionCheck">
+			 <result name="success" >/placeOrder.jsp </result> 
+			</action>
+			
 	</package>
-
 </struts>

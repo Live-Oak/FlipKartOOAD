@@ -15,6 +15,7 @@ import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.model.custometAddressDetail;
 
 
 	/**
@@ -446,6 +447,33 @@ public class DBHandlerForUser {
 			}
 			db.closeConnection(con);
 			return companyname;
+		}
+		/**************************/
+		public custometAddressDetail getUserAddressDetail(String email) throws SQLException
+		{
+			Connection con = db.createConnection();
+			custometAddressDetail addressDetails = new custometAddressDetail();	
+			String query="SELECT  CONCAT(firstName, ' ', lastName) as name, addressLine1, addressLine2, pinCode,phoneNumber, city FROM `FlipKartDatabase`.`UserCredantials` WHERE email = '" + email + "' " ;
+			ResultSet rs = db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				System.out.println("Name  is : " +rs.getString("Name") );
+				addressDetails.setName(rs.getString("name"));
+				System.out.println("print1");
+				addressDetails.setPhoneNumber(rs.getString("phoneNumber"));
+				System.out.println("print2");
+				addressDetails.setPinCode(rs.getString("pinCode"));
+				
+				System.out.println("print3");
+				addressDetails.setAddressLine1(rs.getString("addressLine1"));
+				addressDetails.setAddressLine2(rs.getString("addressLine2"));
+				addressDetails.setCity(rs.getString("city"));
+				System.out.println("print6");
+			}
+			System.out.println("Bazinga1234");
+			db.closeConnection(con);
+			return addressDetails;
 		}
 }
 
