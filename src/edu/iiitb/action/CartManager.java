@@ -5,30 +5,33 @@ package edu.iiitb.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts2.interceptor.CookieProvider;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.json.JSONPopulator;
+import org.apache.struts2.json.JSONUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.database.DBHandlerForCart;
+import edu.iiitb.model.CartCookie;
 import edu.iiitb.model.CartModel;
-import edu.iiitb.model.CookieBean;
+import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.User;
-
 
 /**
  * @author PrashantN
- *
+ * 
  */
-public class CartManager extends ActionSupport implements SessionAware,CookieProvider {
-	
+public class CartManager extends ActionSupport implements SessionAware,
+		ServletResponseAware, ServletRequestAware {
+
 	/**
 	 * 
 	 */
@@ -39,11 +42,13 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 	private ArrayList<CartModel> products;
 	private int count;
 	private Map session;
-	
+	private HttpServletResponse servletResponse;
+	private HttpServletRequest servletRequest;
+
 	public CartManager() {
-		
-	} 
-	
+
+	}
+
 	public CartManager(int userid, int productId, int quantity,
 			ArrayList<CartModel> products) {
 		super();
@@ -61,7 +66,8 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 	}
 
 	/**
-	 * @param userid the userid to set
+	 * @param userid
+	 *            the userid to set
 	 */
 	public void setUserid(int userid) {
 		this.userid = userid;
@@ -74,9 +80,9 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 		return productId;
 	}
 
-
 	/**
-	 * @param productId the productId to set
+	 * @param productId
+	 *            the productId to set
 	 */
 	public void setProductId(int productId) {
 		this.productId = productId;
@@ -90,7 +96,8 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 	}
 
 	/**
-	 * @param quantity the quantity to set
+	 * @param quantity
+	 *            the quantity to set
 	 */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
@@ -104,7 +111,8 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 	}
 
 	/**
-	 * @param products the products to set
+	 * @param products
+	 *            the products to set
 	 */
 	public void setProducts(ArrayList<CartModel> products) {
 		this.products = products;
@@ -118,12 +126,12 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 	}
 
 	/**
-	 * @param count the count to set
+	 * @param count
+	 *            the count to set
 	 */
 	public void setCount(int count) {
 		this.count = count;
 	}
-
 
 	public Map getSession() {
 		return session;
@@ -133,46 +141,126 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 		this.session = session;
 	}
 
-	public String addToCart()
-	{
-		User user = (User)session.get("user");
-		
-		try {
-			DBHandlerForCart.addToCart(Integer.parseInt(user.getUserId().trim()),productId,quantity);
-		} catch (Exception e) {
-			System.out.println("unable to add product to cart..!!!");
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "success";
-		
-		
+	@Override
+	public void setServletRequest(HttpServletRequest servletRequest) {
+		// TODO Auto-generated method stub
+		this.servletRequest = servletRequest;
 	}
-	
-	public String getCartProducts()
-	{
-		User user = (User)session.get("user");
-		try {
-			products = DBHandlerForCart.getProducts(Integer.parseInt(user.getUserId().trim()));
-			for(CartModel c : products)
-			{
-				System.out.println(c.getImage());
+
+	@Override
+	public void setServletResponse(HttpServletResponse servletResponse) {
+		// TODO Auto-generated method stub
+		this.servletResponse = servletResponse;
+	}
+
+	public String addToCart() {
+		User user = (User) session.get("user");
+		if (user != null) {
+			try {
+				DBHandlerForCart.addToCart(
+						Integer.parseInt(user.getUserId().trim()), productId,
+						quantity);
+			} catch (Exception e) {
+				System.out.println("unable to add product to cart..!!!");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			System.out.println("");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Unable to fetch datat from cart...!!!");
-			e.printStackTrace();
+		} else {
+			try {
+
+				String content = null;
+				boolean cookieFound = false;
+				for (Cookie c : servletRequest.getCookies()) {
+					if (c.getName().equals("cart")) {
+						content = c.getValue();
+						CartCookie cookie = new CartCookie();
+						 JSONPopulator pop = new JSONPopulator();
+						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
+								.deserialize(content);
+						 pop.populateObject(cookie, map);
+						cookie.getProductList().add(
+								new CartProduct(productId, quantity));
+						content = JSONUtil.serialize(cookie);
+						c.setValue(content);
+						c.setMaxAge(60*60*24*2);
+						cookieFound = true;
+						servletResponse.addCookie(c);
+						break;
+					}
+				}
+				if(cookieFound == false)
+				{
+					CartCookie cookie = new CartCookie();
+					cookie.getProductList().add(new CartProduct(productId, quantity));
+					content = JSONUtil.serialize(cookie);
+					Cookie c = new Cookie("cart", content);
+					c.setMaxAge(60*60*24*2);
+					servletResponse.addCookie(c);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return "success";
+
+	}
+
+	public String getCartProducts() {
+		User user = (User) session.get("user");
+
+		if (user != null)// user logged in.. fetch cart from db
+		{
+			try {
+				products = DBHandlerForCart.getProducts(Integer.parseInt(user
+						.getUserId().trim()));
+				for (CartModel c : products) {
+					System.out.println(c.getImage());
+				}
+				System.out.println("");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Unable to fetch datat from cart...!!!");
+				e.printStackTrace();
+			}
+			
+
+		} else {// user not logged in fetch from cookie
+
+			try {
+
+				String content = null;
+				boolean cookieFound = false;
+				for (Cookie c : servletRequest.getCookies()) {
+					if (c.getName().equals("cart")) {
+						content = c.getValue();
+						CartCookie cookie = new CartCookie();
+						 JSONPopulator pop = new JSONPopulator();
+						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
+								.deserialize(content);
+						 pop.populateObject(cookie, map);
+						
+						products = DBHandlerForCart.getProductsFromCart(cookie.getProductList());
+						cookieFound = true;
+						break;
+					}
+				}
+				if(cookieFound == false)
+				{
+					products = new ArrayList<CartModel>();
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			
+
 		}
 		
 		count = products.size();
 		return "success";
 	}
-
-	@Override
-	public Set<Cookie> getCookies() {
-		// TODO Auto-generated method stub
-		return null;
-	}	
 
 }
