@@ -23,6 +23,7 @@
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
+	<script src="asset/JavaScripts/compareProducts.js"></script>
 	
 	
 <script>
@@ -36,40 +37,111 @@
 	    	  
 	      });
 	      
+		    
 	      $("#dropdown").change(function(event) 
-	    	{
-	    	  var nameofproduct;
-	    	  myparent = $(event.target).parent();
-	    	  var obj = $(this);
-	    	  nameofproduct=$("#dropdown option:selected").text();
-	    	    alert(nameofproduct);
-	    		$.ajax({
-	    		    type: 'POST',	    
-	    		    url:'retrieveProduct?productname=' + nameofproduct ,
-	    		    success: function(data){
-	    		    	var parentdiv=myparent.attr('class');
-	    		    				alert(data.productname);
-	    		    				alert(data.count);
-	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
-	    						    		{ 	
-	    		    							alert(parentdiv);
-	    		    							
-	    						    			product_id_to_send=productcompare.productId;
-	    						    			obj.hide();
-	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
-	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
-	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
-	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
-	    					    						
-	    					    				"</center>"+"</div>");	
-	    					    				
-	    					    				$('.hello').append("<h1>hello</h1>");
-	    					    			});
-	    						    		
-	    		    }});	
+	      	    	{
+	      	    	  var nameofproduct;
+	      	    	  myparent = $(event.target).parent();
+	      	    	  var obj = $(this);
+	      	    	  nameofproduct=$("#dropdown option:selected").text();
+	      	    	    alert(nameofproduct);
+	      	    		$.ajax({
+	      	    		    type: 'POST',	    
+	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
+	      	    		    success: function(data){
+	      	    		    	var parentdiv=myparent.attr('class');
+	      	    		    				alert(data.productname);
+	      	    		    				alert(data.count);
+	      	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
+	      	    						    		{ 	
+	      	    		    							alert(parentdiv);
+	      	    		    							
+	      	    						    			product_id_to_send=productcompare.productId;
+	      	    						    			obj.hide();
+	      	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
+	      	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
+	      	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
+	      	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
+	      	    					    						
+	      	    					    				"</center>"+"</div>");	
+	      	    					    				
+	      	    					    				$('.hello').append("<h1>hello</h1>");
+	      	    					    			});
+	      	    						    		
+	      	    		    }});	
 
-	    	});
+	      	    	});
+	      $("#dropdown1").change(function(event) 
+	  	    	{
+	  	    	  var nameofproduct;
+	  	    	  myparent = $(event.target).parent();
+	  	    	  var obj = $(this);
+	  	    	  nameofproduct=$("#dropdown option:selected").text();
+	  	    	    alert(nameofproduct);
+	  	    		$.ajax({
+	  	    		    type: 'POST',	    
+	  	    		    url:'retrieveProduct?productname=' + nameofproduct ,
+	  	    		    success: function(data){
+	  	    		    	var parentdiv=myparent.attr('class');
+	  	    		    				alert(data.productname);
+	  	    		    				alert(data.count);
+	  	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
+	  	    						    		{ 	
+	  	    		    							alert(parentdiv);
+	  	    		    							
+	  	    						    			product_id_to_send=productcompare.productId;
+	  	    						    			obj.hide();
+	  	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
+	  	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
+	  	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
+	  	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
+	  	    					    						
+	  	    					    				"</center>"+"</div>");	
+	  	    					    				
+	  	    					    				$('.hello').append("<h1>hello</h1>");
+	  	    					    			});
+	  	    						    		
+	  	    		    }});	
+
+	  	    	});
+
+	      $("#dropdown2").change(function(event) 
+	      	    	{
+	      	    	  var nameofproduct;
+	      	    	  myparent = $(event.target).parent();
+	      	    	  var obj = $(this);
+	      	    	  nameofproduct=$("#dropdown option:selected").text();
+	      	    	    alert(nameofproduct);
+	      	    		$.ajax({
+	      	    		    type: 'POST',	    
+	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
+	      	    		    success: function(data){
+	      	    		    	var parentdiv=myparent.attr('class');
+	      	    		    				alert(data.productname);
+	      	    		    				alert(data.count);
+	      	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
+	      	    						    		{ 	
+	      	    		    							alert(parentdiv);
+	      	    		    							
+	      	    						    			product_id_to_send=productcompare.productId;
+	      	    						    			obj.hide();
+	      	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
+	      	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
+	      	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
+	      	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
+	      	    					    						
+	      	    					    				"</center>"+"</div>");	
+	      	    					    				
+	      	    					    				$('.hello').append("<h1>hello</h1>");
+	      	    					    			});
+	      	    						    		
+	      	    		    }});	
+
+	      	    	});
+
 	});
+	
+	
 </script>
 
 </head>
@@ -96,6 +168,8 @@
 
 <div class="col-md-8 background">
 	<%@ page import="edu.iiitb.model.*" %>
+	<%! int count1=0;%>
+			<%count1=0;%>
 		<s:iterator value="productinfo">
 				<div class="col-md-3">
 						<div class="border">
@@ -109,26 +183,51 @@
 								<div class="giveMeEllipsis">
 										<font size="4" color="black"><s:property value="productName"/></font><br>
 								</div>
-								<hr>
-								<strong>
-									<font size="4px" color="#BB0000">
-										Rs. <s:property value="price"/><br>
-									</font>
-								</strong>	
-								<hr>
+												<hr>
+													<strong>
+														<font size="4px" color="#BB0000">
+															Rs. <s:property value="price"/><br>
+														</font>
+													</strong>	
+												<hr>
+													<s:if test="%{availableQuantity < minimumQuantity}">
+																<font size="2px" color="#BB0000">
+																		Out of Stock<br>
+																</font>
+													</s:if>
+													<s:if test="%{availableQuantity > minimumQuantity}">
+																<font size="2px" color="#BB0000">
+																		In Stock<br>
+																</font>
+													</s:if>
+												<hr>	
+													<s:if test="%{offer==0}">
+														<font size="5px" color="#76553B">
+															No offers Available<br>
+														</font>
+													</s:if>
+													<s:if test="%{offer>0}">
+														<font size="5px" color="#76553B">
+															Rs. ${offer} off!!
+														</font>
+													</s:if>
+												<hr>	
+								
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
-						
+										
 								<br><br><br>
 							</center>
 							</div>
 						</div>
 					</div>
+					<%count1=count1+1; %>
 			</s:iterator>
+			
 									<!-- If 3 products to compare -->
-										<%int count =2; %>	
+											
 										<%
-											if(count==3) {
+											if(count1==3) {
 											%>
 											<div class="col-md-3">
 												<div class="border">
