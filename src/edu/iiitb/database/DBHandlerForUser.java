@@ -178,7 +178,7 @@ public class DBHandlerForUser {
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c2.subCategoryId and c1.categoryId ='"+category+"' and c2.categoryId = c1.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2, CategoryRelation as c3 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c3.subCategoryId and c1.categoryId = '"+category+"' and c2.categoryId = c1.subCategoryId and c3.categoryId = c2.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
 		
 			ResultSet rs=db.executeQuery(query, con);
 			

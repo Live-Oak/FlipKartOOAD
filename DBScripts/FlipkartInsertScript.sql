@@ -58,6 +58,22 @@ INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('48', 'Literature','asset/Images/literature.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('49', 'Academic','asset/Images/academic.jpg');
 INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('50', 'Entrance','asset/Images/entrance.jpg');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('51', 'Men Clothing', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('52', 'Women Clothing', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('53', 'Men Footwear', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('54', 'Women Footwear', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('55', 'Men Watches', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('56', 'Women Watches', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('57', 'Men Sunglasses', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('58', 'Women Sunglasses', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('59', 'Men Fragrances', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('60', 'Women Fragrances', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('61', 'Men Wallets', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('62', 'Women Wallets', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('63', 'Men Belts ', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('64', 'Women Belts', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('65', 'Men Bag', 'asset/Images/kids.png');
+INSERT INTO `FlipKartDatabase`.`Category` (`categoryId`, `categoryName`, `image`) VALUES ('66', 'Women  Bag', 'asset/Images/kids.png');
 
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '04');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('01', '05');
@@ -110,7 +126,22 @@ INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('41', '45');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('41', '46');
 INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('41', '47');
-
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('15', '51');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('15', '52');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('16', '53');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('16', '54');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('17', '55');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('17', '56');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('18', '57');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('18', '58');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('19', '59');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('19', '60');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '61');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '62');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '63');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '64');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '65');
+INSERT INTO `FlipKartDatabase`.`CategoryRelation` (`categoryId`, `subCategoryId`) VALUES ('20', '66');
 
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('01', 'Lava Iris Pro 30', '15399', 'asset/Images/lava.jpg', '0', '07', 'Mobile, Electronics, Smart phone, Dual Sim', '4.7-inch Touchscreen, Dual SIM (GSM + GSM), 3 MP Secondary Camera, Android v4.2.1 (Jelly Bean) OS, 1.2 GHz Quad Core Processor, Wi-Fi Enabled, 8 MP Primary Camera, Expandable Storage Capacity of 32 GB', 'LAVA', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('02', 'Micromax Bolt A068', '6490', 'asset/Images/mb.jpg', '0', '07', 'Mobile, Electronics, Smart phone, Dual Sim', '5 MP Primary Camera, Wi-Fi Enabled,1 GHz MT 6572M Dual Core Processor, Android v4.2.2 (Jelly Bean) OS, Dual SIM (GSM + GSM), 0.3 MP Secondary Camera, 5-inch Touchscreen, 32 GB Expandable ', 'Micromax', '1');
@@ -151,9 +182,9 @@ INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('37', 'Philips HL1631/J 500 Juicer ', '2295', 'asset/Images/juicer1.jpg', '344', '40', 'Home appliances,Juicer', 'Juice Extractor,Juicing Feature,500 W Consumption', 'Philips', '2');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('38', 'TP-LINK TL-WR740N 150Mbps Wireless N Router', '1299', 'asset/Images/router.jpg', '300', '09', 'Router, Laptop, Network', 'Wireless Security Encryption, Wireless speed upto 150 Mbps, Clear Channel Assessment , Supports SPI Firewall, IP Based Bandwidth Control, IP Based Bandwidth Control', 'TP-Link', '3');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('39', 'Apple iPod iPod Shuffle 2GB 2 GB ', '3700', 'asset/Images/dealoftheday.jpg', '1200', '11', 'Music, MP3, Ipods, Ipads', 'iPod Shuffle 2GB, Silver', 'Apple', '1');
-INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('40', 'Denver Black.Code Eau de Parfum - 50 ml ', '200', 'asset/Images/denver.jpg', '10', '19', 'Fragrance, Perfume, Men', 'Intense and Sensual, Long-lasting Fragrance', 'Denver', '1');
-INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('41', 'Catwalk Flats ', '1095', 'asset/Images/catwalk.jpg', '500', '16', 'Footwear, Women, Flat', 'Fabric Detailing, Panel and Stitch Detail, 104 gm (per single Sandal) - Weight of the product may vary depending on size.', 'Catwalk', '1');
-INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('42', 'Butterflies Perforated Design Hand Bag ', '1399', 'asset/Images/wpurse.jpg', '400', '20', 'Purse, Women', 'Hand Bag, PU, Beige', 'Butterflies', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('40', 'Denver Black.Code Eau de Parfum - 50 ml ', '200', 'asset/Images/denver.jpg', '10', '60', 'Fragrance, Perfume, Men', 'Intense and Sensual, Long-lasting Fragrance', 'Denver', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('41', 'Catwalk Flats ', '1095', 'asset/Images/catwalk.jpg', '500', '54', 'Footwear, Women, Flat', 'Fabric Detailing, Panel and Stitch Detail, 104 gm (per single Sandal) - Weight of the product may vary depending on size.', 'Catwalk', '1');
+INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('42', 'Butterflies Perforated Design Hand Bag ', '1399', 'asset/Images/wpurse.jpg', '400', '66', 'Purse, Women', 'Hand Bag, PU, Beige', 'Butterflies', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('43', 'An Introduction to Indian Philosophy ', '196', 'asset/Images/philosophy1.jpg', '40', '48', 'Philosophy, Books', 'SATISCHANDRA CHATTERJEE,  RUPA PUBLICATIONS INDIA PVT LTD, Paperback, English', 'RUPA', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('44', 'Discover Your Destiny : With The Monk who Sold his Ferrari ', '195', 'asset/Images/discover.jpg', '10', '28', 'Religion, Books', 'Robin Sharma, Jaico Publishing House, Paperback, English', 'Jaico', '1');
 INSERT INTO `FlipKartDatabase`.`ProductInfo` (`productId`, `productName`, `price`, `image`, `offer`, `categoryId`, `keywords`, `description`, `brand`, `warranty`) VALUES ('45', 'The Oath of the Vayuputras ', '350', 'asset/Images/theoath.jpg', '230', '28', 'Religion, Books, Ebooks', 'English, Westland, 1.11 MB', 'Westland', '1');
