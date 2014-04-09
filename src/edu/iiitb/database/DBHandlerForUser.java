@@ -332,14 +332,16 @@ public class DBHandlerForUser {
 		
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
 		{
+			
 			//System.out.println("ProductId in dbhandler : " +Productid);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			String query="select * from ProductInfo where ProductInfo.productId = '" + Productid + "'";
 			ResultSet rs=db.executeQuery(query, con);
-			
 			while(rs.next())
 			{
+				int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));
+				
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
@@ -350,6 +352,7 @@ public class DBHandlerForUser {
 				obj.setDescription(rs.getString("description"));
 				obj.setBrand(rs.getString("brand"));
 				obj.setWarranty(rs.getInt("warranty"));
+				obj.setDiscount(discount);
 				ProductInfo.add(obj);
 			}
 			db.closeConnection(con);
@@ -444,6 +447,7 @@ public class DBHandlerForUser {
 			
 			while(rs.next())
 			{
+				
 				//System.out.println("product is : " +rs.getString("productName") );
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
