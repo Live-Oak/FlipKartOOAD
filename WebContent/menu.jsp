@@ -165,7 +165,7 @@ $(document).ready(function(){
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
 			    	$.each(data.categoryModel2, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    		temp += '<li ><a href="getSearchresult?categoryname=Men '+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
 			    	});
 			    	$("#men").html(temp);
 			     }
@@ -182,7 +182,7 @@ $(document).ready(function(){
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
 			    	$.each(data.categoryModel3, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    		temp += '<li ><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
 			    	});
 			    	$("#women").html(temp);
 			     }

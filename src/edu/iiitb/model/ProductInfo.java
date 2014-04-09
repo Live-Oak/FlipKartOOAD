@@ -9,7 +9,13 @@ public class ProductInfo {
 	
 	int productID,offer,warranty,price;
 	String productName,categoryID,keywords,description,brand;
-	
+	int discount;
+	public int getDiscount() {
+		return discount;
+	}
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
 	String image;
 	File myFile;
 	String myFileFileName,myFileContentType,sellerID;

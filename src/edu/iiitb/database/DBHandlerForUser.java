@@ -332,14 +332,16 @@ public class DBHandlerForUser {
 		
 		public ArrayList<ProductInfo> getproductinfo(int Productid) throws SQLException
 		{
+			
 			//System.out.println("ProductId in dbhandler : " +Productid);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
 			String query="select * from ProductInfo where ProductInfo.productId = '" + Productid + "'";
 			ResultSet rs=db.executeQuery(query, con);
-			
 			while(rs.next())
 			{
+				int discount = 100 - (((rs.getInt("price")-rs.getInt("offer"))*100)/rs.getInt("price"));
+				
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
@@ -350,6 +352,7 @@ public class DBHandlerForUser {
 				obj.setDescription(rs.getString("description"));
 				obj.setBrand(rs.getString("brand"));
 				obj.setWarranty(rs.getInt("warranty"));
+				obj.setDiscount(discount);
 				ProductInfo.add(obj);
 			}
 			db.closeConnection(con);
@@ -388,12 +391,63 @@ public class DBHandlerForUser {
 			//System.out.println("category in dbhandler : " +category);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			  
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "'";       
-			ResultSet rs=db.executeQuery(query, con);
+			String query;
+			ResultSet rs;
+			String check = "", check1="";
+			
+			//System.out.println("Category in handler is " +category);
+			if(category.equalsIgnoreCase("Men") || category.equalsIgnoreCase("Women"))
+			{
+				check1 = category.substring(0, 3); 
+			}
+			else
+			{
+				check = category.substring(0, 5);  
+			}
+			System.out.println("Trimmed word is " +check);
+			
+			if(check.equalsIgnoreCase("Men F"))
+			{
+				String next = category.substring(4);
+				//System.out.println("word is " + next);
+				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "' UNION select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + next + "' ";
+				rs=db.executeQuery(query, con);
+			}
+			else if(check.equalsIgnoreCase("Women"))
+			{
+				String next = category.substring(6);
+				//System.out.println("word is " + next);
+				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "' UNION select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + next + "'";       
+				rs=db.executeQuery(query, con);
+			}
+			else
+			{
+				if(check1.equalsIgnoreCase("Men"))
+				{
+					query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.CategoryId and ProductInfo.productId = Stock.productId and Category.categoryName LIKE 'Men%' union select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock, categoryrelation where ProductInfo.categoryId = categoryrelation.subCategoryId and  ProductInfo.productId = Stock.productId and category.categoryId = categoryrelation.categoryId  and Category.categoryName = '" + category + "'";
+					rs=db.executeQuery(query, con);
+				}
+				else if(check1.equalsIgnoreCase("Wom"))
+				{
+					query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.CategoryId and ProductInfo.productId = Stock.productId and Category.categoryName LIKE 'Women%' union select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock, categoryrelation where ProductInfo.categoryId = categoryrelation.subCategoryId and  ProductInfo.productId = Stock.productId and category.categoryId = categoryrelation.categoryId  and Category.categoryName = '" + category + "'";
+					rs=db.executeQuery(query, con);
+				}
+				else if(check.equalsIgnoreCase("Baby "))
+				{
+					System.out.println(category);
+					query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, categoryrelation, Stock where ProductInfo.categoryId = categoryrelation.subCategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = categoryrelation.categoryId and Category.categoryName = '" + category + "'";    
+					rs=db.executeQuery(query, con);
+				}
+				else
+				{
+					query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "'";       
+					rs=db.executeQuery(query, con);
+				}
+			}
 			
 			while(rs.next())
 			{
+				
 				//System.out.println("product is : " +rs.getString("productName") );
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
