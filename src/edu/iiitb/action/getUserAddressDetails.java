@@ -27,12 +27,9 @@ public class getUserAddressDetails
 	}
 	
 	public String execute() throws SQLException
-	{		
-		System.out.println("Bazinga123");
+	{	
 		DBHandlerForUser db = new DBHandlerForUser();		
-		addressDetails = db.getUserAddressDetail(email);
-		
-		System.out.println("Bazinga123");
+		addressDetails = db.getUserAddressDetail(email);		
 		return "success";
 	}
 

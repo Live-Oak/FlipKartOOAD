@@ -344,7 +344,8 @@ value='<s:property value="addressDetails.addressLine2"/>' >
 <input type="text" name="city" id="city" class="mytext2"	required="true"  pattern = "[A-Z a-z]+"
 		title="Please provide valid City name" placeholder="Please Enter City Name" value='<s:property value="addressDetails.city"/>' >		
 			<br><br><br><br>
-<label class="mylabel2"  >Phone*</label><input type="text" name="phone"  required="true" id="phone" class="mytext2" 
+<label class="mylabel2"  >Phone*</label>
+<input type="text" name="phone"  required="true" id="phone" class="mytext2" 
 		pattern="[7-9]{1}[0-9]{9}" title="Please provide valid Prone number" value='<s:property value="addressDetails.phoneNumber"/>' >
 			<br><br><br><br>
 </div>
@@ -399,16 +400,32 @@ table td
 		<th>Price</th>
 		<th>Sub Total</th>
 	</tr>
+	<% float grandTotal;
+	%>
+	<s:iterator value="cartDetailsList">
 	<tr>
-		<td>'<s:property value="cart.item"/>' </td>
-		<td>'<s:property value="cart.item"/>' </td>
-		<td>'<s:property value="cart.item"/>' </td>
-		<td>'<s:property value="cart.item"/>' </td>
-		<td>'<s:property value="cart.item"/>' </td>
+		<td>
+			<img src="<s:property value="image"/>" widht="100px" height="100px" alt="<s:property value="productName"/>" >
+		</td>
+		<td>
+			<s:property value="productName"/>
+		</td>
+		<td>
+			<s:property value="quantity"/>
+			<!--<input type="text" name="quantity" id="quantity" value='<s:property value="quantity"/>' style=" width:50px; margin:auto; text-align : center;">-->
+		</td>
+		<td>
+			<s:property value="price"/>'
+		</td>
+		<td>
+			<s:property value="subTotal"/>
+			<% grantTotal = grandTotal + <s:property value="subTotal"/> %>
+		</td>
 	</tr>
+	</s:iterator>
 	<tr>
 	<th class="last" colSpan ="4" > Grand Total</th>
-	<th> &nbsp;</th>
+	<th> <% grandTotal %></th>
 	</tr>
 </table>
 <br/><br/>

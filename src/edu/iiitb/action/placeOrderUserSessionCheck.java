@@ -1,5 +1,6 @@
 package edu.iiitb.action;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -15,7 +16,14 @@ public class placeOrderUserSessionCheck extends ActionSupport implements Session
 {
 	custometAddressDetail addressDetails = new custometAddressDetail();
 	private Map session;
+	ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
 	
+	public ArrayList<customerCartDetail> getCartDetailsList() {
+		return cartDetailsList;
+	}
+	public void setCartDetailsList(ArrayList<customerCartDetail> cartDetailsList) {
+		this.cartDetailsList = cartDetailsList;
+	}
 	public custometAddressDetail getAddressDetails() {
 		return addressDetails;
 	}
@@ -32,16 +40,16 @@ public class placeOrderUserSessionCheck extends ActionSupport implements Session
 	
 	
 	public String execute() throws SQLException
-	{	System.out.println("Bada Wala Bazinga...123");
+	{	
 		User user;
 		user = (User) session.get("user");
 		if (user.getEmail() != null)
 		{
-			addressDetails.setEmail(user.getEmail());		
-			System.out.println("Session email is : " + addressDetails.getEmail());			
+			addressDetails.setEmail(user.getEmail());					
 			DBHandlerForUser db = new DBHandlerForUser();		
 			addressDetails = db.getUserAddressDetail(addressDetails.getEmail());
-			System.out.println("Bada Wala Bazinga...");
+			System.out.println("Email passed to cart query : " + addressDetails.getEmail());
+			cartDetailsList = db.getCartDetail(addressDetails.getEmail());
 		}
 		return "success";
 	}
