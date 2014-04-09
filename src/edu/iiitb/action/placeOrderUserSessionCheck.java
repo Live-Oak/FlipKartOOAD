@@ -47,9 +47,16 @@ public class placeOrderUserSessionCheck extends ActionSupport implements Session
 		{
 			addressDetails.setEmail(user.getEmail());					
 			DBHandlerForUser db = new DBHandlerForUser();		
-			addressDetails = db.getUserAddressDetail(addressDetails.getEmail());
-			System.out.println("Email passed to cart query : " + addressDetails.getEmail());
+			addressDetails = db.getUserAddressDetail(addressDetails.getEmail());			
 			cartDetailsList = db.getCartDetail(addressDetails.getEmail());
+		}
+		for (customerCartDetail cart : cartDetailsList) {			
+			System.out.println("Inside Action Starts");
+			System.out.println(" Image Path : " +cart.getImage());
+			System.out.println(" Name Path : " +cart.getProductName());	
+			System.out.println(" Price Path : " +cart.getPrice());	
+			System.out.println(" Quality Path : " +cart.getQuantity());	
+			System.out.println("Inside Action Ends");
 		}
 		return "success";
 	}

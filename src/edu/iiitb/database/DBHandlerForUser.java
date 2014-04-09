@@ -453,6 +453,7 @@ public class DBHandlerForUser {
 		public custometAddressDetail getUserAddressDetail(String email) throws SQLException
 		{
 			Connection con = db.createConnection();
+			DBConnectivity db = new DBConnectivity();
 			custometAddressDetail addressDetails = new custometAddressDetail();	
 			String query="SELECT  CONCAT(firstName, ' ', lastName) as name, addressLine1, addressLine2, pinCode,phoneNumber, city FROM `FlipKartDatabase`.`UserCredantials` WHERE email = '" + email + "' " ;
 			ResultSet rs = db.executeQuery(query, con);			
@@ -472,22 +473,33 @@ public class DBHandlerForUser {
 		
 		public ArrayList<customerCartDetail>  getCartDetail(String email) throws SQLException
 		{
-			Connection con = db.createConnection();
 			ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
-			customerCartDetail cartDetail = new customerCartDetail();	
-			System.out.println("Email id is :" + email);
+			
+			Connection con = db.createConnection();
+			DBConnectivity db = new DBConnectivity();	
+			
 			String query="SELECT P.image as image, P.productName as productName, C.quantity as quantity, P.price as price FROM FlipKartDatabase.UserCredantials AS U INNER JOIN FlipKartDatabase.Cart AS C  ON C.useriD = U.userId INNER JOIN FlipKartDatabase.ProductInfo AS P    ON P.productId = C.productId WHERE email =  '" + email + "' " ;
 			ResultSet rs = db.executeQuery(query, con);			
 			while(rs.next())
 			{
-				System.out.println("Product Image  is : " +rs.getString("image") );
+				customerCartDetail cartDetail = new customerCartDetail();		
+				System.out.println("WTF!!! Product Image  is : " +rs.getString("image") );
 				cartDetail.setImage(rs.getString("image"));				
 				cartDetail.setProductName(rs.getString("productName"));
 				cartDetail.setQuantity(rs.getString("quantity"));				
 				cartDetail.setPrice(rs.getString("price"));	
 				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * ( Integer.parseInt( cartDetail.getQuantity()	) )	)  );
-				cartDetailsList.add(cartDetail);
-			}			
+				cartDetailsList.add(cartDetail);				
+			}		
+			for (customerCartDetail cart : cartDetailsList) 
+			{			
+				System.out.println("Inside Data base Starts");	
+				System.out.println("DB Image Path : " +cart.getImage());	
+				System.out.println("DB Name Path : " +cart.getProductName());	
+				System.out.println("DB Price Path : " +cart.getPrice());	
+				System.out.println("DB Quality Path : " +cart.getQuantity());
+				System.out.println("Inside Data base Ends");
+			}
 			db.closeConnection(con);
 			return cartDetailsList;
 		}

@@ -3,8 +3,6 @@ import edu.iiitb.model.*;
 import edu.iiitb.database.*;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class getUserAddressDetails 
 {

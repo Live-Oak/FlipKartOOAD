@@ -388,5 +388,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			 <result name="success" >/placeOrder.jsp </result> 
 			</action>
 			
+			<action name="getUserCartDetails" class="edu.iiitb.action.getUserCartDetails">
+				<result name="success" type="json" />
+			</action>
+			
 	</package>
 </struts>

@@ -124,6 +124,22 @@ $(document).ready(function(){
 						    	$("#phone").val(data.addressDetails.phoneNumber);
 						    	$("#city").val(data.addressDetails.city);
 						    }});
+						
+							/* Ajax call to fetch cart data starts here*/		
+							 $.ajax({
+						    type: 'GET',	    
+						    url:'getUserCartDetails ?email=' + $("#emailInput").val() ,
+						    success: function(data){
+						    	//alert(data.addressDetails.name);						    	
+						    	/*$("#name").val(data.addressDetails.name);
+						    	$("#pin").val(data.addressDetails.pinCode);
+						    	$("#address").val(data.addressDetails.addressLine1);
+						    	$("#address2").val(data.addressDetails.addressLine2);
+						    	$("#phone").val(data.addressDetails.phoneNumber);
+						    	$("#city").val(data.addressDetails.city);
+						    	*/
+						    }});
+							 /* Ajax call to fetch cart data Ends here*/	
 						    	
 							/* Ajax call here to fetch user address details End here*/	
 						  $("#panel3").slideDown();
@@ -404,28 +420,27 @@ table td
 	%>
 	<s:iterator value="cartDetailsList">
 	<tr>
-		<td>
-			<img src="<s:property value="image"/>" widht="100px" height="100px" alt="<s:property value="productName"/>" >
+		<td id="cardCol1">
+			<img src="<s:property value="image"/>" width="100px" height="100px" alt="<s:property value="productName"/>" >
 		</td>
-		<td>
+		<td id="cardCol2">
 			<s:property value="productName"/>
 		</td>
-		<td>
+		<td id="cardCol3">
 			<s:property value="quantity"/>
 			<!--<input type="text" name="quantity" id="quantity" value='<s:property value="quantity"/>' style=" width:50px; margin:auto; text-align : center;">-->
 		</td>
-		<td>
-			<s:property value="price"/>'
+		<td id="cardCol4">
+			<s:property value="price"/>
 		</td>
-		<td>
-			<s:property value="subTotal"/>
-			<% grantTotal = grandTotal + <s:property value="subTotal"/> %>
+		<td id="cardCol5">
+			<s:property value="subTotal"/>			
 		</td>
 	</tr>
 	</s:iterator>
 	<tr>
 	<th class="last" colSpan ="4" > Grand Total</th>
-	<th> <% grandTotal %></th>
+	<th> </th>
 	</tr>
 </table>
 <br/><br/>
