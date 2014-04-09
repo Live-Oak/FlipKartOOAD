@@ -178,7 +178,7 @@ public class DBHandlerForUser {
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c2.subCategoryId and c1.categoryId ='"+category+"' and c2.categoryId = c1.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2, CategoryRelation as c3 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c3.subCategoryId and c1.categoryId = '"+category+"' and c2.categoryId = c1.subCategoryId and c3.categoryId = c2.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -495,5 +495,36 @@ public class DBHandlerForUser {
 			
 			return categoryproducts;		
 		}
+
+		public ArrayList<ProductInfo> getProductInfoByName(String productname) throws SQLException 
+		{
+			
+			Connection con = db.createConnection();
+			ArrayList<ProductInfo> productInfoAdded = new ArrayList<ProductInfo>();	
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Stock where  ProductInfo.productId = Stock.productId and ProductInfo.productName = '" + productname + "'" ;       
+			      
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println("hello1");
+			ProductInfo obj = new ProductInfo();
+			while(rs.next())
+			{
+				
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getInt("price"));
+				obj.setImage(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+				productInfoAdded.add(obj);
+			}
+			
+			db.closeConnection(con);
+			System.out.println("hello2");
+			return productInfoAdded;		}
 }
 

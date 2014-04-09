@@ -1,5 +1,6 @@
 package edu.iiitb.action;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import edu.iiitb.database.DBHandlerForUser;
@@ -8,9 +9,13 @@ import edu.iiitb.model.ProductInfo;
 public class CompareAction
 {
 	private int productId;
+	private String productname;
+	String message;
+	private int count;
 	ArrayList<Integer> pid= new ArrayList <Integer>(); 
 	ArrayList<ProductInfo> productinfo=new ArrayList<ProductInfo>();
 	ArrayList<String> description;
+	ArrayList<ProductInfo> productInfoAdded=new ArrayList<ProductInfo>();
 	
 	public ArrayList<String> getCategoryproducts() {
 		return categoryproducts;
@@ -73,5 +78,32 @@ public class CompareAction
 		return "success";
 	
 	}
+	
+	/*public String getProductDetails() throws SQLException
+	{
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		System.out.println("kwhdk");
+		System.out.println("product nbame is"+productname);
+		productInfoAdded=dbHandlerForUser.getProductInfoByName(productname);
+		count=productInfoAdded.size();
+		for(ProductInfo i : productInfoAdded)
+		{
+			System.out.println(i.getImage());
+		}
+		return "success";
+	}
+	
+	public String getProductname() {
+		return productname;
+	}
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}*/
 	
 }
