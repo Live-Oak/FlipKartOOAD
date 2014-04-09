@@ -127,3 +127,8 @@ select {
     margin-left: 10px;
     -webkit-appearance: none;
 }
+
+#close
+{
+	margin-left: 140px; 
+}

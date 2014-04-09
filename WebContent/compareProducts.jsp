@@ -26,6 +26,8 @@
 		<s:iterator value="productinfo">
 				<div class="col-md-3">
 						<div class="border">
+								<a href="#" id="close"><img src= "asset/Images/button_cancel.png" height="20px" width="20px" ></img>
+								</a>
 								<br>
 								<center>
 										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
