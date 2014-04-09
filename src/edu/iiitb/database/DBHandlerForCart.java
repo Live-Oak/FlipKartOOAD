@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.mysql.jdbc.Connection;
 
 import edu.iiitb.model.CartModel;
+import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.ProductInfo;
 
 /**
@@ -48,6 +49,23 @@ public class DBHandlerForCart {
 		return products;
 	}
 	
+	public static ArrayList<CartModel> getProductsFromCart(ArrayList<CartProduct> cartProducts) throws SQLException
+	{
+		Connection con = db.createConnection();
+		ArrayList<CartModel> products = new ArrayList<CartModel>(); 
+		for(CartProduct p : cartProducts)
+		{
+			String query = "select productId,productName,image,price from  ProductInfo where productID = "+p.getProductId()+";";
+			ResultSet rs=db.executeQuery(query, con);
+			while(rs.next())
+			{
+				products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price"),p.getQuantity()));
+			}
+		}
+		
+		db.closeConnection(con);
+		return products;
+	}
 	
 
 }
