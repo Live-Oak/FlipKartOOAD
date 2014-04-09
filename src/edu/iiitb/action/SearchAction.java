@@ -43,9 +43,11 @@ public class SearchAction extends ActionSupport{
 		try
 		{
 			//System.out.println("categoryname in action : " +categoryname);
-			productinfo = dbHandlerForUser.getproductlistoncategory(categoryname);
-			companyList = dbHandlerForUser.getCompanylistoncategory(categoryname);
+			productinfo = dbHandlerForUser.getproductlistoncategory(categoryname); 
+			// To get the List of all the product and their details
 			
+			companyList = dbHandlerForUser.getCompanylistoncategory(categoryname);
+			// To get the List of all the company for the following product
 		}
 		catch(Exception e)
 		{
