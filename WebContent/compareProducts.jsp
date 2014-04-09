@@ -13,6 +13,7 @@
 <link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
 		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
+		<link href="asset/CSS/Index.css" rel="stylesheet">
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
@@ -38,104 +39,35 @@
 	      });
 	      
 		    
-	      $("#dropdown").change(function(event) 
+	      $(".dropdown").change(function(event) 
 	      	    	{
 	      	    	  var nameofproduct;
 	      	    	  myparent = $(event.target).parent();
 	      	    	  var obj = $(this);
-	      	    	  nameofproduct=$("#dropdown option:selected").text();
+	      	    	  nameofproduct=$(this).val();
+	      	    	  
 	      	    	    alert(nameofproduct);
 	      	    		$.ajax({
 	      	    		    type: 'POST',	    
 	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
 	      	    		    success: function(data){
-	      	    		    	var parentdiv=myparent.attr('class');
-	      	    		    				alert(data.productname);
-	      	    		    				alert(data.count);
+	      	    		    				alert(obj.parent());
 	      	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
 	      	    						    		{ 	
-	      	    		    							alert(parentdiv);
 	      	    		    							
 	      	    						    			product_id_to_send=productcompare.productId;
 	      	    						    			obj.hide();
-	      	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
-	      	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
-	      	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
-	      	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
-	      	    					    						
-	      	    					    				"</center>"+"</div>");	
-	      	    					    				
-	      	    					    				$('.hello').append("<h1>hello</h1>");
-	      	    					    			});
-	      	    						    		
-	      	    		    }});	
+	      	    						    			obj.parent().html(
+	      	    						    					"<img src='"+productcompare.image+"' height='140px' width='auto' /><br><br><br>"+		    												    				
+	      	    					    						"<div> <style>'-webkit-line-clamp: 1;'</style> <font size='3' color='black'>"+productcompare.productName+"</font><br></div><hr>"+
+	      	    					    						"<strong> <font size='4px' color='#BB0000'>"+productcompare.price+"</strong><hr><font size='2px' color='#BB0000'>"  
+	      	    					    						+data.messagestock+"<br><hr>"+data.messageoffer+"</font><hr><font size='3px' color='#000000'>"+productcompare.brand+
+	      	    					    						"<hr><font size='2px' color='#000000'>"+productcompare.description+"</font><br><hr><font size='2px' color='#000000'>"+data.messagewarranty);		
+	      	    						    				
+	      	    						    		});
+	      	    		    					
 
-	      	    	});
-	      $("#dropdown1").change(function(event) 
-	  	    	{
-	  	    	  var nameofproduct;
-	  	    	  myparent = $(event.target).parent();
-	  	    	  var obj = $(this);
-	  	    	  nameofproduct=$("#dropdown option:selected").text();
-	  	    	    alert(nameofproduct);
-	  	    		$.ajax({
-	  	    		    type: 'POST',	    
-	  	    		    url:'retrieveProduct?productname=' + nameofproduct ,
-	  	    		    success: function(data){
-	  	    		    	var parentdiv=myparent.attr('class');
-	  	    		    				alert(data.productname);
-	  	    		    				alert(data.count);
-	  	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
-	  	    						    		{ 	
-	  	    		    							alert(parentdiv);
-	  	    		    							
-	  	    						    			product_id_to_send=productcompare.productId;
-	  	    						    			obj.hide();
-	  	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
-	  	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
-	  	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
-	  	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
-	  	    					    						
-	  	    					    				"</center>"+"</div>");	
-	  	    					    				
-	  	    					    				$('.hello').append("<h1>hello</h1>");
-	  	    					    			});
-	  	    						    		
-	  	    		    }});	
-
-	  	    	});
-
-	      $("#dropdown2").change(function(event) 
-	      	    	{
-	      	    	  var nameofproduct;
-	      	    	  myparent = $(event.target).parent();
-	      	    	  var obj = $(this);
-	      	    	  nameofproduct=$("#dropdown option:selected").text();
-	      	    	    alert(nameofproduct);
-	      	    		$.ajax({
-	      	    		    type: 'POST',	    
-	      	    		    url:'retrieveProduct?productname=' + nameofproduct ,
-	      	    		    success: function(data){
-	      	    		    	var parentdiv=myparent.attr('class');
-	      	    		    				alert(data.productname);
-	      	    		    				alert(data.count);
-	      	    		    				$.each(data.productInfoAdded, function(count,productcompare) 
-	      	    						    		{ 	
-	      	    		    							alert(parentdiv);
-	      	    		    							
-	      	    						    			product_id_to_send=productcompare.productId;
-	      	    						    			obj.hide();
-	      	    					    				obj.parent().append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
-	      	    					    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
-	      	    							    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
-	      	    					    						"<div class='productName'>"+productcompare.productName+"</div>"+
-	      	    					    						
-	      	    					    				"</center>"+"</div>");	
-	      	    					    				
-	      	    					    				$('.hello').append("<h1>hello</h1>");
-	      	    					    			});
-	      	    						    		
-	      	    		    }});	
+	      	    		   }});	
 
 	      	    	});
 
@@ -181,7 +113,7 @@
 										<br><br><br>
 									
 								<div class="giveMeEllipsis">
-										<font size="4" color="black"><s:property value="productName"/></font><br>
+										<font size="3" color="black"><s:property value="productName"/></font><br>
 								</div>
 												<hr>
 													<strong>
@@ -202,17 +134,29 @@
 													</s:if>
 												<hr>	
 													<s:if test="%{offer==0}">
-														<font size="5px" color="#76553B">
+														<font size="3px" color="#76553B">
 															No offers Available<br>
 														</font>
 													</s:if>
 													<s:if test="%{offer>0}">
-														<font size="5px" color="#76553B">
+														<font size="3px" color="#76553B">
 															Rs. ${offer} off!!
 														</font>
 													</s:if>
 												<hr>	
-								
+													
+														<font size="2px" color="#000000">
+															 <s:property value="brand"/><br>
+														</font>
+														
+												<hr>
+													
+														<font size="2px" color="#000000">
+															 <s:property value="description"/><br>
+														</font>
+														
+												<hr>
+																					
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
 										
@@ -236,16 +180,14 @@
 												<center>
 													<strong>Add to compare</strong>
 													<br><br><br><br><br><br><br><br><br>
-														<div>
-																<div class="mainselection">
-															     <select id="dropdown2">
+														
+															     <select class="dropdown">
 															     		<option value="Add Product">Add Product</option>
 															     	<s:iterator value="categoryproducts">
 																  		<option value="<s:property/>"><s:property/></option>
 																  	</s:iterator>
 																</select>   
-																</div>
-														</div>					
+																				
 													<br><br><br><br><br><br><br><br><br><br>								
 												</center>
 												</div>
@@ -259,18 +201,13 @@
 													<br>
 													<center>
 														<strong>Add to compare</strong>
-														<div>
-														<br><br><br><br><br><br><br><br><br><br><br>
-																<div class="mainselection">
-															     <select id="dropdown1">
+																 <select class="dropdown">
 															     		<option value="Add Product">Add Product</option>
 															     	<s:iterator value="categoryproducts">
 																  		<option value="<s:property/>"><s:property/></option>
 																  	</s:iterator>
 																</select>   
-																</div>
-														</div>
-														<br><br><br><br><br><br><br><br><br>
+														
 													</center>
 												</div>
 												</div>
@@ -279,21 +216,15 @@
 													<br>
 													<center>
 														<strong>Add to compare</strong>
-														
-														<br><br><br><br><br><br><br><br><br><br><br>
-																<div class="mainselection">
-															     <select id="dropdown">
-															     		<option value="Add Product">Add Product</option>
-															     	<s:iterator value="categoryproducts">
-																  		<option value="<s:property/>"><s:property/></option>
-																  	</s:iterator>
-																</select>   
-																</div>
-														<br><br><br><br><br><br><br><br><br>
-														
+																     <select class="dropdown">
+																     		<option value="Add Product">Add Product</option>
+																     	<s:iterator value="categoryproducts">
+																	  		<option value="<s:property/>"><s:property/></option>
+																	  	</s:iterator>
+																	</select>   
 													</center>
 												</div>
-												</div>	
+											</div>	
 											<%}%>
 										
 			</div>

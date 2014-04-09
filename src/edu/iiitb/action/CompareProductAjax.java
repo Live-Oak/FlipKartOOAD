@@ -13,7 +13,9 @@ public class CompareProductAjax
 	private String productId;
 	private int count;
 	ArrayList<ProductInfo> productInfoAdded=new ArrayList<ProductInfo>();
-
+	private String messagestock;
+	private String messageoffer;
+	private String messagewarranty;
 	public CompareProductAjax(String productname, ArrayList<ProductInfo> productInfoAdded)
 	{
 		super();
@@ -39,6 +41,28 @@ public class CompareProductAjax
 		System.out.println("product nbame is"+productname);
 		setProductInfoAdded(dbHandlerForUser.getProductInfoByName(productname));
 		System.out.println(productInfoAdded.get(0).getImage());
+		if(productInfoAdded.get(0).getMinimumQuantity()>productInfoAdded.get(0).getAvailableQuantity())
+		{
+			setMessagestock("Out of Stock");
+		}
+		else
+		{
+			setMessagestock("In Stock");			
+		}
+		int offerper;
+		offerper=((productInfoAdded.get(0).getPrice()-productInfoAdded.get(0).getOffer())*100)/productInfoAdded.get(0).getPrice();
+		if(offerper<=0)
+		{
+			setMessageoffer("No Avalilable Offers");
+		}
+		else
+		{
+			
+			offerper=100-offerper;
+			setMessageoffer(offerper+"% off!!");			
+		}
+		setMessagewarranty("This item has manufacturer warranty of "+productInfoAdded.get(0).getWarranty()+" years");
+		
 		count=productInfoAdded.size();
 		return "success";
 	}
@@ -60,5 +84,23 @@ public class CompareProductAjax
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public String getMessagestock() {
+		return messagestock;
+	}
+	public void setMessagestock(String messagestock) {
+		this.messagestock = messagestock;
+	}
+	public String getMessageoffer() {
+		return messageoffer;
+	}
+	public void setMessageoffer(String messageoffer) {
+		this.messageoffer = messageoffer;
+	}
+	public String getMessagewarranty() {
+		return messagewarranty;
+	}
+	public void setMessagewarranty(String messagewarranty) {
+		this.messagewarranty = messagewarranty;
 	}
 }

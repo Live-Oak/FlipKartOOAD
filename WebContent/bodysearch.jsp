@@ -10,8 +10,7 @@
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
-	
+		
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
