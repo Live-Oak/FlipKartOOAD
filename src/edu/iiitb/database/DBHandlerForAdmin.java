@@ -3,7 +3,7 @@
  */
 package edu.iiitb.database;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -159,10 +159,11 @@ public class DBHandlerForAdmin {
 
 	public void addCategoryinDB(CategoryModel categoryInfo) throws SQLException {
 		// TODO Auto-generated method stub
-		String query="INSERT INTO Category(`categoryId`,`categoryName`) VALUES(?,?)";
+		String query="INSERT INTO Category(`categoryId`,`categoryName`,`image`) VALUES(?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
 		prep.setString(1, categoryInfo.getCategoryId());
 		prep.setString(2, categoryInfo.getCategoryName());
+		prep.setString(3, categoryInfo.getCategoryImage());
 		prep.execute();
 	}
 
@@ -247,7 +248,7 @@ public class DBHandlerForAdmin {
 		String query1 = "INSERT INTO Stock(`productId`,`availableQuantity`,`minimumQuantity`,`maximumQuantity`,`sellerId`,`stockUpdateDate`) VALUES(?,?,?,?,?,?)";
 		PreparedStatement stmnt1 = con.prepareStatement(query1);
 		stmnt1.setInt(1, prod.getProductID());
-		stmnt1.setInt(2, 0);
+		stmnt1.setInt(2, 5);
 		stmnt1.setInt(3, prod.getMinimumQuantity());
 		stmnt1.setInt(4, 1000);
 		stmnt1.setInt(5, Integer.parseInt(prod.getSellerID()));
@@ -256,15 +257,25 @@ public class DBHandlerForAdmin {
 		System.out.println("Executed");
 	}
 	
+	public void deleteProduct(int productId) throws SQLException
+	{
+		String query = "DELETE FROM ProductInfo where productId = "+productId+"";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+		System.out.println("ProductInfo rows Deleted");
+	}
+	
 	public void addAdvertisement(Advertizement adv) throws SQLException
 	{
 		 java.util.Date date= new java.util.Date();
 		 Timestamp time =  new Timestamp(date.getTime());
-		String query = "Insert into Advertizement values(?,?,?)";
+		String query = "Insert into Advertizement values(?,?,?,?,?)";
 		PreparedStatement stmnt = con.prepareStatement(query);
 		stmnt.setString(1,adv.getProductID());
-		stmnt.setBlob(2, adv.getImage());
+		stmnt.setString(2, adv.getPhoto());
 		stmnt.setTimestamp(3, time);
+		stmnt.setString(4, adv.getCaption());
+		stmnt.setString(5, adv.getAdvType());
 		stmnt.execute();
 	}
 
@@ -343,7 +354,7 @@ public class DBHandlerForAdmin {
 			entry.setProductName(rs.getString("productName"));
 			entry.setCategoryID(rs.getString("categoryId"));
 			entry.setDescription(rs.getString("description"));
-			entry.setPrice(rs.getFloat("price"));
+			entry.setPrice(rs.getInt("price"));
 			product.add(entry);
 		}
 	}
@@ -502,10 +513,33 @@ public class DBHandlerForAdmin {
 
 	public void updateProductQuantity(int productId, int purchaseQty , int sellerId) throws SQLException {
 		// TODO Auto-generated method stub
+		int originalProductQty = fetchProductAvailableQuantity(productId);
+		purchaseQty = originalProductQty+purchaseQty;
 		String query="update Stock set availableQuantity = " + purchaseQty + " where productId = " + productId + " and sellerId =" + sellerId+"";
 		Statement st=(Statement) con.createStatement();
 		st.executeUpdate(query);
 		System.out.println("Product Available Quantity updated");
+	}
+
+	private int fetchProductAvailableQuantity(int productId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select availableQuantity from Stock where productId = '"+productId+"'";
+		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next())
+			return rs.getInt(1);
+		return 0;
+	}
+
+	public void updateKeywordForProduct(int productID, String[] split) throws SQLException {
+		// TODO Auto-generated method stub
+		for(int i=0;i<split.length;i++)
+		{
+			String query = "Insert into Keywords(`productId`,`keyword`) values(?,?)";
+			PreparedStatement stmnt = con.prepareStatement(query);
+			stmnt.setInt(1, productID);
+			stmnt.setString(2, split[i]);
+			stmnt.execute();
+		}
 	}
 	
 }

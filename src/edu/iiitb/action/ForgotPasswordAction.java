@@ -21,7 +21,9 @@ private String password;
 	public String execute() throws SQLException
 	{	
 		String password;
+		System.out.println(getEmail());
 			password=dbHandler.getPasswordformDB(getEmail());
+			System.out.println(password);
 			SendMailSSL.sendPassword(getEmail(),password);
 			return "success";
 

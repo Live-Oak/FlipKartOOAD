@@ -50,7 +50,8 @@
 					<th>Product-Image</th>
 					<th>Product-Name</th>
 					<th>Quantity</th>
-					<th>Action</th>
+					<th>ApproveRequest</th>
+					<th>RejectRequest</th>
 				</tr>
 			</thead>
 
@@ -66,8 +67,10 @@
 						</td>
 						<td><a href="approveProductReuest?productId=<s:property value="productId"/>&customerId=<s:property value="customerId"/>&purchaseQty=<s:property value="orderQty"/>"> <font
 								color="blue"> Approve </font></a></td>
+						<td><a href="rejectProductReuest?productId=<s:property value="productId"/>&customerId=<s:property value="customerId"/>"> <font
+								color="blue"> Reject </font></a></td>		
 					</tr>
-
+		
 				</s:iterator>
 			</tbody>
 		</table>

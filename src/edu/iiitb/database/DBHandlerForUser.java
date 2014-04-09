@@ -98,6 +98,31 @@ public class DBHandlerForUser {
 				
 		}
 
+		
+		public String chkForEmailID(String email) throws SQLException 
+		{
+			Connection con = db.createConnection();
+			String role=null;
+			String query="select email,role from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println(email);
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+					role=rs.getString("role");
+			}
+			System.out.println(role);
+			if (role==null)
+			{
+				System.out.println(role);
+				return "invalid";
+			}
+			con.close();
+			return role;
+				
+		}
+
+		
 		public String getPasswordformDB(String email) throws SQLException 
 		{
 			// TODO Auto-generated method stub
@@ -118,13 +143,13 @@ public class DBHandlerForUser {
 		
 		}	
 		
-		public ArrayList<Advertizement> getadvertizement() throws SQLException, IOException
+		public ArrayList<Advertizement> getadvertizement(String Type, String Limit) throws SQLException, IOException
 		{
 			Connection con = db.createConnection();
 			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
 			DBConnectivity db=new DBConnectivity();															
 			
-			String query="SELECT * FROM Advertizement ORDER BY Advertizement.timeStamp desc LIMIT 4";
+			String query="SELECT * FROM Advertizement where Advertizement.advertizementType= '" +Type +"' ORDER BY Advertizement.timeStamp desc LIMIT " + Limit;
 		
 			ResultSet rs=db.executeQuery(query, con);
 			
@@ -136,10 +161,44 @@ public class DBHandlerForUser {
 				obj.setPhoto(rs.getString("image"));
 				obj.setCaption(rs.getString("caption"));
 				
-				System.out.println(rs.getString("caption"));
-				System.out.println(rs.getInt("productID"));
+				//System.out.println(rs.getString("caption"));
+				//System.out.println(rs.getInt("productID"));
 				advertize.add(obj);
 				
+			}
+			db.closeConnection(con);
+			return advertize;
+		}
+		
+		public ArrayList<Advertizement> getadvertizementforfront(String Type, String category) throws SQLException, IOException
+		{
+			//System.out.println("value in handler : " +Type);
+			//System.out.println("value in handler : " +category);
+			Connection con = db.createConnection();
+			ArrayList<Advertizement> advertize = new ArrayList<Advertizement>();
+			DBConnectivity db=new DBConnectivity();															
+			
+			String query="SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation as c1, CategoryRelation as c2 where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = c2.subCategoryId and c1.categoryId ='"+category+"' and c2.categoryId = c1.subCategoryId ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+		
+			ResultSet rs=db.executeQuery(query, con);
+			
+			if (rs.next() == false)
+			{
+				query = "SELECT distinct(Advertizement.productId), Advertizement.image FROM Advertizement, ProductInfo, CategoryRelation where Advertizement.advertizementType= '"+Type+"' and Advertizement.productId = ProductInfo.productId and ProductInfo.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = '"+category+"' ORDER BY Advertizement.timeStamp desc LIMIT 3"; 
+				rs=db.executeQuery(query, con);
+			}
+			else
+				rs.previous();
+			while(rs.next())
+			{
+				System.out.println("hi");
+				Advertizement obj = new Advertizement();
+				obj.setProductId(rs.getInt("productId"));
+				obj.setPhoto(rs.getString("image"));
+	
+				//System.out.println(rs.getInt("productId"));
+				//System.out.println(rs.getString("image"));
+				advertize.add(obj);
 			}
 			db.closeConnection(con);
 			return advertize;
@@ -160,6 +219,29 @@ public class DBHandlerForUser {
 				CategoryModel obj = new CategoryModel();
 				obj.setCategoryName(rs.getString("categoryName"));
 				obj.setCategoryId(rs.getString("categoryId"));
+				categoryModel.add(obj);
+			}
+			db.closeConnection(con);
+			return categoryModel;
+		}
+		
+		public ArrayList<CategoryModel> getsubcategorydeatils(int parentcategoryId) throws SQLException, IOException
+		{
+			ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
+			DBConnectivity db=new DBConnectivity();
+			Connection con= db.createConnection();																
+			
+			String query= " SELECT Category.categoryName, Category.categoryId, Category.image FROM Category, CategoryRelation WHERE Category.categoryId = CategoryRelation.subCategoryId AND CategoryRelation.categoryId =" + parentcategoryId;  
+		
+			ResultSet rs=db.executeQuery(query, con);
+			
+			while(rs.next())
+			{
+				CategoryModel obj = new CategoryModel();
+				obj.setCategoryName(rs.getString("categoryName"));
+				obj.setCategoryId(rs.getString("categoryId"));
+				obj.setCategoryImage(rs.getString("image"));
+				//System.out.println(rs.getString("categoryName"));
 				categoryModel.add(obj);
 			}
 			db.closeConnection(con);
@@ -261,7 +343,7 @@ public class DBHandlerForUser {
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
-				obj.setPrice(rs.getFloat("price"));
+				obj.setPrice(rs.getInt("price"));
 				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
@@ -273,13 +355,41 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			return ProductInfo;
 		}
+		public ProductInfo getproductinfoforcomparison(int Productid) throws SQLException
+		{
+			String category="Mobile";
+			//System.out.println("ProductId in dbhandler : " +Productid);
+			Connection con = db.createConnection();
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "' and ProductInfo.productId = '" + Productid + "'" ;       
+			ResultSet rs=db.executeQuery(query, con);
+			ProductInfo obj = new ProductInfo();
+				
+			while(rs.next())
+			{
+				//System.out.println("product is : " +rs.getString("productName") );
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getInt("price"));
+				obj.setImage(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			}
+			db.closeConnection(con);
+			return obj;
+		}
 		
 		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
 		{
 			//System.out.println("category in dbhandler : " +category);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Category where Category.categoryId = ProductInfo.categoryId and Category.categoryName = '" + category + "'";       
+			  
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -288,13 +398,15 @@ public class DBHandlerForUser {
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
-				obj.setPrice(rs.getFloat("price"));
+				obj.setPrice(rs.getInt("price"));
 				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
 				obj.setDescription(rs.getString("description"));
 				obj.setBrand(rs.getString("brand"));
 				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
 				ProductInfo.add(obj);
 			}
 			db.closeConnection(con);
@@ -323,7 +435,7 @@ public class DBHandlerForUser {
 			//System.out.println("keyword in dbhandler : " +keyword);
 			Connection con = db.createConnection();
 			ArrayList<ProductInfo> ProductInfo = new ArrayList<ProductInfo>();	
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty from ProductInfo, Keywords where ProductInfo.productId = Keywords.productId and Keywords.keyword = '" + keyword + "'";       
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Keywords, Stock where ProductInfo.productId = Keywords.productId and  ProductInfo.productId = Stock.productId and Keywords.keyword = '" + keyword + "'";       
 			ResultSet rs=db.executeQuery(query, con);
 			
 			while(rs.next())
@@ -331,13 +443,15 @@ public class DBHandlerForUser {
 				ProductInfo obj = new ProductInfo();
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
-				obj.setPrice(rs.getFloat("price"));
+				obj.setPrice(rs.getInt("price"));
 				obj.setImage(rs.getString("image"));
 				obj.setOffer(rs.getInt("offer"));
 				obj.setCategoryID(rs.getString("categoryId"));
 				obj.setDescription(rs.getString("description"));
 				obj.setBrand(rs.getString("brand"));
 				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
 				ProductInfo.add(obj);
 			}
 			db.closeConnection(con);
@@ -359,6 +473,27 @@ public class DBHandlerForUser {
 			}
 			db.closeConnection(con);
 			return companyname;
+		}
+
+		public ArrayList<String>  getproductsforcomparison(int categoryId) throws SQLException 
+		{
+			Connection con = db.createConnection();
+			ArrayList<String> categoryproducts = new ArrayList<String>();	
+			String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + categoryId ;       
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println("hello1");
+			while(rs.next())
+			{
+				System.out.println(rs.getString("productName"));
+				categoryproducts.add(rs.getString("productName"));
+			}
+			System.out.println("hello2");
+			for (String i : categoryproducts)
+			System.out.println(i);
+			
+			db.closeConnection(con);
+			
+			return categoryproducts;		
 		}
 }
 

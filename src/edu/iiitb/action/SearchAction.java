@@ -42,7 +42,7 @@ public class SearchAction extends ActionSupport{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			System.out.println("categoryname in action : " +categoryname);
+			//System.out.println("categoryname in action : " +categoryname);
 			productinfo = dbHandlerForUser.getproductlistoncategory(categoryname);
 			companyList = dbHandlerForUser.getCompanylistoncategory(categoryname);
 			

@@ -7,15 +7,21 @@ import java.io.*;
 public class ProductInfo {
 	
 	
-	int productID,offer,warranty;
+	int productID,offer,warranty,price;
 	String productName,categoryID,keywords,description,brand;
-	float price;
 	
 	String image;
 	File myFile;
 	String myFileFileName,myFileContentType,sellerID;
 	int minimumQuantity;
+	int availableQuantity;
 	
+	public int getAvailableQuantity() {
+		return availableQuantity;
+	}
+	public void setAvailableQuantity(int availableQuantity) {
+		this.availableQuantity = availableQuantity;
+	}
 	/**
 	 * @return the minimumQuantity
 	 */
@@ -127,7 +133,7 @@ public class ProductInfo {
 		return keywords;
 	}
 	public void setKeywords(String keywords) {
-		this.keywords = keywords;
+		this.keywords = keywords+",";
 	}
 	public String getDescription() {
 		return description;
@@ -141,10 +147,10 @@ public class ProductInfo {
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	public float getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

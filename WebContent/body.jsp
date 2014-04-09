@@ -53,39 +53,42 @@
 	<div class="col-md-7">
 					<div id="myCarousel" class="carousel slide">
 						<!-- Indicators -->
-						 
-					    
+						
 						<div class="carousel-inner">
 							<s:iterator value="advertizement">
-							<s:if test="%{productId==27}">
+							<s:if test="%{productId==value[2]}">
 								<div class="item active">
-									<img src="<s:property value="photo"/>" alt="slide"
-										style="height: 350px; width: 100%; display: block;">
+									<a href="getProductDetail?productID=<s:property value="productId"/>">
+										<img src="<s:property value="photo"/>" alt="slide"
+											style="height: 350px; width: 100%; display: block;">
+									</a>
 								</div>
 							</s:if>
-							<s:if test="%{productId!=27}">
+							<s:if test="%{productId!=value[2]}">
 								<div class="item">
-									<img src="<s:property value="photo"/>" alt="slide"
-										style="height: 350px; width: 100%; display: block;">
+									<a href="getProductDetail?productID=<s:property value="productId"/>">
+										<img src="<s:property value="photo"/>" alt="slide"
+											style="height: 350px; width: 100%; display: block;">
+									</a>
 								</div>
 							</s:if>
 							</s:iterator>
 						</div>
 						
 						 	  <s:iterator value="advertizement">
-								<s:if test="%{productId==27}">	
+								<s:if test="%{productId==value[0]}">	
 										<button type="button" class="btn slide-one" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:24%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
-								<s:if test="%{productId==30}">
+								<s:if test="%{productId==value[1]}">
 										<button type="button" class="btn slide-two" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:25%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
-								<s:if test="%{productId==7}">
+								<s:if test="%{productId==value[2]}">
 										<button type="button" class="btn slide-three" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:24%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 								
-								<s:if test="%{productId==4}">
+								<s:if test="%{productId==value[3]}">
 										<button type="button" class="btn slide-four" style="height:70px;font-size:12px;color:#ffffff;background-color:#48494B;width:25%;white-space: normal;border-radius: 0;"><s:property value="caption"/></button>
 								</s:if>
 							 </s:iterator>
@@ -108,14 +111,17 @@
 			  </center>
 			 </div>
 			 <br>
-			 <div class="border">
-			<center> 
-				 <h6> <b> EXCLUSIVELY ON FLIPKART </b> </h6> 
-				 <a href="motopage">
-				<img src="asset/Images/smalladdbottom.jpg" alt="exclusive on flipkart" height="130px" width="160px">
-			</a> </center>
-			</div>
-			<br> 
+			 <s:iterator value="dealoftheday">
+			 	<center>
+					<div class="border">
+						 <h6> <b> DEAL OF THE DAY </b></h6>
+						 <h6> <i> <s:property value="caption"/> </i> </h6>
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="130px" width="140px" >
+						</a>
+					</div>
+			 	</center>
+			 </s:iterator>
 		</div> 
 		
 		<div class="col-md-1">
@@ -128,7 +134,8 @@
 		<!-- Data on the page -->
 		<br>
 		<br>
-		<div class="col-md-2"></div>
+		<div class="col-md-2">
+		</div>
 		
 		<div class="col-md-7">
 			
@@ -137,64 +144,16 @@
 						ELECTRONICS
 				</div>
 	<!-- ----------------------------------------------------------------- -->
-			
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Mobile">
-				    	<img src="asset/Images/mobile.jpg" alt="mobile" height="90px" width="90px"><br>
-				</a>
-				<h6> Mobile </h6>
-			   </div>
-				    
-			    <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Laptop">
-				    	<img src="asset/Images/laptop.jpg" alt="laptop" height="90px" width="90px"><br>
-				</a>
-				<h6> Laptop </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Tablet">
-				    	<img src="asset/Images/tablet.png" alt="tablet" height="90px" width="90px"><br>
-				</a>
-				<h6> Tablet </h6>
-			   </div>
-			   
+			  <s:iterator value="Categoryelectronics">
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Camera">
-				    	<img src="asset/Images/camera.jpg" alt="camera" height="90px" width="90px"><br>
+			  	<a href="getSearchresult?categoryname=<s:property value="categoryName"/>">
+				    	<img src="<s:property value="categoryImage"/>" alt="<s:property value="categoryName"/>" height="80px" width="90px"><br>
 				</a>
-				<h6> Camera </h6>
+				<h6> <s:property value="categoryName"/> </h6>
 			   </div>
-			   
-			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Mobile Accessories">
-				    	<img src="asset/Images/mobileaccessories.jpg" alt="mobileaccessories" height="80px" width="90px"><br>
-				</a>
-				<h6> Mobile Accessories </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Laptop Accessories">
-				    	<img src="asset/Images/laptopaccessories.jpg" alt="Laptopaccessories" height="80px" width="90px"><br>
-				</a>
-				<h6> Laptop Accessories </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Home audio & Mp3 players">
-				    	<img src="asset/Images/audio&video.jpg" alt="audio&video" height="90px" width="90px"><br>
-				</a>
-				<h6> Audio & Video </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Gaming Consoles">
-				    	<img src="asset/Images/gamingconsoles.jpg" alt="gamingconsoles" height="80px" width="90px"><br>
-				</a>
-				<h6> Gaming Consoles </h6>
-			   </div>
+			  </s:iterator>
 			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
@@ -204,30 +163,19 @@
 			
 			<!-- ------------------------------------------------------------------- -->
 			
-			
-				<div class="col-md-3">
-					<br>
+			 <s:iterator value="advertizementelectronics">
+			 	<center>
+			 	<div class="col-md-4">
+			 		<br>
 					<div class="border">
-						<img src="asset/Images/ipads.jpg" alt="ipad" height="230px" width="145px" >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
-					<br>
-				</div>
+			 	</div>
+			 	</center>
+			 </s:iterator>
 				
-				<div class="col-md-6">
-					<br>
-					<div class="border">
-						<img src="asset/Images/router.jpg" alt="router" height="230px" width="350px">
-					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-3">
-					<br>
-					<div class="border">
-						<img src="asset/Images/lavaup.jpg" alt="lavaup" height="230px" >
-					</div>
-					<br>
-				</div>
 				<!-- ------------------------------------------------------------------- -->
 			</div>
 			
@@ -236,65 +184,34 @@
 						FASHION
 				</div>
 				<br>
-				<div class="col-md-4">
-					<div class="border">
-						<center><h6> Men <span class="caret"></span></h6>
-					  	<a href="getSearchresult?categoryname=Men">
-						    	<img src="asset/Images/man.png" alt="mobile"><br>
-						</a>
-						</center>
-					</div>
-					<br>
-				</div>
 				
-				<div class="col-md-4">
-					<div class="border">
-						<center><h6> Women <span class="caret"></span></h6>
-					  	<a href="getSearchresult?categoryname=Women">
-						    	<img src="asset/Images/woman.png" alt="laptop"><br>
-						</a>
-						</center>
-					</div>
-					<br>
-			   	</div>
-			   	
-			   	<div class="col-md-4">
-			   		<div class="border">
-				   		<center><h6> Kids & Baby <span class="caret"></span></h6>
-					  	<a href="getSearchresult?categoryname=Baby and Kids">
-						    	<img src="asset/Images/kids.png" alt="tablet"><br>
-						</a>
-						</center>
+				<s:iterator value="Categoryfashion">
+					<div class="col-md-4">
+					  	<div class="border">
+						  	<center><h6><s:property value="categoryName"/> <span class="caret"></span></h6>
+							  	<a href="getSearchresult?categoryname=<s:property value="categoryName"/>">
+								    	<img src="<s:property value="categoryImage"/>" alt="<s:property value="categoryName"/>"><br>
+								</a>
+							</center>
 						</div>
-					<br>
-			    </div>
+					</div>
+			    </s:iterator>
 			    
 			    <!-- ------------------------------------------------------------------- -->
 			
 			
-				<div class="col-md-3">
-					<br>
+			 <s:iterator value="advertizementfashion">
+			 	<center>
+			 	<div class="col-md-4">
+			 		<br>
 					<div class="border">
-						<img src="asset/Images/signature.jpg" alt="signature" height="230px" width="145px" >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-6">
-					<br>
-					<div class="border">
-						<img src="asset/Images/footwear.jpg" alt="footwear" height="230px" width="350px">
-					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-3">
-					<br>
-					<div class="border">
-						<img src="asset/Images/fresh.jpg" alt="fresh" height="230px" >
-					</div>
-					<br>
-				</div>
+			 	</div>
+			 	</center>
+			 </s:iterator>
 				<!-- ------------------------------------------------------------------- -->
 			    
 			  </div>
@@ -304,64 +221,17 @@
 				</div>	
 				
 					<!-- ----------------------------------------------------------------- -->
-			
+	
 		 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
 			  <div id="slider" class="scroll-content">
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Literature">
-				    	<img src="asset/Images/literature.jpg" alt="literature" height="90px" width="90px"><br>
-				</a>
-				<h6> Literature </h6>
-			   </div>
-				    
-			    <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Academic">
-				    	<img src="asset/Images/academic.jpg" alt="academic" height="90px" width="90px"><br>
-				</a>
-				<h6> Academic </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Entrance">
-				    	<img src="asset/Images/entrance.jpg" alt="entrance" height="90px" width="90px"><br>
-				</a>
-				<h6> Entrance </h6>
-			   </div>
-			   
+			   <s:iterator value="Categorybooks">
 			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Ebooks">
-				    	<img src="asset/Images/ebooks1.png" alt="ebooks" height="90px" width="90px"><br>
+			  	<a href="getSearchresult?categoryname=<s:property value="categoryName"/>">
+				    	<img src="<s:property value="categoryImage"/>" alt="<s:property value="categoryName"/>" height="80px" width="90px"><br>
 				</a>
-				<h6> Ebooks </h6>
+				<h6> <s:property value="categoryName"/> </h6>
 			   </div>
-			   
-			  	<div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Music">
-				    	<img src="asset/Images/music.jpg" alt="music" height="80px" width="90px"><br>
-				</a>
-				<h6> Music </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=TV Shows">
-				    	<img src="asset/Images/tvshows.jpg" alt="tvshows" height="80px" width="90px"><br>
-				</a>
-				<h6> TV Shows </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Games">
-				    	<img src="asset/Images/games.jpg" alt="games" height="90px" width="90px"><br>
-				</a>
-				<h6> Games </h6>
-			   </div>
-			   
-			   <div class="scroll-content-item ui-widget-header border">
-			  	<a href="getSearchresult?categoryname=Stationary">
-				    	<img src="asset/Images/stationary.jpg" alt="stationary" height="80px" width="90px"><br>
-				</a>
-				<h6> Stationary </h6>
-			   </div>
+			  </s:iterator>
 			   
 			  <div class="scroll-bar-wrap ui-widget-content ui-corner-bottom">
 			    <div class="scroll-bar"></div>
@@ -371,29 +241,18 @@
 				<!-- ------------------------------------------------------------------- -->
 			
 			
-				<div class="col-md-3">
-					<br>
+			<s:iterator value="advertizementbook">
+				<center>
+			 	<div class="col-md-4">
+			 		<br>
 					<div class="border">
-						<img src="asset/Images/religion.jpg" alt="religion" height="230px" width="145px" >
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="230px" width=auto >
+						</a>
 					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-6">
-					<br>
-					<div class="border">
-						<img src="asset/Images/philosphy.jpg" alt="philosphy" height="230px" width="350px">
-					</div>
-					<br>
-				</div>
-				
-				<div class="col-md-3">
-					<br>
-					<div class="border">
-						<img src="asset/Images/ebook.jpg" alt="ebook" height="230px" >
-					</div>
-					<br>
-				</div>
+			 	</div>
+			 	</center>
+			 </s:iterator>
 				<!-- ------------------------------------------------------------------- -->
 				
 				
@@ -403,26 +262,18 @@
 		
 		<div class="col-md-2">
 			<br><br>
-			<div class="border">
-				<center> <h6> <i> DEAL OF THE DAY </i></h6>
-				<a href="dealoftheday">
-				<img src="asset/Images/dealoftheday1.jpg" alt="dealoftheday1" height="60px" width="60px">
-				<img src="asset/Images/dealoftheday.jpg" alt="dealoftheday" height="80px" width="80px">
-				</a>
-				<h6> <b> Apple Ipod shuffle (2GB) </b></h6></center>
-			</div>
-			<br><br>
-			
-			<div class="border">
-				<center> <h6> <i>  REALLY ALL YOU WANT INSTANTLY </i></h6>
-				<h6> Download and read Ebooks Instantly. Read Ebboks across your mobile, tablets or computers.</h6>
-				<a href="ebooks">
-				<img src="asset/Images/flipkartbook.png" alt="FLIPKART" height="100px" width="150px">
-				</a>
-				</center>
-			</div>
-			
-			<br><br><br>
+			<s:iterator value="advertizementsidebar">
+			 	<center>
+					<div class="border">
+						 <h6> <i> <s:property value="caption"/> </i> </h6>
+						<a href="getProductDetail?productID=<s:property value="productId"/>">
+							<img src="<s:property value="photo"/>" alt="<s:property value="productId"/>" height="130px" width="170px" >
+						</a>
+					</div>
+			 	</center>
+			 	<br><br>
+			 </s:iterator>
+			<br>
 			<div class="border">
 				<center> <h6> <i> SEND GIFTS </i></h6>
 				<h6> Last minute gifting is now only a few click away!
@@ -455,9 +306,9 @@
 </script>
 <style>
   .scroll-pane { overflow: auto; width: 99%; float:left; }
-  .scroll-content { width: 1000px; float: left; }
-  .scroll-content-item { width: 100px; height: 120px; float: left; margin: 10px; font-size: 3em; line-height: 96px; text-align: center; }
-  .scroll-bar-wrap { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
+  .scroll-content { width: 950px; float: left; }
+  .scroll-content-item { width: 100px; height: 120px; float: left; margin: 2px; font-size: 3em; line-height: 96px; text-align: center; }
+  .scroll-bar-wrap { clear: left; padding: 4px 4px 0 2px; margin: 4px -1px -1px -1px; }
   .scroll-bar-wrap .ui-slider { background: none; border:0; height: 2em; margin: 0 auto;  }
   .scroll-bar-wrap .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
   .scroll-bar-wrap .ui-slider-handle { top:.2em; height: 1.5em; }

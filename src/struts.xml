@@ -103,9 +103,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="login">/index.jsp</result>
 		</action>
 
-			<action name="insertCategoryPage">
-			<result type="tiles">InserCategoryPage</result>
-			</action>
+			
 
 			<action name="loginAction" class="edu.iiitb.action.LoginAction">
 				<result name="admin" type="redirectAction">
@@ -132,6 +130,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="tiles">SellerTile</result>
 				<result name="error">/error.jsp</result>
 			</action>
+			
+			<action name="rejectProductReuest" class="edu.iiitb.action.SellerRequestAction" method="rejectRequest" >
+				<result name="success" type="tiles">SellerTile</result>
+				<result name="error">/error.jsp</result>
+			</action>
 
 			
 			<action name="forgotpassword" class="edu.iiitb.action.ForgotPasswordAction">
@@ -146,20 +149,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success">/index.jsp</result>
 			</action>
 
+			<action name="opencompareproductpage" class="edu.iiitb.action.CompareAction">
+				<result name="success" type="tiles">CompareProducts</result>
+			</action>
 			
-
-
-
+<!-- 			<action name="getdetails_of_product_to_compare" class="edu.iiitb.action.CompareAction" method="formproduct_array_list">
+				<result name="success" type="json"></result>
+			</action> -->
 			<action name="apppage">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Apppage</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="motopage">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Motopage</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="Browseresult" class="edu.iiitb.action.BrowseAction">
@@ -175,18 +177,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<action name="getProductDetail" class="edu.iiitb.action.getProductDetail">
 				<result name="success" type="tiles">ProductPage</result>
 				<result name="error">/error.jsp</result>
+	
 			</action>
 
 			<action name="dealoftheday">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Dealoftheday</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="ebooks">
-				<interceptor-ref name="secureStack"></interceptor-ref>
 				<result type="tiles">Ebooks</result>
-				<result name="login">/index.jsp</result>
 			</action>
 
 			<action name="viewUser" class="edu.iiitb.action.FetchDatabaseInfo">
@@ -361,7 +360,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				method="getCartProducts">
 				<result name="success" type="json" />
 			</action>
-
+			
+			<action name="getProductToCompare" class="edu.iiitb.action.CompareProducts"
+				method="getProductDetails">
+				<result name="success" type="json" />
+			</action>
+			
+			
 			<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
 				<result name="success" type="redirectAction">
 					<param name="actionName">stockData</param>

@@ -19,10 +19,10 @@
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	
-	
+
 </head>
 <body>
-
+	<div class="container">
 	<div class="col-md-2 "></div>
 	
 	
@@ -33,7 +33,7 @@
 					<br>
 					<center>
 						<s:iterator value="productinfo">
-							<img src="<s:property value="image"/>" alt="<s:property value="productID"/>"><br>
+								<img src="<s:property value="image"/>" alt="<s:property value="productID"/>"><br>
 						</s:iterator>
 					</center>
 			</div>
@@ -60,7 +60,8 @@
 								<s:if test="%{offer>0}">
 									<font size="5" color="#76553B">
 									<font color="#848484">Rs. <strike><s:property value="price"/></strike></font><br>
-									Rs. ${price-offer}
+									Rs. ${price-offer} 
+									
 									</font>
 								</s:if>
 								<hr>
@@ -102,7 +103,11 @@
 		</div>
 	</div>
 	
-	<div class="col-md-1 "></div>
+
+	<div class="col-md-1 ">hello </div>
 	
+	<div class="col-md-1 "></div>
+	</div>
+	<br>
 </body>
 </html>

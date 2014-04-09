@@ -113,4 +113,22 @@ public class SellerRequestAction extends ActionSupport{
 		return "success";
 	}
 	
+	public String rejectRequest()
+	{
+		request = new ArrayList<ViewRequestSeller>();
+		DBHandlerForAdmin dbHandler = new DBHandlerForAdmin();
+		try {
+			dbHandler.deleteProductPurchaseEntry(getProductId() , getCustomerId());
+			dbHandler.fetchPurchaseProductRequestForAdmin(request);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Exception at rejectRequest() of SellerRequestAction.java");
+			e.printStackTrace();
+			return "error";
+		}
+		addActionMessage("Request Rejected Successfully");
+		
+		return "success";
+	}
+	
 }

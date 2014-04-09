@@ -22,12 +22,17 @@ import edu.iiitb.model.CartModel;
 import edu.iiitb.model.CookieBean;
 import edu.iiitb.model.User;
 
+
 /**
  * @author PrashantN
  *
  */
 public class CartManager extends ActionSupport implements SessionAware,CookieProvider {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int userid;
 	private int productId;
 	private int quantity;
@@ -149,6 +154,11 @@ public class CartManager extends ActionSupport implements SessionAware,CookiePro
 		User user = (User)session.get("user");
 		try {
 			products = DBHandlerForCart.getProducts(Integer.parseInt(user.getUserId().trim()));
+			for(CartModel c : products)
+			{
+				System.out.println(c.getImage());
+			}
+			System.out.println("");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Unable to fetch datat from cart...!!!");

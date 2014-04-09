@@ -10,8 +10,57 @@ import edu.iiitb.model.CategoryModel;
 
 public class StartAction extends ActionSupport 
 {
-	ArrayList<Advertizement> advertizement;
+	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook, dealoftheday, advertizementsidebar;
+	
+	public ArrayList<Advertizement> getAdvertizementsidebar() {
+		return advertizementsidebar;
+	}
+
+	public void setAdvertizementsidebar(
+			ArrayList<Advertizement> advertizementsidebar) {
+		this.advertizementsidebar = advertizementsidebar;
+	}
+
+	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
+	
+	
+	public ArrayList<Advertizement> getDealoftheday() {
+		return dealoftheday;
+	}
+
+	public void setDealoftheday(ArrayList<Advertizement> dealoftheday) {
+		this.dealoftheday = dealoftheday;
+	}
+
+	
+
+	public ArrayList<CategoryModel> getCategoryfashion() {
+		return Categoryfashion;
+	}
+
+	public void setCategoryfashion(ArrayList<CategoryModel> categoryfashion) {
+		Categoryfashion = categoryfashion;
+	}
+
+	public ArrayList<CategoryModel> getCategorybooks() {
+		return Categorybooks;
+	}
+
+	public void setCategorybooks(ArrayList<CategoryModel> categorybooks) {
+		Categorybooks = categorybooks;
+	}
+
 	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
+	int[] value = new int[4];
+	
+ 
+	public int[] getValue() {
+		return value;
+	}
+
+	public void setValue(int[] value) {
+		this.value = value;
+	}
 
 	int category;
 
@@ -89,12 +138,24 @@ public class StartAction extends ActionSupport
 	
 	public String execute()
 	{
-
+		
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 	
 		try
 		{
-			advertizement = dbHandlerForUser.getadvertizement();
+			advertizement = dbHandlerForUser.getadvertizement("carousel","4");
+			for(int i=0; i<advertizement.size(); i++)
+			{
+				value[i] = advertizement.get(i).getProductId();
+			}
+			advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general","01");
+			advertizementfashion = dbHandlerForUser.getadvertizementforfront("general","02");
+			advertizementbook = dbHandlerForUser.getadvertizementforfront("general","03");
+			advertizementsidebar= dbHandlerForUser.getadvertizement("sidebar","2");
+			dealoftheday= dbHandlerForUser.getadvertizement("dealoftheday","1");
+			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
+			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
+			Categoryfashion = dbHandlerForUser.getsubcategorydeatils(2);
 		}
 		catch(Exception e)
 		{
@@ -104,6 +165,40 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
+	public ArrayList<Advertizement> getAdvertizementelectronics() {
+		return advertizementelectronics;
+	}
+
+	public void setAdvertizementelectronics(
+			ArrayList<Advertizement> advertizementelectronics) {
+		this.advertizementelectronics = advertizementelectronics;
+	}
+
+	public ArrayList<Advertizement> getAdvertizementfashion() {
+		return advertizementfashion;
+	}
+
+	public void setAdvertizementfashion(
+			ArrayList<Advertizement> advertizementfashion) {
+		this.advertizementfashion = advertizementfashion;
+	}
+
+	public ArrayList<Advertizement> getAdvertizementbook() {
+		return advertizementbook;
+	}
+
+	public void setAdvertizementbook(ArrayList<Advertizement> advertizementbook) {
+		this.advertizementbook = advertizementbook;
+	}
+
+	public ArrayList<CategoryModel> getCategoryelectronics() {
+		return Categoryelectronics;
+	}
+
+	public void setCategoryelectronics(ArrayList<CategoryModel> categoryelectronics) {
+		Categoryelectronics = categoryelectronics;
+	}
+
 	public String getMenuCatagory()
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();

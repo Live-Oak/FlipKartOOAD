@@ -10,15 +10,18 @@
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
+		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
+	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+	<script src="asset/JavaScripts/jquery-ui.js"></script>
+	
 	
 	<%-- <script type="text/javascript">
 	$(document).ready(function(){
@@ -35,10 +38,93 @@
 
 
 	</script> --%>
-	
-	
+	<script type="text/javascript">
+	var product_id_to_send;
+	$(document).ready(function(){
+		$(".addtocompare").change(function(event)
+				{
+		$(".addtocompare").is(':checked');
+		//alert(event.target.id);					Specifies id of the target 
+		var maxAllowed = 4;	
+		//alert($(event.target).attr("pid"));				Specifies pid 
+		var pId = $(event.target).attr("pid");
+		var cnt = $("input[name='compare']:checked").length;
+			      if (cnt > maxAllowed)
+			      {
+			         $(this).prop("checked", "");
+			         alert('Select maximum ' + maxAllowed );
+			     }
+			       
+		
+			      $.ajax({
+					    type: 'GET',
+					    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+					    data : {
+					    	productId : pId
+					    },
+					    url:'getProductToCompare',
+					    success: function(data){
+					    	
+					    	$("#comparecart").show();
+					    	if(data.count == 0 || data.count == undefined)
+				    		{
+					    		
+					    		$("#emptyComparediv").show();
+				    			$("#compare_button").attr("disabled", true);
+				    		}
+					    	else
+					    	{
+					    		
+					    		$("#producttocompare").show();
+					    		$("#products_to_compare").empty();
+					    		$.each(data.products, function(count,productcompare) 
+					    		{ 	
+					    			alert(productcompare.productName);
+					    			product_id_to_send=productcompare.productId;
+					    			alert("prev"+product_id_to_send);
+				    				$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
+				    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
+						    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
+				    						"<div class='productName'>"+productcompare.productName+"</div>"+
+				    						
+				    				"</center>"+"</div>");	
+				    			});
+					    		
+					    	}
+					     }});	
+			      $("#compare_button").click(function(){
+			  		$("#comparecart").hide();
+			    		
+	///	    			alert("next"+product_id_to_send);
+		//    			$.ajax({
+		  //  			    type: 'GET',	    
+		    //			    url:'getdetails_of_product_to_compare?productId=' + product_id_to_send,
+		    	//		    success: function(data){
+		    		//	    	$("#open_compare_page_form").submit();
+		    			//    }
+		    			
+		   // 			});
+		    			
+
+			      });
+			});
+		$('input:checkbox').removeAttr('checked');
+		
+	});
+		</script>
+
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#close_compare").click(function(){
+			$("#comparecart").hide();
+			$('.addtocompare').prop('checked', false); 
+		});
+	});
+	</script>
 </head>
 <body>
+	<div class="container">
 		<div class="col-md-1 "></div>
 		<div class="col-md-3 ">
 			<div class="background">
@@ -70,27 +156,74 @@
 			</div>
 		</div>
 	
-	<div class="col-md-7 background">
+	<div class="col-md-8 background">
 			<b> Showing all the products in the category </b><br><br>
+			
 			<s:iterator value="productinfo">
 				<div class="col-md-4">
 						<div class="border">
-							<center>
 								<br>
-								<a href="getProductDetail?productID=<s:property value="productID"/>">
-									<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto"><br><br>
-								</a>
+								<center>
+								<s:if test="%{availableQuantity == 0}">
+									<a href="#">
+										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+										<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+									</a>
+								</s:if>
+								<s:if test="%{availableQuantity != 0}">
+									<s:if test="%{availableQuantity >= minimumQuantity}">
+										<s:if test="%{offer==0}">
+											<a href="getProductDetail?productID=<s:property value="productID"/>">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
+												<br><br><br>
+											</a>
+										</s:if>
+										<s:if test="%{offer>0}">
+											<a href="getProductDetail?productID=<s:property value="productID"/>">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+												<img src="asset/Images/offer.jpg" alt="offer" height="40px" >
+												
+											</a>
+										</s:if>
+									</s:if>
+									<s:if test="%{availableQuantity < minimumQuantity}">
+											<a href="#">
+												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
+												<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+											</a>
+									</s:if>
+								</s:if>
 								<div class="giveMeEllipsis">
 								<a href="getProductDetail?productID=<s:property value="productID"/>">
 									<font size="4" color="black"><s:property value="productName"/></font><br>
 								</a>
 								</div>
 								<hr>
-								Rs. <s:property value="price"/><br>
+								<s:if test="%{offer==0}">
+									<font size="5px" color="#76553B">
+										Rs. <s:property value="price"/><br>
+									</font>
+								</s:if>
+								<s:if test="%{offer>0}">
+									<font size="5px" color="#76553B">
+									Rs. ${price-offer}
+									</font>
+								</s:if>
 								<hr>
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
-								<input type="checkbox" name="addtocompare" value=""> Add to compare<br>
+								<s:if test="%{availableQuantity == 0}">
+								<input type="checkbox" disabled >Add To Compare</input>
+								</s:if>
+								<s:elseif test="%{availableQuantity < minimumQuantity}">
+								<input type="checkbox" disabled >Add To Compare</input>
+								</s:elseif>
+								<s:else>
+									<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="<s:property value="productID"/> "/>Add To Compare</input>
+								</s:else>
+								<hr>
+						
+								<br><br><br>
 								<!--<s:property value="categoryID"/><br>
 								<s:property value="price"/><br>
 								<s:property value="offer"/><br>
@@ -100,8 +233,26 @@
 						</div><br>
 					</div>
 			</s:iterator>
+			</div>
+
 	</div>
-	<div class="col-md-1 "></div>
-	
+
+<div id="comparecart">
+<a class="close-reveal-modal" id="close_compare">&#215;</a>
+			<div id="emptyComparediv" class="empty-comparison">
+				There are no items to compare.<br><br>
+			</div>
+			<div id="producttocompare" class="empty-comparison">
+			
+				<div id="products_to_compare">
+					
+				</div>
+			</div>
+<form id="open_compare_page_form" action=opencompareproductpage method="get">			
+<input type="submit" class="compare_button" value="Compare" id="compare_button"/>
+</form>
+
+</div>
+<br>			
 </body>
 </html>
