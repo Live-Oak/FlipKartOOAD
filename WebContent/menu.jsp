@@ -59,6 +59,7 @@ $(document).ready(function(){
 		    type: 'POST',	    
 		    url:'check_login_password ?email=' + $("#emaill").val() + '&password=' + $("#passwordl").val(),
 		    success: function(data){
+		    	
 		    	$("#check_email_password").html(data.message);
 		    	var status=$("#check_email_password").html();
 		    	if(status=="available")
