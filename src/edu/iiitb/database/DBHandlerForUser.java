@@ -545,5 +545,36 @@ public class DBHandlerForUser {
 			
 			return categoryproducts;		
 		}
+
+		public ArrayList<ProductInfo> getProductInfoByName(String productname) throws SQLException 
+		{
+			
+			Connection con = db.createConnection();
+			ArrayList<ProductInfo> productInfoAdded = new ArrayList<ProductInfo>();	
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Stock where  ProductInfo.productId = Stock.productId and ProductInfo.productName = '" + productname + "'" ;       
+			      
+			ResultSet rs=db.executeQuery(query, con);
+			System.out.println("hello1");
+			ProductInfo obj = new ProductInfo();
+			while(rs.next())
+			{
+				
+				obj.setProductID(rs.getInt("productId"));
+				obj.setProductName(rs.getString("productName"));
+				obj.setPrice(rs.getInt("price"));
+				obj.setImage(rs.getString("image"));
+				obj.setOffer(rs.getInt("offer"));
+				obj.setCategoryID(rs.getString("categoryId"));
+				obj.setDescription(rs.getString("description"));
+				obj.setBrand(rs.getString("brand"));
+				obj.setWarranty(rs.getInt("warranty"));
+				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+				productInfoAdded.add(obj);
+			}
+			
+			db.closeConnection(con);
+			System.out.println("hello2");
+			return productInfoAdded;		}
 }
 

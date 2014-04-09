@@ -153,6 +153,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="tiles">CompareProducts</result>
 			</action>
 			
+			<action name="retrieveProduct" class="edu.iiitb.action.CompareProductAjax" method="getProductDetail">
+				<result name="success" type="json"></result>
+			</action>
+						
 <!-- 			<action name="getdetails_of_product_to_compare" class="edu.iiitb.action.CompareAction" method="formproduct_array_list">
 				<result name="success" type="json"></result>
 			</action> -->
