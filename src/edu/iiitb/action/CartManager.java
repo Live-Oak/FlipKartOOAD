@@ -5,21 +5,28 @@ package edu.iiitb.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.http.Cookie;
+
+import org.apache.struts2.interceptor.CookieProvider;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.database.DBHandlerForCart;
 import edu.iiitb.model.CartModel;
+import edu.iiitb.model.CookieBean;
 import edu.iiitb.model.User;
 
 /**
  * @author PrashantN
  *
  */
-public class CartManager extends ActionSupport implements SessionAware{
+public class CartManager extends ActionSupport implements SessionAware,CookieProvider {
 	
 	private int userid;
 	private int productId;
@@ -152,7 +159,10 @@ public class CartManager extends ActionSupport implements SessionAware{
 		return "success";
 	}
 
-
-	
+	@Override
+	public Set<Cookie> getCookies() {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 
 }
