@@ -22,21 +22,134 @@
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
 	
 	
-	<%-- <script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function(){
-		$("#name of checkbox").change(function()
-				{
-			$.ajax({
-			    type: 'POST',	    
-			    url:'update_product_list?value=' + ("#checkbox_id").is(':checked') + '&productname=' + $("#collect the value from session or from url").val(),
-			    success: function(data){
-			    	update the result on the page
-			     }});	
-		});
+		$("#newdivision").hide();
 	});
+	</script>
+	
+	<script type="text/javascript">
+	$(document).ready(function(){
+		var temp='<b> Showing all the products in the category </b><br><br>';
+		$(".filters").change(function(event)
+			{
+
+		var cnt = $("input[name='checkbox']:checked").length;
+		if(cnt > 0)
+			{
+			$("#newdivision").empty();
+			var pId = [];
+			$(".filters").each(function() {
+				if ($(this).is(':checked')) {
+					 //alert("hi");
+					  pId.push($(this).attr("brandname"));
+					 //alert(pId);
+				   }
+			});
+				
+			var categoryId = $("#categoryid").val();
+			
+			 $.ajax({
+				    type: 'POST',
+				    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				    data : {
+				    	brand : pId.join(","),
+				    	category : categoryId,
+				    	count : cnt
+				    },
+				    url:'getProductDetailfilter',
+				    success: function(data){
+				    	$.each(data.productinfofilter, function(count, stock) 
+				    	{
+				    		temp += '<div class="col-md-4"><div class="border"><br><center>';
+				    		if(stock.availableQuantity == 0)
+							{
+				    			temp += '<a href="#">';
+				    			temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
+				    			temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
+				    			temp += '</a>';
+							}
+				    		else
+				    		{
+				    			if(stock.availableQuantity >= stock.minimumQuantity)
+				    			{
+				    				if(stock.offer==0)
+				    				{
+				    					temp += '<a href="getProductDetail?productID='+stock.productID+'">';
+				    					temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
+						    			temp += '</a>';
+				    				}
+				    				else
+				    				{
+				    					temp += '<a href="getProductDetail?productID='+stock.productID+'">';
+				    					temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
+						    			temp += '<img src="asset/Images/offer.jpg" alt="offer" height="40px">';
+						    			temp += '</a>';
+				    				}
+				    			}
+				    			else
+				    			{
+				    				temp += '<a href="#">';
+					    			temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
+					    			temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
+					    			temp += '</a>';
+				    			}
+				    		}
+				    			
+					    	temp += '<hr>';
+					    	temp += '<div class="giveMeEllipsis">';
+					    	temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
+					    	temp += '<font size="4" color="black">'+stock.productName+'</font><br></a></div>';
+					    	temp += '<hr>';
+					    	
+					    	if(stock.offer == 0)
+				    		{
+				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+'</font><br>';
+				    		}
+				    		else
+				    		{
+				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+ - +stock.offer+'</font>';
+				    		}
+					    	
+					    	temp += '<hr>';
+					    	temp += 'This item has manufacturer warranty of '+stock.warranty+' years.<br>';
+					    	temp += '<hr>';
+					    	if(stock.availableQuantity == 0)
+							{
+					    		temp += '<input type="checkbox" disabled >Add To Compare</input>';
+							}
+					    	else if (stock.availableQuantity < stock.minimumQuantity)
+					    	{
+					    		temp += '<input type="checkbox" disabled >Add To Compare</input>';
+					    	}
+					    	else
+					    	{
+					    		temp += '<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="'+stock.productID+'"/>Add To Compare</input>';  
+					    	}
+					    	temp += '<hr>';
+							temp += '<br><br><br>';
+					    	temp += '<hr>';
+					    	temp += '</center></div></div>';
+					    	
+				    	});
+				    	$("#newdivision").show();
+				    	$("#newdivision").append(temp);
+				    	
+				    	temp = '';
+				    }
+				    });
+			 $("#dataappended").hide();
+			}
+		else{
+			$("#dataappended").show();
+			$("#newdivision").empty();
+			}
+		});
+			
+		 });
+	</script>
 
 
-	</script> --%>
 	<script type="text/javascript">
 	var product_id_to_send;
 	$(document).ready(function(){
@@ -156,16 +269,15 @@
 				<hr>
 				<h5>Company Name</h5>
 				<hr>
-				<form>
+				<input type="hidden" id="categoryid" value="<s:property value="productinfo.get(1).categoryID"/>">
 					<s:iterator value="companyList">
-					<input type="checkbox" name="checkbox" value="" id="<s:property />"> <s:property /><br>
-					</s:iterator>
-				</form> 
+					<input type="checkbox" id="brand" class="filters" name="checkbox" brandname="<s:property />"> <s:property /><br>
+				</s:iterator> 
 				<br><br><br>
 			</div>
 		</div>
 	
-	<div class="col-md-8 background">
+	<div class="col-md-8 background" id="dataappended">
 			<b> Showing all the products in the category </b><br><br>
 			
 			<s:iterator value="productinfo">
@@ -243,7 +355,9 @@
 					</div>
 			</s:iterator>
 			</div>
-
+		<div class="col-md-8" id="newdivision">
+		
+		</div>
 	</div>
 
 <div id="comparecart">
