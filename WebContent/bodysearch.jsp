@@ -10,7 +10,7 @@
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-		
+	<link href="asset/CSS/CompareProducts.css" rel="stylesheet">	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
@@ -63,6 +63,14 @@
 					    },
 					    url:'getProductToCompare',
 					    success: function(data){
+					  			
+					    	$.ajax({
+							    type: 'GET',
+							    url:'getProductsFromCartToCompare',
+							    success: function(data){
+						
+					    	
+					    	
 					    	
 					    	$("#comparecart").show();
 					    	if(data.count == 0 || data.count == undefined)
@@ -78,9 +86,9 @@
 					    		$("#products_to_compare").empty();
 					    		$.each(data.products, function(count,productcompare) 
 					    		{ 	
-					    			alert(productcompare.productName);
 					    			product_id_to_send=productcompare.productId;
 					    			alert("prev"+product_id_to_send);
+					    			
 				    				$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
 				    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
 						    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
@@ -90,6 +98,8 @@
 				    			});
 					    		
 					    	}
+							    }
+					    	});
 					     }});	
 			      $("#compare_button").click(function(){
 			  		$("#comparecart").hide();

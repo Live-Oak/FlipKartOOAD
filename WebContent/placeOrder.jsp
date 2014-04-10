@@ -440,7 +440,7 @@ table td
 	</s:iterator>
 	<tr>
 	<th class="last" colSpan ="4" > Grand Total</th>
-	<th>  </th>
+	<th>  <s:property value="grandTotal"/>		</th>
 	</tr>
 </table>
 <br/><br/>
