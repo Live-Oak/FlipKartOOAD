@@ -179,7 +179,7 @@ public class CartManager extends ActionSupport implements SessionAware,
 								.deserialize(content);
 						 pop.populateObject(cookie, map);
 						 
-						if(cookie.getProductList().contains(
+						if(!cookie.getProductList().contains(
 								new CartProduct(productId, quantity))) 
 						{
 							cookie.getProductList().add(

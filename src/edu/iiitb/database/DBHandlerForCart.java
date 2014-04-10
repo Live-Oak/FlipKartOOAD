@@ -26,7 +26,7 @@ public class DBHandlerForCart {
 	public static void addToCart(int uid,int productId,int quantity) throws Exception
 	{
 		Connection con = db.createConnection();
-		String query="INSERT INTO Cart(userId,productId,quantity) VALUES (?,?,?);";
+		String query="INSERT IGNORE INTO Cart(userId,productId,quantity) VALUES (?,?,?);";
 		PreparedStatement prep =con.prepareStatement(query);	
 		prep.setInt(1,uid);
 		prep.setInt(2,productId);
