@@ -375,6 +375,10 @@
 			<div class="background">
 				<br>
 				<h4><b>BROWSE</b></h4>
+				<s:iterator value="linktoitem">
+					<a href="getSearchresult?categoryid=<s:property value="productinfo.get(0).categoryID"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="parentCategory"/></font></a><br>
+					&nbsp;&nbsp;&nbsp;<a href="getSearchresult?categoryid<s:property value="productinfo.get(0).categoryID"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="Category"/></font></a>
+				</s:iterator>
 				<hr noshade>
 				<h5><b>REFINE</b></h5>
 				<hr>

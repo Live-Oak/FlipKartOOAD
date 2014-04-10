@@ -21,6 +21,7 @@ import edu.iiitb.model.CartCookie;
 import edu.iiitb.model.CartModel;
 import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
@@ -498,6 +499,25 @@ public class DBHandlerForUser {
 		db.closeConnection(con);
 		return ProductInfo;
 	}
+	
+	public ArrayList<Linklists> getlinktothecategory(String category) throws SQLException
+	{
+		ArrayList<Linklists> Listoflink = new ArrayList<Linklists>();
+		Connection con = db.createConnection();
+		String query="select c1.categoryName as childCategory, c2.categoryName as parentCategory from category as c1, category as c2, categoryrelation where c2.categoryName = '"+category+"' and c2.categoryId = categoryrelation.subCategoryId and categoryrelation.categoryId = c1.categoryId";       
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			//System.out.println("product is : " +rs.getString("childCategory"));
+			Linklists obj = new Linklists();
+			obj.setCategory(rs.getString("parentCategory"));
+			obj.setParentCategory(rs.getString("childCategory"));
+			Listoflink.add(obj);
+		}
+		db.closeConnection(con);
+		return Listoflink;
+	}
+	
 	
 	public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
 	{
