@@ -10,62 +10,60 @@ public class CompareProducts extends ActionSupport
 {
 	
 	/**
-	 * 
-	 */
-	/*private static final long serialVersionUID = 1L;
-	private int productId;
-	private int count;
-	private ArrayList<CompareProductsModel> products;
-	
-	public CompareProducts(int productId, ArrayList<CompareProductsModel> products)
-	{
-		super();
-		this.setProductId(productId);
-		this.setProducts(products);
-	}
-	public CompareProducts() 
-	{
-		
-	} 
-	public String getProductDetails() throws SQLException
-	{
-		System.out.println(getProductId());
-		setProducts(DBHandlerforComparison.getProducts(getProductId()));
-		count=products.size();
-		System.out.println("Count is: "+count);
-		for(CompareProductsModel c : products)
-		{
-			System.out.println(c.getProductName());
-		}
-		return "success";
-	}
+ * 
+ */
+/*private static final long serialVersionUID = 1L;
+private int productId;
+private int count;
+private ArrayList<CompareProductsModel> products;
 
-	public int getProductId() 
-	{
-		return productId;
-	}
-
-	public void setProductId(int productId) 
-	{
-		this.productId = productId;
-	}
-	
-	public ArrayList<CompareProductsModel> getProducts() {
-		return products;
-	}
-	public void setProducts(ArrayList<CompareProductsModel> products) {
-		this.products = products;
-	}
-	public int getCount() {
-		return count;
-	}
-	public void setCount(int count) {
-		this.count = count;
-	}
+public CompareProducts(int productId, ArrayList<CompareProductsModel> products)
+{
+	super();
+	this.setProductId(productId);
+	this.setProducts(products);
 }
-*/
+public CompareProducts() 
+{
+	
+} 
+public String getProductDetails() throws SQLException
+{
+	System.out.println(getProductId());
+	setProducts(DBHandlerforComparison.getProducts(getProductId()));
+	count=products.size();
+	System.out.println("Count is: "+count);
+	for(CompareProductsModel c : products)
+	{
+		System.out.println(c.getProductName());
+	}
+	return "success";
+}
 
+public int getProductId() 
+{
+	return productId;
+}
 
+public void setProductId(int productId) 
+{
+	this.productId = productId;
+}
+
+public ArrayList<CompareProductsModel> getProducts() {
+	return products;
+}
+public void setProducts(ArrayList<CompareProductsModel> products) {
+	this.products = products;
+}
+public int getCount() {
+	return count;
+}
+public void setCount(int count) {
+	this.count = count;
+}
+}
+ */
 
 /**
  * 
@@ -121,7 +119,6 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 		this.products = products;
 	}
 
-	
 	/**
 	 * @return the productId
 	 */
@@ -180,75 +177,78 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 	}
 
 	public String getProductDetails() {
-			try {
-				System.out.println(productId);
-				String content = null;
-				boolean cookieFound = false;
-				for (Cookie c : servletRequest.getCookies()) {
-					if (c.getName().equals("comparecart")) {				// what is this for?
-						content = c.getValue();
-						CompareCartCookie cookie = new CompareCartCookie();
-						 JSONPopulator pop = new JSONPopulator();
-						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
-								.deserialize(content);
-						 pop.populateObject(cookie, map);
+		try {
+			System.out.println(productId);
+			String content = null;
+			boolean cookieFound = false;
+			for (Cookie c : servletRequest.getCookies()) {
+
+				if (c.getName().equals("comparecart")) { // what is this for?
+					content = c.getValue();
+					CompareCartCookie cookie = new CompareCartCookie();
+					JSONPopulator pop = new JSONPopulator();
+					Map<?, ?> map = (Map<?, ?>) JSONUtil.deserialize(content);
+					pop.populateObject(cookie, map);
+
+					if (!cookie.getProductList().contains(
+							new CompareCartProduct(productId))) {
+
 						cookie.getProductList().add(
 								new CompareCartProduct(productId));
+
 						content = JSONUtil.serialize(cookie);
 						c.setValue(content);
-						c.setMaxAge(60*60*24*2);
-						cookieFound = true;
+						c.setMaxAge(60 * 60 * 24 * 2);
 						servletResponse.addCookie(c);
-						break;
 					}
+					cookieFound = true;
+					break;
 				}
-				if(cookieFound == false)
-				{
-					CompareCartCookie cookie = new CompareCartCookie();
-					cookie.getProductList().add(new CompareCartProduct(productId));
-					content = JSONUtil.serialize(cookie);
-					Cookie c = new Cookie("comparecart", content);
-					c.setMaxAge(60*60*24*2);
-					servletResponse.addCookie(c);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
+			}
+			if (cookieFound == false) {
+				CompareCartCookie cookie = new CompareCartCookie();
+				cookie.getProductList().add(new CompareCartProduct(productId));
+				content = JSONUtil.serialize(cookie);
+				Cookie c = new Cookie("comparecart", content);
+				c.setMaxAge(60 * 60 * 24 * 2);
+				servletResponse.addCookie(c);
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		return "success";
 
 	}
 
 	public String getCartProducts() {
-			try {
+		try {
 
-				String content = null;
-				boolean cookieFound = false;
-				
-				for (Cookie c : servletRequest.getCookies()) {
-					if (c.getName().equals("comparecart")) {
-						content = c.getValue();
-						CompareCartCookie cookie = new CompareCartCookie();
-						 JSONPopulator pop = new JSONPopulator();
-						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
-								.deserialize(content);
-						 pop.populateObject(cookie, map);
-						products = DBHandlerforComparison.getProductsFromCompareCart(cookie.getProductList());
-						cookieFound = true;
-						break;
-					}
-				}
-				if(cookieFound == false)
-				{
-					products = new ArrayList<CompareProductsModel>();
-				}
+			String content = null;
+			boolean cookieFound = false;
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			for (Cookie c : servletRequest.getCookies()) {
+				if (c.getName().equals("comparecart")) {
+					content = c.getValue();
+					CompareCartCookie cookie = new CompareCartCookie();
+					JSONPopulator pop = new JSONPopulator();
+					Map<?, ?> map = (Map<?, ?>) JSONUtil.deserialize(content);
+					pop.populateObject(cookie, map);
+					products = DBHandlerforComparison
+							.getProductsFromCompareCart(cookie.getProductList());
+					cookieFound = true;
+					break;
+				}
 			}
-		
+			if (cookieFound == false) {
+				products = new ArrayList<CompareProductsModel>();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		count = products.size();
 		return "success";
 	}
@@ -256,9 +256,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-
 }
-
