@@ -178,13 +178,20 @@ public class CartManager extends ActionSupport implements SessionAware,
 						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 								.deserialize(content);
 						 pop.populateObject(cookie, map);
-						cookie.getProductList().add(
-								new CartProduct(productId, quantity));
-						content = JSONUtil.serialize(cookie);
-						c.setValue(content);
-						c.setMaxAge(60*60*24*2);
+						 
+						if(cookie.getProductList().contains(
+								new CartProduct(productId, quantity))) 
+						{
+							cookie.getProductList().add(
+									new CartProduct(productId, quantity));
+							content = JSONUtil.serialize(cookie);
+							c.setValue(content);
+							c.setMaxAge(60*60*24*2);
+							
+							servletResponse.addCookie(c);
+
+						}
 						cookieFound = true;
-						servletResponse.addCookie(c);
 						break;
 					}
 				}
