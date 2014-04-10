@@ -253,14 +253,62 @@ public class CartManager extends ActionSupport implements SessionAware,
 
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-
-			
+			}	
 
 		}
 		
 		count = products.size();
 		return "success";
 	}
+	
+	
+	public String removeCartProduct(){
+		
+		User user = (User) session.get("user");
+		if (user != null) {
+			try {
+				DBHandlerForCart.removeFromCart(
+						Integer.parseInt(user.getUserId().trim()), productId);
+				
+				products = DBHandlerForCart.getProducts(Integer.parseInt(user
+						.getUserId().trim()));
+			} catch (Exception e) {
+				System.out.println("unable to remove product to cart..!!!");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+
+				String content = null;
+				for (Cookie c : servletRequest.getCookies()) {
+					if (c.getName().equals("cart")) {
+						content = c.getValue();
+						CartCookie cookie = new CartCookie();
+						 JSONPopulator pop = new JSONPopulator();
+						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
+								.deserialize(content);
+						 pop.populateObject(cookie, map);
+						cookie.getProductList().remove(
+								new CartProduct(productId, 1));
+						content = JSONUtil.serialize(cookie);
+						c.setValue(content);
+						c.setMaxAge(60*60*24*2);
+						servletResponse.addCookie(c);
+						products = DBHandlerForCart.getProductsFromCart(cookie.getProductList());
+						break;
+					}
+				}
+				
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return "success";
+
+	}
+	
 
 }
