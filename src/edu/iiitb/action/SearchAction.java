@@ -11,11 +11,17 @@ import edu.iiitb.model.ProductInfo;
 public class SearchAction extends ActionSupport{
 
 	ArrayList<ProductInfo> productinfo;
-	String categoryname;
+	String categoryname, catid;
 	ArrayList<String> companyList;
 	ArrayList<Linklists> linktoitem;
 
+	public String getCatid() {
+		return catid;
+	}
 
+	public void setCatid(String catid) {
+		this.catid = catid;
+	}
 	public ArrayList<Linklists> getLinktoitem() {
 		return linktoitem;
 	}

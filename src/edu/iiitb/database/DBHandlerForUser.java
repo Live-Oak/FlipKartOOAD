@@ -518,6 +518,22 @@ public class DBHandlerForUser {
 		return Listoflink;
 	}
 	
+	public String getnameonid(String id) throws SQLException
+	{
+		System.out.println("Id in handler" +id);
+		Connection con = db.createConnection();
+		String name="";
+		String query="select categoryName from category where categoryId = '"+id+"'";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			System.out.println("name in handler" +rs.getString("categoryName"));
+			name = rs.getString("categoryName");
+		}
+		System.out.println("Name is : "+name);
+		return name;
+	}
+	
 	
 	public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
 	{
