@@ -15,6 +15,8 @@ import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.model.customerCartDetail;
+import edu.iiitb.model.custometAddressDetail;
 
 
 	/**
@@ -529,6 +531,50 @@ public class DBHandlerForUser {
 			return companyname;
 		}
 
+		public custometAddressDetail getUserAddressDetail(String email) throws SQLException
+		{
+			Connection con = db.createConnection();
+			DBConnectivity db = new DBConnectivity();
+			custometAddressDetail addressDetails = new custometAddressDetail();	
+			String query="SELECT  CONCAT(firstName, ' ', lastName) as name, addressLine1, addressLine2, pinCode,phoneNumber, city FROM `FlipKartDatabase`.`UserCredantials` WHERE email = '" + email + "' " ;
+			ResultSet rs = db.executeQuery(query, con);			
+			while(rs.next())
+			{				
+				addressDetails.setName(rs.getString("name"));
+				addressDetails.setPhoneNumber(rs.getString("phoneNumber"));
+				addressDetails.setEmail(email);				
+				addressDetails.setPinCode(rs.getString("pinCode"));
+				addressDetails.setAddressLine1(rs.getString("addressLine1"));
+				addressDetails.setAddressLine2(rs.getString("addressLine2"));
+				addressDetails.setCity(rs.getString("city"));				
+			}			
+			db.closeConnection(con);
+			return addressDetails;
+		}		
+		
+		public ArrayList<customerCartDetail>  getCartDetail(String email) throws SQLException
+		{
+			ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
+			
+			Connection con = db.createConnection();
+			DBConnectivity db = new DBConnectivity();	
+			
+			String query="SELECT P.image as image, P.productName as productName, C.quantity as quantity, P.price as price FROM FlipKartDatabase.UserCredantials AS U INNER JOIN FlipKartDatabase.Cart AS C  ON C.useriD = U.userId INNER JOIN FlipKartDatabase.ProductInfo AS P    ON P.productId = C.productId WHERE email =  '" + email + "' " ;
+			ResultSet rs = db.executeQuery(query, con);			
+			while(rs.next())
+			{
+				customerCartDetail cartDetail = new customerCartDetail();					
+				cartDetail.setImage(rs.getString("image"));				
+				cartDetail.setProductName(rs.getString("productName"));
+				cartDetail.setQuantity(rs.getString("quantity"));				
+				cartDetail.setPrice(rs.getString("price"));	
+				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * ( Integer.parseInt( cartDetail.getQuantity()	) )	)  );
+				cartDetailsList.add(cartDetail);				
+			}		
+			db.closeConnection(con);
+			return cartDetailsList;
+		}
+
 		public ArrayList<String>  getproductsforcomparison(int categoryId) throws SQLException 
 		{
 			Connection con = db.createConnection();
@@ -580,5 +626,6 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			System.out.println("hello2");
 			return productInfoAdded;		}
+
 }
 

@@ -282,5 +282,56 @@ CREATE  TABLE `FlipKartDatabase`.`ReviewNRating` (
     REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+/* Alter Create  Script for Place Order and Payment Module Table*/
+
+/* Alter Script Order Table */
+ALTER TABLE `FlipKartDatabase`.`Order` DROP FOREIGN KEY `fk_Order_userId` , DROP FOREIGN KEY `fk_Order_productId` ;
+ALTER TABLE `FlipKartDatabase`.`Order` DROP COLUMN `userId` , DROP COLUMN `quantity` , DROP COLUMN `productId` 
+, DROP INDEX `fk_Order_productId` 
+, DROP INDEX `fk_Order_userId`;
+
+ALTER TABLE `FlipKartDatabase`.`Order` CHANGE COLUMN `orderId` `orderId` INT(11) NOT NULL AUTO_INCREMENT  ;
+;
+
+/*  Create Script OrderDescription Table*/
+CREATE  TABLE `FlipKartDatabase`.`OrderDescription` (
+  `orderID` INT NOT NULL ,
+  `porductId` INT NOT NULL ,
+  `quantity` INT NOT NULL ,
+  `price` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`orderID`, `porductId`) ,
+  INDEX `fk_orderDescription_orderId` (`orderID` ASC) ,
+  INDEX `fk_orderDescription_productId` (`porductId` ASC) ,
+  CONSTRAINT `fk_orderDescription_orderId`
+    FOREIGN KEY (`orderID` )
+    REFERENCES `FlipKartDatabase`.`Order` (`orderId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orderDescription_productId`
+    FOREIGN KEY (`porductId` )
+    REFERENCES `FlipKartDatabase`.`ProductInfo` (`productId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 
+/*  Create Script OrderShippingAddress Table*/
+CREATE  TABLE `FlipKartDatabase`.`OrderShipingAddress` (
+  `orderId` INT NOT NULL ,
+  `customerName` VARCHAR(45) NOT NULL ,
+  `customerEmail` VARCHAR(45) NOT NULL ,
+  `addressLine1` VARCHAR(45) NOT NULL ,
+  `addressLine2` VARCHAR(45) NULL ,
+  `pincode` VARCHAR(6) NOT NULL ,
+  `city` VARCHAR(45) NOT NULL ,
+  `customerPhoneNumber` VARCHAR(10) NOT NULL ,
+  PRIMARY KEY (`orderId`) ,
+  INDEX `fk_OrderShipingAddress_orderId` (`orderId` ASC) ,
+  CONSTRAINT `fk_OrderShipingAddress_orderId`
+    FOREIGN KEY (`orderId` )
+    REFERENCES `FlipKartDatabase`.`Order` (`orderId` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+    
