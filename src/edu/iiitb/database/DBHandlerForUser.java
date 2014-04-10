@@ -7,10 +7,19 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+
+import org.apache.struts2.json.JSONPopulator;
+import org.apache.struts2.json.JSONUtil;
 
 	import com.mysql.jdbc.Connection;
 
 	import edu.iiitb.model.Advertizement;
+import edu.iiitb.model.CartCookie;
+import edu.iiitb.model.CartModel;
+import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
@@ -550,9 +559,9 @@ public class DBHandlerForUser {
 			}			
 			db.closeConnection(con);
 			return addressDetails;
-		}		
+		}
 		
-		public ArrayList<customerCartDetail>  getCartDetail(String email) throws SQLException
+		public ArrayList<customerCartDetail>  getCartTableDetail(String email) throws SQLException
 		{
 			ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
 			
@@ -566,12 +575,47 @@ public class DBHandlerForUser {
 				customerCartDetail cartDetail = new customerCartDetail();					
 				cartDetail.setImage(rs.getString("image"));				
 				cartDetail.setProductName(rs.getString("productName"));
-				cartDetail.setQuantity(rs.getString("quantity"));				
+				cartDetail.setQuantity(Integer.parseInt(rs.getString("quantity") ));				
 				cartDetail.setPrice(rs.getString("price"));	
-				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * ( Integer.parseInt( cartDetail.getQuantity()	) )	)  );
+				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * (  cartDetail.getQuantity()	 )	)  );
 				cartDetailsList.add(cartDetail);				
 			}		
 			db.closeConnection(con);
+			return cartDetailsList;
+		}
+
+		
+		public ArrayList<customerCartDetail>  getCartCokkiesDetail(ArrayList<customerCartDetail> cartDetails) throws SQLException
+		{
+			ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();			
+			Connection con = db.createConnection();
+			for(customerCartDetail p : cartDetails)
+			{
+				String query = "SELECT P.image as image, P.productId as productId, P.productName as productName, P.price as price FROM FlipKartDatabase.ProductInfo    as P WHERE P.productId = "+p.getProductID()+";";
+				ResultSet rs=db.executeQuery(query, con);
+				while(rs.next())
+				{
+					customerCartDetail cartDetail = new customerCartDetail();									
+					cartDetail.setImage(rs.getString("image"));				
+					cartDetail.setProductName(rs.getString("productName"));
+					cartDetail.setProductID(Integer.parseInt(rs.getString("productId")));
+					cartDetail.setQuantity(p.getQuantity());		
+					cartDetail.setPrice(rs.getString("price"));	
+					cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * (  cartDetail.getQuantity()	 )	)  );
+					
+					cartDetailsList.add(cartDetail);
+				}
+			}
+			for(customerCartDetail card : cartDetailsList)
+			{
+				System.out.println("Inside Cokie wala db query");
+				System.out.println("Cokkie Product Name :" + card.getProductName() );
+				System.out.println("Cokkie Product ID :" + card.getProductID() );
+				System.out.println("Cokkie Product Quantity :" + card.getQuantity() );
+				
+			}
+			
+			db.closeConnection(con);					
 			return cartDetailsList;
 		}
 
@@ -626,6 +670,8 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			System.out.println("hello2");
 			return productInfoAdded;		}
+
+		
 
 }
 

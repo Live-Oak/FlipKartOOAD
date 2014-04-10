@@ -128,7 +128,7 @@ $(document).ready(function(){
 							/* Ajax call to fetch cart data starts here*/		
 							 $.ajax({
 						    type: 'GET',	    
-						    url:'getUserCartDetails ?email=' + $("#emailInput").val() ,
+						    url:'getCartProducts'  ,
 						    success: function(data){
 						    	//alert(data.addressDetails.name);						    	
 						    	/*$("#name").val(data.addressDetails.name);

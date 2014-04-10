@@ -3,7 +3,8 @@ package edu.iiitb.model;
 public class customerCartDetail {
 	private String image;
 	private String productName;
-	private String quantity;
+	private int productID;
+	private int quantity;
 	private String price;	
 	private String subTotal;
 
@@ -23,11 +24,11 @@ public class customerCartDetail {
 		this.productName = productName;
 	}
 
-	public String getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(String quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
@@ -45,6 +46,14 @@ public class customerCartDetail {
 
 	public void setSubTotal(String subTotal) {
 		this.subTotal = subTotal;
+	}
+
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
 	}
 
 }
