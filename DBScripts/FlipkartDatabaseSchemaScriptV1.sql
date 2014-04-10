@@ -146,7 +146,7 @@ CREATE  TABLE `FlipKartDatabase`.`Cart` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-
+CREATE UNIQUE INDEX cartindex ON `flipkartdatabase`.`cart` (`userId`, `productId`);
 
 CREATE  TABLE `FlipKartDatabase`.`Payment` (
   `transactionId` INT NOT NULL AUTO_INCREMENT ,
