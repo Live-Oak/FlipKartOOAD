@@ -520,17 +520,17 @@ public class DBHandlerForUser {
 	
 	public String getnameonid(String id) throws SQLException
 	{
-		System.out.println("Id in handler" +id);
+		//System.out.println("Id in handler" +id);
 		Connection con = db.createConnection();
 		String name="";
 		String query="select categoryName from category where categoryId = '"+id+"'";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			System.out.println("name in handler" +rs.getString("categoryName"));
+			//System.out.println("name in handler" +rs.getString("categoryName"));
 			name = rs.getString("categoryName");
 		}
-		System.out.println("Name is : "+name);
+		//System.out.println("Name is : "+name);
 		return name;
 	}
 	
@@ -659,6 +659,20 @@ public class DBHandlerForUser {
 		}
 		db.closeConnection(con);
 		return ProductInfo;
+	}
+	
+	public String getcategoryId(String keyword) throws SQLException
+	{
+		//System.out.println("keyword in dbhandler : " +keyword);
+		Connection con = db.createConnection();
+		String categoryid="";
+		String query="select ProductInfo.categoryId from ProductInfo, Keywords, Stock where ProductInfo.productId = Keywords.productId and  ProductInfo.productId = Stock.productId and Keywords.keyword = '" + keyword + "'";       
+		ResultSet rs=db.executeQuery(query, con);
+		
+		rs.next();
+		categoryid = (rs.getString("categoryId"));
+		db.closeConnection(con);
+		return categoryid;
 	}
 	
 	public ArrayList<String> getCompanylist(String keyword) throws SQLException

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.database.DBHandlerForUser;
+import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 
 public class BrowseAction extends ActionSupport 
@@ -12,6 +13,33 @@ public class BrowseAction extends ActionSupport
 	ArrayList<ProductInfo> productinfo;
 	String keyword;
 	ArrayList<String> companyList;
+	ArrayList<Linklists> linktoitem;
+	String catid, categoryname ;
+
+	
+	public String getCategoryname() {
+		return categoryname;
+	}
+
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+
+	public String getCatid() {
+		return catid;
+	}
+
+	public void setCatid(String catid) {
+		this.catid = catid;
+	}
+
+	public ArrayList<Linklists> getLinktoitem() {
+		return linktoitem;
+	}
+
+	public void setLinktoitem(ArrayList<Linklists> linktoitem) {
+		this.linktoitem = linktoitem;
+	}
 	
 	public ArrayList<String> getCompanyList() {
 		return companyList;
@@ -43,9 +71,16 @@ public class BrowseAction extends ActionSupport
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
-			//System.out.println("keyword in action : " +keyword);
+			catid = dbHandlerForUser.getcategoryId(keyword);
+			// get the id of product
+			categoryname = dbHandlerForUser.getnameonid(catid);
+			// get the name of product on id
+			linktoitem = dbHandlerForUser.getlinktothecategory(categoryname);
+			// To get the links for the side results
 			productinfo = dbHandlerForUser.getproductlist(keyword);
+			// get the list of products
 			companyList = dbHandlerForUser.getCompanylist(keyword);
+			// get the list of company
 		}
 		catch(Exception e)
 		{
