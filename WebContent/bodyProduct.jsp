@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix="s" uri="/struts-tags"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -26,7 +27,7 @@
 	<div class="col-md-2 "></div>
 	
 	
-	<div class="col-md-8">
+	<div class="col-md-9">
 		<div class="background">
 		<div class="container">
 			<div class="col-md-6">
@@ -38,8 +39,8 @@
 					</center>
 			</div>
 	
-	
-			<div class="col-md-6">
+			<div class="col-md-1"></div>
+			<div class="col-md-5">
 					<br>
 					<s:iterator value="productinfo">
 						<font size="5" >
@@ -51,36 +52,27 @@
 							</s:iterator>
 						<hr>
 						<div class="container">
-							<div class="col-md-6 ">
-								<s:if test="%{offer==0}">
-									<font size="5" color="#76553B">
-										Rs. <s:property value="price"/><br>
-									</font>
-								</s:if>
-								<s:if test="%{offer>0}">
-									<font size="5" color="#76553B">
-									<font color="#848484">Rs. <strike><s:property value="price"/></strike></font><br>
-									Rs. ${price-offer} 
-									
-									</font>
-								</s:if>
-								<hr>
-							</div>
-							<div class="col-md-6 ">
-								Seller: <a href="#"> <font color="black" size="4">WS Retail </font> </a>
-								<br>
-								<hr>
-							</div>
+							<s:if test="%{offer==0}">
+								<font size="5" color="#76553B">
+									Rs. <s:property value="price"/><br>
+								</font>
+							</s:if>
+							<s:if test="%{offer>0}">
+								<font size="5" color="#76553B">
+									<font color="#848484" size="4">Rs. <strike><s:property value="price" /></strike> <s:property value="discount"/>% OFF</font><br>
+										Rs. ${price-offer} 
+								</font>
+							</s:if>
+						<hr>
+						Seller: <a href="#"> <font color="black" size="4">WS Retail </font> </a>
+						<br>
 						</div>
+						<hr>
+						
 						<input type="hidden" pid="<s:property value="productID"/>" id="productId"/>
 						<s:property value="warranty"/> year manufacturer warranty for Phone and 6 months warranty for in the box accessories <s:property value="brand"/> and Free Transit Insurance. <br>
 						<hr>
-						<!--<s:property value="categoryID"/><br>
-							<s:property value="price"/><br>
-							<s:property value="offer"/><br>
-							<s:property value="warranty"/><br>
-							<s:property value="description"/><br>
-							<br>-->
+						
 					</s:iterator>
 					
 					<button type="button" class="btn btn-danger"  id="buyNow">BUY NOW</button>
@@ -103,13 +95,8 @@
 		</div>
 	</div>
 	
-<<<<<<< HEAD
-	<div class="col-md-1 ">hello </div>
-	
-=======
 	<div class="col-md-1 "></div>
 	</div>
 	<br>
->>>>>>> branch 'master' of https://github.com/Live-Oak/FlipKartProject.git
 </body>
 </html>

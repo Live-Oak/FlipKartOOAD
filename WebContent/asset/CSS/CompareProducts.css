@@ -110,3 +110,27 @@
 	margin-right:20px
 }
 
+.mainselection {
+	
+}
+select {
+	overflow:hidden;
+    border:1;
+    background:transparent;
+    height:32px;
+    border:1px solid #d8d8d8;
+    width:150px;
+    margin-left: 10px;
+    border:2px solid #c13339;
+    -webkit-appearance: none;
+}
+
+#close
+{
+	margin-left: 140px; 
+}
+.fontcolorcomparison
+{
+	font-color:#BB0000;
+	
+}

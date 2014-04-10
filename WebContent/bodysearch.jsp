@@ -10,8 +10,7 @@
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-		<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
-	
+		
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
@@ -75,7 +74,6 @@
 					    	else
 					    	{
 					    		
-					    		alert(data.count);
 					    		$("#producttocompare").show();
 					    		$("#products_to_compare").empty();
 					    		$.each(data.products, function(count,productcompare) 
@@ -89,15 +87,24 @@
 				    						"<div class='productName'>"+productcompare.productName+"</div>"+
 				    						
 				    				"</center>"+"</div>");	
-				    				
-					    		});
+				    			});
 					    		
 					    	}
 					     }});	
 			      $("#compare_button").click(function(){
-		    		//	$("#comparecart").hide();
-		    			alert("next"+product_id_to_send);
+			  		$("#comparecart").hide();
+			    		
+	///	    			alert("next"+product_id_to_send);
+		//    			$.ajax({
+		  //  			    type: 'GET',	    
+		    //			    url:'getdetails_of_product_to_compare?productId=' + product_id_to_send,
+		    	//		    success: function(data){
+		    		//	    	$("#open_compare_page_form").submit();
+		    			//    }
 		    			
+		   // 			});
+		    			
+
 			      });
 			});
 		$('input:checkbox').removeAttr('checked');
@@ -240,9 +247,11 @@
 					
 				</div>
 			</div>
-<input type = "button" id="compare_button" class="compare_button" value="Compare" action="#"/>
+<form id="open_compare_page_form" action=opencompareproductpage method="get">			
+<input type="submit" class="compare_button" value="Compare" id="compare_button"/>
+</form>
+
 </div>
-				
-	<br>			
+<br>			
 </body>
 </html>

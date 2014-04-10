@@ -416,8 +416,7 @@ table td
 		<th>Price</th>
 		<th>Sub Total</th>
 	</tr>
-	<% float grandTotal;
-	%>
+	<% float grandTotal;	%>
 	<s:iterator value="cartDetailsList">
 	<tr>
 		<td id="cardCol1">
@@ -434,20 +433,19 @@ table td
 			<s:property value="price"/>
 		</td>
 		<td id="cardCol5">
-			<s:property value="subTotal"/>			
+			<s:property value="subTotal"/>	
+			
 		</td>
 	</tr>
 	</s:iterator>
 	<tr>
 	<th class="last" colSpan ="4" > Grand Total</th>
-	<th> </th>
+	<th>  </th>
 	</tr>
 </table>
 <br/><br/>
 <input type="submit" id="nextPaymentPage"value="CONTINUE" align="middle" class="mysubmit2" >
 </div>
-
-
 
 
 <div id="flip4"><label class="mylabel" >4.PAYMENT METHOD</label>

@@ -35,6 +35,7 @@ $(document).ready(function(){
 		    		{
 		    			$("#productInfo").show();
 		    			$("#list").empty();
+		    			$("#productCount").html("CART ("+data.count+")");
 		    			$("#cartHeader").html("CART ("+data.count+")");
 		    			var totalcost = 0;
 		    			$.each(data.products, function(count,product) { 

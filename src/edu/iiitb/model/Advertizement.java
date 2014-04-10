@@ -7,8 +7,12 @@ import java.sql.Timestamp;
 public class Advertizement {
 
 	private int productId;
-	private InputStream image;
 	private String photo, type;
+	private String advType;
+	File myFile;
+	String myFileFileName,myFileContentType,productID;
+	private Timestamp timeStamp;
+	private String caption;
 
 	public String getType() {
 		return type;
@@ -16,7 +20,19 @@ public class Advertizement {
 	public void setType(String type) {
 		this.type = type;
 	}
-	private Timestamp timeStamp;
+	/**
+	 * @return the advType
+	 */
+	public String getAdvType() {
+		return advType;
+	}
+	/**
+	 * @param advType the advType to set
+	 */
+	public void setAdvType(String advType) {
+		this.advType = advType;
+	}
+
 	public int getProductId() {
 		return productId;
 	}
@@ -35,11 +51,6 @@ public class Advertizement {
 	public void setCaption(String caption) {
 		this.caption = caption;
 	}
-	private String caption;
-	
-	File myFile;
-	String myFileFileName,myFileContentType,productID;
-	
 	/**
 	 * @return the productID
 	 */
@@ -54,15 +65,7 @@ public class Advertizement {
 		this.productID = idName[0];
 	}
 	
-	public InputStream getImage() {
-		return image;
-	}
-	/**
-	 * @param image the image to set
-	 */
-	public void setImage(InputStream image) {
-		this.image = image;
-	}
+
 	/**
 	 * @return the timeStamp
 	 */
