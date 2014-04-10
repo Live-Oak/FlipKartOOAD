@@ -66,6 +66,15 @@ public class DBHandlerForCart {
 		db.closeConnection(con);
 		return products;
 	}
+
+	public static void removeFromCart(int uid, int productId) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection con = db.createConnection();
+		String query="DELETE FROM Cart where userId = "+uid+" and productId = "+productId+";";
+		PreparedStatement prep =con.prepareStatement(query);	
+		prep.execute();
+		db.closeConnection(con);
+	}
 	
 
 }

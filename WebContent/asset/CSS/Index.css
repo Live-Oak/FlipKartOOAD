@@ -27,6 +27,10 @@ html, body {
 	background-color: #ffffff;
 	padding-left: 20px;
 }
+.borderForComparison
+{
+		border-right: 2px solid #cccccc;
+}
 
 .border{
 	color : #000000;
@@ -85,7 +89,7 @@ html, body {
  margin: 0px; 
  padding: 0px; 
  position: fixed; 
- border-width: 1p…8.5px; 
+ border-width: 1pï¿½8.5px; 
  z-index: 16776273; 
  display: block; 
  overflow: visible;

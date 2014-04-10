@@ -78,6 +78,7 @@
 
 </head>
 <body>
+<%@ page import="java.util.ArrayList" %>
 <strong>Compare Products</strong>
 	<div class="container">
 		<div class="col-md-1 "></div>
@@ -102,16 +103,20 @@
 	<%@ page import="edu.iiitb.model.*" %>
 	<%! int count1=0;%>
 			<%count1=0;%>
+
+	
+						
 		<s:iterator value="productinfo">
 				<div class="col-md-3">
 						<div class="border">
-							<div class="show_product">
+						<div class="borderForComparison">
+						
 <!-- 								<a class="close-reveal-modal" id="close">&#215;</a> -->
 								<br>
 								<center>
 										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
 										<br><br><br>
-									
+																									
 								<div class="giveMeEllipsis">
 										<font size="3" color="black"><s:property value="productName"/></font><br>
 								</div>
@@ -164,7 +169,8 @@
 							</center>
 							</div>
 						</div>
-					</div>
+						</div>
+					
 					<%count1=count1+1; %>
 			</s:iterator>
 			
@@ -180,7 +186,7 @@
 												<center>
 													<strong>Add to compare</strong>
 													<br><br><br><br><br><br><br><br><br>
-														
+															
 															     <select class="dropdown">
 															     		<option value="Add Product">Add Product</option>
 															     	<s:iterator value="categoryproducts">
@@ -194,16 +200,18 @@
 											</div>
 											</div>
 											<%}
+									
 											 else
 											{%>
 												<div class="col-md-3">
-													<div class="border">
+													<div class="border borderForComparison">
 													<br>
 													<center>
 														<strong>Add to compare</strong>
 																 <select class="dropdown">
 															     		<option value="Add Product">Add Product</option>
 															     	<s:iterator value="categoryproducts">
+															     		
 																  		<option value="<s:property/>"><s:property/></option>
 																  	</s:iterator>
 																</select>   
@@ -212,7 +220,7 @@
 												</div>
 												</div>
 												<div class="col-md-3">
-													<div class="border">
+													<div class="border borderForComparison">
 													<br>
 													<center>
 														<strong>Add to compare</strong>
@@ -231,7 +239,6 @@
 	<div class="col-md-1 "></div>
 		
 </div>
-
 
 </body>
 </html>

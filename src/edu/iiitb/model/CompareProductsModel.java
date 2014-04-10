@@ -8,13 +8,14 @@ public class CompareProductsModel {
 	private int productId;
 	private String productName;
 	private String image;
-
-	public CompareProductsModel(int productId, String productName, String image) 
+	private int price;
+	public CompareProductsModel(int productId, String productName, String image, int price) 
 	{
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.image = image;
+		this.price=price;
 	}
 
 	public int getProductId() {
@@ -47,6 +48,14 @@ public class CompareProductsModel {
 	{
 		return "CartModel [productId=" + productId + ", productName="
 				+ productName + ", image=" + image +  "]";
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	

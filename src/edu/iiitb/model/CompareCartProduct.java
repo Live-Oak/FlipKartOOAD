@@ -3,24 +3,19 @@
  */
 package edu.iiitb.model;
 
-/**
- * @author PrashantN
- *
- */
-public class CartProduct {
+
+public class CompareCartProduct {
 	
 	private int productId;
-	private int quantity;
 	
-	public CartProduct() {
+	public CompareCartProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CartProduct(int productId, int quantity) {
+	public CompareCartProduct(int productId) {
 		super();
 		this.productId = productId;
-		this.quantity = quantity;
 	}
 
 
@@ -33,20 +28,11 @@ public class CartProduct {
 		this.productId = productId;
 	}
 
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + productId;
-		result = prime * result + quantity;
 		return result;
 	}
 
@@ -56,15 +42,12 @@ public class CartProduct {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CartProduct other = (CartProduct) obj;
+		CompareCartProduct other = (CompareCartProduct) obj;
 		if (productId != other.productId)
 			return false;
 		return true;
 	}
-	
-	
-	
-	
+
 	
 	
 	
