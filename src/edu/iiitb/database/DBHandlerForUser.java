@@ -316,7 +316,12 @@ public class DBHandlerForUser {
 		
 		user.setFirstName(rs.getString("firstName"));
 		user.setLastName(rs.getString("lastName"));
+		user.setGender(rs.getString("gender"));
 		user.setPhonenumber(rs.getString("phoneNumber"));
+		user.setCity(rs.getString("city"));
+		user.setPinCode(rs.getInt("pinCode"));
+		user.setAddress1(rs.getString("addressLine1"));
+		user.setAddress2(rs.getString("addressLine2"));
 			}
 	}
 		return user;
@@ -327,13 +332,65 @@ public class DBHandlerForUser {
 		DBConnectivity db=new DBConnectivity();
 		Connection con=db.createConnection();
 
-		String query1="UPDATE UserCredantials SET firstName =?,lastName =?,phoneNumber =? WHERE email=?";
+		String query1="UPDATE UserCredantials SET firstName =?,lastName =?, gender =?, phoneNumber =? WHERE email=?";
+		PreparedStatement prep1 =con.prepareStatement(query1);
+		prep1.setString(1, user.getFirstName());
+		prep1.setString(2, user.getLastName());
+		prep1.setString(3, user.getGender());
+		prep1.setString(4, user.getPhonenumber());
+		prep1.setString(5, user.getEmail());
+		System.out.println("in db handler for user");
+		
+		prep1.execute();
+		
+	}
+	
+	public void updatepassword(UserEntry user) throws SQLException
+	{
+		DBConnectivity db=new DBConnectivity();
+		Connection con=db.createConnection();
+
+		String query1="UPDATE UserCredantials SET password =? WHERE email=?";
+		PreparedStatement prep1 =con.prepareStatement(query1);
+		prep1.setString(1, user.getPassword());
+		prep1.setString(2, user.getEmail());
+		System.out.println("update password");
+		
+		prep1.execute();
+		
+	}
+	
+	public void updateaddress(UserEntry user) throws SQLException
+	{
+		DBConnectivity db=new DBConnectivity();
+		Connection con=db.createConnection();
+
+		String query1="UPDATE UserCredantials SET firstName =?,lastName =?,phoneNumber =?,addressLine1 =?,addressLine2 =?,pinCode =?,city =? WHERE email=?";
 		PreparedStatement prep1 =con.prepareStatement(query1);
 		prep1.setString(1, user.getFirstName());
 		prep1.setString(2, user.getLastName());
 		prep1.setString(3, user.getPhonenumber());
-		prep1.setString(4, user.getEmail());
-		System.out.println("in db handler for user");
+		prep1.setString(4, user.getAddress1());
+		prep1.setString(5, user.getAddress2());
+		prep1.setInt(6, user.getPinCode());
+		prep1.setString(7, user.getCity());
+		prep1.setString(8, user.getEmail());
+		System.out.println("update address");
+		
+		prep1.execute();
+		
+	}
+	
+	public void updateemail(UserEntry user) throws SQLException
+	{
+		DBConnectivity db=new DBConnectivity();
+		Connection con=db.createConnection();
+
+		String query1="UPDATE UserCredantials SET email =? WHERE email=?";
+		PreparedStatement prep1 =con.prepareStatement(query1);
+		prep1.setString(1, user.getNewemail());
+		prep1.setString(2, user.getEmail());
+		System.out.println("update email");
 		
 		prep1.execute();
 		

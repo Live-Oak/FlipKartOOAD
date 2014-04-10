@@ -43,38 +43,67 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="Personal-info" class="edu.iiitb.action.EditPersonal_Info">
-			<result name="success" type="tiles">Personal-infoTile</result>
-			<result name="error">/error.jsp</result>
-			<result name="login">/index.jsp</result>
+		<result name="success" type="tiles">Personal-infoTile</result>
+		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
 		</action>
 
 		<action name="UpdatePersonalInfo" class="edu.iiitb.action.UpdatePersonal_info">
-			<result name="success" type="redirectAction">
-				<param name="actionName">Personal-info</param>
-				<param name="namespace">/</param>
-			</result>
-			<result name="error">/error.jsp</result>
-			<result name="login">/index.jsp</result>
+		<result name="success" type="redirectAction">
+		<param name="actionName">Personal-info</param>
+		<param name="namespace">/</param>
+		</result><result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
 		</action>
 
 		<action name="ChangePassword">
-			<result type="tiles">ChangePasswordTile</result>
-			<result name="login">/index.jsp</result>
+		<result type="tiles">ChangePasswordTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="UpdatePassword" class="edu.iiitb.action.UpdatePersonal_info" method="executepasswordchange">
+		<result name="success" type="redirectAction">
+		<param name="actionName">ChangePassword</param>
+		<param name="namespace">/</param></result>
+		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
 		</action>
 
-		<action name="Addresses">
-			<result type="tiles">AddressesTile</result>
-			<result name="login">/index.jsp</result>
+		<action name="Addresses" class="edu.iiitb.action.EditPersonal_Info">
+		<result name="success" type="tiles">AddressesTile</result>
+		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="UpdateAddress" class="edu.iiitb.action.UpdateAddress">
+		<result name="success" type="redirectAction">
+		<param name="actionName">Addresses</param>
+		<param name="namespace">/</param></result>
+		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
 		</action>
 
 		<action name="UpdateEmail">
-			<result type="tiles">UpdateEmailTile</result>
-			<result name="login">/index.jsp</result>
+		<result type="tiles">UpdateEmailTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="UpdateNewEmail" class="edu.iiitb.action.UpdatePersonal_info" method="executeupdateemail">
+		<result name="success" type="redirectAction">
+		<param name="actionName">logout</param>
+		<param name="namespace">/</param></result>
+		<result name="error">/error.jsp</result>
+		<result name="login">/index.jsp</result>
 		</action>
 
 		<action name="DeactivateAccount">
-			<result type="tiles">DeactivateAccountTile</result>
-			<result name="login">/index.jsp</result>
+		<result type="tiles">DeactivateAccountTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="MyOrders">
+		<result type="tiles">MyOrdersTile</result>
+		<result name="login">/index.jsp</result>
 		</action>
 
 		<action name="Admin">
@@ -344,6 +373,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				method="Validate">
 				<result name="success" type="json" />
 			</action>
+			
+			<action name="check_user_password" class="edu.iiitb.action.ValidateEmailPassword"
+			    method="Validate">
+			 <result name="success" type="json"/>
+			 </action>
+			
 			<action name="forgot_password_validation" class="edu.iiitb.action.Forgot_Password_Validation"
 				method="Validate">
 				<result name="success" type="json" />

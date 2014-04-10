@@ -9,6 +9,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import edu.iiitb.database.DBHandlerForUser;
 import edu.iiitb.model.User;
 import edu.iiitb.model.UserEntry;
+import edu.iiitb.util.SendMailSSL;
 
 
 public class UpdatePersonal_info extends ActionSupport implements SessionAware {
@@ -16,7 +17,25 @@ public class UpdatePersonal_info extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	
 	private String firstname,lastname,mobilenumber,landlinenumber,gender;
+	private String newpassword;
+	private String newEmail;
 	
+
+	public String getNewpassword() {
+		return newpassword;
+	}
+
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
+	}
+
+	public String getNewEmail() {
+		return newEmail;
+	}
+
+	public void setNewEmail(String newEmail) {
+		this.newEmail = newEmail;
+	}
 
 	public String getFirstname() {
 		return firstname;
@@ -90,5 +109,51 @@ public class UpdatePersonal_info extends ActionSupport implements SessionAware {
 		}
 	}
 	
+	
+public String executepasswordchange() throws Exception{
+		
+		User user1=(User) session.get("user");
+		
+		UserEntry user = new UserEntry();
+		user.setPassword(newpassword);
+		user.setEmail(user1.getEmail());
+		
+		
+		DBHandlerForUser dbHandler = new DBHandlerForUser();
+		try {
+			dbHandler.updatepassword(user);
+			addActionMessage("Your password has been changed successfully.");
+			return "success";
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+public String executeupdateemail() throws Exception{
+	
+	User user1=(User) session.get("user");
+	String fname=(String) session.get("fname");
+	UserEntry user = new UserEntry();
+	user.setNewemail(newEmail);
+	user.setEmail(user1.getEmail());
+	
+	
+	DBHandlerForUser dbHandler = new DBHandlerForUser();
+	try {
+		dbHandler.updateemail(user);
+		addActionMessage("Your Email has been changed successfully.");
+		SendMailSSL.sendUpdatedEmail(newEmail,fname);
+		return "success";
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		return "error";
+	}
+}
+
 
 }

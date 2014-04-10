@@ -18,7 +18,14 @@ public class UserEntry {
 	String date,password;
 	String phonenumber;
 	String gender;
+	String newemail;
 	
+	public String getNewemail() {
+		return newemail;
+	}
+	public void setNewemail(String newemail) {
+		this.newemail = newemail;
+	}
 	public String getGender() {
 		return gender;
 	}
