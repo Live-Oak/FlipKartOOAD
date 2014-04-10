@@ -2,8 +2,17 @@ package edu.iiitb.action;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
+
+import javax.servlet.http.Cookie;
+
+import org.apache.struts2.json.JSONPopulator;
+import org.apache.struts2.json.JSONUtil;
 
 import edu.iiitb.database.DBHandlerForUser;
+import edu.iiitb.database.DBHandlerforComparison;
+import edu.iiitb.model.CompareCartCookie;
+import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.ProductInfo;
 
 public class CompareAction
@@ -78,6 +87,45 @@ public class CompareAction
 		return "success";
 	
 	}
+	
+	
+	/*
+	
+	public String getCartProducts() {
+			try {
+
+				String content = null;
+				boolean cookieFound = false;
+				
+				for (Cookie c : servletRequest.getCookies()) {
+					if (c.getName().equals("comparecart")) {
+						content = c.getValue();
+						CompareCartCookie cookie = new CompareCartCookie();
+						 JSONPopulator pop = new JSONPopulator();
+						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
+								.deserialize(content);
+						 pop.populateObject(cookie, map);
+						products = DBHandlerforComparison.getProductsFromCompareCart(cookie.getProductList());
+						cookieFound = true;
+						break;
+					}
+				}
+				if(cookieFound == false)
+				{
+					products = new ArrayList<CompareProductsModel>();
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
+		count = products.size();
+		return "success";
+	}
+
+	
+	*/
+	
 	
 	/*public String getProductDetails() throws SQLException
 	{
