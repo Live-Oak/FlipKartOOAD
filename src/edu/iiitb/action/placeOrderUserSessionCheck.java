@@ -103,6 +103,7 @@ ServletResponseAware, ServletRequestAware
 		}	
 		else
 		{			
+			addressDetails = new custometAddressDetail();
 			String content = null;
 			DBHandlerForUser db = new DBHandlerForUser();
 			System.out.println("I got lucky here 1 ;)");
@@ -125,13 +126,13 @@ ServletResponseAware, ServletRequestAware
 						 cartDetailsList = db.getCartCokkiesDetail(cookie.getProductList());
 						 System.out.println("I got lucky here 4 ;)");
 						break;
-					}
-					for (customerCartDetail cart : cartDetailsList) 
-					{						
-						grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );					
-					}
-					System.out.println("Cokies GrandTotal = Rs." + grandTotal);			
+					}					
 				}
+				for (customerCartDetail cart : cartDetailsList) 
+				{						
+					grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );					
+				}
+				System.out.println("Cokies GrandTotal = Rs." + grandTotal);			
 			}
 			catch(Exception e)
 			{

@@ -12,8 +12,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -292,7 +291,7 @@ $(document).ready(function(){
 <div id="screenSize" class="myscreenSize">
 <div id="flip1" align="left">
 <label class="mylabel" >1.EMAIL ID</label>
-<input type="submit" id="editEmailid"value="Edit Email"  class="mysubmit3" >
+<input type="submit" id="editEmailid" value="Edit Email"  class="mysubmit3" >
 </div>
 
 <div id="panel1"><label class="mylabel1"  >Email Address*</label>
