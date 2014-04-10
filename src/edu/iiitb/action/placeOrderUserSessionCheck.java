@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import sun.security.provider.PolicyParser.GrantEntry;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.ValueStack;
@@ -14,6 +16,16 @@ import edu.iiitb.model.*;
 
 public class placeOrderUserSessionCheck extends ActionSupport implements SessionAware
 {
+	private float grandTotal;
+	
+	public float getGrandTotal() {
+		return grandTotal;
+	}
+	public void setGrandTotal(float grandTotal) {
+		this.grandTotal = grandTotal;
+	}
+
+
 	custometAddressDetail addressDetails = new custometAddressDetail();
 	private Map session;
 	ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
@@ -51,13 +63,11 @@ public class placeOrderUserSessionCheck extends ActionSupport implements Session
 			cartDetailsList = db.getCartDetail(addressDetails.getEmail());
 		}
 		for (customerCartDetail cart : cartDetailsList) {			
-			System.out.println("Inside Action Starts");
-			System.out.println(" Image Path : " +cart.getImage());
-			System.out.println(" Name Path : " +cart.getProductName());	
-			System.out.println(" Price Path : " +cart.getPrice());	
-			System.out.println(" Quality Path : " +cart.getQuantity());	
-			System.out.println("Inside Action Ends");
+				
+			grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );	
+			
 		}
+		System.out.println("GrandTotal = Rs." + grandTotal);
 		return "success";
 	}
 }
