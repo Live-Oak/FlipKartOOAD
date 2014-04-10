@@ -186,6 +186,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<action name="getProductDetailfilter" class="edu.iiitb.action.getProductList" method="getProductDetail">
 				<result name="success" type="json"></result>
 			</action>
+			
+			<action name="getProductDetailfilterprice" class="edu.iiitb.action.getProductList" method="getProductDetailprice">
+				<result name="success" type="json"></result>
+			</action>
 
 			<action name="dealoftheday">
 				<result type="tiles">Dealoftheday</result>
