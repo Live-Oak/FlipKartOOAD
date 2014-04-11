@@ -531,10 +531,20 @@ public class DBHandlerForUser {
 	
 	public ArrayList<Linklists> getlinktothecategory(String category) throws SQLException
 	{
+		System.out.println("Category in question is : " +category);
 		ArrayList<Linklists> Listoflink = new ArrayList<Linklists>();
 		Connection con = db.createConnection();
 		String query="select c1.categoryName as childCategory, c2.categoryName as parentCategory from Category as c1, Category as c2, CategoryRelation where c2.categoryName = '"+category+"' and c2.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = c1.categoryId";       
 		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next() == false)
+		{
+			query="select distinct(c1.categoryName) as childCategory, c2.categoryName as ParentCategory from Category as c1, Category as c2, CategoryRelation where c1.categoryName = '"+category+"' and c1.categoryId = CategoryRelation.categoryId and CategoryRelation.subCategoryId = c2.categoryId";
+			rs=db.executeQuery(query, con);
+		}
+		else
+		{
+			rs.previous();
+		}
 		while(rs.next())
 		{
 			//System.out.println("product is : " +rs.getString("childCategory"));

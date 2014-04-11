@@ -343,6 +343,7 @@
 															showCart(data);
 														}
 													});
+											
 										});
 
 						$(".addtocompare")
@@ -484,10 +485,11 @@
 		<div class="col-md-3 ">
 			<div class="background">
 				<br>
+
 				<h4>
 					<b>BROWSE</b>
 				</h4>
-				<s:iterator value="linktoitem">
+				
 					<a
 						href="getSearchresult?categoryname=<s:property value="parentCategory"/>"><img
 						src="asset/Images/down.jpg" height="30px"><font
@@ -497,6 +499,12 @@
 						href="getSearchresult?categoryname=<s:property value="Category"/>"><img
 						src="asset/Images/down.jpg" height="30px"><font
 						color="black"><s:property value="Category" /></font></a>
+
+				<h4><b>BROWSE</b></h4>
+				<a href="getSearchresult?categoryname=<s:property value="linktoitem.get(0).parentCategory"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="linktoitem.get(0).parentCategory"/></font></a><br>
+				<s:iterator value="linktoitem">
+					&nbsp;&nbsp;&nbsp;<a href="getSearchresult?categoryname=<s:property value="Category"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="Category"/></font></a><br>
+
 				</s:iterator>
 				<hr noshade>
 				<h5>
