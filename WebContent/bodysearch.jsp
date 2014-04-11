@@ -28,239 +28,282 @@
 </script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var temp = '<b> Showing all the products in the category </b><br><br>';
-		$(".filters").change(function(event) 
-		{
-			var cnt = $("input[name='checkbox']:checked").length;
-			if (cnt > 0) 
-			{
-				$("#newdivision").empty();
-				var pId = [];
-				$(".filters").each(function() 
-				{
-					if ($(this).is(':checked')) 
-					{
-						//alert("hi");
-						pId.push($(this).attr("brandname"));
-						//alert(pId);
-				    }
-				});
+	$(document)
+			.ready(
+					function() {
+						var temp = '<b> Showing all the products in the category </b><br><br>';
+						$(".filters")
+								.change(
+										function(event) {
 
-			var categoryId = $("#categoryid").val();
+											var cnt = $("input[name='checkbox']:checked").length;
+											if (cnt > 0) {
+												$("#newdivision").empty();
+												var pId = [];
+												$(".filters")
+														.each(
+																function() {
+																	if ($(this)
+																			.is(
+																					':checked')) {
+																		
+																		pId
+																				.push($(
+																						this)
+																						.attr(
+																								"brandname"));
+																		
+																	}
+																});
 
-			$.ajax({
-				type : 'POST',
-				contentType : "application/x-www-form-urlencoded; charset=utf-8",
-				data : {
-					brand : pId.join(","),
-					category : categoryId,
-					count : cnt
-					},
-				url : 'getProductDetailfilter',
-				success : function(data) {
-					$.each(
-						data.productinfofilter,
-						function(count,stock) {
-							temp += '<div class="col-md-4"><div class="border"><center>';
-							if (stock.availableQuantity == 0) 
-							{
-								temp += '<a href="#">';
-								temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /><br>';
-								temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
-								temp += '</a>';
-							}
-							else 
-							{
-								if (stock.availableQuantity >= stock.minimumQuantity)
-								{
-									if (stock.offer == 0) 
-									{
-										temp += '<a href="getProductDetail?productID='+ stock.productID+ '">';
-										temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
-										temp += '</a>';
-									} 
-									else 
-									{
-										temp += '<a href="getProductDetail?productID='+ stock.productID+ '">';
-										temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
-										temp += '<img src="asset/Images/offer.jpg" alt="offer" height="40px">';
-										temp += '</a>';
-									}
-								} 
-								else 
-								{
-									temp += '<a href="#">';
-									temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" />';
-									temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
-									temp += '</a>';
-								}
-							}
-							temp += '<hr>';
-							temp += '<div class="giveMeEllipsis">';
-							temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
-							temp += '<font size="4" color="black">'+ stock.productName+ '</font><br></a></div>';
-							temp += '<hr>';
+												var categoryId = $(
+														"#categoryid").val();
 
-							if (stock.offer == 0) 
-							{
-								temp += '<font size="5px" color="#76553B"> Rs.'+ stock.price+ '</font><br>';
-							} 
-							else 
-							{
-								temp += '<font size="5px" color="#76553B"> Rs.'+ stock.price+ -+stock.offer+ '</font>';
-							}
-							temp += '<hr>';
-							temp += 'This item has manufacturer warranty of '+ stock.warranty+ ' years.<br>';
-							temp += '<hr>';
-							if (stock.availableQuantity == 0) 
-							{
-								temp += '<input type="checkbox" disabled >Add To Compare</input>';
-							} 
-							else if (stock.availableQuantity < stock.minimumQuantity) 
-							{
-								temp += '<input type="checkbox" disabled >Add To Compare</input>';
-							} 
-							else 
-							{
-								temp += '<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="'+stock.productID+'"/>Add To Compare</input>';
-							}
-							temp += '<hr>';
-							temp += '<br><br>';
-							temp += '</center></div></div>';
+												$
+														.ajax({
+															type : 'POST',
+															contentType : "application/x-www-form-urlencoded; charset=utf-8",
+															data : {
+																brand : pId
+																		.join(","),
+																category : categoryId,
+																count : cnt
+															},
+															url : 'getProductDetailfilter',
+															success : function(
+																	data) {
+																$
+																		.each(
+																				data.productinfofilter,
+																				function(
+																						count,
+																						stock) {
+																					temp += '<div class="col-md-4"><div class="border"><center>';
+																					if (stock.availableQuantity == 0) {
+																						temp += '<a href="#">';
+																						temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /><br>';
+																						temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
+																						temp += '</a>';
+																					} else {
+																						if (stock.availableQuantity >= stock.minimumQuantity) {
+																							if (stock.offer == 0) {
+																								temp += '<a href="getProductDetail?productID='
+																										+ stock.productID
+																										+ '">';
+																								temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
+																								temp += '</a>';
+																							} else {
+																								temp += '<a href="getProductDetail?productID='
+																										+ stock.productID
+																										+ '">';
+																								temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
+																								temp += '<img src="asset/Images/offer.jpg" alt="offer" height="40px">';
+																								temp += '</a>';
+																							}
+																						} else {
+																							temp += '<a href="#">';
+																							temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" />';
+																							temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
+																							temp += '</a>';
+																						}
+																					}
+
+																					temp += '<hr>';
+																					temp += '<div class="giveMeEllipsis">';
+																					temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
+																					temp += '<font size="4" color="black">'
+																							+ stock.productName
+																							+ '</font><br></a></div>';
+																					temp += '<hr>';
+
+																					if (stock.offer == 0) {
+																						temp += '<font size="5px" color="#76553B"> Rs.'
+																								+ stock.price
+																								+ '</font><br>';
+																					} else {
+																						temp += '<font size="5px" color="#76553B"> Rs.'
+																								+ stock.price
+																								+ -+stock.offer
+																								+ '</font>';
+																					}
+
+																					temp += '<hr>';
+																					temp += 'This item has manufacturer warranty of '
+																							+ stock.warranty
+																							+ ' years.<br>';
+																					temp += '<hr>';
+																					if (stock.availableQuantity == 0) {
+																						temp += '<input type="checkbox" disabled >Add To Compare</input>';
+																					} else if (stock.availableQuantity < stock.minimumQuantity) {
+																						temp += '<input type="checkbox" disabled >Add To Compare</input>';
+																					} else {
+																						temp += '<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="'+stock.productID+'"/>Add To Compare</input>';
+																					}
+																					temp += '<hr>';
+																					temp += '<br><br>';
+																					temp += '</center></div></div>';
+
+																				});
+																$(
+																		"#newdivision")
+																		.show();
+																$(
+																		"#newdivision")
+																		.append(
+																				temp);
+
+																temp = '';
+															}
+														});
+												$("#dataappended").hide();
+											} else {
+												$("#dataappended").show();
+												$("#newdivision").empty();
+											}
+										});
 
 					});
-				$("#newdivision").show();
-				$("#newdivision").append(temp);
-					temp = '';
-					}
-				});
-		$("#dataappended").hide();
-		} 
-		else {
-			$("#dataappended").show();
-			$("#newdivision").empty();
-			}
-	});
-});
 </script>
 
 
 <!-- New one to update -->
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var temp = '<b> Showing all the products in the category </b><br><br>';
-			$(".filtersprice").change(function(event) 
-					{
-				var cnt = $("input[name='checkbox']:checked").length;
-					if (cnt > 0) {
-						$("#newdivision").empty();
-						var pId = [];
-						$(".filtersprice").each(function() {
-								if ($(this).is(':checked')) {
-										//alert("hi");
-										pId	.push($(this).attr("price"));
-										//alert(pId);
-								}
-							});
+	$(document)
+			.ready(
+					function() {
+						var temp = '<b> Showing all the products in the category </b><br><br>';
+						$(".filtersprice")
+								.change(
+										function(event) {
 
-						var categoryId = $("#categoryid").val();
+											var cnt = $("input[name='checkbox']:checked").length;
+											if (cnt > 0) {
+												$("#newdivision").empty();
+												var pId = [];
+												$(".filtersprice")
+														.each(
+																function() {
+																	if ($(this)
+																			.is(
+																					':checked')) {
+																		//alert("hi");
+																		pId
+																				.push($(
+																						this)
+																						.attr(
+																								"price"));
+																		//alert(pId);
+																	}
+																});
 
-						$.ajax({
-							type : 'POST',
-							contentType : "application/x-www-form-urlencoded; charset=utf-8",
-							data : {
-								price : pId.join(","),
-								category : categoryId,
-								count : cnt
-									},
-							url : 'getProductDetailfilterprice',
-							success : function(data) {
-								$.each(
-									data.productinfofilter,
-									function(count,stock) {
-										temp += '<div class="col-md-4"><div class="border"><center>';
-										if (stock.availableQuantity == 0) 
-										{
-											temp += '<a href="#">';
-											temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /><br>';
-											temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
-											temp += '</a>';
-										}
-										else 
-										{
-											if (stock.availableQuantity >= stock.minimumQuantity)
-											{
-												if (stock.offer == 0) 
-												{
-													temp += '<a href="getProductDetail?productID='+ stock.productID+ '">';
-													temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
-													temp += '</a>';
-												} 
-												else 
-												{
-													temp += '<a href="getProductDetail?productID='+ stock.productID+ '">';
-													temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
-													temp += '<img src="asset/Images/offer.jpg" alt="offer" height="40px">';
-													temp += '</a>';
-												}
-											} 
-											else 
-											{
-												temp += '<a href="#">';
-												temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" />';
-												temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
-												temp += '</a>';
+												var categoryId = $(
+														"#categoryid").val();
+
+												$
+														.ajax({
+															type : 'POST',
+															contentType : "application/x-www-form-urlencoded; charset=utf-8",
+															data : {
+																price : pId
+																		.join(","),
+																category : categoryId,
+																count : cnt
+															},
+															url : 'getProductDetailfilterprice',
+															success : function(
+																	data) {
+																$
+																		.each(
+																				data.productinfofilter,
+																				function(
+																						count,
+																						stock) {
+																					temp += '<div class="col-md-4"><div class="border"><center>';
+																					if (stock.availableQuantity == 0) {
+																						temp += '<a href="#">';
+																						temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /><br>';
+																						temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
+																						temp += '</a>';
+																					} else {
+																						if (stock.availableQuantity >= stock.minimumQuantity) {
+																							if (stock.offer == 0) {
+																								temp += '<a href="getProductDetail?productID='
+																										+ stock.productID
+																										+ '">';
+																								temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
+																								temp += '</a>';
+																							} else {
+																								temp += '<a href="getProductDetail?productID='
+																										+ stock.productID
+																										+ '">';
+																								temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
+																								temp += '<img src="asset/Images/offer.jpg" alt="offer" height="40px">';
+																								temp += '</a>';
+																							}
+																						} else {
+																							temp += '<a href="#">';
+																							temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" />';
+																							temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
+																							temp += '</a>';
+																						}
+																					}
+
+																					temp += '<hr>';
+																					temp += '<div class="giveMeEllipsis">';
+																					temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
+																					temp += '<font size="4" color="black">'
+																							+ stock.productName
+																							+ '</font><br></a></div>';
+																					temp += '<hr>';
+
+																					if (stock.offer == 0) {
+																						temp += '<font size="5px" color="#76553B"> Rs.'
+																								+ stock.price
+																								+ '</font><br>';
+																					} else {
+																						temp += '<font size="5px" color="#76553B"> Rs.'
+																								+ stock.price
+																								+ -+stock.offer
+																								+ '</font>';
+																					}
+
+																					temp += '<hr>';
+																					temp += 'This item has manufacturer warranty of '
+																							+ stock.warranty
+																							+ ' years.<br>';
+																					temp += '<hr>';
+																					if (stock.availableQuantity == 0) {
+																						temp += '<input type="checkbox" disabled >Add To Compare</input>';
+																					} else if (stock.availableQuantity < stock.minimumQuantity) {
+																						temp += '<input type="checkbox" disabled >Add To Compare</input>';
+																					} else {
+																						temp += '<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="'+stock.productID+'"/>Add To Compare</input>';
+																					}
+																					temp += '<hr>';
+																					temp += '<br><br>';
+																					temp += '</center></div></div>';
+
+																				});
+																$(
+																		"#newdivision")
+																		.show();
+																$(
+																		"#newdivision")
+																		.append(
+																				temp);
+
+																temp = '';
+															}
+														});
+												$("#dataappended").hide();
+											} else {
+												$("#dataappended").show();
+												$("#newdivision").empty();
 											}
-										}
-										temp += '<hr>';
-										temp += '<div class="giveMeEllipsis">';
-										temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
-										temp += '<font size="4" color="black">'+ stock.productName+ '</font><br></a></div>';
-										temp += '<hr>';
+										});
 
-										if (stock.offer == 0) 
-										{
-											temp += '<font size="5px" color="#76553B"> Rs.'+ stock.price+ '</font><br>';
-										} 
-										else 
-										{
-											temp += '<font size="5px" color="#76553B"> Rs.'+ stock.price+ -+stock.offer+ '</font>';
-										}
-										temp += '<hr>';
-										temp += 'This item has manufacturer warranty of '+ stock.warranty+ ' years.<br>';
-										temp += '<hr>';
-										if (stock.availableQuantity == 0) 
-										{
-											temp += '<input type="checkbox" disabled >Add To Compare</input>';
-										} 
-										else if (stock.availableQuantity < stock.minimumQuantity) 
-										{
-											temp += '<input type="checkbox" disabled >Add To Compare</input>';
-										} 
-										else 
-										{
-											temp += '<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="'+stock.productID+'"/>Add To Compare</input>';
-										}
-										temp += '<hr>';
-										temp += '<br><br>';
-										temp += '</center></div></div>';
-
-								});
-							$("#newdivision").show();
-							$("#newdivision").append(temp);
-								temp = '';
-								}
-							});
-					$("#dataappended").hide();
-					} 
-					else {
-						$("#dataappended").show();
-						$("#newdivision").empty();
-						}
-				});
-		});
+					});
 </script>
 
 
@@ -317,16 +360,17 @@
 												//alert($(event.target).attr("pid"));				Specifies pid 
 												var pId = $(event.target).attr(
 														"pid");
-												//var cnt = $("input[name='compare']:checked").length;
+												var cnt = $("input[name='compare']:checked").length;
 
 												//alert("count is:"+count);
 												var categoryId = $("#category")
 														.val();
 												categoryId = categoryId.trim();
-												//alert(data.count);
+												
 												alert("category is "
 														+ categoryId);
 												if (cnt > maxAllowed) {
+													
 													$(this).prop("checked", "");
 													alert('Select maximum '
 															+ maxAllowed);
@@ -356,7 +400,7 @@
 																							.show();
 																					if (data.count == undefined
 																							|| data.count == 0) {
-																						alert(data.count);
+																						
 																						$(
 																								"#emptyComparediv")
 																								.show();
@@ -366,8 +410,7 @@
 																										"disabled",
 																										true);
 																					} else {
-																						alert(data.count);
-																						cnt = data.count;
+																						
 																						if (data.count == 1) {
 																							$(
 																									"#compare_button")
@@ -443,32 +486,62 @@
 			<div class="background">
 				<br>
 
+				<h4>
+					<b>BROWSE</b>
+				</h4>
+				
+					<a
+						href="getSearchresult?categoryname=<s:property value="parentCategory"/>"><img
+						src="asset/Images/down.jpg" height="30px"><font
+						color="black"><s:property value="parentCategory" /></font></a>
+					<br>
+					&nbsp;&nbsp;&nbsp;<a
+						href="getSearchresult?categoryname=<s:property value="Category"/>"><img
+						src="asset/Images/down.jpg" height="30px"><font
+						color="black"><s:property value="Category" /></font></a>
+
 				<h4><b>BROWSE</b></h4>
 				<a href="getSearchresult?categoryname=<s:property value="linktoitem.get(0).parentCategory"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="linktoitem.get(0).parentCategory"/></font></a><br>
 				<s:iterator value="linktoitem">
 					&nbsp;&nbsp;&nbsp;<a href="getSearchresult?categoryname=<s:property value="Category"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="Category"/></font></a><br>
+
 				</s:iterator>
 				<hr noshade>
-				<h5><b>REFINE</b></h5>
+				<h5>
+					<b>REFINE</b>
+				</h5>
 				<hr>
 				<h5>Price</h5>
 				<hr>
 				<form>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="1"> Rs. 2000 and Below<br> 
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="2"> Rs. 2001 - Rs. 5000<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="3"> Rs. 5001 - Rs. 10000<br> 
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="4"> Rs. 10001 - Rs. 18000<br> 
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="5"> Rs. 18001 - Rs. 25000<br> 
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="6"> Rs. 25001 - Rs. 35000<br> 
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="7"> Rs. 35001 and Above
+					<input type="checkbox" class="filtersprice" name="checkbox"
+						id="range" price="1"> Rs. 2000 and Below<br> <input
+						type="checkbox" class="filtersprice" name="checkbox" id="range"
+						price="2"> Rs. 2001 - Rs. 5000<br> <input
+						type="checkbox" class="filtersprice" name="checkbox" id="range"
+						price="3"> Rs. 5001 - Rs. 10000<br> <input
+						type="checkbox" class="filtersprice" name="checkbox" id="range"
+						price="4"> Rs. 10001 - Rs. 18000<br> <input
+						type="checkbox" class="filtersprice" name="checkbox" id="range"
+						price="5"> Rs. 18001 - Rs. 25000<br> <input
+						type="checkbox" class="filtersprice" name="checkbox" id="range"
+						price="6"> Rs. 25001 - Rs. 35000<br> <input
+						type="checkbox" class="filtersprice" name="checkbox" id="range"
+						price="7"> Rs. 35001 and Above
 				</form>
 				<hr>
 				<h5>Company Name</h5>
 				<hr>
-				<input type="hidden" id="category" value="<s:property value="productinfo.get(2).categoryID"/>">
-				<input type="hidden" id="categoryid" value="<s:property value="productinfo.get(0).categoryID"/>">
+				<input type="hidden" id="category"
+					value="<s:property value="productinfo.get(2).categoryID"/>">
+				<form>
+					<input type="hidden" id="categoryid"
+						value="<s:property value="productinfo.get(1).categoryID"/>">
 					<s:iterator value="companyList">
-						<input type="checkbox" id="brand" class="filters" name="checkbox" brandname="<s:property />"> <s:property /> <br>
+						<input type="checkbox" id="brand" class="filters" name="checkbox"
+							brandname="<s:property />">
+						<s:property />
+						<br>
 					</s:iterator>
 					<br>
 					<br>
