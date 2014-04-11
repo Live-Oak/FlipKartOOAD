@@ -45,6 +45,25 @@ $(document).ready(function(){
 		    	showCart(data);
 		     }});	
 	});
+	
+	
+	$(document).on('click','.save',function(e){
+		var target = e.currentTarget;
+		var pId = $(target).attr("pid");
+		var qty = $(target).parent().find(".quantityInput").val();
+		
+		$.ajax({
+		    type: 'POST',
+		    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+		    data : {
+		    	productId : pId,
+		    	quantity : qty
+		    },
+		    url:'updateProductQuantity',
+		    success: function(data){
+		    	showCart(data);
+		     }});	
+	});
 
 });
 	
@@ -57,6 +76,10 @@ function showCart(data)
 		$("#continueShoppingBottom").hide();
 		$("#placeOrder").hide();
 		$("#totalCost").hide();
+		$("#list").empty();
+		$("#productInfo").hide();
+		$("#productCount").html("CART (0)");
+		$("#cartHeader").html("CART (0)");
 	}
 else
 	{
@@ -72,13 +95,16 @@ else
 			$("#list").append("<div style='height:100px;border : 1px solid gray;padding:10px'>"+
 					"<img src='"+product.image+"' height='80px' width='80px' style='float:left' />"+
 					"<div class='productName'>"+product.productName+"</div>"+
-					"<div class='qty'>"+product.quantity+"</div>"+
+					"<div class='qty'><input type='text' class='quantityInput' value='"+product.quantity+"'></input><a class='save' pid='"+product.productId+"'>save</a></div>"+
 					"<div class='price'>"+product.price+"</div>"+
 					"<div class='subtotal'>"+subtotal+"</div>"+
 					"<div class='remove' pid='"+product.productId+"'><a style='color:black;'>remove</a></div>"+
 			"</div>");
 		});
 		$("#totalCost").html("Total Cost : "+totalcost);
+		$(".quantityInput").keyup(function(){
+			$(this).parent().find(".save").show();
+		});
 	}
 }
 
