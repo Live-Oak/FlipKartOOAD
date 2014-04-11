@@ -362,7 +362,8 @@
 																																																});
 																																															if(data.count==0)
 																																																{
-																																																	alert("empty");
+																																																	$("#products_to_compare").hide();
+																																																	$("#emptyComparediv").show();
 																																																}
 																
 															
