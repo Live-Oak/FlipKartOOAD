@@ -39,11 +39,11 @@ public class DBHandlerForCart {
 	{
 		Connection con = db.createConnection();
 		ArrayList<CartModel> products = new ArrayList<CartModel>(); 
-		String query = "select p.productId,p.productName,p.image,p.price,c.quantity from Cart c inner join ProductInfo p where c.userId = "+uid+" and c.productId = p.productID;";
+		String query = "select p.productId,p.productName,p.image,p.price,p.offer,c.quantity from Cart c inner join ProductInfo p where c.userId = "+uid+" and c.productId = p.productID;";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price"),rs.getInt("quantity")));
+			products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price") - rs.getInt("offer"),rs.getInt("quantity")));
 		}
 		db.closeConnection(con);
 		return products;
@@ -55,11 +55,11 @@ public class DBHandlerForCart {
 		ArrayList<CartModel> products = new ArrayList<CartModel>(); 
 		for(CartProduct p : cartProducts)
 		{
-			String query = "select productId,productName,image,price from  ProductInfo where productID = "+p.getProductId()+";";
+			String query = "select productId,productName,image,price,offer from  ProductInfo where productID = "+p.getProductId()+";";
 			ResultSet rs=db.executeQuery(query, con);
 			while(rs.next())
 			{
-				products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price"),p.getQuantity()));
+				products.add(new CartModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price")-rs.getInt("offer"),p.getQuantity()));
 			}
 		}
 		
