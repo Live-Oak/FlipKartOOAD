@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="edu.iiitb.model.UserEntry"%>
+<%@page import="edu.iiitb.model.User"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
@@ -46,6 +48,45 @@ li.padding {color: #848484;
    }
 </style>
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$("p").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'useravailable?email='+$("#email").val(),
+		    success: function(data){
+		    	
+		    	$("#notify").html(data.message);
+		     }});	
+	});
+});
+
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#change_email").click(function()
+			{
+    	
+		var status=$("#notify").html();
+		if(status=="Enjoy Flipkart User Experience")
+		{
+			
+			$("#form_change_email").submit();
+		}
+		else
+		{
+			$("#notify").html("Please check Email id availabilty");
+		}
+			
+	});
+	
+});
+
+</script>
+
 
 
 </head>
@@ -75,17 +116,22 @@ li.padding {color: #848484;
 			<h3> Update Email</h3>
 			<br>
 			<p style="font-weight: bold;">Enter the new Email ID that you wish to associate with your Flipkart account.</p>
-			
+			<form id="form_change_email" action="UpdateNewEmail" method="post">
 			<table style="width:400px">
 			<tr> <td style="text-align:left">Email Address </td> 
-			<td>  </td> </tr>
+			<td> <label id="emailid"><% User u = (User) session.getValue("user");
+					out.print(u.getEmail());%></label> 
+			</td> </tr>
 			<tr> <td style="text-align:left">New Email ID </td> 
-			<td> <input type="text" class="textbox" name="newemailid"> </td> </tr>
+			<td> <input type="email" id="email" name="newEmail" class="textbox"  required ></td> </tr>
+			<tr> <td> </td> <td><p id="checking">Check for availability</p></td>
+			<tr><td> </td><td><label id="notify"></label> </td> </tr>
 			
 			<tr> <td></td>
-			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<td><input type="button" id="change_email" class="btn btn-primary" value="SAVE CHANGES" />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
+		    </form>
 		</div>
 		
 		

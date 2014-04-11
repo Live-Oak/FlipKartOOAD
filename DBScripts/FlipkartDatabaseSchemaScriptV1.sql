@@ -5,6 +5,7 @@ CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
   `userId` INT NOT NULL AUTO_INCREMENT ,
   `firstName` VARCHAR(45) NOT NULL ,
   `lastName` VARCHAR(45) NULL ,
+  `gender` VARCHAR(45) NULL ,
   `password` VARCHAR(45) NOT NULL ,
   `role` VARCHAR(45) NOT NULL ,
   `dateOfBirth` DATE NOT NULL ,

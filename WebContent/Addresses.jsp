@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="edu.iiitb.model.UserEntry"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
@@ -74,32 +75,60 @@ li.padding {color: #848484;
 		<div class="col-md-6">
 			<h3> Add a New Address</h3>
 			<br>
+			
+			<form>
 			<table style="width:400px">
 			<tr> <td style="text-align:left"> Name </td> 
-			<td> <input type="text" class="textbox" name="firstName_lastName"> </td> </tr>
-			<tr> <td style="text-align:left">Street Address </td> 
-			<td> <textarea rows="3" cols="18" name="address1" class="textbox"  ></textarea> </td> </tr>
-			<tr> <td style="text-align:left">Landmark </td> 
-			<td> <input type="text" class="textbox" name="landmark"> </td> </tr>
+			<td> <input type="text" class="textbox" name="name" value="<s:property value="user.firstName"/> <s:property value="user.lastName"/>"> </td> </tr>
+			<tr> <td style="text-align:left">Address Line 1 </td> 
+			<td> <textarea rows="2" cols="18" name="address1" class="textbox"><s:property value="user.address1"/></textarea> </td> </tr>
+			
+			<tr> <td style="text-align:left">Address Line 2 </td> 
+			<td> <textarea rows="2" cols="18" name="address2" class="textbox"  ><s:property value="user.address2"/></textarea> </td> </tr>
+			
 			<tr> <td style="text-align:left">City </td> 
-			<td> <input type="text" class="textbox" name="city"> </td> </tr>
-			<tr> <td style="text-align:left">State </td> 
-			<td> <select id="state" name="state">
-				        <option value="male" selected>Male</option>
-						<option value="female">Female</option>
-						
-		    </select>	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</td> </tr>
+			<td> <input type="text" class="textbox" name="city" value="<s:property value="user.city"/>"> </td> </tr>
+			
 		    <tr> <td style="text-align:left">Country </td> 
 			<td> India </td> </tr>
-			<tr> <td style="text-align:left">Pincode </td> 
-			<td> <input type="text" class="textbox" name="pincode"> </td> </tr>
+			<tr> <td style="text-align:left"> Pincode </td> 
+			<td> <input type="text" id="pincode" class="textbox" name="pincode" value="<s:property value="user.pinCode"/>" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"><br>
+			<span id="error" style="color: Red; display: none">*Input digits(0-9)</span>
+			    <script type="text/javascript">
+        			var specialKeys = new Array();
+        			specialKeys.push(8); //Backspace
+        			function IsNumeric(e) 
+				{
+        		    	var keyCode = e.which ? e.which : e.keyCode
+            			var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            			document.getElementById("error").style.display = ret ? "none" : "inline";
+            			return ret;
+        			}
+			    </script>
+			 </td> </tr>
+			
+			
 			<tr> <td style="text-align:left">Phone Number </td> 
-			<td> <input type="text" class="textbox" name="phonenumber"> </td> </tr>
+			<td> <input type="text" id="phone" class="textbox" name="phonenumber" value="<s:property value="user.phonenumber"/>" onkeypress="return IsNumber(event);" ondrop="return false;" onpaste="return false;"><br>
+			<span id="error_phone" style="color: Red; display: none">*Input digits(0-9)</span>
+			    <script type="text/javascript">
+        			var specialKeys = new Array();
+        			specialKeys.push(8); //Backspace
+        			function IsNumber(e) 
+				{
+        		    	var keyCode = e.which ? e.which : e.keyCode
+            			var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+            			document.getElementById("error_phone").style.display = ret ? "none" : "inline";
+            			return ret;
+        			}
+			    </script>
+			 </td> </tr>
 
 			<tr> <td></td>
-			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES" onClick="form.action='UpdateAddress';"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
+		    </form>
 		</div>
 		
 		

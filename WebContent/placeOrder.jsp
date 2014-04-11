@@ -12,8 +12,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 
 <script>
 $(document).ready(function(){
@@ -123,23 +122,7 @@ $(document).ready(function(){
 						    	$("#address2").val(data.addressDetails.addressLine2);
 						    	$("#phone").val(data.addressDetails.phoneNumber);
 						    	$("#city").val(data.addressDetails.city);
-						    }});
-						
-							/* Ajax call to fetch cart data starts here*/		
-							 $.ajax({
-						    type: 'GET',	    
-						    url:'getUserCartDetails ?email=' + $("#emailInput").val() ,
-						    success: function(data){
-						    	//alert(data.addressDetails.name);						    	
-						    	/*$("#name").val(data.addressDetails.name);
-						    	$("#pin").val(data.addressDetails.pinCode);
-						    	$("#address").val(data.addressDetails.addressLine1);
-						    	$("#address2").val(data.addressDetails.addressLine2);
-						    	$("#phone").val(data.addressDetails.phoneNumber);
-						    	$("#city").val(data.addressDetails.city);
-						    	*/
-						    }});
-							 /* Ajax call to fetch cart data Ends here*/	
+						    }});			
 						    	
 							/* Ajax call here to fetch user address details End here*/	
 						  $("#panel3").slideDown();
@@ -308,14 +291,15 @@ $(document).ready(function(){
 <div id="screenSize" class="myscreenSize">
 <div id="flip1" align="left">
 <label class="mylabel" >1.EMAIL ID</label>
-<input type="submit" id="editEmailid"value="Edit Email"  class="mysubmit3" >
+<input type="submit" id="editEmailid" value="Edit Email"  class="mysubmit3" >
 </div>
 
 <div id="panel1"><label class="mylabel1"  >Email Address*</label>
 <br>
 <form name="login_po" id="login_po" method="post" >
 
-<input type ="email" id="emailInput" name="email" required="true" class="mytext1" value='<s:property value="addressDetails.email"/>' >
+<input type ="email" id="emailInput" name="email" required="true" class="mytext1" 
+		value='<s:property value="addressDetails.email"/>' >
 <br>
 <br>
 <input id="show" type ="checkbox" name="registeredUser" >

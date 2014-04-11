@@ -28,7 +28,7 @@ public class getUserCartDetails {
 	{	
 		DBHandlerForUser db = new DBHandlerForUser();		
 					
-		cartDetailsList = db.getCartDetail(email);
+		cartDetailsList = db.getCartTableDetail(email);
 		System.out.println("Get User Cart Details : " + cartDetailsList.get(0).getImage());
 		return "success";
 		

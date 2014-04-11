@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="edu.iiitb.model.UserEntry"%>
+<%@page import="edu.iiitb.model.User"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
@@ -46,6 +48,67 @@ li.padding {color: #848484;
    }
 </style>
 
+<script type="text/javascript">
+<!--
+// Form validation code will come here.
+function validate()
+{
+ 
+   if( document.form_changepassword.newpassword.value != document.form_changepassword.retype_newpassword.value )
+   {
+     alert( "Password change failed. New Passwords do not match" );
+     document.form_changepassword.newpassword.focus() ;
+     return false;
+   }
+   if( document.form_changepassword.oldpassword.value == document.form_changepassword.newpassword.value )
+   {
+     alert( "Password change failed. New Password same as the old password" );
+     document.form_changepassword.newpassword.focus() ;
+     return false;
+   }
+}
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	var label = $('#emaill').text();
+	var a = label;
+});
+
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#changepassword_button").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'check_user_password ?email=' + $("#emailid").html() + '&password=' + $("#passwordold").val(),
+		    success: function(data){
+		    	
+		    	var status=data.message;
+		    	if(status=="available")
+		    		{
+		    		 var valid = validate();
+		    		 if(valid != false )
+		    			 {
+		    			 $("#form_changepassword").submit();
+		    			 }val
+							    			
+		    		}
+		    	else
+		    		{
+		    			$("#check_oldpassword").html("Invalid password");
+		    		}
+		     }});	
+	});
+});
+
+
+</script>
+
 
 
 </head>
@@ -71,23 +134,31 @@ li.padding {color: #848484;
 		
 		</ul>
 		</div>
+		
+		
 		<div class="col-md-6">
 			<h3> Change Password</h3>
 			<br>
+			
+			
+			<form id="form_changepassword" name="form_changepassword" action="UpdatePassword"  method="post">
 			<table style="width:400px">
 			<tr> <td style="text-align:left">Email Address </td> 
-			<td> </td> </tr>
+			<td> <label id="emailid"><% User u = (User) session.getValue("user");
+					out.print(u.getEmail());%></label>
+		    </td> </tr>
 			<tr> <td style="text-align:left">Old Password </td> 
-			<td> <input type="password" class="textbox" name="oldpassword" required> </td> </tr>
+			<td> <input type="password" id="passwordold" class="textbox" name="oldpassword" > </td> </tr>
 			<tr> <td style="text-align:left">New Password </td> 
 			<td> <input type="password" class="textbox" name="newpassword" required> </td> </tr>
 			<tr> <td style="text-align:left">Retype New Password </td> 
-			<td> <input type="password" class="textbox" name="retypenewpassword" required> </td> </tr>
+			<td> <input type="password" class="textbox" name="retype_newpassword" required> </td> </tr>
 			
-			<tr> <td></td>
-			<td><input type="submit" class="btn btn-primary" value="SAVE CHANGES"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+			<tr> <td> <label id="check_oldpassword"></label> </td>
+			<td><input type="button" id="changepassword_button" class="btn btn-primary" value="SAVE CHANGES"/>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
 		    </td></tr>
 		    </table>
+		    </form>
 		
 		
 		

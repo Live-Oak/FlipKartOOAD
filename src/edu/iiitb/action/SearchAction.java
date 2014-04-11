@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.opensymphony.xwork2.ActionSupport;
 
 import edu.iiitb.database.DBHandlerForUser;
+import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 
 public class SearchAction extends ActionSupport{
@@ -12,6 +13,15 @@ public class SearchAction extends ActionSupport{
 	ArrayList<ProductInfo> productinfo;
 	String categoryname;
 	ArrayList<String> companyList;
+	ArrayList<Linklists> linktoitem;
+
+	public ArrayList<Linklists> getLinktoitem() {
+		return linktoitem;
+	}
+
+	public void setLinktoitem(ArrayList<Linklists> linktoitem) {
+		this.linktoitem = linktoitem;
+	}
 
 	public ArrayList<String> getCompanyList() {
 		return companyList;
@@ -45,7 +55,8 @@ public class SearchAction extends ActionSupport{
 			//System.out.println("categoryname in action : " +categoryname);
 			productinfo = dbHandlerForUser.getproductlistoncategory(categoryname); 
 			// To get the List of all the product and their details
-			
+			linktoitem = dbHandlerForUser.getlinktothecategory(categoryname);
+			// To get the links for the side results
 			companyList = dbHandlerForUser.getCompanylistoncategory(categoryname);
 			// To get the List of all the company for the following product
 		}
