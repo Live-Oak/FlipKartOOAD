@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 	import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.CompareCartProduct;
+import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
@@ -360,17 +362,22 @@ public class DBHandlerForUser {
 			db.closeConnection(con);
 			return ProductInfo;
 		}
-		public ProductInfo getproductinfoforcomparison(int Productid) throws SQLException
+		public ArrayList<ProductInfo> getproductinfoforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException
 		{
-			String category="Mobile";
-			//System.out.println("ProductId in dbhandler : " +Productid);
 			Connection con = db.createConnection();
-			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "' and ProductInfo.productId = '" + Productid + "'" ;       
+			ArrayList<ProductInfo> productInfo = new ArrayList<ProductInfo>();	
+			
+			for(CompareCartProduct p : cartProducts)
+			{
+			System.out.println("db category"+p.getCategory());
+			System.out.println("db product"+p.getProductId());
+			String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + p.getCategory() + "' and ProductInfo.productId = '" + p.getProductId() + "'" ;       
 			ResultSet rs=db.executeQuery(query, con);
-			ProductInfo obj = new ProductInfo();
+			
 				
 			while(rs.next())
 			{
+				ProductInfo obj = new ProductInfo();
 				//System.out.println("product is : " +rs.getString("productName") );
 				obj.setProductID(rs.getInt("productId"));
 				obj.setProductName(rs.getString("productName"));
@@ -383,9 +390,16 @@ public class DBHandlerForUser {
 				obj.setWarranty(rs.getInt("warranty"));
 				obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
 				obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+				productInfo.add(obj);
+			}
+				
 			}
 			db.closeConnection(con);
-			return obj;
+			for(int i=0;i<productInfo.size();i++)
+			{
+				System.out.println("db wala"+productInfo.get(i).getImage());
+			}
+			return productInfo;
 		}
 		
 		public ArrayList<ProductInfo> getproductlistoncategory(String category) throws SQLException
@@ -575,17 +589,22 @@ public class DBHandlerForUser {
 			return cartDetailsList;
 		}
 
-		public ArrayList<String>  getproductsforcomparison(int categoryId) throws SQLException 
+		public ArrayList<String>  getproductsforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException 
 		{
 			Connection con = db.createConnection();
+						
 			ArrayList<String> categoryproducts = new ArrayList<String>();	
-			String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + categoryId ;       
+			
+			for(CompareCartProduct p : cartProducts)
+			{	
+			String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + p.getCategory() ;       
 			ResultSet rs=db.executeQuery(query, con);
 			System.out.println("hello1");
 			while(rs.next())
 			{
-				System.out.println(rs.getString("productName"));
 				categoryproducts.add(rs.getString("productName"));
+			}
+			break;
 			}
 			System.out.println("hello2");
 			for (String i : categoryproducts)

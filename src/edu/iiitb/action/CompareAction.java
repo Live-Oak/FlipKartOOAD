@@ -14,17 +14,45 @@ import edu.iiitb.database.DBHandlerforComparison;
 import edu.iiitb.model.CompareCartCookie;
 import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.ProductInfo;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-public class CompareAction
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.interceptor.SessionAware;
+import org.apache.struts2.json.JSONPopulator;
+import org.apache.struts2.json.JSONUtil;
+import com.opensymphony.xwork2.ActionSupport;
+import edu.iiitb.model.CompareCartCookie;
+import edu.iiitb.model.CompareCartProduct;
+import edu.iiitb.model.CompareProductsModel;
+import edu.iiitb.database.DBHandlerforComparison;
+
+public class CompareAction extends ActionSupport implements SessionAware,
+ServletResponseAware, ServletRequestAware
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int productId;
 	private String productname;
+	private HttpServletResponse servletResponse;
+	public HttpServletResponse getServletResponse() {
+		return servletResponse;
+	}
+	public HttpServletRequest getServletRequest() {
+		return servletRequest;
+	}
+
+	private HttpServletRequest servletRequest;
+
 	String message;
 	private int count;
 	ArrayList<Integer> pid= new ArrayList <Integer>(); 
 	ArrayList<ProductInfo> productinfo=new ArrayList<ProductInfo>();
 	ArrayList<String> description;
-	ArrayList<ProductInfo> productInfoAdded=new ArrayList<ProductInfo>();
 	
 	public ArrayList<String> getCategoryproducts() {
 		return categoryproducts;
@@ -42,6 +70,17 @@ public class CompareAction
 		description = Description;
 	}
 
+	ArrayList<String> categoryproductsfiltered;
+
+	public ArrayList<String> getCategoryproductsfiltered() {
+		return categoryproductsfiltered;
+	}
+	public void setCategoryproductsfiltered(ArrayList<String> categoryproductsfiltered) {
+		this.categoryproductsfiltered = categoryproductsfiltered;
+	}
+	
+	
+	
 	public ArrayList<ProductInfo> getProductinfo() {
 		return productinfo;
 	}
@@ -57,90 +96,86 @@ public class CompareAction
 
 	public String execute()
 	{
-		pid.add(1);
-		pid.add(2);
-		//pid.add(3);
-		int categoryId=7;
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
-		try
-		{
-			for(int i=0;i<pid.size();i++)
-			{
-			productinfo.add(dbHandlerForUser.getproductinfoforcomparison(pid.get(i)));
-			}
-			System.out.println("size of the product"+productinfo.size());
-			for(int i=0;i<productinfo.size();i++)
-			{
-				System.out.println(productinfo.get(i).getAvailableQuantity());
-			}
-			System.out.println("firstwala");
-			categoryproducts=dbHandlerForUser.getproductsforcomparison(categoryId);
-			System.out.println("secondwala");
-			for(String i : categoryproducts)
-			System.out.println(i);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error Search Action "+e);
-			return "error";
-		}
-		return "success";
-	
-	}
-	
-	
-	/*
-	
-	public String getCartProducts() {
-			try {
-
+		
+		 
+		try {
 				String content = null;
 				boolean cookieFound = false;
-				
 				for (Cookie c : servletRequest.getCookies()) {
+					
 					if (c.getName().equals("comparecart")) {
 						content = c.getValue();
+						System.out.println("nkzxkn");
 						CompareCartCookie cookie = new CompareCartCookie();
 						 JSONPopulator pop = new JSONPopulator();
 						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 								.deserialize(content);
 						 pop.populateObject(cookie, map);
-						products = DBHandlerforComparison.getProductsFromCompareCart(cookie.getProductList());
+						 
+						productinfo=dbHandlerForUser.getproductinfoforcomparison(cookie.getProductList()); 
+						
+						for(ProductInfo p : productinfo)
+						{
+							System.out.println("yup"+p.getCategoryID());
+						}
+						categoryproducts=dbHandlerForUser.getproductsforcomparison(cookie.getProductList());
+						
+						
 						cookieFound = true;
 						break;
 					}
 				}
 				if(cookieFound == false)
 				{
-					products = new ArrayList<CompareProductsModel>();
+					productinfo = new ArrayList<ProductInfo>();
 				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
-		count = products.size();
-		return "success";
-	}
-
-	
-	*/
-	
-	
-	/*public String getProductDetails() throws SQLException
-	{
-		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
-		System.out.println("kwhdk");
-		System.out.println("product nbame is"+productname);
-		productInfoAdded=dbHandlerForUser.getProductInfoByName(productname);
-		count=productInfoAdded.size();
-		for(ProductInfo i : productInfoAdded)
+		setCount(productinfo.size());		
+		ArrayList<String> productStringList= new ArrayList <String>();
+		for(ProductInfo p : productinfo)
 		{
-			System.out.println(i.getImage());
+			productStringList.add(p.getProductName());
+		}
+
+		for(ProductInfo p : productinfo)
+		{
+			for(int i=0;i<categoryproducts.size();i++)
+			{
+				if(p.getProductName().equals(categoryproducts.get(i)))
+				{
+					categoryproducts.remove(p.getProductName());
+				}
+			}
+		}
+		for(String i : categoryproducts)
+		{
+			System.out.println("filterd"+i);
 		}
 		return "success";
-	}
+		
+		
 	
+	}
+	@Override
+	public void setServletRequest(HttpServletRequest servletRequest) {
+		// TODO Auto-generated method stub
+		this.servletRequest = servletRequest;
+	}
+
+	@Override
+	public void setServletResponse(HttpServletResponse servletResponse) {
+		// TODO Auto-generated method stub
+		this.servletResponse = servletResponse;
+	}
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 	public String getProductname() {
 		return productname;
 	}
@@ -152,6 +187,7 @@ public class CompareAction
 	}
 	public void setCount(int count) {
 		this.count = count;
-	}*/
+	}
+	
 	
 }

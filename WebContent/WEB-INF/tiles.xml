@@ -81,7 +81,7 @@
    			<put-attribute name="body"   value="/Personal-info.jsp"/>
    		</definition>
 
-		<definition name="CompareProducts" extends="start">
+		<definition name="CompareProductsTiles" extends="start">
    			<put-attribute name="title" value="Flipkart.com: Compare Products"/>
    			<put-attribute name="body"   value="/compareProducts.jsp"/>
    			<put-attribute name="footer"   value="/footernonstatic.jsp"/>

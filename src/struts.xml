@@ -150,7 +150,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 
 			<action name="opencompareproductpage" class="edu.iiitb.action.CompareAction">
-				<result name="success" type="tiles">CompareProducts</result>
+				<result name="success" type="tiles">CompareProductsTiles</result>
 			</action>
 			
 			<action name="retrieveProduct" class="edu.iiitb.action.CompareProductAjax" method="getProductDetail">
@@ -367,6 +367,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			
 			<action name="getProductToCompare" class="edu.iiitb.action.CompareProducts"
 				method="getProductDetails">
+				<result name="success" type="json" />
+			</action>
+			
+			
+			<action name="removeProductFromCompareCart" class="edu.iiitb.action.CompareProducts"
+				method="removeProductDetails">
 				<result name="success" type="json" />
 			</action>
 			

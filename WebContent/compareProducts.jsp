@@ -61,9 +61,9 @@
 	      	    						    					"<img src='"+productcompare.image+"' height='140px' width='auto' /><br><br><br>"+		    												    				
 	      	    					    						"<div> <style>'-webkit-line-clamp: 1;'</style> <font size='3' color='black'>"+productcompare.productName+"</font><br></div><hr>"+
 	      	    					    						"<strong> <font size='4px' color='#BB0000'>"+productcompare.price+"</strong><hr><font size='2px' color='#BB0000'>"  
-	      	    					    						+data.messagestock+"<br><hr>"+data.messageoffer+"</font><hr><font size='3px' color='#000000'>"+productcompare.brand+
-	      	    					    						"<hr><font size='2px' color='#000000'>"+productcompare.description+"</font><br><hr><font size='2px' color='#000000'>"+data.messagewarranty);		
-	      	    						    				
+	      	    					    						+data.messagestock+"<br><hr><font size='3px' color='#76553B'>"+data.messageoffer+"</font><hr><font size='2px' color='#000000'>"+productcompare.brand+
+	      	    					    						"<hr><font size='2px' color='#000000'>"+productcompare.description+"</font><br><br><br><hr><font size='2px' color='#000000'>"+data.messagewarranty+"<hr>");		
+	      	    						    			
 	      	    						    		});
 	      	    		    					
 
@@ -93,8 +93,16 @@
 							<hr>
 							<p>Availability</p>
 							<hr>
+							<p>Offers</p>
+							<hr>
+							<p>Brand</p>
+							<hr>
+							<p>Description</p>
+							<br><br><br><br><br><br><br>
+							<hr>
 							<p>Warranty</p>
 							<hr>
+							
 						</center>						
 				 	</div> 
 		</div>
@@ -161,8 +169,9 @@
 														</font>
 														
 												<hr>
-																					
+											<font size="2px" color="#000000">												
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
+											</font>
 								<hr>
 										
 								<br><br><br>
@@ -201,7 +210,7 @@
 											</div>
 											<%}
 									
-											 else
+											 else if(count1==2)
 											{%>
 												<div class="col-md-3">
 													<div class="border borderForComparison">

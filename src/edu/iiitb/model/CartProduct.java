@@ -11,7 +11,6 @@ public class CartProduct {
 	
 	private int productId;
 	private int quantity;
-	
 	public CartProduct() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -21,6 +20,7 @@ public class CartProduct {
 		super();
 		this.productId = productId;
 		this.quantity = quantity;
+		
 	}
 
 
@@ -61,9 +61,7 @@ public class CartProduct {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 	
 	
 	

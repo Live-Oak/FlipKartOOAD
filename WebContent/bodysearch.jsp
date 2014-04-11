@@ -22,46 +22,74 @@
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
 	
 	
-	<%-- <script type="text/javascript">
-	$(document).ready(function(){
-		$("#name of checkbox").change(function()
-				{
-			$.ajax({
-			    type: 'POST',	    
-			    url:'update_product_list?value=' + ("#checkbox_id").is(':checked') + '&productname=' + $("#collect the value from session or from url").val(),
-			    success: function(data){
-			    	update the result on the page
-			     }});	
-		});
-	});
-
-
-	</script> --%>
 	<script type="text/javascript">
+	var cnt=0;
 	var product_id_to_send;
 	$(document).ready(function(){
+		$("#close_compare").click(function(){
+			$("#comparecart").hide();
+			$('.addtocompare').prop('checked', false); 
+		});
+		
+		
+			$(".remove").click(function(){
+				alert(hello);
+				$("#comparecart").hide();
+				$('.addtocompare').prop('checked', false); 
+			});
+			
+
+		
+		$(document).on('click','.remove',function(e){
+			var target = e.currentTarget;
+			var pId = $(target).attr("pid");
+			alert(hello);
+
+			alert(pid);
+			$.ajax({
+			    type: 'POST',
+			    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+			    data : {
+			    	productId : pId,	
+			    },
+			    url:'removeProductFromCompareCart',
+			    success: function(data){
+			    	showCart(data);
+			     }});	
+		});
+		
 		$(".addtocompare").change(function(event)
 				{
+			
 		$(".addtocompare").is(':checked');
+		
+		if($(".addtocompare").is(':checked'))
+			{
 		//alert(event.target.id);					Specifies id of the target 
+		
 		var maxAllowed = 4;	
 		//alert($(event.target).attr("pid"));				Specifies pid 
 		var pId = $(event.target).attr("pid");
-		var cnt = $("input[name='compare']:checked").length;
+		//var cnt = $("input[name='compare']:checked").length;
+		
+		//alert("count is:"+count);
+		var categoryId= $("#category").val();
+		categoryId=categoryId.trim();
+		//alert(data.count);
+		alert("category is "+categoryId);
 			      if (cnt > maxAllowed)
 			      {
 			         $(this).prop("checked", "");
 			         alert('Select maximum ' + maxAllowed );
 			     }
-			       
+			      else
+			    	  {
 		
 			      $.ajax({
 					    type: 'GET',
 					    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-					    data : {
-					    	productId : pId
-					    },
-					    url:'getProductToCompare',
+					   
+					    url:'getProductToCompare?productId='+pId+'&category='+categoryId,
 					    success: function(data){
 					  			
 					    	$.ajax({
@@ -71,26 +99,41 @@
 						
 					    	
 					    	
-					    	
 					    	$("#comparecart").show();
-					    	if(data.count == 0 || data.count == undefined)
+					    	if(data.count == undefined || data.count==0)
 				    		{
-					    		
+					    		alert(data.count);
 					    		$("#emptyComparediv").show();
 				    			$("#compare_button").attr("disabled", true);
 				    		}
+/*					    	else if(data.count>4)
+					    		{
+					    			alert("No dude");
+					    		}*/
+					    /*	else if(!category.equals(data.category))
+					    		{
+					    			alert("thand rakh");
+					    		}*/
 					    	else
 					    	{
-					    		
+					    		alert(data.count);
+					    		cnt=data.count;
+					    		if(data.count == 1)
+					    		{
+						    		$("#compare_button").attr("disabled", true);
+					    		}
+					    		if(data.count !=1)
+					    		{
+					    			$("#compare_button").attr("disabled", false);
+					    		}
 					    		$("#producttocompare").show();
 					    		$("#products_to_compare").empty();
 					    		$.each(data.products, function(count,productcompare) 
 					    		{ 	
 					    			product_id_to_send=productcompare.productId;
-					    			alert("prev"+product_id_to_send);
 					    			
 				    				$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
-				    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
+				    						"<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"+		
 						    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
 				    						"<div class='productName'>"+productcompare.productName+"</div>"+
 				    						
@@ -100,21 +143,12 @@
 					    	}
 							    }
 					    	});
-					     }});	
+					     }});
+			    	  }
+			}
 			      $("#compare_button").click(function(){
 			  		$("#comparecart").hide();
 			    		
-	///	    			alert("next"+product_id_to_send);
-		//    			$.ajax({
-		  //  			    type: 'GET',	    
-		    //			    url:'getdetails_of_product_to_compare?productId=' + product_id_to_send,
-		    	//		    success: function(data){
-		    		//	    	$("#open_compare_page_form").submit();
-		    			//    }
-		    			
-		   // 			});
-		    			
-
 			      });
 			});
 		$('input:checkbox').removeAttr('checked');
@@ -123,14 +157,9 @@
 		</script>
 
 
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$("#close_compare").click(function(){
-			$("#comparecart").hide();
-			$('.addtocompare').prop('checked', false); 
-		});
-	});
-	</script>
+
+
+
 </head>
 <body>
 	<div class="container">
@@ -156,6 +185,7 @@
 				<hr>
 				<h5>Company Name</h5>
 				<hr>
+				<input type="hidden" id="category" value="<s:property value="productinfo.get(2).categoryID"/>">
 				<form>
 					<s:iterator value="companyList">
 					<input type="checkbox" name="checkbox" value="" id="<s:property />"> <s:property /><br>
@@ -221,15 +251,9 @@
 								<hr>
 								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
 								<hr>
-								<s:if test="%{availableQuantity == 0}">
-								<input type="checkbox" disabled >Add To Compare</input>
-								</s:if>
-								<s:elseif test="%{availableQuantity < minimumQuantity}">
-								<input type="checkbox" disabled >Add To Compare</input>
-								</s:elseif>
-								<s:else>
+								
 									<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="<s:property value="productID"/> "/>Add To Compare</input>
-								</s:else>
+								
 								<hr>
 						
 								<br><br><br>

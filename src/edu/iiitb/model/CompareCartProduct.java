@@ -7,15 +7,16 @@ package edu.iiitb.model;
 public class CompareCartProduct {
 	
 	private int productId;
-	
+	private String category;
 	public CompareCartProduct() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CompareCartProduct(int productId) {
+	public CompareCartProduct(int productId,String category) {
 		super();
 		this.productId = productId;
+		this.category = category;
 	}
 
 
@@ -46,6 +47,14 @@ public class CompareCartProduct {
 		if (productId != other.productId)
 			return false;
 		return true;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	
