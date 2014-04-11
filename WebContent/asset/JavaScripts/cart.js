@@ -102,9 +102,28 @@ else
 			"</div>");
 		});
 		$("#totalCost").html("Total Cost : "+totalcost);
-		$(".quantityInput").keyup(function(){
-			$(this).parent().find(".save").show();
+		$(".quantityInput").keyup(function(e){
+			var keyCode = e.which ? e.which : e.keyCode;
+			var ret = ((keyCode >= 48 && keyCode <= 57));
+			var value = $(".quantityInput").val();
+			if(ret && value > 0)
+			{
+				$(this).parent().find(".save").show();
+			}
+			else
+			{
+				$(this).parent().find(".save").hide();
+			}
+			
 		});
 	}
 }
 
+function IsNumeric(e) {
+	var keyCode = e.which ? e.which : e.keyCode
+	var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys
+			.indexOf(keyCode) != -1);
+	document.getElementById("error").style.display = ret ? "none"
+			: "inline";
+	return ret;
+}
