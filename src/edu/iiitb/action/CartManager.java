@@ -179,7 +179,7 @@ public class CartManager extends ActionSupport implements SessionAware,
 								.deserialize(content);
 						 pop.populateObject(cookie, map);
 						 
-						if(cookie.getProductList().contains(
+						if(!cookie.getProductList().contains(
 								new CartProduct(productId, quantity))) 
 						{
 							cookie.getProductList().add(
@@ -315,6 +315,63 @@ public class CartManager extends ActionSupport implements SessionAware,
 
 		return "success";
 
+	}
+	public String updateCartProductQuantity()
+	{
+		User user = (User) session.get("user");
+		if (user != null) {
+			try {
+				DBHandlerForCart.updateToCart(
+						Integer.parseInt(user.getUserId().trim()), productId,
+						quantity);
+			} catch (Exception e) {
+				System.out.println("unable to update quantity..!!!");
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+
+				String content = null;
+				boolean cookieFound = false;
+				for (Cookie c : servletRequest.getCookies()) {
+					if (c.getName().equals("cart")) {
+						content = c.getValue();
+						CartCookie cookie = new CartCookie();
+						 JSONPopulator pop = new JSONPopulator();
+						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
+								.deserialize(content);
+						 pop.populateObject(cookie, map);
+						 
+						if(cookie.getProductList().contains(
+								new CartProduct(productId, quantity))) 
+						{
+							for(CartProduct p : cookie.getProductList())
+							{
+								if(p.getProductId() == productId)
+								{
+									p.setQuantity(quantity);
+								}
+							}
+							content = JSONUtil.serialize(cookie);
+							c.setValue(content);
+							c.setMaxAge(60*60*24*2);
+							
+							servletResponse.addCookie(c);
+
+						}
+						cookieFound = true;
+						break;
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+
+		return "success";
 	}
 	
 

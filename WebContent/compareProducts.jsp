@@ -78,7 +78,6 @@
 
 </head>
 <body>
-<%@ page import="java.util.ArrayList" %>
 <strong>Compare Products</strong>
 	<div class="container">
 		<div class="col-md-1 "></div>

@@ -100,6 +100,7 @@ ServletResponseAware, ServletRequestAware
 		
 		 
 		try {
+			System.out.println("in compareaction");
 				String content = null;
 				boolean cookieFound = false;
 				for (Cookie c : servletRequest.getCookies()) {

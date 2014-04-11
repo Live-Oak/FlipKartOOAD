@@ -109,7 +109,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 	private HttpServletResponse servletResponse;
 	private HttpServletRequest servletRequest;
 	private String category;
-
+	private String messageCount;
 	public CompareProducts() {
 
 	}
@@ -189,45 +189,53 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public String getProductDetails() {
 			try {
-				System.out.println(productId);
-				System.out.println("category "+this.category);
-				String content = null;
-				boolean cookieFound = false;
-				if(productId!=0 && category!=null)
-				{
-				for (Cookie c : servletRequest.getCookies()) {
-					if (c.getName().equals("comparecart")) {				// what is this for?
-						content = c.getValue();
+				//if(products.size()>4)
+				//{
+				//	messageCount="You can select only 4 product to compare";
+					
+			//	}
+				//else
+			//	{
+					System.out.println(productId);
+					System.out.println("category "+this.category);
+					String content = null;
+					boolean cookieFound = false;
+					if(productId!=0 && category!=null)
+					{
+					for (Cookie c : servletRequest.getCookies()) {
+						if (c.getName().equals("comparecart")) {				// what is this for?
+							content = c.getValue();
+							CompareCartCookie cookie = new CompareCartCookie();
+							 JSONPopulator pop = new JSONPopulator();
+							Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
+									.deserialize(content);
+							 pop.populateObject(cookie, map);
+							 if(!cookie.getProductList().contains(
+										new CompareCartProduct(productId,category))) 
+							 {
+									cookie.getProductList().add(
+											new CompareCartProduct(productId,category));
+									content = JSONUtil.serialize(cookie);
+									c.setValue(content);
+									c.setMaxAge(60*60*24*2);
+									servletResponse.addCookie(c);
+							 }
+							cookieFound = true;
+							break;
+						}
+					}
+					if(cookieFound == false)
+					{
 						CompareCartCookie cookie = new CompareCartCookie();
-						 JSONPopulator pop = new JSONPopulator();
-						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
-								.deserialize(content);
-						 pop.populateObject(cookie, map);
-						 if(!cookie.getProductList().contains(
-									new CompareCartProduct(productId,category))) 
-						 {
-								cookie.getProductList().add(
-										new CompareCartProduct(productId,category));
-								content = JSONUtil.serialize(cookie);
-								c.setValue(content);
-								c.setMaxAge(60*60*24*2);
-								servletResponse.addCookie(c);
-						 }
-						cookieFound = true;
-						break;
+						
+						cookie.getProductList().add(new CompareCartProduct(productId,category));
+						content = JSONUtil.serialize(cookie);
+						Cookie c = new Cookie("comparecart", content);
+						c.setMaxAge(60*60*24*2);
+						servletResponse.addCookie(c);
 					}
 				}
-				if(cookieFound == false)
-				{
-					CompareCartCookie cookie = new CompareCartCookie();
-					
-					cookie.getProductList().add(new CompareCartProduct(productId,category));
-					content = JSONUtil.serialize(cookie);
-					Cookie c = new Cookie("comparecart", content);
-					c.setMaxAge(60*60*24*2);
-					servletResponse.addCookie(c);
-				}
-				}
+				//}
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -240,7 +248,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 	public String getCartProducts() {
 			try {
-
+System.out.println("1");
 				String content = null;
 				boolean cookieFound = false;
 				for (Cookie c : servletRequest.getCookies()) {
@@ -264,7 +272,7 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		
+		System.out.println("hereit2");
 		count = products.size();
 		System.out.println(count);
 		return "success";
@@ -308,6 +316,14 @@ public class CompareProducts extends ActionSupport implements SessionAware,
 
 		return "success";
 
+	}
+
+	public String getMessageCount() {
+		return messageCount;
+	}
+
+	public void setMessageCount(String messageCount) {
+		this.messageCount = messageCount;
 	}
 	
 

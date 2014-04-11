@@ -5,6 +5,7 @@ CREATE  TABLE `FlipKartDatabase`.`UserCredantials` (
   `userId` INT NOT NULL AUTO_INCREMENT ,
   `firstName` VARCHAR(45) NOT NULL ,
   `lastName` VARCHAR(45) NULL ,
+  `gender` VARCHAR(45) NULL ,
   `password` VARCHAR(45) NOT NULL ,
   `role` VARCHAR(45) NOT NULL ,
   `dateOfBirth` DATE NOT NULL ,
@@ -146,7 +147,7 @@ CREATE  TABLE `FlipKartDatabase`.`Cart` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-
+CREATE UNIQUE INDEX cartindex ON `flipkartdatabase`.`cart` (`userId`, `productId`);
 
 CREATE  TABLE `FlipKartDatabase`.`Payment` (
   `transactionId` INT NOT NULL AUTO_INCREMENT ,
