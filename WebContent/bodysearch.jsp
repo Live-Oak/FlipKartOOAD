@@ -486,30 +486,13 @@
 			<div class="background">
 				<br>
 
-				<h4>
-					<b>BROWSE</b>
-				</h4>
-				
-					<a
-						href="getSearchresult?categoryname=<s:property value="parentCategory"/>"><img
-						src="asset/Images/down.jpg" height="30px"><font
-						color="black"><s:property value="parentCategory" /></font></a>
-					<br>
-					&nbsp;&nbsp;&nbsp;<a
-						href="getSearchresult?categoryname=<s:property value="Category"/>"><img
-						src="asset/Images/down.jpg" height="30px"><font
-						color="black"><s:property value="Category" /></font></a>
-
 				<h4><b>BROWSE</b></h4>
 				<a href="getSearchresult?categoryname=<s:property value="linktoitem.get(0).parentCategory"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="linktoitem.get(0).parentCategory"/></font></a><br>
 				<s:iterator value="linktoitem">
 					&nbsp;&nbsp;&nbsp;<a href="getSearchresult?categoryname=<s:property value="Category"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="Category"/></font></a><br>
-
 				</s:iterator>
 				<hr noshade>
-				<h5>
-					<b>REFINE</b>
-				</h5>
+				<h5><b>REFINE</b></h5>
 				<hr>
 				<h5>Price</h5>
 				<hr>

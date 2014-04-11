@@ -16,6 +16,15 @@ public class getProductList  extends ActionSupport
 	private String brand, price;
 	private String[] brandnames;
 	private String[] pricelist;
+	private String categoryName;
+	
+	
+	public String getCategoryName() {
+		return categoryName;
+	}
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	
 	public String getPrice() {
 		return price;
@@ -70,9 +79,11 @@ public class getProductList  extends ActionSupport
 		try
 		{
 			System.out.println("Category id is : " +category);
+			categoryName = dbHandlerForUser.getnameonid(category);
+			System.out.println("Category Name is : " +categoryName);
 			System.out.println("Count id is : " +count);
 			System.out.println("Comapany to filter is : " +pricelist[count-1]);
-			productinfofilter = dbHandlerForUser.getproductlistoncategoryfilterprice(pricelist,category,count);
+			productinfofilter = dbHandlerForUser.getproductlistoncategoryfilterprice(pricelist,categoryName,count);
 		}
 		catch(Exception e)
 		{
