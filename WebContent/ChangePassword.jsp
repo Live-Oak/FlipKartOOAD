@@ -114,7 +114,7 @@ $(document).ready(function(){
 </head>
 <body>
      <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
-
+ 
 <div class="col-md-1"></div>
 <div class="col-md-10" style="background-color: #FFFFFF">
        

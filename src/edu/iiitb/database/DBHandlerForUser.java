@@ -1,6 +1,6 @@
 	package edu.iiitb.database;
 
-	import java.io.IOException;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +21,8 @@ import edu.iiitb.model.CartCookie;
 import edu.iiitb.model.CartModel;
 import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.CompareCartProduct;
+import edu.iiitb.model.CompareProductsModel;
 import edu.iiitb.model.Linklists;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.SignupModel;
@@ -256,32 +258,30 @@ public class DBHandlerForUser {
 			//System.out.println(rs.getString("categoryName"));
 			categoryModel.add(obj);
 		}
-		db.closeConnection(con);
 		return categoryModel;
 	}
-
-	
-	public String getfName(String email) throws SQLException
-	{
-		// TODO Auto-generated method stub
-		Connection con = db.createConnection();
-		String query="select email,firstName from UserCredantials";
-		ResultSet rs=db.executeQuery(query, con);
-		String fName=null;
-		while(rs.next())
-		{
-			if(rs.getString("email").equals(email))
-			{
-				fName=rs.getString("firstName");
 		
-			}
-		}
-		System.out.println(fName);
-		con.close();
-		return fName;
 	
-	}
-
+		public String getfName(String email) throws SQLException
+		{
+			// TODO Auto-generated method stub
+			Connection con = db.createConnection();
+			String query="select email,firstName from UserCredantials";
+			ResultSet rs=db.executeQuery(query, con);
+			String fName=null;
+			while(rs.next())
+			{
+				if(rs.getString("email").equals(email))
+				{
+					fName=rs.getString("firstName");
+			
+				}
+			}
+			System.out.println(fName);
+			con.close();
+			return fName;
+		
+		}
 	public String chkUserId(String email) throws SQLException
 	{
 		// TODO Auto-generated method stub
@@ -427,34 +427,6 @@ public class DBHandlerForUser {
 		db.closeConnection(con);
 		return ProductInfo;
 	}
-	public ProductInfo getproductinfoforcomparison(int Productid) throws SQLException
-	{
-		String category="Mobile";
-		//System.out.println("ProductId in dbhandler : " +Productid);
-		Connection con = db.createConnection();
-		String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryName = '" + category + "' and ProductInfo.productId = '" + Productid + "'" ;       
-		ResultSet rs=db.executeQuery(query, con);
-		ProductInfo obj = new ProductInfo();
-			
-		while(rs.next())
-		{
-			//System.out.println("product is : " +rs.getString("productName") );
-			obj.setProductID(rs.getInt("productId"));
-			obj.setProductName(rs.getString("productName"));
-			obj.setPrice(rs.getInt("price"));
-			obj.setImage(rs.getString("image"));
-			obj.setOffer(rs.getInt("offer"));
-			obj.setCategoryID(rs.getString("categoryId"));
-			obj.setDescription(rs.getString("description"));
-			obj.setBrand(rs.getString("brand"));
-			obj.setWarranty(rs.getInt("warranty"));
-			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
-			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
-		}
-		db.closeConnection(con);
-		return obj;
-	}
-	
 	
 	public ArrayList<ProductInfo> getproductlistoncategoryfilter(String[] brand, String categoryId, int count) throws SQLException
 	{
@@ -465,7 +437,7 @@ public class DBHandlerForUser {
 		for(int i=0; i<count; i++)
 		{
 			System.out.println("brand in dbhandler : " +brand[i]);
-			query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = category.CategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and productinfo.brand = '" +brand[i]+ "'";        
+			query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and ProductInfo.brand = '" +brand[i]+ "'";        
 			if(i<count-1)
 				query +=" union ";
 		}
@@ -512,23 +484,23 @@ public class DBHandlerForUser {
 			}
 			else if(price[i].equalsIgnoreCase("3"))
 			{
-				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = category.CategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and productinfo.price BETWEEN 5001 AND 10000";        
+				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and ProductInfo.price BETWEEN 5001 AND 10000";        
 			}
 			else if(price[i].equalsIgnoreCase("4"))
 			{
-				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = category.CategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and productinfo.price BETWEEN 10001 AND 18000";        
+				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and ProductInfo.price BETWEEN 10001 AND 18000";        
 			}
 			else if(price[i].equalsIgnoreCase("5"))
 			{
-				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = category.CategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and productinfo.price BETWEEN 18001 AND 25000";        
+				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and ProductInfo.price BETWEEN 18001 AND 25000";        
 			}
 			else if(price[i].equalsIgnoreCase("6"))
 			{
-				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = category.CategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and productinfo.price BETWEEN 25001 AND 25000";        
+				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and ProductInfo.price BETWEEN 25001 AND 25000";        
 			}
 			else if(price[i].equalsIgnoreCase("7"))
 			{
-				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = category.CategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and productinfo.price > 35001";        
+				query +="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId ='" + categoryId + "' and ProductInfo.price > 35001";        
 			}
 			
 			if(i<count-1)
@@ -559,10 +531,20 @@ public class DBHandlerForUser {
 	
 	public ArrayList<Linklists> getlinktothecategory(String category) throws SQLException
 	{
+		System.out.println("Category in question is : " +category);
 		ArrayList<Linklists> Listoflink = new ArrayList<Linklists>();
 		Connection con = db.createConnection();
-		String query="select c1.categoryName as childCategory, c2.categoryName as parentCategory from category as c1, category as c2, categoryrelation where c2.categoryName = '"+category+"' and c2.categoryId = categoryrelation.subCategoryId and categoryrelation.categoryId = c1.categoryId";       
+		String query="select c1.categoryName as childCategory, c2.categoryName as parentCategory from Category as c1, Category as c2, CategoryRelation where c2.categoryName = '"+category+"' and c2.categoryId = CategoryRelation.subCategoryId and CategoryRelation.categoryId = c1.categoryId";       
 		ResultSet rs=db.executeQuery(query, con);
+		if(rs.next() == false)
+		{
+			query="select distinct(c1.categoryName) as childCategory, c2.categoryName as ParentCategory from Category as c1, Category as c2, CategoryRelation where c1.categoryName = '"+category+"' and c1.categoryId = CategoryRelation.categoryId and CategoryRelation.subCategoryId = c2.categoryId";
+			rs=db.executeQuery(query, con);
+		}
+		else
+		{
+			rs.previous();
+		}
 		while(rs.next())
 		{
 			//System.out.println("product is : " +rs.getString("childCategory"));
@@ -580,7 +562,7 @@ public class DBHandlerForUser {
 		//System.out.println("Id in handler" +id);
 		Connection con = db.createConnection();
 		String name="";
-		String query="select categoryName from category where categoryId = '"+id+"'";
+		String query="select categoryName from Category where categoryId = '"+id+"'";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
@@ -630,18 +612,18 @@ public class DBHandlerForUser {
 		{
 			if(check1.equalsIgnoreCase("Men"))
 			{
-				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.CategoryId and ProductInfo.productId = Stock.productId and Category.categoryName LIKE 'Men%' union select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock, categoryrelation where ProductInfo.categoryId = categoryrelation.subCategoryId and  ProductInfo.productId = Stock.productId and category.categoryId = categoryrelation.categoryId  and Category.categoryName = '" + category + "'";
+				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and ProductInfo.productId = Stock.productId and Category.categoryName LIKE 'Men%' union select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock, CategoryRelation where ProductInfo.categoryId = CategoryRelation.subCategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = CategoryRelation.categoryId  and Category.categoryName = '" + category + "'";
 				rs=db.executeQuery(query, con);
 			}
 			else if(check1.equalsIgnoreCase("Wom"))
 			{
-				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.CategoryId and ProductInfo.productId = Stock.productId and Category.categoryName LIKE 'Women%' union select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock, categoryrelation where ProductInfo.categoryId = categoryrelation.subCategoryId and  ProductInfo.productId = Stock.productId and category.categoryId = categoryrelation.categoryId  and Category.categoryName = '" + category + "'";
+				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.CategoryId and ProductInfo.productId = Stock.productId and Category.categoryName LIKE 'Women%' union select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock, CategoryRelation where ProductInfo.categoryId = CategoryRelation.subCategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = CategoryRelation.categoryId  and Category.categoryName = '" + category + "'";
 				rs=db.executeQuery(query, con);
 			}
 			else if(check.equalsIgnoreCase("Baby "))
 			{
 				System.out.println(category);
-				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, categoryrelation, Stock where ProductInfo.categoryId = categoryrelation.subCategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = categoryrelation.categoryId and Category.categoryName = '" + category + "'";    
+				query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, CategoryRelation, Stock where ProductInfo.categoryId = CategoryRelation.subCategoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = CategoryRelation.categoryId and Category.categoryName = '" + category + "'";    
 				rs=db.executeQuery(query, con);
 			}
 			else
@@ -814,45 +796,55 @@ public class DBHandlerForUser {
 				cartDetail.setProductID(Integer.parseInt(rs.getString("productId")));
 				cartDetail.setQuantity(p.getQuantity());		
 				cartDetail.setPrice(rs.getString("price"));	
-				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * (  cartDetail.getQuantity()	 )	)  );
-				
-				cartDetailsList.add(cartDetail);
-			}
+				cartDetail.setSubTotal(	Float.toString(Float.parseFloat( cartDetail.getPrice() ) * ( ( cartDetail.getQuantity()	) )	)  );
+				cartDetailsList.add(cartDetail);				
+			}		
+			db.closeConnection(con);
+			return cartDetailsList;
 		}
-		for(customerCartDetail card : cartDetailsList)
-		{
-			System.out.println("Inside Cokie wala db query");
-			System.out.println("Cokkie Product Name :" + card.getProductName() );
-			System.out.println("Cokkie Product ID :" + card.getProductID() );
-			System.out.println("Cokkie Product Quantity :" + card.getQuantity() );
-			
-		}
-		
-		db.closeConnection(con);					
 		return cartDetailsList;
-	}
+		}
 
-	public ArrayList<String>  getproductsforcomparison(int categoryId) throws SQLException 
+	public ArrayList<ProductInfo> getproductinfoforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException
 	{
 		Connection con = db.createConnection();
-		ArrayList<String> categoryproducts = new ArrayList<String>();	
-		String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + categoryId ;       
+		ArrayList<ProductInfo> productInfo = new ArrayList<ProductInfo>();	
+		
+		for(CompareCartProduct p : cartProducts)
+		{
+		System.out.println("db category"+p.getCategory());
+		System.out.println("db product"+p.getProductId());
+		String query="select ProductInfo.productId, ProductInfo.productName, ProductInfo.price, ProductInfo.image, ProductInfo.offer, ProductInfo.categoryId, ProductInfo.description, ProductInfo.brand, ProductInfo.warranty, Stock.availableQuantity, Stock.minimumQuantity from ProductInfo, Category, Stock where ProductInfo.categoryId = Category.categoryId and  ProductInfo.productId = Stock.productId and Category.categoryId = '" + p.getCategory() + "' and ProductInfo.productId = '" + p.getProductId() + "'" ;       
 		ResultSet rs=db.executeQuery(query, con);
-		System.out.println("hello1");
+		
+			
 		while(rs.next())
 		{
-			System.out.println(rs.getString("productName"));
-			categoryproducts.add(rs.getString("productName"));
+			ProductInfo obj = new ProductInfo();
+			//System.out.println("product is : " +rs.getString("productName") );
+			obj.setProductID(rs.getInt("productId"));
+			obj.setProductName(rs.getString("productName"));
+			obj.setPrice(rs.getInt("price"));
+			obj.setImage(rs.getString("image"));
+			obj.setOffer(rs.getInt("offer"));
+			obj.setCategoryID(rs.getString("categoryId"));
+			obj.setDescription(rs.getString("description"));
+			obj.setBrand(rs.getString("brand"));
+			obj.setWarranty(rs.getInt("warranty"));
+			obj.setMinimumQuantity(rs.getInt("minimumQuantity"));
+			obj.setAvailableQuantity(rs.getInt("availableQuantity"));
+			productInfo.add(obj);
 		}
-		System.out.println("hello2");
-		for (String i : categoryproducts)
-		System.out.println(i);
-		
+			
+		}
 		db.closeConnection(con);
-		
-		return categoryproducts;		
+		for(int i=0;i<productInfo.size();i++)
+		{
+			System.out.println("db wala"+productInfo.get(i).getImage());
+		}
+		return productInfo;
 	}
-
+	
 	public ArrayList<ProductInfo> getProductInfoByName(String productname) throws SQLException 
 	{
 		
@@ -864,7 +856,8 @@ public class DBHandlerForUser {
 		System.out.println("hello1");
 		ProductInfo obj = new ProductInfo();
 		while(rs.next())
-		{				
+		{
+			
 			obj.setProductID(rs.getInt("productId"));
 			obj.setProductName(rs.getString("productName"));
 			obj.setPrice(rs.getInt("price"));
@@ -881,7 +874,34 @@ public class DBHandlerForUser {
 		
 		db.closeConnection(con);
 		System.out.println("hello2");
-		return productInfoAdded;		
+		return productInfoAdded;		}
+
+	public ArrayList<String>  getproductsforcomparison(ArrayList<CompareCartProduct> cartProducts) throws SQLException 
+	{
+		Connection con = db.createConnection();
+					
+		ArrayList<String> categoryproducts = new ArrayList<String>();	
+		
+		for(CompareCartProduct p : cartProducts)
+		{	
+			
+		String query="select ProductInfo.productId, ProductInfo.productName from FlipKartDatabase.ProductInfo where ProductInfo.categoryId =  " + p.getCategory() ;       
+		ResultSet rs=db.executeQuery(query, con);
+		System.out.println("hello1");
+		while(rs.next())
+		{
+			categoryproducts.add(rs.getString("productName"));
+		}
+		break;
+		}
+		System.out.println("hello2");
+		for (String i : categoryproducts)
+		System.out.println(i);
+		
+		db.closeConnection(con);
+		
+		return categoryproducts;		
 	}
+
 }
 
