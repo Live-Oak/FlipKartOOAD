@@ -536,7 +536,7 @@
 					value="<s:property value="productinfo.get(2).categoryID"/>">
 				<form>
 					<input type="hidden" id="categoryid"
-						value="<s:property value="productinfo.get(1).categoryID"/>">
+						value="<s:property value="productinfo.get(0).categoryID"/>">
 					<s:iterator value="companyList">
 						<input type="checkbox" id="brand" class="filters" name="checkbox"
 							brandname="<s:property />">
