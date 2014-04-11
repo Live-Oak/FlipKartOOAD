@@ -411,6 +411,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json" />
 			</action>
 			
-			
+			<action name="updateProductQuantity" class="edu.iiitb.action.CartManager"
+				method="updateCartProductQuantity">
+				<result name="success" type="json" />
+			</action>
 	</package>
 </struts>
