@@ -311,9 +311,8 @@
 <script type="text/javascript">
 	var cnt = 0;
 	var product_id_to_send;
-	$(document)
-			.ready(
-					function() {
+	$("#comparecart").show();
+	$(document).ready(function() {
 						$("#close_compare").click(function() {
 							$("#comparecart").hide();
 							$('.addtocompare').prop('checked', false);
@@ -394,9 +393,7 @@
 																																	+ "<div class='productName'>"
 																																	+ productcompare.productName
 																																	+ "</div>"
-																																	+
-
-																																	"</center>"
+																																	+"</center>"
 																																	+ "</div>");
 																										});
 
@@ -409,9 +406,7 @@
 											}
 											$("#compare_button").click(
 													function() {
-														$("#comparecart")
-																.hide();
-
+														$("#comparecart").hide();
 													});
 										});
 						$('input:checkbox').removeAttr('checked');
