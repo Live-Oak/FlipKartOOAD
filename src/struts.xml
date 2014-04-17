@@ -405,9 +405,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 
-			<!-- <action name="placeOrder">
-				<result>/place.jsp</result>
-			</action> -->
+		<action name="placeOrder" class="edu.iiitb.action.placeOrderAction"><result name="success" type="json"/></action>
 			
 			<action name="placeOrderActionViaCOD" class="edu.iiitb.action.placeOrderAction" method="placeOrderActionViaCOD">
 				<!-- <result name="success" type="json" /> -->

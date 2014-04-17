@@ -7,62 +7,50 @@ public class customerCartDetail {
 	private int quantity;
 	private String price;	
 	private String subTotal;
-	private String transactionId;
-
+	private String TransactionId;
 	public String getImage() {
 		return image;
 	}
-
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 	public String getProductName() {
 		return productName;
 	}
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
-	}
-
-	public String getSubTotal() {
-		return subTotal;
-	}
-
-	public void setSubTotal(String subTotal) {
-		this.subTotal = subTotal;
-	}
-
 	public int getProductID() {
 		return productID;
 	}
-
 	public void setProductID(int productID) {
 		this.productID = productID;
 	}
-
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getSubTotal() {
+		return subTotal;
+	}
+	public void setSubTotal(String subTotal) {
+		this.subTotal = subTotal;
+	}
 	public String getTransactionId() {
-		return transactionId;
+		return TransactionId;
+	}
+	public void setTransactionId(String transactionId) {
+		TransactionId = transactionId;
 	}
 
-	public void setTransactionId(String transactionId) {
-		this.transactionId = transactionId;
-	}
+
 
 }

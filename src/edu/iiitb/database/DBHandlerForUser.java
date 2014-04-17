@@ -1,4 +1,4 @@
-	package edu.iiitb.database;
+package edu.iiitb.database;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -11,6 +11,7 @@ import java.util.Calendar;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import edu.iiitb.database.DBConnectivity;
 import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CartProduct;
 import edu.iiitb.model.CategoryModel;
@@ -22,6 +23,7 @@ import edu.iiitb.model.SignupModel;
 import edu.iiitb.model.UserEntry;
 import edu.iiitb.model.customerCartDetail;
 import edu.iiitb.model.custometAddressDetail;
+import edu.iiitb.model.getUserBankDetails;
 
 
 	/**
@@ -235,9 +237,6 @@ public class DBHandlerForUser {
 		ArrayList<CategoryModel> categoryModel = new ArrayList<CategoryModel>();
 		DBConnectivity db=new DBConnectivity();
 		Connection con= db.createConnection();	
-		//System.out.println("In handler");
-		//System.out.println(parentcategoryId);
-		//System.out.println(ancestorname);
 		
 		String query= " SELECT Category.categoryName, Category.categoryId FROM Category, CategoryRelation WHERE Category.categoryId = CategoryRelation.subCategoryId AND CategoryRelation.categoryId = '"+ parentcategoryId +"' and Category.categoryName Like '"+ ancestorname+"%'";       
 	
@@ -266,7 +265,6 @@ public class DBHandlerForUser {
 		
 		while(rs.next())
 		{
-			//System.out.println("output sub catgeory is : " + rs.getString("subcategory"));
 			CategoryModel obj = new CategoryModel();
 			obj.setCategoryName(rs.getString("subcategory"));
 			obj.setCategoryId(rs.getString("subcategoryid"));
@@ -1306,4 +1304,5 @@ public class DBHandlerForUser {
 	}
 
 }
+
 
