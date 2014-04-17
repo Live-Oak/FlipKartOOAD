@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="edu.iiitb.model.UserEntry"%>
+<%@page import="edu.iiitb.model.MyOrdersModel"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <html>
@@ -137,9 +138,7 @@ a {
 .fk-hidden, .hidden {
     display: none;
 }
-.line, .lastUnit {
-    overflow: hidden;
-}
+
 .size1of7 {
     width: 14.2857%;
 }
@@ -172,12 +171,46 @@ a {
 .size2of5 {
     width: 40%;
 }
+
+#order-section .order-item {
+    border-bottom: 1px dotted #CCCCCC;
+    margin: 0 15px;
+    padding: 10px 0;
+}
+.size1of8 {
+    width: 12.5%;
+}
+.fk-text-center {
+    text-align: center;
+}
+.size2of7 {
+    width: 28.5714%;
+}
+.tmargin10 {
+    margin-top: 10px;
+}
+.bmargin10 {
+    margin-bottom: 10px;
+}
+
+#order-section .order-total {
+    margin: 10px 15px;
+}
+.rmargin20 {
+    margin-right: 20px;
+}
+.lastUnit {
+    float: none;
+    width: auto;
+}
+
 </style>
 
 <script> 
 $(document).ready(function(){
-  $(".toggle-details").click(function(){
-    $(".order-expanded").slideToggle("slow");
+  $(".toggle-details").click(function(e){
+	  var currentTarget = e.currentTarget;
+    $(currentTarget).parent().find(".order-expanded").slideToggle("slow");
   });
 });
 </script>
@@ -190,13 +223,13 @@ $(document).ready(function(){
 
 <div class="col-md-2"></div>
 <div class="col-md-8 ">
-<ul class="line fk-font-17">
+<ul class="line ">
 <li id="myAccountBtn" class="fk-inline-block">
-<a href="Personal-info">My Account</a>
+<a style = "color: #848484" href="Personal-info">My Account</a>
 /
 </li>
 <li class="fk-inline-block">
-<h3>My Orders</h3>
+<strong>My Orders</strong>
 </li>
 </ul>
 <div class="col-md-12 myorder-tabs ">
@@ -205,23 +238,26 @@ $(document).ready(function(){
 <span class="text">RECENT ORDERS</span>
 <span id="subText" class="text fk-font-small">(Last 2 Months)</span>
 </li>
-<li id="past-orders" class="fk-inline-block tab">
-<span class="text">PAST ORDERS</span>
+<li id="past-orders" class="fk-inline-block tab"><a href = "MyPastOrders">
+<span class="text">PAST ORDERS</span></a>
 </li>
 </ul>
 
 </div>
 <br>
+
+<s:iterator value="Orders">
+
 <div class="col-md-12" id="order-section">
 <div class="fk-inf-scroll-item order physical collapsed">
 <div class="line order-collapsed fk-hidden toggle-details">
 <div class="unit size1of7">
-<strong>OD40303032918</strong>
+<strong>    <s:property value="oredrNo"/>   </strong>
 </div>
-<div class="unit size3of5 smallText"> Moto G (Black, with 16 GB) (Total: 1 item) </div>
+<div class="unit size3of5 smallText"> <s:property value="prodName"/> (Total: <s:property value="quantity"/> item) </div>
 <div class="unit size1of6">
 <span class="smallText">Order Total:</span>
-<strong> Rs.13999</strong>
+<strong>   Rs.<s:property value="totalprice"/>  </strong>
 </div>
 <div class="lastUnit text_right">
 <%-- <a class="toggle-details" title="Show order details"></a>  --%>
@@ -229,17 +265,61 @@ $(document).ready(function(){
 
 </div>
 <div class="line order-expanded">
+  <div class="unit size2of5">
+  <a class="btn btn-primary" href="Get_OrderInfo?OrderId=<s:property value="oredrNo" />" target="_blank"> <s:property value="oredrNo" /> </a>
+  </div>
+  <div class="lastUnit text_right">
+  <%-- <a class="toggle-details" title="Hide order details"></a> --%>
+  </div>
+  </div>
+
+
+<div class="line js-order-details">
+<div class="line order-item">
+<div class="unit size1of8 fk-text-center">
+<img src="<s:property value="photo" />" alt="Smiley face" width="40" height="60">
+</div>
+<div class="unit size2of7">
+<s:property value="prodName"/>
+<p class="smallText tmargin10"> Qty: <s:property value="quantity"/> </p>
+</div>
+<div class="unit size1of6">
+<div> Rs. <s:property value="price"/> </div>
+</div>
+<div class="unit size2of7">
+<p class="greyText bmargin10"> Delivered on <s:property value="delievry_date"/> </p>
+</div>
+<div class="lastUnit text_right"> </div>
+</div>
+
+<div class="line order-total">
+<div class="line">
 <div class="unit size2of5">
-<a class="btn btn-primary" href="#" target="_blank">OD40303032918</a>
-</div>
+  <span class="smallText">Seller:</span>
+  <span class="rmargin20">WS Retail</span>
+  <span class="smallText fk-inline-block">Date:</span>
+  <s:property value="order_date"/> 
+</div> 
 <div class="lastUnit text_right">
-<a class="toggle-details" title="Hide order details"></a>
+<span class="smallText">Order Total:</span>
+<strong>  Rs.<s:property value="totalprice"/>  </strong>
+</div>
+
 </div>
 </div>
 
 </div>
+ 
+  
+
+
+
 </div>
 
+
+
+</div>
+</s:iterator>
 </div>
 <div class="col-md-1"></div>
 

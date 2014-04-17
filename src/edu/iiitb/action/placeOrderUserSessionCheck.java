@@ -29,12 +29,19 @@ ServletResponseAware, ServletRequestAware
 	private static final long serialVersionUID = 1L;
 
 	private float grandTotal;
+	//Map <String, Object> session1;
 	
+	/*public Map<String, Object> getSession1() {
+		return session1;
+	}
+	public void setSession1(Map<String, Object> session1) {
+		this.session1 = session1;
+	}*/
 	private HttpServletResponse servletResponse;
 	private HttpServletRequest servletRequest;
 
 	custometAddressDetail addressDetails = new custometAddressDetail();
-	private Map session;
+	Map <String, Object> session;
 	
 	ArrayList<customerCartDetail> cartDetailsList = new ArrayList<customerCartDetail>();
 	
@@ -64,11 +71,11 @@ ServletResponseAware, ServletRequestAware
 		this.addressDetails = addressDetails;
 	}
 		
-	public Map getSession()
+	public Map<String,Object> getSession()
 	{
 		return session;
 	}
-	public void setSession(Map session) 
+	public void setSession(Map<String,Object> session) 
 	{
 		this.session = session;
 	}
@@ -85,7 +92,8 @@ ServletResponseAware, ServletRequestAware
 	public void setServletRequest(HttpServletRequest servletRequest) {
 		this.servletRequest = servletRequest;
 	}
-	public String execute() throws SQLException, JSONException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, IllegalArgumentException, InstantiationException, IntrospectionException
+	public String execute() throws SQLException, JSONException, IllegalAccessException, InvocationTargetException, NoSuchMethodException,
+	IllegalArgumentException, InstantiationException, IntrospectionException
 	{	
 		User user;				
 		if ( session.containsKey("user") )			
@@ -106,25 +114,22 @@ ServletResponseAware, ServletRequestAware
 			addressDetails = new custometAddressDetail();
 			String content = null;
 			DBHandlerForUser db = new DBHandlerForUser();
-			System.out.println("I got lucky here 1 ;)");
+			
 			try
 			{
 				for (Cookie c : servletRequest.getCookies()) 
 				{
-					System.out.println("I got lucky here 2 ;)");
+					
 					if (c.getName().equals("cart")) 
 					{
-						System.out.println("I got lucky here 3 ;)");
+						
 						content = c.getValue();
 						CartCookie cookie = new CartCookie();						
 						JSONPopulator pop = new JSONPopulator();
 						Map< ?, ?> map = (Map< ?, ?>)	JSONUtil
 								.deserialize(content);
-						 pop.populateObject(cookie, map);		
-						
-						   
-						 cartDetailsList = db.getCartCokkiesDetail(cookie.getProductList());
-						 System.out.println("I got lucky here 4 ;)");
+						 pop.populateObject(cookie, map);							   
+						 cartDetailsList = db.getCartCokkiesDetail(cookie.getProductList());						 
 						break;
 					}					
 				}
@@ -132,16 +137,27 @@ ServletResponseAware, ServletRequestAware
 				{						
 					grandTotal =  grandTotal + Float.parseFloat( cart.getSubTotal() );					
 				}
-				System.out.println("Cokies GrandTotal = Rs." + grandTotal);			
+					
 			}
 			catch(Exception e)
 			{
 				e.printStackTrace();
-			}
-			
+			}			
 		}
+		try
+		{
+		session.put("grandTotal", grandTotal);
+		
+		}
+		
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		System.out.println("Session value in grandTotal : " +session.get("grandTotal") );		
 		return "success";
 	}
+	
 	
 	
 	

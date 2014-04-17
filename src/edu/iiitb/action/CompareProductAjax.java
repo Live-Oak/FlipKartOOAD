@@ -51,7 +51,7 @@ public class CompareProductAjax
 		}
 		int offerper;
 		offerper=((productInfoAdded.get(0).getPrice()-productInfoAdded.get(0).getOffer())*100)/productInfoAdded.get(0).getPrice();
-		if(offerper<=0)
+		if(offerper==100)
 		{
 			setMessageoffer("No Avalilable Offers");
 		}

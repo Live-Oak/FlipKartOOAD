@@ -72,3 +72,14 @@
 	margin-top:20px;
 	margin-right:20px;
 }
+
+
+.save{
+	color : black;
+	display: none;
+}
+
+
+.quantityInput{
+	width : 50px;	
+}

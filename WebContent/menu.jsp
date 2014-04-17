@@ -5,20 +5,24 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="description" content="Blueprint: Horizontal Drop-Down Menu" />
+	<meta name="keywords" content="horizontal menu, microsoft menu, drop-down menu, mega menu, javascript, jquery, simple menu" />
 	<title>Menu</title>
+	
 	<link rel="icon" type="/favicon.png" href="asset/Images/flipkartlogo.png">
 	<!-- Custom styles for this template -->
 	<link href="asset/CSS/Index.css" rel="stylesheet">
 	<link rel="stylesheet" href="asset/CSS/jquery-ui.css">
 	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-<!-- 	<link rel="stylesheet" href="asset/CSS/login.css"> -->
-<link rel="stylesheet" href="asset/CSS/reveal.css">	
+	<link rel="stylesheet" href="asset/CSS/reveal.css">	
 	
 	<!-- Bootstrap core CSS -->
 	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
 	<!-- Bootstrap theme -->
 	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="asset/CSS/cart.css" rel="stylesheet">
+	<link href="asset/CSS/dropdown.css" rel="stylesheet">
+	
 	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
 	<script src="asset/JavaScripts/bootstrap.min.js"></script>
 	<script src="asset/JavaScripts/jquery-ui.js"></script>
@@ -142,127 +146,348 @@ $(document).ready(function(){
 <script type="text/javascript">
 	$(document).ready(function(){
 		var categoryid=1;
-		var temp;
+		var temp="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
 			    	$.each(data.categoryModel1, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    url:'getSubCatagories?parentcategory=' + parentcategory,
+						    success: function(data){
+						    	$.each(data.categoryModel11, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+						    	});
+						    	 $("#electronics").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#electronics").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
 </script> 
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		var categoryid=12;
-		var temp;
+		var temp="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
-			    	$.each(data.categoryModel2, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname=Men '+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Men '+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    data : {
+						    	parentcategory : parentcategory,
+						    	ancestorid : categoryid
+						    },
+						    url:'getSubCatagorieslevel',
+						    success: function(data){
+						    	$.each(data.categoryModel12, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';    
+						    	});
+						    	 $("#men").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#men").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
 </script> 
-	
-<script type="text/javascript">
-	$(document).ready(function(){
-		var categoryid=13;
-		var temp;
-			$.ajax({
-			    type: 'POST',	    
-			    url:'getCatagories?category=' + categoryid,
-			    success: function(data){
-			    	$.each(data.categoryModel3, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
-			    	});
-			    	$("#women").html(temp);
-			     }
-			});
-		});
-</script>    
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		var categoryid=14;
-		var temp;
+		var categoryid=13;
+		var temp="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
-			    	$.each(data.categoryModel4, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    data : {
+						    	parentcategory : parentcategory,
+						    	ancestorid : categoryid
+						    },
+						    url:'getSubCatagorieslevel',
+						    success: function(data){
+						    	$.each(data.categoryModel12, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';    
+						    	});
+						    	 $("#women").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#baby").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
-</script>    
+</script> 
+
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		var categoryid=14;
+		var temp="";
+		var parentcategory;
+			$.ajax({
+			    type: 'POST',
+			    url:'getCatagories?category=' + categoryid,
+			    success: function(data){
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    url:'getSubCatagories?parentcategory=' + parentcategory,
+						    success: function(data){
+						    	$.each(data.categoryModel11, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+						    	});
+						    	 $("#baby").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
+			    	});
+			    	
+			     }
+			});
+			
+			
+		});
+</script> 
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		var categoryid=3;
-		var temp;
+		var temp="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
-			    	$.each(data.categoryModel5, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    url:'getSubCatagories?parentcategory=' + parentcategory,
+						    success: function(data){
+						    	$.each(data.categoryModel11, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+						    	});
+						    	 $("#books").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#books").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
-</script>     
- 
+</script> 
+
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		var categoryid=34;
-		var temp;
+		var temp="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
-			    	$.each(data.categoryModel6, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    url:'getSubCatagories?parentcategory=' + parentcategory,
+						    success: function(data){
+						    	$.each(data.categoryModel11, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+						    	});
+						    	 $("#home").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#home").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
-</script>    
+</script> 
+   
+ 
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		var categoryid=41;
-		var temp;
+		var temp="";
+		var parentcategory;
 			$.ajax({
-			    type: 'POST',	    
+			    type: 'POST',
 			    url:'getCatagories?category=' + categoryid,
 			    success: function(data){
-			    	$.each(data.categoryModel7, function(count, stock) {
-			    		temp += '<li ><a href="getSearchresult?categoryname='+stock.categoryName+'">'+stock.categoryName+'</a></li> <li class="divider" role="presentation"></li>';
+			    	$.each(data.categoryModel1, function(count, stock) {
+			    		
+			    		temp = '<li class="dropdown-submenu"><a href="getSearchresult?categoryname=Women '+stock.categoryName+'">'+stock.categoryName+'</a>';
+			    		
+			    		parentcategory = stock.categoryName;
+			    		temp += '<ul class="dropdown-menu" >';
+			    		 $.ajax({
+						    type: 'POST',
+						    async : false,
+						    url:'getSubCatagories?parentcategory=' + parentcategory,
+						    success: function(data){
+						    	$.each(data.categoryModel11, function(count, stock1) {
+						    		temp += '<li><a href="getSearchresult?categoryname='+stock1.categoryName+'">'+stock1.categoryName+'</a></li><li class="divider" role="presentation"></li>';
+						    	});
+						    	 $("#more").append(temp + '</ul></li><li class="divider" role="presentation"></li>');
+						     }
+						});
+			    		
+			    		 $(".dropdown-submenu").find(".dropdown-menu").hide();
+			    		 $(".dropdown-submenu").hover(function(e){
+			 				var currentTrarget = e.currentTarget;
+			 				$(".dropdown-submenu").find(".dropdown-menu").hide();
+			 				$(currentTrarget).find(".dropdown-menu").show();
+			 				
+			 			});
 			    	});
-			    	$("#more").html(temp);
+			    	
 			     }
 			});
+			
+			
 		});
-</script>    
+</script>       
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#get_orderinfo_button").click(function()
+			{
+		$.ajax({
+		    type: 'POST',	    
+		    url:'check_orderinfo ?Email=' + $("#email_id").val() + '&OrderId=' + $("#order_id").val(),
+		    success: function(data){
+		    	
+		    	var status=data.message;
+		 
+		    	if(status=="available")
+		    		{
+					$("#form_orderinfo").submit();		    			
+		    		}
+		    	else
+		    		{
+		    			$("#check_orderdetails").html("Invalid Email or OrderId");
+		    		}
+		     }});	
+	});
+});
+
+
+</script>  
 
 </head>
 
 <body>
  <%@ page import="com.opensymphony.xwork2.ActionContext,com.opensymphony.xwork2.util.ValueStack,javax.servlet.http.HttpSession" %>
-
+ 
 <%@ page import="edu.iiitb.model.*" %>
     <script type="text/javascript">
 		
@@ -271,10 +496,11 @@ $(document).ready(function(){
 <!-- The first layer with logo and search -->
 
 	<div class="navbar-fixed-top">
-	<div class="col-md-2"></div>
+	<div class="col-md-1"></div>
 		<div class="col-md-2">
-			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="45px" width="150px"> 
-				<br> <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="index.jsp" >	<img alt="flipkart" src="asset/Images/flipkart.png" height="40px" width="160px"> 
+				<br>&nbsp;&nbsp;&nbsp;&nbsp; <font color="white" size="1.5px">&nbsp;&nbsp;&nbsp;&nbsp;The Online Megastore</font> </a>
 		</div>
 
 			<div class="container">
@@ -283,24 +509,26 @@ $(document).ready(function(){
 						<br>
 						  <input type="text" name="keyword" class="form-control" id="funkystyling" placeholder="   Search for a product category or brand"> 
 						</div>
-					<div class="col-md-1">
+					<div class="col-md-2">
 						<%
 						if(session.getAttribute("user") == null)
 						{
 						%>
-							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a><br>
+							<a href="#" class="big-link Close" data-reveal-id="myModal1">Signup</a>
 						<%
 						}else
 						{
 						%>
 							<%Login l = new Login();%>
-							
+						
 				<li style="list-style-type:none" class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">Hi <%= session.getValue("fname")%>!<span class="caret"></span></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
 									
 										<li><a href="Personal-info">Account</a></li>
 										<li class="divider" role="presentation"></li>
-										<li><a href="#">Orders</a></li>
+										<li><a href="MyOrders">Orders</a></li>
+										<li class="divider" role="presentation"></li>
+										<li><a href="#">Review & rating</a></li>
 										<li class="divider" role="presentation"></li>
 										<li><a href="logout">Logout</a></li>
 									
@@ -309,7 +537,23 @@ $(document).ready(function(){
 						<%
 						}
 						%>
-						<button type="submit" class="btn btn-warning" >SEARCH</button>
+						
+						<%
+						if(session.getAttribute("user") == null)
+						{
+					%>
+					&nbsp;&nbsp;<a href="#" class="big-link Close" data-reveal-id="myOrderModal">Track Order</a><br>					
+					<%
+						}else
+						{
+					%>
+					
+					&nbsp;&nbsp;<a href="MyOrders" class="big-link Close">Track Order</a><br>
+					<%
+						}
+					%>
+						
+						<button type="submit" class="btn btn-warning" style="width:140px;">SEARCH</button>
 					</div>
 				</form>
 				
@@ -329,7 +573,7 @@ $(document).ready(function(){
 					<%
 						}
 					%>
-					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" > <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;"> CART (0) </div> </button></a>
+					<a data-reveal-id="cartModel"><button id="cartButton" type="submit" class="btn btn-primary" style="width:130px;"> <img src="asset/Images/cart.png" alt="cart" height="20px" width="30px;" style="float:left;"> <div id="productCount" style="float:left;">&nbsp; CART (0) </div> </button></a>
 				</div>
 				
 			</div>
@@ -351,7 +595,7 @@ $(document).ready(function(){
 				<div class="navbar-collapse collapse navbar-ex1-collapse">
 					<ul class="nav nav-pills">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">ELECTRONICS<span class="caret"></span></a>
-							<ul id="electronics" class="dropdown-menu" aria-labelledby="dropdownMenu1" role="menu">
+							<ul id="electronics" class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">MEN<span class="caret"></span></a>
@@ -384,8 +628,7 @@ $(document).ready(function(){
 				</form>
 			</div>
 		</div>
-	</div>
-	
+	</div> 
 
 <div id="myModal" class="reveal-modal">
 		
@@ -501,7 +744,49 @@ $(document).ready(function(){
 		>PLACE ORDER</button></a>
 	</div>
   	<div class="reveal-modal-bg" style="display: none; cursor: pointer;z-index: 2000;"></div>
-
+  	
+  	
+<div id="myOrderModal" class="cart-revealmodel" style="top: 100px; opacity: 1; visibility: hidden;z-index: 2001;">
+    <div class="cart-header">Track Your Order</div>
+    <div style = "margin-left: 20px; margin-top: 10px;" class ="col-md-6"> 
+    <strong> Track using order id </strong>
+    <br><br>
+    
+    <form id="form_orderinfo" name="form_orderinfo" action="Get_OrderInfo"  method="post">
+    <table style="width:300px; height:150px;">
+			<tr> <td style="text-align:left;">Email ID </td>
+			<td> <input type="email" id="email_id" name="Email" class="textbox"   required ></td> </tr>
+		
+			<tr> <td style="text-align:left;">Order ID </td>
+			<td> <input type="text" id="order_id" name="OrderId" class="textbox"  required ></td> </tr>
+			
+			<tr> <td> <label id="check_orderdetails"></label> </td>
+			<td><input style=" text-align:center;padding:10px;" type="button" id="get_orderinfo_button" class="btn btn-primary" value="View Order Status" >&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 	
+		    </td></tr>
+			</table>
+			</form>
+			</div>
+	
+	<div style = "margin-top: 10px; border-left: 1px dotted;" class ="col-md-5" >
+	   <strong> Login and do more!</strong>
+	   <br><br>
+	   <ul style="margin-left: 30px;" >
+          <li >Track individual Orders</li>
+          <li >View your entire Order history</li>
+          <li >Cancel individual Orders</li>
+          <li >Conveniently review products and sellers</li>
+      </ul>
+      <br>
+      
+      <a href="#" data-reveal-id="myModal" ><input type="submit" class="btn btn-primary Close" value="Login" ></a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+	
+	</div>	
+		
+		<a class="close-reveal-modal Close">×</a>
+  </div>
+  	
+  	
+		
 <script type="text/javascript">
 $.ajax({
     type: 'GET',
@@ -516,5 +801,7 @@ $.ajax({
 
 </script>
 
+
+		
 </body>
 </html>

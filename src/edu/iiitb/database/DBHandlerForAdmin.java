@@ -16,6 +16,7 @@ import com.mysql.jdbc.Statement;
 
 import edu.iiitb.model.Advertizement;
 import edu.iiitb.model.CategoryModel;
+import edu.iiitb.model.MyOrdersModel;
 import edu.iiitb.model.ProductInfo;
 import edu.iiitb.model.UserEntry;
 import edu.iiitb.model.ViewRequestSeller;
@@ -159,7 +160,7 @@ public class DBHandlerForAdmin {
 
 	public void addCategoryinDB(CategoryModel categoryInfo) throws SQLException {
 		// TODO Auto-generated method stub
-		String query="INSERT INTO Category(`categoryId`,`categoryName`,`image`) VALUES(?,?)";
+		String query="INSERT INTO Category(`categoryId`,`categoryName`,`image`) VALUES(?,?,?)";
 		PreparedStatement prep =con.prepareStatement(query);
 		prep.setString(1, categoryInfo.getCategoryId());
 		prep.setString(2, categoryInfo.getCategoryName());
@@ -439,11 +440,26 @@ public class DBHandlerForAdmin {
 		}
 	}
 	
-	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId) throws SQLException
+	public void fetchStockInfoForProduct(ArrayList<ViewStock> stock , int productId , String stockType) throws SQLException
 	{
-		String query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
-				+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
-				+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+"";
+		String query;
+		if(stockType.equalsIgnoreCase("in"))
+			query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+					+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+					+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+" and "
+							+ "sk.availableQuantity >= sk.minimumQuantity";
+		
+		else if(stockType.equalsIgnoreCase("out"))
+			query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+					+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+					+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+" and "
+							+ "sk.availableQuantity < sk.minimumQuantity";
+		
+		else
+			query = "select sk.productId , sk.availableQuantity , sk.minimumQuantity , sk.sellerId ,"
+					+ "uc.firstName , uc.lastName , pd.productName , pd.image from Stock as sk , Seller as sl , UserCredantials as uc , ProductInfo as pd "
+					+ " where sk.productId = pd.productId and sk.sellerId = sl.sellerId and sl.userId = uc.userId and sk.productId = "+productId+"";
+			
 		
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
@@ -456,6 +472,10 @@ public class DBHandlerForAdmin {
 			model.setSellerName(rs.getString(5)+" "+rs.getString(6));
 			model.setProductName(rs.getString(7));
 			model.setProductImagePath(rs.getString(8));
+			if(stockType.equalsIgnoreCase("in"))
+				model.setStatusImage("asset/Images/safe2.jpg");
+			else
+				model.setStatusImage("asset/Images/danger.jpg");
 			stock.add(model);
 		}
 	}
@@ -541,5 +561,45 @@ public class DBHandlerForAdmin {
 			stmnt.execute();
 		}
 	}
+
+	public void fetchAllPurchasedOrderID(ArrayList<Integer> orderId) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select O.orderId from FlipKartDatabase.Order O Inner Join FlipKartDatabase.Payment P on O.orderId = P.orderId";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			orderId.add(rs.getInt(1));
+		}
+	//	db.closeConnection(con);
+	}
+
+	public void fetchOrderDetails(int orderID,
+			ArrayList<MyOrdersModel> orderDeatils) throws SQLException {
+		// TODO Auto-generated method stub
+		String query = "select  PI.productName , OD.quantity , PI.price , PI.image , OSA.customerName from FlipKartDatabase.OrderDescription OD Inner Join FlipKartDatabase.ProductInfo PI on OD.productId = PI.productId Inner Join FlipKartDatabase.OrderShipingAddress OSA on OSA.orderId = OD.orderId where OD.orderId = "+orderID+"";
+		ResultSet rs=db.executeQuery(query, con);
+		while(rs.next())
+		{
+			MyOrdersModel model = new MyOrdersModel();
+			model.setOrderPersonName(rs.getString(5));
+			model.setProdName(rs.getString(1));
+			model.setQuantity(rs.getInt(2));
+			model.setPrice(rs.getFloat(3));
+			model.setPhoto(rs.getString(4));
+			model.setTotalprice(rs.getFloat(3) * rs.getInt(2));
+			orderDeatils.add(model);
+		}
+	//	db.closeConnection(con);
+	}
+
+	
+
+	public void confirmPurchaseOrder(int orderID, String orderStatus) throws SQLException {
+		// TODO Auto-generated method stub
+		String query="update FlipKartDatabase.Order set status = '" + orderStatus + "' where orderId = " + orderID + "";
+		Statement st=(Statement) con.createStatement();
+		st.executeUpdate(query);
+	}
+	
 	
 }

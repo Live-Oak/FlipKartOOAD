@@ -20,22 +20,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/index.jsp</result>
 		</action>
 
-
-	<!-- 	<action name="loginAction" class="edu.iiitb.action.LoginAction">
-			<result name="admin" type="redirectAction">
-				<param name="actionName">Admin</param>
-				<param name="namespace">/</param>
-			</result>
-			<result name="user" type="redirectAction">
-				<param name="actionName">MenuHome</param>
-				<param name="namespace">/</param>
-			</result>
-			<result name="seller">/menu.jsp</result>
-			<result name="invalid" type="json"></result>
-			<result name="error">/error.jsp</result>
-			<result name="success" type="tiles">LoginPage</result>
-		</action> -->
-
 		<action name="MenuHome">
 			<interceptor-ref name="secureStack"></interceptor-ref>
 			<result>/menu.jsp</result>
@@ -101,8 +85,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<result name="login">/index.jsp</result>
 		</action>
 		
-		<action name="MyOrders">
+		<action name="MyOrders" class="edu.iiitb.action.MyOrdersAction">
 		<result type="tiles">MyOrdersTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="MyPastOrders" class="edu.iiitb.action.MyOrdersAction" method="executePastorders">
+		<result type="tiles">MyPastOrdersTile</result>
+		<result name="login">/index.jsp</result>
+		</action>
+		
+		<action name="Get_OrderInfo">
+		<result type="tiles">Get_OrderInfoTile</result>
 		<result name="login">/index.jsp</result>
 		</action>
 
@@ -115,7 +109,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="loginPage">
 			<result>/login.html</result>
 		</action>
-		
 
 
 		<action name="adminhome">
@@ -179,7 +172,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</action>
 
 			<action name="opencompareproductpage" class="edu.iiitb.action.CompareAction">
-				<result name="success" type="tiles">CompareProducts</result>
+				<result name="success" type="tiles">CompareProductsTiles</result>
 			</action>
 			
 			<action name="retrieveProduct" class="edu.iiitb.action.CompareProductAjax" method="getProductDetail">
@@ -211,6 +204,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="tiles">ProductPage</result>
 				<result name="error">/error.jsp</result>
 			</action>
+			
 			
 			<action name="getProductDetailfilter" class="edu.iiitb.action.getProductList" method="getProductDetail">
 				<result name="success" type="json"></result>
@@ -353,6 +347,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 				<result name="login">/index.jsp</result>
 			</action>
+			
+			<action name="getSubCatagorieslevel" class="edu.iiitb.action.StartAction" method="getSubMenuCatagorylevel">
+				<result name="success" type="json" />
+				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
+			
+			<action name="getSubCatagories" class="edu.iiitb.action.StartAction"
+				method="getSubMenuCatagory">
+				<result name="success" type="json" />
+				<result name="error">/error.jsp</result>
+				<result name="login">/index.jsp</result>
+			</action>
 
 			<action name="advertizement" class="edu.iiitb.action.FetchProductId">
 				<interceptor-ref name="secureStack"></interceptor-ref>
@@ -412,12 +419,16 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json" />
 			</action>
 			
+			
+			<action name="removeProductFromCompareCart" class="edu.iiitb.action.CompareProducts"
+				method="removeProductDetails">
+				<result name="success" type="json" />
+			</action>
+			
 			<action name="getProductsFromCartToCompare" class="edu.iiitb.action.CompareProducts"
 				method="getCartProducts">
 				<result name="success" type="json" />
 			</action>
-
-
 
 			
 			<action name="requestStock" class="edu.iiitb.action.StockRequestManagement">
@@ -428,13 +439,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="error">/error.jsp</result>
 			</action>
 
-			<!-- <action name="placeOrder">
-				<result>/place.jsp</result>
-			</action> -->
-			
-			<action name="placeOrderActionViaCOD" class="edu.iiitb.action.placeOrderAction" method="placeOrderActionViaCOD">
-				<!-- <result name="success" type="json" /> -->
-			</action>
+			<action name="placeOrder"  class="edu.iiitb.action.placeOrderAction" >
+				<result name="success" type="json" />
+			</action> 	
 			
 			<action name="getUserAddressDetails" class="edu.iiitb.action.getUserAddressDetails">
 				<result name="success" type="json" />
@@ -453,6 +460,60 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<result name="success" type="json" />
 			</action>
 			
+			<action name="updateProductQuantity" class="edu.iiitb.action.CartManager"
+				method="updateCartProductQuantity">
+				<result name="success" type="json" />
+			</action>
+			
+		<action name="verifyCreditCardDetails" class="edu.iiitb.action.cardPayment" method="execute">
+			<result name="success" type="json" />
+		</action>
+		
+		<action name="bankLoginAction" class="edu.iiitb.action.bankLoginAction" method="execute">
+			<result name="success" type="json" />
+			<result name="fail" >/error.jsp</result>
+		</action>
+
+		<action name="onlineBankingPayment" class="edu.iiitb.action.onlineBankingPaymentAction" >
+			<result name="success">/generateReceipt.jsp</result>
+			<result name="fail" >/error.jsp</result>
+		</action>
+
+		<action name="makePaymentCreditCard" class="edu.iiitb.action.cardPayment"
+			method="makeCreditCardPayment">
+			<result name="success" type="json" />
+		</action>		
+		<action name="clearUserCartDetails" class="edu.iiitb.action.cardPayment" 
+		method="clearUserCartDetail">				
+				<result name="success" type="json" />
+		</action>
+		<action name="generateReceipt" class="edu.iiitb.action.generateReceipt"	>
+			<result name="success" type="json" />
+		</action>		
+		
+		
+		<action name="check_orderinfo" class="edu.iiitb.action.GetOrderDetails" method="Validate">
+		<result name="success" type="json"/>
+		</action>
+		
+		<action name="sellerRating" class="edu.iiitb.action.sellerRatingAction">
+				<result name="success" type = "tiles">sellerR</result>
+		</action>
+		
+		<action name="adminFetchPurchaseOrderId" class="edu.iiitb.action.FetchOrderIds">
+			<result name="success" type="tiles">PurchaseOrder</result>
+			<result name="confirm" type="tiles">ConfirmPurchaseOrder</result>
+			<result name="error">/error.jsp</result>
+		</action>
+			
+		<action name="fetchOrderDetails" class="edu.iiitb.action.FetchOrderIds" method="orderDeatils">
+			<result name="success" type="json" />
+		</action>
+		
+		<action name="approvePurchaseRequest" class="edu.iiitb.action.FetchOrderIds" method="confirmOrder">
+			<result name="success" type="tiles">Administrator</result>
+			<result name="error">/error.jsp</result>
+		</action>	
 			
 	</package>
 </struts>

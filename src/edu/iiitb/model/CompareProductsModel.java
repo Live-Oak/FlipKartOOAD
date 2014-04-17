@@ -9,13 +9,15 @@ public class CompareProductsModel {
 	private String productName;
 	private String image;
 	private int price;
-	public CompareProductsModel(int productId, String productName, String image, int price) 
+	private String category;
+	public CompareProductsModel(int productId, String productName, String image, int price, String category) 
 	{
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.image = image;
 		this.price=price;
+		this.category=category;
 	}
 
 	public int getProductId() {
@@ -56,6 +58,14 @@ public class CompareProductsModel {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	

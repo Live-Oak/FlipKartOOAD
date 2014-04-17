@@ -1,28 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="s" uri="/struts-tags"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Body Browse</title>
-	<!-- Custom styles for this template -->
-	<!-- Custom styles for this template -->
-	<link href="asset/CSS/Index.css" rel="stylesheet">
-	<link href="asset/CSS/starter-template.css" rel="stylesheet">
-	<link href="asset/CSS/CompareProducts.css" rel="stylesheet">	
-	<!-- Bootstrap core CSS -->
-	<link href="asset/CSS/bootstrap.css" rel="stylesheet">
-	<!-- Bootstrap theme -->
-	<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
-	
-	<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
-	<script src="asset/JavaScripts/bootstrap.min.js"></script>
-	<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
-	<script src="asset/JavaScripts/jquery-ui.js"></script>
-	
-	
-	<script type="text/javascript">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Body Browse</title>
+<!-- Custom styles for this template -->
+<!-- Custom styles for this template -->
+<link href="asset/CSS/Index.css" rel="stylesheet">
+<link href="asset/CSS/starter-template.css" rel="stylesheet">
+<link href="asset/CSS/CompareProducts.css" rel="stylesheet">
+<!-- Bootstrap core CSS -->
+<link href="asset/CSS/bootstrap.css" rel="stylesheet">
+<!-- Bootstrap theme -->
+<link href="asset/CSS/bootstrap-theme.min.css" rel="stylesheet">
+
+<script src="asset/JavaScripts/jquery-2.0.3.js"></script>
+<script src="asset/JavaScripts/bootstrap.min.js"></script>
+<script src="asset/JavaScripts/jquery-1.9.1.js"></script>
+<script src="asset/JavaScripts/jquery-ui.js"></script>
+
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("#newdivision").hide();
 	});
@@ -108,7 +107,10 @@
 				    		}
 				    		else
 				    		{
-				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+ - +stock.offer+'</font>';
+				    			var a = stock.price;
+			    				var b = stock.offer;
+			    				var c = a-b;
+			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
 				    		}
 					    	
 					    	temp += '<hr>';
@@ -231,7 +233,10 @@
 				    		}
 				    		else
 				    		{
-				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+ - +stock.offer+'</font>';
+				    			var a = stock.price;
+			    				var b = stock.offer;
+			    				var c = a-b;
+			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
 				    		}
 					    	
 					    	temp += '<hr>';
@@ -272,101 +277,141 @@
 	</script>
 
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
+	
 	var product_id_to_send;
-	$(document).ready(function(){
-		$(".addtocompare").change(function(event)
-				{
-		$(".addtocompare").is(':checked');
-		//alert(event.target.id);					Specifies id of the target 
-		var maxAllowed = 4;	
-		//alert($(event.target).attr("pid"));				Specifies pid 
-		var pId = $(event.target).attr("pid");
-		var cnt = $("input[name='compare']:checked").length;
-			      if (cnt > maxAllowed)
-			      {
-			         $(this).prop("checked", "");
-			         alert('Select maximum ' + maxAllowed );
-			     }
-			       
-		
-			      $.ajax({
-					    type: 'GET',
-					    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-					    data : {
-					    	productId : pId
-					    },
-					    url:'getProductToCompare',
-					    success: function(data){
-					  			
-					    	$.ajax({
-							    type: 'GET',
-							    url:'getProductsFromCartToCompare',
-							    success: function(data){
+	$("#comparecart").show();
+	$(document).ready(function() {
+						$("#close_compare").click(function() {
+							$("#comparecart").hide();
+							$('.addtocompare').prop('checked', false);
+						});
+
 						
-					    	
-					    	
-					    	
-					    	$("#comparecart").show();
-					    	if(data.count == 0 || data.count == undefined)
-				    		{
-					    		
-					    		$("#emptyComparediv").show();
-				    			$("#compare_button").attr("disabled", true);
-				    		}
-					    	else
-					    	{
-					    		
-					    		$("#producttocompare").show();
-					    		$("#products_to_compare").empty();
-					    		$.each(data.products, function(count,productcompare) 
-					    		{ 	
-					    			product_id_to_send=productcompare.productId;
-					    			alert("prev"+product_id_to_send);
-					    			
-				    				$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"+"<center>"+
-				    						"<div class='remove'><a style='color:black;'>&#215</a></div><br>"+		
-						    				"<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"+		    												    				
-				    						"<div class='productName'>"+productcompare.productName+"</div>"+
-				    						
-				    				"</center>"+"</div>");	
-				    			});
-					    		
-					    	}
-							    }
-					    	});
-					     }});	
-			      $("#compare_button").click(function(){
-			  		$("#comparecart").hide();
-			    		
-	///	    			alert("next"+product_id_to_send);
-		//    			$.ajax({
-		  //  			    type: 'GET',	    
-		    //			    url:'getdetails_of_product_to_compare?productId=' + product_id_to_send,
-		    	//		    success: function(data){
-		    		//	    	$("#open_compare_page_form").submit();
-		    			//    }
-		    			
-		   // 			});
-		    			
 
-			      });
-			});
-		$('input:checkbox').removeAttr('checked');
-		
-	});
-		</script>
+						$(document).on('click','.remove',function(e) {
+												var target = e.currentTarget;
+												var pId = $(target).attr("pid");
+												$.ajax({
+														type : 'POST',
+														contentType : "application/x-www-form-urlencoded; charset=utf-8",
+														data : {
+																productId : pId,
+																},
+														url : 'removeProductFromCompareCart',
+														success : function(data) {
+															$("#producttocompare").show();
+															$("#products_to_compare").empty();
+															$.each(data.products,function(count,productcompare) {
+																	product_id_to_send = productcompare.productId;
+																	$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																							+ "<center>"
+																							+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																							+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																							+ "<div class='productName'>"
+																							+ productcompare.productName
+																							+ "</div>"
+																							+"</center>"
+																							+ "</div>");
+																	
+																});
+																if(data.count==0)
+																	{
+																		$("#products_to_compare").hide();
+																		$("#emptyComparediv").show();
+																		$("#compare_button").attr("disabled",true);
+																	}		
+																if(data.count==1)
+																	{
+																	$("#compare_button").attr("disabled",true);
+																	}
+														}
+													});
+										});
+								$(".addtocompare").change(function(event) {
+									
+														if($(".addtocompare").is(':checked'))
+															{
+														var pId = $(event.target).attr("pid");
+														var categoryId = $("#category").val();
+														categoryId = categoryId.trim();
+														$.ajax({
+																type : 'GET',
+																contentType : "application/x-www-form-urlencoded; charset=utf-8",
+																url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
+																success : function(data) {
+																	if(data.messageCount=="hello")
+																		{
+																			alert("no more products can be added for comparison");
+																		}
+																	else if(data.messageCategoryMismatch=="yes")
+																	{
+																		alert("mismatched category!!");
+																	}
+																	else
+																	{
+																	$.ajax({
+																			type : 'GET',
+																			url : 'getProductsFromCartToCompare',
+																			success : function(data) {
+																				
+																								$("#comparecart").show();
+																								$("#producttocompare").show();
+																								if (data.count == undefined|| data.count == 0) 
+																								{
+																									
+																									$("#compare_button").attr("disabled",true);
+																								}
+																								else 
+																								{
+																									if (data.count == 1) 
+																									{
+																										$("#emptyComparediv").hide();
+																										$("#compare_button").attr("disabled",true);
+																									}
+																									if (data.count != 1) 
+																									{
+																										$("#compare_button").attr("disabled",false);
+																									}
+																									alert("hello");
+																									$("#producttocompare").show();
+																									$("#products_to_compare").empty();
+																									$.each(data.products,function(count,productcompare) {
+																											product_id_to_send = productcompare.productId;
+																											$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																																	+ "<center>"
+																																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																																	+ "<div class='productName'>"
+																																	+ productcompare.productName
+																																	+ "</div>"
+																																	+"</center>"
+																																	+ "</div>");
+																										});
+																								}
+																					}
+																				
+																			});  // 2 ajax
+																	}	
+																}						// success of first ajax
+															});			// 1 ajax
+																				// else
+															} 						// if
+											
+											$("#compare_button").click(
+													function() {
+														$("#comparecart").hide();
+													});
+										});
+						$('input:checkbox').removeAttr('checked');
+
+					});
+</script>
 
 
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$("#close_compare").click(function(){
-			$("#comparecart").hide();
-			$('.addtocompare').prop('checked', false); 
-		});
-	});
-	</script>
+
+
+
 </head>
 <body>
 	<div class="container">
@@ -374,13 +419,17 @@
 		<div class="col-md-3 ">
 			<div class="background">
 				<br>
+
 				<h4><b>BROWSE</b></h4>
+				<a href="getSearchresult?categoryname=<s:property value="linktoitem.get(0).parentCategory"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="linktoitem.get(0).parentCategory"/></font></a><br>
 				<s:iterator value="linktoitem">
-					<a href="getSearchresult?categoryname=<s:property value="parentCategory"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="parentCategory"/></font></a><br>
-					&nbsp;&nbsp;&nbsp;<a href="getSearchresult?categoryname=<s:property value="Category"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="Category"/></font></a>
+					&nbsp;&nbsp;&nbsp;<a href="getSearchresult?categoryname=<s:property value="Category"/>"><img src ="asset/Images/down.jpg" height="30px"><font color="black"><s:property value="Category"/></font></a><br>
+
 				</s:iterator>
 				<hr noshade>
-				<h5><b>REFINE</b></h5>
+				<h5>
+					<b>REFINE</b>
+				</h5>
 				<hr>
 				<h5>Price</h5>
 				<hr>
@@ -396,113 +445,126 @@
 				<hr>
 				<h5>Company Name</h5>
 				<hr>
-				<input type="hidden" id="categoryid" value="<s:property value="productinfo.get(1).categoryID"/>">
+				<input type="hidden" id="category"
+					value="<s:property value="productinfo.get(2).categoryID"/>">
+					<input type="hidden" id="categoryid" value="<s:property value="productinfo.get(0).categoryID"/>">
 					<s:iterator value="companyList">
-					<input type="checkbox" id="brand" class="filters" name="checkbox" brandname="<s:property />"> <s:property /><br>
-				</s:iterator> 
-				<br><br><br>
+						<input type="checkbox" id="brand" class="filters" name="checkbox"
+							brandname="<s:property />">
+						<s:property />
+						<br>
+					</s:iterator>
+					<br>
+					<br>
+					<br>
 			</div>
 		</div>
-	
-	<div class="col-md-8 background" id="dataappended">
-			<b> Showing all the products in the category </b><br><br>
-			
+
+		<div class="col-md-8 background" id="dataappended">
+			<b> Showing all the products in the category </b><br>
+			<br>
+
 			<s:iterator value="productinfo">
 				<div class="col-md-4">
-						<div class="border">
-								<br>
-								<center>
-								<s:if test="%{availableQuantity == 0}">
-									<a href="#">
-										<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
-										<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
+					<div class="border">
+						<br>
+						<center>
+							<s:if test="%{availableQuantity == 0}">
+								<a href="#"> <img src="<s:property value="image"/>"
+									alt="<s:property value="productID"/>" height="140px"
+									width="auto"><br> <img
+									src="asset/Images/outofstock.jpg" alt="outofstock"
+									height="40px">
+								</a>
+							</s:if>
+							<s:if test="%{availableQuantity != 0}">
+								<s:if test="%{availableQuantity >= minimumQuantity}">
+									<s:if test="%{offer==0}">
+										<a
+											href="getProductDetail?productID=<s:property value="productID"/>">
+											<img src="<s:property value="image"/>"
+											alt="<s:property value="productID"/>" height="140px"
+											width="auto"> <br>
+										<br>
+										<br>
+										</a>
+									</s:if>
+									<s:if test="%{offer>0}">
+										<a
+											href="getProductDetail?productID=<s:property value="productID"/>">
+											<img src="<s:property value="image"/>"
+											alt="<s:property value="productID"/>" height="140px"
+											width="auto"><br> <img
+											src="asset/Images/offer.jpg" alt="offer" height="40px">
+
+										</a>
+									</s:if>
+								</s:if>
+								<s:if test="%{availableQuantity < minimumQuantity}">
+									<a href="#"> <img src="<s:property value="image"/>"
+										alt="<s:property value="productID"/>" height="140px"
+										width="auto"><br> <img
+										src="asset/Images/outofstock.jpg" alt="outofstock"
+										height="40px">
 									</a>
 								</s:if>
-								<s:if test="%{availableQuantity != 0}">
-									<s:if test="%{availableQuantity >= minimumQuantity}">
-										<s:if test="%{offer==0}">
-											<a href="getProductDetail?productID=<s:property value="productID"/>">
-												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" >
-												<br><br><br>
-											</a>
-										</s:if>
-										<s:if test="%{offer>0}">
-											<a href="getProductDetail?productID=<s:property value="productID"/>">
-												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
-												<img src="asset/Images/offer.jpg" alt="offer" height="40px" >
-												
-											</a>
-										</s:if>
-									</s:if>
-									<s:if test="%{availableQuantity < minimumQuantity}">
-											<a href="#">
-												<img src="<s:property value="image"/>" alt="<s:property value="productID"/>" height="140px" width="auto" ><br>
-												<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">
-											</a>
-									</s:if>
-								</s:if>
-								<div class="giveMeEllipsis">
-								<a href="getProductDetail?productID=<s:property value="productID"/>">
-									<font size="4" color="black"><s:property value="productName"/></font><br>
+							</s:if>
+							<div class="giveMeEllipsis">
+								<a
+									href="getProductDetail?productID=<s:property value="productID"/>">
+									<font size="4" color="black"><s:property
+											value="productName" /></font><br>
 								</a>
-								</div>
-								<hr>
-								<s:if test="%{offer==0}">
-									<font size="5px" color="#76553B">
-										Rs. <s:property value="price"/><br>
-									</font>
-								</s:if>
-								<s:if test="%{offer>0}">
-									<font size="5px" color="#76553B">
-									Rs. ${price-offer}
-									</font>
-								</s:if>
-								<hr>
-								This item has manufacturer warranty of <s:property value="warranty"/> years.<br>
-								<hr>
-								<s:if test="%{availableQuantity == 0}">
-								<input type="checkbox" disabled >Add To Compare</input>
-								</s:if>
-								<s:elseif test="%{availableQuantity < minimumQuantity}">
-								<input type="checkbox" disabled >Add To Compare</input>
-								</s:elseif>
-								<s:else>
-									<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="<s:property value="productID"/> "/>Add To Compare</input>
-								</s:else>
-								<hr>
-						
-								<br><br><br>
-								<!--<s:property value="categoryID"/><br>
-								<s:property value="price"/><br>
-								<s:property value="offer"/><br>
-								<s:property value="description"/><br>
-								<s:property value="brand"/><br>-->
-							</center>
-						</div><br>
+							</div>
+							<hr>
+							<s:if test="%{offer==0}">
+								<font size="5px" color="#76553B"> Rs. <s:property
+										value="price" /><br>
+								</font>
+							</s:if>
+							<s:if test="%{offer>0}">
+								<font size="5px" color="#76553B"> Rs. ${price-offer} </font>
+							</s:if>
+							<hr>
+							This item has manufacturer warranty of
+							<s:property value="warranty" />
+							years.<br>
+							<hr>
+
+							<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="<s:property value="productID"/> " />Add To Compare</input>
+
+							<hr>
+
+							<br>
+							<br>
+							<br>
+						</center>
 					</div>
+					<br>
+				</div>
 			</s:iterator>
-			</div>
-		<div class="col-md-8" id="newdivision">
-		
 		</div>
+		<div class="col-md-8" id="newdivision"></div>
 	</div>
 
-<div id="comparecart">
-<a class="close-reveal-modal" id="close_compare">&#215;</a>
+	<div id="comparecart">
+	
+			
+			<a class="close-reveal-modal" id="close_compare">&#215;</a>
 			<div id="emptyComparediv" class="empty-comparison">
-				There are no items to compare.<br><br>
+				There are no items to compare.<br> <br>
 			</div>
 			<div id="producttocompare" class="empty-comparison">
-			
-				<div id="products_to_compare">
-					
-				</div>
-			</div>
-<form id="open_compare_page_form" action=opencompareproductpage method="get">			
-<input type="submit" class="compare_button" value="Compare" id="compare_button"/>
-</form>
 
-</div>
-<br>			
+				<div id="products_to_compare"></div>
+			</div>
+
+			<a href="opencompareproductpage"><input type="button" class="compare_button" value="Compare"
+				id="compare_button" /></a>
+		
+
+	</div>
+	
+	<br>
 </body>
 </html>

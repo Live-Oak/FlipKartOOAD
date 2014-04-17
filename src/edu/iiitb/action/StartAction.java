@@ -11,7 +11,69 @@ import edu.iiitb.model.CategoryModel;
 public class StartAction extends ActionSupport 
 {
 	ArrayList<Advertizement> advertizement, advertizementelectronics, advertizementfashion, advertizementbook, dealoftheday, advertizementsidebar;
+	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
+	ArrayList<CategoryModel> categoryModel1, categoryModel11, categoryModel12;
+	int[] value = new int[4];
+	int category;
+	String parentcategory, ancestorid, ancestorname, parentcategoryid, categoryname;
+	ArrayList<String> categoryList, categoryListtemp;
 	
+	public ArrayList<String> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(ArrayList<String> categoryList) {
+		this.categoryList = categoryList;
+	}
+
+	public ArrayList<String> getCategoryListtemp() {
+		return categoryListtemp;
+	}
+
+	public void setCategoryListtemp(ArrayList<String> categoryListtemp) {
+		this.categoryListtemp = categoryListtemp;
+	}
+
+	public String getCategoryname() {
+		return categoryname;
+	}
+
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+
+	public ArrayList<CategoryModel> getCategoryModel12() {
+		return categoryModel12;
+	}
+
+	public void setCategoryModel12(ArrayList<CategoryModel> categoryModel12) {
+		this.categoryModel12 = categoryModel12;
+	}
+	
+	public String getParentcategoryid() {
+		return parentcategoryid;
+	}
+
+	public void setParentcategoryid(String parentcategoryid) {
+		this.parentcategoryid = parentcategoryid;
+	}
+
+	public String getAncestorname() {
+		return ancestorname;
+	}
+
+	public void setAncestorname(String ancestorname) {
+		this.ancestorname = ancestorname;
+	}
+
+	public String getAncestorid() {
+		return ancestorid;
+	}
+
+	public void setAncestorid(String ancestorid) {
+		this.ancestorid = ancestorid;
+	}
+
 	public ArrayList<Advertizement> getAdvertizementsidebar() {
 		return advertizementsidebar;
 	}
@@ -21,9 +83,6 @@ public class StartAction extends ActionSupport
 		this.advertizementsidebar = advertizementsidebar;
 	}
 
-	ArrayList<CategoryModel> Categoryelectronics, Categorybooks, Categoryfashion;
-	
-	
 	public ArrayList<Advertizement> getDealoftheday() {
 		return dealoftheday;
 	}
@@ -31,8 +90,6 @@ public class StartAction extends ActionSupport
 	public void setDealoftheday(ArrayList<Advertizement> dealoftheday) {
 		this.dealoftheday = dealoftheday;
 	}
-
-	
 
 	public ArrayList<CategoryModel> getCategoryfashion() {
 		return Categoryfashion;
@@ -49,10 +106,6 @@ public class StartAction extends ActionSupport
 	public void setCategorybooks(ArrayList<CategoryModel> categorybooks) {
 		Categorybooks = categorybooks;
 	}
-
-	ArrayList<CategoryModel> categoryModel1, categoryModel2, categoryModel3, categoryModel4, categoryModel5, categoryModel6, categoryModel7;
-	int[] value = new int[4];
-	
  
 	public int[] getValue() {
 		return value;
@@ -62,8 +115,6 @@ public class StartAction extends ActionSupport
 		this.value = value;
 	}
 
-	int category;
-
 	public int getCategory() {
 		return category;
 	}
@@ -72,38 +123,7 @@ public class StartAction extends ActionSupport
 		this.category = category;
 	}
 	
-	public ArrayList<CategoryModel> getCategoryModel4() {
-		return categoryModel4;
-	}
-
-	public void setCategoryModel4(ArrayList<CategoryModel> categoryModel4) {
-		this.categoryModel4 = categoryModel4;
-	}
-
-	public ArrayList<CategoryModel> getCategoryModel5() {
-		return categoryModel5;
-	}
-
-	public void setCategoryModel5(ArrayList<CategoryModel> categoryModel5) {
-		this.categoryModel5 = categoryModel5;
-	}
-
-	public ArrayList<CategoryModel> getCategoryModel6() {
-		return categoryModel6;
-	}
-
-	public void setCategoryModel6(ArrayList<CategoryModel> categoryModel6) {
-		this.categoryModel6 = categoryModel6;
-	}
-
-	public ArrayList<CategoryModel> getCategoryModel7() {
-		return categoryModel7;
-	}
-
-	public void setCategoryModel7(ArrayList<CategoryModel> categoryModel7) {
-		this.categoryModel7 = categoryModel7;
-	}
-
+	
 	public ArrayList<CategoryModel> getCategoryModel1() {
 		return categoryModel1;
 	}
@@ -112,20 +132,12 @@ public class StartAction extends ActionSupport
 		this.categoryModel1 = categoryModel1;
 	}
 
-	public ArrayList<CategoryModel> getCategoryModel2() {
-		return categoryModel2;
+	public ArrayList<CategoryModel> getCategoryModel11() {
+		return categoryModel11;
 	}
 
-	public void setCategoryModel2(ArrayList<CategoryModel> categoryModel2) {
-		this.categoryModel2 = categoryModel2;
-	}
-
-	public ArrayList<CategoryModel> getCategoryModel3() {
-		return categoryModel3;
-	}
-
-	public void setCategoryModel3(ArrayList<CategoryModel> categoryModel3) {
-		this.categoryModel3 = categoryModel3;
+	public void setCategoryModel11(ArrayList<CategoryModel> categoryModel11) {
+		this.categoryModel11 = categoryModel11;
 	}
 
 	public ArrayList<Advertizement> getAdvertizement() {
@@ -134,35 +146,6 @@ public class StartAction extends ActionSupport
 
 	public void setAdvertizement(ArrayList<Advertizement> advertizement) {
 		this.advertizement = advertizement;
-	}
-	
-	public String execute()
-	{
-		
-		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
-	
-		try
-		{
-			advertizement = dbHandlerForUser.getadvertizement("carousel","4");
-			for(int i=0; i<advertizement.size(); i++)
-			{
-				value[i] = advertizement.get(i).getProductId();
-			}
-			advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general","01");
-			advertizementfashion = dbHandlerForUser.getadvertizementforfront("general","02");
-			advertizementbook = dbHandlerForUser.getadvertizementforfront("general","03");
-			advertizementsidebar= dbHandlerForUser.getadvertizement("sidebar","2");
-			dealoftheday= dbHandlerForUser.getadvertizement("dealoftheday","1");
-			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
-			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
-			Categoryfashion = dbHandlerForUser.getsubcategorydeatils(2);
-		}
-		catch(Exception e)
-		{
-			System.out.println("Error Start Action "+e);
-			return "error";
-		}
-		return "success";
 	}
 	
 	public ArrayList<Advertizement> getAdvertizementelectronics() {
@@ -183,6 +166,14 @@ public class StartAction extends ActionSupport
 		this.advertizementfashion = advertizementfashion;
 	}
 
+	public String getParentcategory() {
+		return parentcategory;
+	}
+
+	public void setParentcategory(String parentcategory) {
+		this.parentcategory = parentcategory;
+	}
+
 	public ArrayList<Advertizement> getAdvertizementbook() {
 		return advertizementbook;
 	}
@@ -198,19 +189,103 @@ public class StartAction extends ActionSupport
 	public void setCategoryelectronics(ArrayList<CategoryModel> categoryelectronics) {
 		Categoryelectronics = categoryelectronics;
 	}
+	
+	public String execute()
+	{
+		int counter;
+		categoryListtemp = new ArrayList<String>();
+		String[] categoryid = {"01", "02", "03"};
+		
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+	
+		try
+		{
+			advertizement = dbHandlerForUser.getadvertizement("carousel","4");
+			for(int i=0; i<advertizement.size(); i++)
+			{
+				value[i] = advertizement.get(i).getProductId();
+			}
+			
+		for(int loop=0; loop<3; loop++)
+		{
+			
+			categoryList = new ArrayList<String>();
+			// Intialize the new arraylist
+			
+			categoryList.add(categoryid[loop]);
+			// add it to the main list
+			
+			categoryListtemp = dbHandlerForUser.getCategoryList(categoryid[loop]);
+			// get the sub category list for the first time
+			
+			for(int i=0; i<categoryListtemp.size(); i++)
+			{
+				//System.out.println("value in category list is : " + categoryList.get(i));
+				categoryList.add(categoryListtemp.get(i));
+			}
+			// add it to the main list
 
+				// get the sub-sub category list if present
+				for(int i=0; i<categoryList.size()-1; i++)
+				{
+					categoryListtemp = dbHandlerForUser.getCategoryList(categoryList.get(i+1));
+					if(categoryListtemp.size() > 0)
+					{
+						for(int j=0; j<categoryListtemp.size(); j++)
+						{
+							// add it to the main list
+							categoryList.add(categoryListtemp.get(j));
+						}
+					}
+				}
+			if(loop == 0)
+				advertizementelectronics = dbHandlerForUser.getadvertizementforfront("general",categoryList);
+			else if(loop == 1)
+				advertizementfashion = dbHandlerForUser.getadvertizementforfront("general",categoryList);
+			else if(loop == 2)
+				advertizementbook = dbHandlerForUser.getadvertizementforfront("general",categoryList);
+		}
+			advertizementsidebar= dbHandlerForUser.getadvertizement("sidebar","2");
+			dealoftheday= dbHandlerForUser.getadvertizement("dealoftheday","1");
+			Categoryelectronics = dbHandlerForUser.getsubcategorydeatils(1);
+			Categorybooks = dbHandlerForUser.getsubcategorydeatils(3);
+			Categoryfashion = dbHandlerForUser.getsubcategorydeatils(2);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Error Start Action "+e);
+			return "error";
+		}
+		return "success";
+	}
+	
+	
+	
 	public String getMenuCatagory()
 	{
 		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
 		try
 		{
 			categoryModel1 = dbHandlerForUser.getsubcategorylist(category);
-			categoryModel2 = dbHandlerForUser.getsubcategorylist(category);
-			categoryModel3 = dbHandlerForUser.getsubcategorylist(category);
-			categoryModel4 = dbHandlerForUser.getsubcategorylist(category);
-			categoryModel5 = dbHandlerForUser.getsubcategorylist(category);
-			categoryModel6 = dbHandlerForUser.getsubcategorylist(category);
-			categoryModel7 = dbHandlerForUser.getsubcategorylist(category);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception at getMenuCategory() of StartAction.java");
+			return "error";
+		}
+		return "success";
+	}
+
+	public String getSubMenuCatagory()
+	{
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		try
+		{
+			//System.out.println("parent category in question is : " +parentcategory);
+			if (parentcategory != null)
+			{
+				categoryModel11 = dbHandlerForUser.getsubsubcategorylist(parentcategory);
+			}
 		}
 		catch(Exception e)
 		{
@@ -219,5 +294,23 @@ public class StartAction extends ActionSupport
 		return "success";
 	}
 	
+	public String getSubMenuCatagorylevel()
+	{
+		DBHandlerForUser dbHandlerForUser = new DBHandlerForUser();
+		try
+		{
+			//System.out.println("id is " +ancestorid);
+			//System.out.println("parent category is : "+parentcategory);
+			ancestorname = dbHandlerForUser.getnameonid(ancestorid);
+			parentcategoryid = dbHandlerForUser.getidonname(parentcategory);
+			categoryModel12 = dbHandlerForUser.getsubcategorylistancestor(parentcategoryid, ancestorname);
+		}
+		catch(Exception e)
+		{
+			System.out.println("Exception at getMenuCategory() of StartAction.java");
+			return "error";
+		}
+		return "success";
+	}
 	
 }

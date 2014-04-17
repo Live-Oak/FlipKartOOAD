@@ -17,11 +17,11 @@ public class DBHandlerforComparison
 	{
 		Connection con = db.createConnection();
 		ArrayList<CompareProductsModel> products = new ArrayList<CompareProductsModel>(); 
-		String query = "select p.productId,p.productName,p.image,p.price from ProductInfo p where p.productId = '" + productId + "'";
+		String query = "select p.productId,p.productName,p.image,p.price,p.categoryId from ProductInfo p where p.productId = '" + productId + "'";
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			products.add(new CompareProductsModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price")));
+			products.add(new CompareProductsModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price"),rs.getString("categoryId")));
 		}
 		
 		db.closeConnection(con);
@@ -35,11 +35,11 @@ public class DBHandlerforComparison
 		ArrayList<CompareProductsModel> products = new ArrayList<CompareProductsModel>(); 
 		for(CompareCartProduct p : cartProducts)
 		{
-			String query = "select productId,productName,image,price from  ProductInfo where productID = "+p.getProductId()+";";
+			String query = "select productId,productName,image,price,categoryId from  ProductInfo where productID = "+p.getProductId()+";";
 			ResultSet rs=db.executeQuery(query, con);
 			while(rs.next())
 			{
-				products.add(new CompareProductsModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price")));
+				products.add(new CompareProductsModel(rs.getInt("productId"),rs.getString("productName"),rs.getString("image"),rs.getInt("price"),rs.getString("categoryId")));
 			}
 		}
 		
