@@ -475,7 +475,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="onlineBankingPayment" class="edu.iiitb.action.onlineBankingPaymentAction" >
-			<result name="success">/generateReceipt.jsp</result>
+			<result name="success" type="redirect">clearUserCartDetails</result>
 			<result name="fail" >/error.jsp</result>
 		</action>
 
@@ -485,7 +485,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>		
 		<action name="clearUserCartDetails" class="edu.iiitb.action.cardPayment" 
 		method="clearUserCartDetail">				
-				<result name="success" type="json" />
+				<result name="success">./generateReceipt.jsp</result>
 		</action>
 		<action name="generateReceipt" class="edu.iiitb.action.generateReceipt"	>
 			<result name="success" type="json" />

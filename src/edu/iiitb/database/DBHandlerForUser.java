@@ -1155,22 +1155,23 @@ public class DBHandlerForUser {
 		//System.out.println("PID : " + pId + "quantity : " + qty);
 	}
 	
-	public boolean validateBankLogin(String bankLoginId,String bankPassword, String bankName) throws SQLException
+	public String validateBankLogin(String bankLoginId,String bankPassword, String bankName) throws SQLException
 	{
+		String creditCardNumber =null;
 		Connection con = db.createConnection();
-		String query="SELECT transactionPassword FROM FlipKartDatabase.BankDetails WHERE bankLoginId= '"+bankLoginId+"' and bankName = '" + bankName + "';";
+		String query="SELECT creditCardNumber, transactionPassword FROM FlipKartDatabase.BankDetails WHERE bankLoginId= '"+bankLoginId+"' and bankName = '" + bankName + "';";
 		System.out.println("Query : " + query);
 		ResultSet rs=db.executeQuery(query, con);
 		while(rs.next())
 		{
-			String password = rs.getString(1);
+			String password = rs.getString("transactionPassword");			
 			if(password.equals(bankPassword))
 			{
-				con.close();
-				return true;
+				creditCardNumber = rs.getString("creditCardNumber");				
 			}
 		}
-		return false;
+		con.close();
+		return creditCardNumber;
 	}
 
 	public ArrayList<customerCartDetail> generateReceipt(int orderId) throws SQLException

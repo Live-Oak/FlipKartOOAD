@@ -328,7 +328,7 @@
 																							"#cardNumber")
 																							.val(),
 																			success : function(
-																					data) {
+																					data) {/*
 																				$
 																						.ajax({
 																							type : 'GET',
@@ -337,7 +337,8 @@
 																									data) {
 																								window.location = "./generateReceipt.jsp";
 																							}
-																						});
+																						});*/
+																						window.location = "clearUserCartDetails";
 																			}
 																		});
 															}
