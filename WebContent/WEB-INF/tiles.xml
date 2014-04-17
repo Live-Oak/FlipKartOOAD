@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
    "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
@@ -170,6 +171,156 @@
    			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
    			<put-attribute name="body"   value="/sellerRating.jsp"/>
    			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
+   		</definition>
+   		
+   </tiles-definitions>
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+   
+   <tiles-definitions>
+   			
+   		
+   		<definition name="Administrator" template="/TilePage.jsp">
+   			<put-attribute name="title" value="Admin"/>
+   			<put-attribute name="menu"   value="/menuAdmin.jsp"/>
+		    <put-attribute name="body"   value="/Adminbody.jsp"/>
+		    <put-attribute name="footer"   value="/Adminfooter.jsp"/>
+   		</definition>
+   		
+   		<definition name="SellerTile" template="/TilePage.jsp">
+   			<put-attribute name="title" value="Admin"/>
+   			<put-attribute name="menu"   value="/menuSeller.jsp"/>
+		    <put-attribute name="body"   value="/sellerHome.jsp"/>
+		    <put-attribute name="footer"   value="/Adminfooter.jsp"/>
+   		</definition>
+   		
+   		
+   		<definition name="Stock" extends="Administrator">
+   			<put-attribute name="title" value="Stock Data"/>
+   			<put-attribute name="body" value="/viewStock.jsp"/>
+   		</definition>
+   		
+   		<definition name="SubCategoryData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/subcategory.jsp"></put-attribute>
+   		</definition>
+   			
+   		<definition name="CategoryData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/category.jsp"></put-attribute>
+   		</definition>
+   		
+   		<definition name="UserData" extends="Administrator">
+   			<put-attribute name="title" value="Users Info"/>
+   			<put-attribute name="body" value="/users.jsp"></put-attribute>
+   		</definition>
+   		
+   		
+   		<definition name="ProductData" extends="Administrator">
+   			<put-attribute name="title" value="Product Info"/>
+   			<put-attribute name="body" value="/products.jsp"></put-attribute>
+   		</definition>
+   		
+   		<definition name="RegisterPage" extends="Administrator">
+   			<put-attribute name="title" value="Registration"/>
+   			<put-attribute name="body"   value="/UserEntry.jsp"/>
+   		</definition>
+   		
+   		<definition name="DeleteUserPage" extends="Administrator">
+   			<put-attribute name="title" value="Deletion"/>
+   			<put-attribute name="body"   value="/DeleteUser.jsp"/>
+   		</definition>
+   		
+   		<definition name="InserCategoryPage" extends="Administrator">
+   			<put-attribute name="title" value="CategoryInsertion"/>
+   			<put-attribute name="body"   value="/InsertCategory.jsp"/>
+   		</definition>
+   		
+   		<definition name="InserSubCategoryPage" extends="Administrator">
+   			<put-attribute name="title" value="CategoryInsertion"/>
+   			<put-attribute name="body"   value="/InsertSubCategory.jsp"/>
+   		</definition>
+   		
+   		<definition name="start" template="/TilePage.jsp">
+   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
+   			<put-attribute name="header" value="/header.jsp"/>
+   			<put-attribute name="menu"   value="/menu.jsp"/>
+		    <put-attribute name="body"   value="/body.jsp"/>
+		    <put-attribute name="footer"   value="/footer.jsp"/>
+   		</definition>
+   		
+   		<definition name="Personal-infoTile" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: Account Settings"/>
+   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="body"   value="/Personal-info.jsp"/>
+   		</definition>
+
+		<definition name="CompareProductsTiles" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: Compare Products"/>
+   			<put-attribute name="body"   value="/compareProducts.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
+   		</definition>
+
+   		
+   		<definition name="ChangePasswordTile" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: ChangePassword"/>
+   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="body"   value="/ChangePassword.jsp"/>
+   		</definition>
+   		
+   		<definition name="AddressesTile" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: Addresses"/>
+   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="body"   value="/Addresses.jsp"/>
+   		</definition>
+   		
+   		<definition name="UpdateEmailTile" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: UpdateEmails"/>
+   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="body"   value="/UpdateEmail.jsp"/>
+   		</definition>
+   		
+   		<definition name="DeactivateAccountTile" extends="start">
+   			<put-attribute name="title" value="Flipkart.com: DeactivateAccount"/>
+   			<put-attribute name="menu"   value="/MenuHomePage.jsp"/>
+   			<put-attribute name="body"   value="/DeactivateAccount.jsp"/>
+   		</definition>
+   		
+   		<definition name="MyOrdersTile" extends="start">
+   		<put-attribute name="title" value="Flipkart.com: MyOrders"/>
+   		<put-attribute name="menu" value="/MenuHomePage.jsp"/>
+   		<put-attribute name="body" value="/RecentOrders.jsp"/>
+   		</definition>
+   
+   		<definition name="Apppage" extends="start">
+   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
+   			<put-attribute name="body"   value="/bodyapp.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
+   		</definition>
+   		
+   		<definition name="Browse_SearchPage" extends="start">
+   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
+   			<put-attribute name="body"   value="/bodysearch.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
+   		</definition>
+   		
+   		<definition name="ProductPage" extends="start">
+   			<put-attribute name="title" value="Online Shopping India - Flipkart.com"/>
+   			<put-attribute name="body"   value="/bodyProduct.jsp"/>
+   			<put-attribute name="footer"   value="/footernonstatic.jsp"/>
+   		</definition>
+   		
+   		<definition name="AddProductPage" extends="Administrator">
+   			<put-attribute name="title" value="addProduct"/>
+   			<put-attribute name="body"   value="/Admin-ProductEntry.jsp"/>
+   		</definition>
+   		
+   		<definition name="InserAdvertizementPage" extends="Administrator">
+   			<put-attribute name="title" value="addAdvertizement"/>
+   			<put-attribute name="body"   value="/AddAdvertisement.jsp"/>
    		</definition>
    		
    </tiles-definitions>

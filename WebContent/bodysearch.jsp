@@ -20,169 +20,75 @@
 <script src="asset/JavaScripts/bootstrap.min.js"></script>
 <script src="asset/JavaScripts/jquery-1.9.1.js"></script>
 <script src="asset/JavaScripts/jquery-ui.js"></script>
+<script src="asset/JavaScripts/jquery.min.js"></script>
+<script src="asset/JavaScripts/blockUI.js"></script>
 
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#newdivision").hide();
 	});
-	</script>
-	
-	<script type="text/javascript">
+</script>
+
+<script type="text/javascript">
 	$(document).ready(function(){
-		var temp='<b> Showing all the products in the category </b><br><br>';
 		$(".filters").change(function(event)
 			{
-
-		var cnt = $("input[name='checkbox']:checked").length;
-		if(cnt > 0)
-			{
-			$("#newdivision").empty();
-			var pId = [];
-			$(".filters").each(function() {
-				if ($(this).is(':checked')) {
-					 //alert("hi");
-					  pId.push($(this).attr("brandname"));
-					 //alert(pId);
-				   }
-			});
-				
-			var categoryId = $("#categoryid").val();
-			
-			 $.ajax({
-				    type: 'POST',
-				    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-				    data : {
-				    	brand : pId.join(","),
-				    	category : categoryId,
-				    	count : cnt
-				    },
-				    url:'getProductDetailfilter',
-				    success: function(data){
-				    	$.each(data.productinfofilter, function(count, stock) 
-				    	{
-				    		temp += '<div class="col-md-4"><div class="border"><center>';
-				    		if(stock.availableQuantity == 0)
-							{
-				    			temp += '<a href="#">';
-				    			temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /><br>';
-				    			temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
-				    			temp += '</a>';
-							}
-				    		else
-				    		{
-				    			if(stock.availableQuantity >= stock.minimumQuantity)
-				    			{
-				    				if(stock.offer==0)
-				    				{
-				    					temp += '<a href="getProductDetail?productID='+stock.productID+'">';
-				    					temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br><br><br>';
-						    			temp += '</a>';
-				    				}
-				    				else
-				    				{
-				    					temp += '<a href="getProductDetail?productID='+stock.productID+'">';
-				    					temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" /> <br>';
-						    			temp += '<img src="asset/Images/offer.jpg" alt="offer" height="40px">';
-						    			temp += '</a>';
-				    				}
-				    			}
-				    			else
-				    			{
-				    				temp += '<a href="#">';
-					    			temp += '<img src ="'+stock.image+'" alt="'+stock.productID+'"  height="140px" width="auto" />';
-					    			temp += '<img src="asset/Images/outofstock.jpg" alt="outofstock" height="40px">';
-					    			temp += '</a>';
-				    			}
-				    		}
-				    			
-					    	temp += '<hr>';
-					    	temp += '<div class="giveMeEllipsis">';
-					    	temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
-					    	temp += '<font size="4" color="black">'+stock.productName+'</font><br></a></div>';
-					    	temp += '<hr>';
-					    	
-					    	if(stock.offer == 0)
-				    		{
-				    				temp += '<font size="5px" color="#76553B"> Rs.'+stock.price+'</font><br>';
-				    		}
-				    		else
-				    		{
-				    			var a = stock.price;
-			    				var b = stock.offer;
-			    				var c = a-b;
-			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
-				    		}
-					    	
-					    	temp += '<hr>';
-					    	temp += 'This item has manufacturer warranty of '+stock.warranty+' years.<br>';
-					    	temp += '<hr>';
-					    	if(stock.availableQuantity == 0)
-							{
-					    		temp += '<input type="checkbox" disabled >Add To Compare</input>';
-							}
-					    	else if (stock.availableQuantity < stock.minimumQuantity)
-					    	{
-					    		temp += '<input type="checkbox" disabled >Add To Compare</input>';
-					    	}
-					    	else
-					    	{
-					    		temp += '<input type="checkbox" id="productID" class="addtocompare" name="compare" pid="'+stock.productID+'"/>Add To Compare</input>';  
-					    	}
-					    	temp += '<hr>';
-							temp += '<br><br>';
-					    	temp += '</center></div></div>';
-					    	
-				    	});
-				    	$("#newdivision").show();
-				    	$("#newdivision").append(temp);
-				    	
-				    	temp = '';
-				    }
-				    });
-			 $("#dataappended").hide();
-			}
-		else{
-			$("#dataappended").show();
-			$("#newdivision").empty();
-			}
+			name();
 		});
-			
-		 });
-	</script>
+	});
+</script>
 
-
-<!-- New one to update -->
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(){
-		var temp='<b> Showing all the products in the category </b><br><br>';
 		$(".filtersprice").change(function(event)
 			{
+			name();
+		});
+	});
+</script>
 
-		var cnt = $("input[name='checkbox']:checked").length;
-		if(cnt > 0)
-			{
+<script type="text/javascript">
+	function block()
+	{
+	 $.blockUI({ message: $('#loading...') }); 
+	 setTimeout($.unblockUI, 1000); 
+	}
+</script>
+
+<script type="text/javascript">
+function name()
+{
+	var temp='<b> Showing all the products in the category </b><br><br>';
+	var pId = [];
+	var price = [];	
+	var cnt = $("input[name='checkbox']:checked").length;
+	var cnt1 = $("input[name='checkboxprice']:checked").length;
+	if(cnt > 0 || cnt1 > 0)
+		{
 			$("#newdivision").empty();
-			var pId = [];
-			$(".filtersprice").each(function() {
+			$(".filters").each(function() {
 				if ($(this).is(':checked')) {
-					 //alert("hi");
-					  pId.push($(this).attr("price"));
-					 //alert(pId);
+					  pId.push($(this).attr("brandname"));
 				   }
 			});
-				
-			var categoryId = $("#categoryid").val();
+			$(".filtersprice").each(function() {
+				if ($(this).is(':checked')) {
+					 price.push($(this).attr("price"));
+					}
+			});	
+			var categoryName = $("#categoryname").val();
 			
 			 $.ajax({
 				    type: 'POST',
-				    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+				    contentType : "application/x-www-form-urlencoded; charset=utf-8",
 				    data : {
-				    	price : pId.join(","),
-				    	category : categoryId,
-				    	count : cnt
+				    	brand : pId.join(","),
+				    	price : price.join(","),
+				    	categoryName : categoryName,
+				    	count : cnt,
+				    	countprice : cnt1
 				    },
-				    url:'getProductDetailfilterprice',
+				    url:'getProductDetailcombined',
 				    success: function(data){
 				    	$.each(data.productinfofilter, function(count, stock) 
 				    	{
@@ -225,7 +131,7 @@
 					    	temp += '<div class="giveMeEllipsis">';
 					    	temp += '<a href="getProductDetail?productID=<s:property value="productID"/>">';
 					    	temp += '<font size="4" color="black">'+stock.productName+'</font><br></a></div>';
-					    	temp += '<hr>';
+					    	temp += '<hr><div style="height:50px">';
 					    	
 					    	if(stock.offer == 0)
 				    		{
@@ -233,13 +139,14 @@
 				    		}
 				    		else
 				    		{
+				    			temp += '<font color="#848484" size="4">Rs. <strike>'+stock.price+'</strike> '+stock.discount+'% OFF</font><br>';
 				    			var a = stock.price;
 			    				var b = stock.offer;
 			    				var c = a-b;
 			    				temp += '<font size="5px" color="#76553B"> Rs.'+c+'</font>';
 				    		}
 					    	
-					    	temp += '<hr>';
+					    	temp += '</div><hr>';
 					    	temp += 'This item has manufacturer warranty of '+stock.warranty+' years.<br>';
 					    	temp += '<hr>';
 					    	if(stock.availableQuantity == 0)
@@ -266,41 +173,198 @@
 				    }
 				    });
 			 $("#dataappended").hide();
-			}
-		else{
+		}
+	else{
 			$("#dataappended").show();
 			$("#newdivision").empty();
-			}
-		});
-			
-		 });
-	</script>
+		}
+	}
+</script>
+
 
 
 <script type="text/javascript">
-	
 	var product_id_to_send;
 	$("#comparecart").show();
 	$(document).ready(function() {
-						$("#close_compare").click(function() {
-							$("#comparecart").hide();
-							$('.addtocompare').prop('checked', false);
-						});
+		$.ajax({
+			type : 'GET',
+			url : 'getProductsFromCartToCompare',
+			success : function(data) {
+				
+				if(data.count>0)
+					{
+								$("#comparecart").show();
+								$("#producttocompare").show();
+								
+									if (data.count == 1) 
+									{
+										$("#emptyComparediv").hide();
+										$("#compare_button").attr("disabled",true);
+										
+									}
+									if (data.count != 1) 
+									{
+										$("#compare_button").attr("disabled",false);
+									}
+									$("#producttocompare").show();
+									$("#products_to_compare").empty();
+									$.each(data.products,function(count,productcompare) {
+											product_id_to_send = productcompare.productId;
+											$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																	+ "<center>"
+																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																	+ "<div class='productName'> <div class='giveMeEllipsis'>"
+																	+ productcompare.productName
+																	+ "</div> </div>"
+																	+"</center>"
+																	+ "</div>");
+										});
+								}
+					
+			}
+			});  // 2 ajax
+			$("#close_compare").click(function() {
+				$.ajax({
+					type : 'POST',
+					contentType : "application/x-www-form-urlencoded; charset=utf-8",
+					url : 'removeAllProductFromCompareCart',
+					success : function(data) {
+
+						$("#comparecart").hide();
+						$('.addtocompare').prop('checked', false);
+
+					}
+				});
+
+			});
 
 						
 
-						$(document).on('click','.remove',function(e) {
-												var target = e.currentTarget;
-												var pId = $(target).attr("pid");
-												$.ajax({
-														type : 'POST',
-														contentType : "application/x-www-form-urlencoded; charset=utf-8",
-														data : {
-																productId : pId,
-																},
-														url : 'removeProductFromCompareCart',
-														success : function(data) {
+			$(document).on('click','.remove',function(e) {
+				var target = e.currentTarget;
+				var pId = $(target).attr("pid");
+				$.ajax({
+						type : 'POST',
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						data : {
+								productId : pId,
+								},
+						url : 'removeProductFromCompareCart',
+						success : function(data) {
+							$("#producttocompare").show();
+							$("#products_to_compare").empty();
+							$.each(data.products,function(count,productcompare) {
+									product_id_to_send = productcompare.productId;
+									$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+															+ "<center>"
+															+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+															+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+															+ "<div class='productName'> <div class='giveMeEllipsis'>"
+															+ productcompare.productName
+															+ "</div></div>"
+															+"</center>"
+															+ "</div>");
+									
+								});
+								if(data.count==0)
+									{
+										$("#products_to_compare").hide();
+										$("#emptyComparediv").show();
+										$("#compare_button").attr("disabled",true);
+									}		
+								if(data.count==1)
+									{
+									$("#compare_button").attr("disabled",true);
+									}
+						}
+					});
+		});
+			$(".addtocompare").change(function(event) {
+				
+				if($(".addtocompare").is(':checked'))
+					{
+				var pId = $(event.target).attr("pid");
+				var categoryId = $("#category").val();
+				categoryId = categoryId.trim();
+				$.ajax({
+						type : 'GET',
+						contentType : "application/x-www-form-urlencoded; charset=utf-8",
+						url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
+						success : function(data) {
+							if(data.messageCount=="hello")
+								{
+									alert("No more products can be added for comparison!!");
+									$('input:checkbox').removeAttr('checked');
+									$("#comparecart").show();
+									$("#producttocompare").show();
+									$("#products_to_compare").show();
+									$("#products_to_compare").empty();
+									$("#products_to_compare").show();
+									$.each(data.products,function(count,productcompare) {
+										product_id_to_send = productcompare.productId;
+										$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+																+ "<center>"
+																+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+																+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+																+ "<div class='productName'><div class='giveMeEllipsis'>"
+																+ productcompare.productName
+																+ "</div></div>"
+																+"</center>"
+																+ "</div>");
+									});
+								}
+							else if(data.messageCategoryMismatch=="yes")
+							{
+								alert("Category Mismatched !!");
+								$('input:checkbox').removeAttr('checked');
+								$("#comparecart").show();
+								$("#producttocompare").show();
+								$("#products_to_compare").show();
+								$("#products_to_compare").empty();
+								$.each(data.products,function(count,productcompare) {
+									product_id_to_send = productcompare.productId;
+									$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
+															+ "<center>"
+															+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
+															+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
+															+ "<div class='productName'><div class='giveMeEllipsis'>"
+															+ productcompare.productName
+															+ "</div></div>"
+															+"</center>"
+															+ "</div>");
+								});
+							}
+							else
+							{
+							$.ajax({
+									type : 'GET',
+									url : 'getProductsFromCartToCompare',
+									success : function(data) {
+										
+														$("#comparecart").show();
+														$("#producttocompare").show();
+														$("#products_to_compare").show();
+														if (data.count == undefined|| data.count == 0) 
+														{
+															
+															$("#compare_button").attr("disabled",true);
+														}
+														else 
+														{
+															if (data.count == 1) 
+															{
+																$("#emptyComparediv").hide();
+																$("#compare_button").attr("disabled",true);
+																
+															}
+															if (data.count != 1) 
+															{
+																$("#compare_button").attr("disabled",false);
+															}
 															$("#producttocompare").show();
+															$("#products_to_compare").show();
 															$("#products_to_compare").empty();
 															$.each(data.products,function(count,productcompare) {
 																	product_id_to_send = productcompare.productId;
@@ -308,95 +372,25 @@
 																							+ "<center>"
 																							+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
 																							+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																							+ "<div class='productName'>"
+																							+ "<div class='productName'> <div class='giveMeEllipsis'>"
 																							+ productcompare.productName
-																							+ "</div>"
+																							+ "</div></div>"
 																							+"</center>"
 																							+ "</div>");
-																	
 																});
-																if(data.count==0)
-																	{
-																		$("#products_to_compare").hide();
-																		$("#emptyComparediv").show();
-																		$("#compare_button").attr("disabled",true);
-																	}		
-																if(data.count==1)
-																	{
-																	$("#compare_button").attr("disabled",true);
-																	}
 														}
-													});
-										});
-								$(".addtocompare").change(function(event) {
-									
-														if($(".addtocompare").is(':checked'))
-															{
-														var pId = $(event.target).attr("pid");
-														var categoryId = $("#category").val();
-														categoryId = categoryId.trim();
-														$.ajax({
-																type : 'GET',
-																contentType : "application/x-www-form-urlencoded; charset=utf-8",
-																url : 'getProductToCompare?productId='+ pId+ '&category='+ categoryId,
-																success : function(data) {
-																	if(data.messageCount=="hello")
-																		{
-																			alert("no more products can be added for comparison");
-																		}
-																	else if(data.messageCategoryMismatch=="yes")
-																	{
-																		alert("mismatched category!!");
-																	}
-																	else
-																	{
-																	$.ajax({
-																			type : 'GET',
-																			url : 'getProductsFromCartToCompare',
-																			success : function(data) {
-																				
-																								$("#comparecart").show();
-																								$("#producttocompare").show();
-																								if (data.count == undefined|| data.count == 0) 
-																								{
-																									
-																									$("#compare_button").attr("disabled",true);
-																								}
-																								else 
-																								{
-																									if (data.count == 1) 
-																									{
-																										$("#emptyComparediv").hide();
-																										$("#compare_button").attr("disabled",true);
-																									}
-																									if (data.count != 1) 
-																									{
-																										$("#compare_button").attr("disabled",false);
-																									}
-																									alert("hello");
-																									$("#producttocompare").show();
-																									$("#products_to_compare").empty();
-																									$.each(data.products,function(count,productcompare) {
-																											product_id_to_send = productcompare.productId;
-																											$("#products_to_compare").append("<div style='height:50px;' class='col-md-2' class='border'>"
-																																	+ "<center>"
-																																	+ "<div class='remove' pid='"+productcompare.productId+"'><a style='color:black;'>&#215</a></div><br>"
-																																	+ "<img src='"+productcompare.image+"' height='60px' width='60px' style='float:left' /><br>"
-																																	+ "<div class='productName'>"
-																																	+ productcompare.productName
-																																	+ "</div>"
-																																	+"</center>"
-																																	+ "</div>");
-																										});
-																								}
-																					}
-																				
-																			});  // 2 ajax
-																	}	
-																}						// success of first ajax
-															});			// 1 ajax
-																				// else
-															} 						// if
+											}
+										
+									});  // 2 ajax
+							}	
+						}						// success of first ajax
+					});			// 1 ajax
+										// else
+					} 						// if
+	
+					else
+						{
+						}
 											
 											$("#compare_button").click(
 													function() {
@@ -434,20 +428,20 @@
 				<h5>Price</h5>
 				<hr>
 				<form>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="1"> Rs. 2000 and Below<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="2"> Rs. 2001 - Rs. 5000<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="3"> Rs. 5001 - Rs. 10000<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="4"> Rs. 10001 - Rs. 18000<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="5"> Rs. 18001 - Rs. 25000<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="6"> Rs. 25001 - Rs. 35000<br>
-					<input type="checkbox" class="filtersprice" name="checkbox" id="range" price="7"> Rs. 35001 and Above
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="1"> Rs. 2000 and Below<br>
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="2"> Rs. 2001 - Rs. 5000<br>
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="3"> Rs. 5001 - Rs. 10000<br>
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="4"> Rs. 10001 - Rs. 18000<br>
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="5"> Rs. 18001 - Rs. 25000<br>
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="6"> Rs. 25001 - Rs. 35000<br>
+					<input type="checkbox" class="filtersprice" name="checkboxprice" id="range" price="7"> Rs. 35001 and Above
 				</form> 
 				<hr>
 				<h5>Company Name</h5>
 				<hr>
 				<input type="hidden" id="category"
 					value="<s:property value="productinfo.get(2).categoryID"/>">
-					<input type="hidden" id="categoryid" value="<s:property value="productinfo.get(0).categoryID"/>">
+					<input type="hidden" id="categoryname" value="<s:property value="categoryname"/>">
 					<s:iterator value="companyList">
 						<input type="checkbox" id="brand" class="filters" name="checkbox"
 							brandname="<s:property />">
@@ -517,14 +511,17 @@
 								</a>
 							</div>
 							<hr>
+							<div style="height:50px">
 							<s:if test="%{offer==0}">
 								<font size="5px" color="#76553B"> Rs. <s:property
-										value="price" /><br>
+										value="price" /><br><br>
 								</font>
 							</s:if>
 							<s:if test="%{offer>0}">
+								<font color="#848484" size="4">Rs. <strike><s:property value="price" /></strike> <s:property value="discount"/>% OFF</font><br>
 								<font size="5px" color="#76553B"> Rs. ${price-offer} </font>
 							</s:if>
+							</div>
 							<hr>
 							This item has manufacturer warranty of
 							<s:property value="warranty" />
